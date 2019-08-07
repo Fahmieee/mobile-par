@@ -19,10 +19,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="theme_color" content="#ffffff">
-  <title>
-    PAR | Prima Armada Raya
-  </title>
+  <meta name="theme_color" content="#ffffff">   
+  @if(Auth::user())
+  <title>PAR | Prima Armada Raya</title>
+  @else
+  <title>PAR | Prima Armada Raya/title>
+  @endif
   <!-- Favicon -->
   <link href="./assets/content/img/brand/favicon.png" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -41,9 +43,9 @@
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->
-      <button class="navbar-toggler" id="logout" type="button">
+      <a href="login/logout"><button class="navbar-toggler" id="logout" type="button">
         <span class="ni ni-user-run"></span>
-      </button>
+      </button></a>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="#">
         <img src="./assets/login/images/par.png" class="navbar-brand-img" alt="...">

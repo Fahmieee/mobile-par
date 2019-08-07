@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Users;
+use App\Role;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,12 +19,14 @@ class LoginController extends Controller
     public function loginUser(Request $request)
     {
 
-        $userc = Users::where('username', $request->username)->first();
+        $userc = Users::select('role_id')
+        ->leftJoin("users_roles", "users.id", "=", "users_roles.user_id")
+        ->where('users.username', $request->username)->first();
 
         // Attempt Login for members
         if (Auth::guard('user')->attempt(['username' => $request->username, 'password' => $request->password], $request->remember)) {
             $msg = array(
-                'level'   => $userc->level,
+                'role'   => $userc->role_id,
                 'status'  => 'success',
             );
 
@@ -46,7 +49,15 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('login.index');
+        return view('splash.index');
+    }
+
+    public function Coba()
+    {
+
+        $password = Hash::make('secret');
+        return($password);
+
     }
 
 }

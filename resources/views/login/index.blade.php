@@ -14,10 +14,9 @@
                     <!-- ========== LOGIN ========== -->
                     <div id="login-form" style="display: block;">
                     	<br>
-                    	<form id="login-form" method="post" onsubmit="return LoginUser()" role="form" style="display: block;">
                     		{{ csrf_field() }}
 		                    <div class="wrap-input100 validate-input m-b-10">
-		                        <input class="input100 username" placeholder="Username" name="username" type="text">
+		                        <input class="input100 logins username" placeholder="Username" type="text">
 		                        <span class="focus-input100"></span>
 		                        <span class="symbol-input100">
 		                            <i class="fa fa-user"></i>
@@ -25,7 +24,7 @@
 		                    </div>
 
 		                    <div class="wrap-input100 validate-input m-b-10">
-		                        <input class="input100 password" placeholder="Password" name="password" type="password">
+		                        <input class="input100 logins password" placeholder="Password" type="password">
 		                        <span class="focus-input100"></span>
 		                        <span class="symbol-input100">
 		                            <i class="fa fa-lock"></i>
@@ -42,7 +41,6 @@
 		                            Daftar
 		                        </button>
 		                    </div>
-		                </form>
 	                </div>
 
                     <!-- {{-- ========== REGISTER =========== --}} -->
