@@ -52,7 +52,12 @@ Route::group(['middleware' => 'auth:user'], function(){
 
 	Route::get('pretripcheck', 'PreTripCheckController@index');
 	Route::get('pretripcheck/get', 'PreTripCheckController@GetData')->name('GetPreTripCheck');
+	Route::post('pretripcheck/submit', 'PreTripCheckController@SubmitPretripCheck')->name('SubmitPretripCheck');
+	Route::post('pretripcheck/validasi', 'PreTripCheckController@Validasi')->name('ValidasiPretripCheck');
 
+	Route::post('clocks/clockin', 'ClocksController@create')->name('ClokinSubmit');
+	Route::post('clocks/validasi', 'ClocksController@validasi')->name('ValidasiClock');
+	Route::post('clocks/clockout', 'ClocksController@clockout')->name('ClokoutSubmit');
 
 	Route::get('/korlap', function () {
 	    return view('content.home.korlap');

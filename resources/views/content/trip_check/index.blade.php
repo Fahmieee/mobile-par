@@ -10,6 +10,7 @@
               <div class="ct-page-title">
                 <h1 class="ct-title" id="content">Pre Trip Checks</h1><span class="badge badge-primary">{{ $date }}</span>
               </div>
+              <input type="hidden" class="form-control" id="created_by" value="{{Auth::guard('user')->user()->id}}">
 
               <div id="content_tripcheck">
                 

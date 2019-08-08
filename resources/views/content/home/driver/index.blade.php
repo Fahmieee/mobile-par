@@ -12,7 +12,28 @@
                 <div class="card-header bg-blue-par">
                   <h6 class="text-uppercase text-white ls-1 mb-1">MENU</h6>
                 </div>
-                <div class="card-body bg-blue-par2" id="menu" style="display: block;">
+                <div class="card-body bg-blue-par2" id="menu_icons" style="display: block;">
+                  <table border="0" align="center" id="foricons" width="100%" style="display: none;">
+                    <tr>
+                      <td width="5%"> </td>
+                      <td width="5%" id="icon_check">
+                      </td>
+                      <td width="20%" style="padding-top: 10px" id="word_check">
+                      </td>
+                      <td width="5%" id="icon_clock">
+                      </td>
+                      <td width="20%" style="padding-top: 10px" id="word_clock">
+                      </td>
+                      <td width="5%" id="icon_km">
+                      </td>
+                      <td width="20%" style="padding-top: 10px" id="word_km">
+                      </td>
+                    </tr>
+                    <tr height="20px">
+                      <td colspan="3"></td>
+                    </tr>
+                    
+                  </table>
                   <table border="0" align="center" width="100%">
                     <tr>
                       <td align="center" width="33%">
@@ -20,15 +41,17 @@
                             <i class="fas fa-check-circle" style="color: #0166b5"></i>
                         </div>
                       </td>
-                      <td align="center" width="33%">
-                        <div class="icon icon-shape bg-white text-white rounded-circle shadow">
+                      <td align="center" width="33%" id="clock_icon">
+                        <div id="clockin" class="icon icon-shape bg-white text-white rounded-circle shadow">
                             <i class="fas fa-car" style="color: #0166b5"></i>
+                            <input type="hidden" id="selesai" value="0">
                         </div>
                       </td>
                       <td align="center" width="33%">
-                        <div class="icon icon-shape bg-white text-white rounded-circle shadow">
+                        <div id="history" class="icon icon-shape bg-white text-white rounded-circle shadow">
                             <i class="fas fa-history" style="color: #0166b5"></i>
                         </div>
+                        <input type="hidden" class="form-control" id="created_by" value="{{Auth::guard('user')->user()->id}}">
                       </td>
                     </tr>
                     <tr>
@@ -38,7 +61,7 @@
                       <td align="center">
                         <h6 class="text-uppercase text-white ls-1 mb-1">Pre-Trip Check</h6>
                       </td>
-                      <td align="center">
+                      <td align="center" id="clock_desc">
                         <h6 class="text-uppercase text-white ls-1 mb-1">Clock In</h6>
                       </td>
                       <td align="center">
@@ -186,8 +209,6 @@
                       <td colspan="4"></td>
                     </tr>
                     
-                    
-                    
                   </table>
                 </div>
               </div>
@@ -197,6 +218,7 @@
       </div>
     </div>
 
+      @include('content.home.driver.modal')
       @include('layout.contentfooter')
 
       @include('script.driver')

@@ -93,7 +93,8 @@
 	    	$('#modal_pretrip_check').modal('show');
 	    	
 	    } else {
-	    	alert('KAGA Empty')
+	    	
+	    	$('#modal_pretrip_check_all').modal('show');
 	    }
 
 	});
@@ -106,7 +107,47 @@
 
 	$('#batal_yakin').on('click', function () {
 
+		$('#modal_batal_submit').modal('hide');
+
 		setTimeout(function(){ window.location.href='driver'; }, 10);
+
+	});
+
+	$('#yakin_submit').on('click', function () {
+
+		var value = [];
+		var check_id = [];
+
+        $('.pretrip_check').each(function(){
+            check_id.push($(this).val());
+        });
+
+        $('.pretrip_check_val').each(function(){
+            value.push($(this).val());
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('SubmitPretripCheck') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'value' : value,
+                'check_id' : check_id,
+                'created_by': $('#created_by').val()
+                },
+            success: function(data) {
+
+            	swal("Pre Trip Check Berhasil Terkirim!", {
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                });
+
+                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+
+            }
+
+        });
 
 	});
 
