@@ -47,14 +47,14 @@
         <span class="ni ni-user-run"></span>
       </button></a>
       <!-- Brand -->
-      <a class="navbar-brand pt-0" href="#">
+      <a class="navbar-brand pt-0" href="driver">
         <img src="./assets/login/images/par.png" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
         <span class="ni ni-bell-55"></span>
       </button>
-
+      {{ csrf_field() }}
       <!-- Collapse -->
       <div class="collapse navbar-collapse" id="sidenav-collapse-main">
         <!-- Collapse header -->

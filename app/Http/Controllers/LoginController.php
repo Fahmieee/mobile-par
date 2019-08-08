@@ -49,7 +49,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('splash.index');
+        return view('login.index');
     }
 
     public function Coba()

@@ -27,12 +27,14 @@ Route::get('login/logout', array(
 ));
 
 Route::post('login/user', 'LoginController@loginUser')->name('login_submit');
-Route::get('/', 'LoginController@showLoginForm')->name('login.user');
+Route::get('/logins', 'LoginController@showLoginForm')->name('login.user');
 
 
 Route::get('/', function () {
     return view('splash.index');
 });
+
+Route::get('/coba', 'LoginController@Coba');
 
 Route::group(['middleware' => 'auth:user'], function(){
 
@@ -40,19 +42,17 @@ Route::group(['middleware' => 'auth:user'], function(){
 	    return view('intro.index');
 	});
 
-	Route::get('/coba', 'LoginController@Coba');
-
 	Route::get('/home', function () {
 	    return view('content.home.index');
 	});
 
 	Route::get('/driver', function () {
-	    return view('content.home.driver');
+	    return view('content.home.driver.index');
 	});
 
-	Route::get('/driver_ada', function () {
-	    return view('content.home.driver-ada');
-	});
+	Route::get('pretripcheck', 'PreTripCheckController@index');
+	Route::get('pretripcheck/get', 'PreTripCheckController@GetData')->name('GetPreTripCheck');
+
 
 	Route::get('/korlap', function () {
 	    return view('content.home.korlap');
@@ -62,9 +62,6 @@ Route::group(['middleware' => 'auth:user'], function(){
 	    return view('content.home.index2');
 	});
 
-	Route::get('/pretripcheck', function () {
-	    return view('content.trip_check.index');
-	});
 
 	Route::get('/approve', function () {
 	    return view('content.approve.index');
