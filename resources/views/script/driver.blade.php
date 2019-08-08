@@ -299,9 +299,13 @@
 	            }
 	        });
 
-        }
+        }	
 
-		
+	});
+
+	$('#history').on('click', function () {
+
+		setTimeout(function(){ window.location.href = 'history'; }, 10);
 
 	});
 

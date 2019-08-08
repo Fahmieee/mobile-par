@@ -59,6 +59,8 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('clocks/validasi', 'ClocksController@validasi')->name('ValidasiClock');
 	Route::post('clocks/clockout', 'ClocksController@clockout')->name('ClokoutSubmit');
 
+	Route::get('history', 'HistoryController@index');
+
 	Route::get('/korlap', function () {
 	    return view('content.home.korlap');
 	});
