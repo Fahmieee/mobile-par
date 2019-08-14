@@ -3,6 +3,97 @@
 	$(function() {
 
 		$.ajax({
+            type: 'POST',
+            url: "{{ route('ValidasiNilaiDriver') }}",
+            data: {
+            	'_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val()
+                },
+            success: function(data) {
+
+            	var total = data.total;
+            	var count = data.count;
+            	var name = data.name;
+
+            	var grandtotal = parseInt(total)/parseInt(count);
+            	var rating = grandtotal.toFixed(1);
+            	var bulat = Math.round(grandtotal);
+
+            	var content_data = "";
+
+            	if(count == 0){
+            		$('#rating').html('0.0');
+
+            	} else {
+
+            		$('#tampilkan_content').attr('id','sudahnilai');
+
+            		content_data += "<div class='alert alert-danger role='alert' align='center'> <h5 class='text-white'>Anda Sudah Menilai Driver</h5>";
+            		content_data += "</div>";
+
+            		$('#validasi').html(content_data);
+            		$('#rating').html(rating);
+            		$('#button').html('');
+            	}
+
+            	var content_data = "";
+
+            	if(bulat == '1'){
+
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+
+            	} else if (bulat == '2'){
+
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+            	} else if (bulat == '3'){
+
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+            	} else if (bulat == '4'){
+
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+
+            	}  else if (bulat == '5'){
+
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;color:orange;'></span>";
+
+            	} else {
+
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+            		content_data += "<span class='fa fa-star' style='font-size:30px;'></span>";
+
+            	}
+
+            	$('#ratings_bintang').html(content_data);
+
+            	$('#nama').html(name);
+            }
+
+        });
+
+		$.ajax({
 	        url: "{{ route('GetTypeNilaiDriver') }}",
 	        type: "GET",
 	        dataType: "json",
@@ -51,7 +142,7 @@
 
 				                content_datas += "<div class='alert alert-default type_"+id+"' role='alert' id='pilih_"+ids+"' onclick='DetailNilai("+ids+","+id+");' align='center'>";
 				                content_datas += "<input type='hidden' id='val_"+ids+"' class='notchoose1_"+id+"' value="+value+">";
-				                content_datas += "<input type='hidden' id='id_"+ids+"' class='notchoose2_"+id+"' value="+ids+">";
+				                content_datas += "<input type='hidden' id='id_"+ids+"' class='notchoose2_"+id+"' value="+id+">";
                         		content_datas += "<h6 class='text-white'>"+name+"</h6>";
                       			content_datas += "</div>";
 
@@ -155,6 +246,44 @@
 	$('#yakin_batal').on('click', function () {
 
 		setTimeout(function(){ window.location.href = 'client'; }, 10);
+
+	});
+
+	$('#submit_yakin').on('click', function () {
+
+		var val = [];
+		var nilaidetail_id = [];
+
+        $('.val').each(function(){
+            val.push($(this).val());
+        });
+
+        $('.id').each(function(){
+            nilaidetail_id.push($(this).val());
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('SubmitNilaiDriver') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'value' : val,
+                'nilaidetail_id' : nilaidetail_id,
+                'user_id': $('#created_by').val()
+                },
+            success: function(data) {
+
+            	swal("Penilaian Driver Telah Terkirim!", {
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                });
+
+                setTimeout(function(){ window.location.href = 'client'; }, 1500);
+
+            }
+
+        });
 
 	});
 </script>

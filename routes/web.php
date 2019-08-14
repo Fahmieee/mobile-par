@@ -81,6 +81,8 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::get('nilaidriver', 'NilaiDriverController@index');
 	Route::get('nilaidriver/gettype', 'NilaiDriverController@gettype')->name('GetTypeNilaiDriver');
 	Route::post('nilaidriver/getdetail', 'NilaiDriverController@getdetail')->name('GetDetailNilaiDriver');
+	Route::post('nilaidriver/submit', 'NilaiDriverController@submit')->name('SubmitNilaiDriver');
+	Route::post('nilaidriver/validasi', 'NilaiDriverController@validasi')->name('ValidasiNilaiDriver');
 
 	Route::get('/home2', function () {
 	    return view('content.home.korlap');

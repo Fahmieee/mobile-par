@@ -24,25 +24,18 @@
             </div>
             <div class="card-header border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="text-center">
-                <h3>
-                  Ahmad Jufrianto
-                </h3>
-                <h1 style="font-size: 60px;">0.0</h1>
-
-                <span class="fa fa-star" style="font-size:30px;"></span>
-                <span class="fa fa-star" style="font-size:30px;"></span>
-                <span class="fa fa-star" style="font-size:30px;"></span>
-                <span class="fa fa-star" style="font-size:30px;"></span>
-                <span class="fa fa-star" style="font-size:30px;"></span>
+                <h3 id="nama"></h3>
+                <h1 style="font-size: 60px;" id="rating">0.0</h1>
+                <div id="ratings_bintang"></div>
               </div>
               <br>
-              <div class="ct-page-title">
-                <h3 class="ct-title" id="content"><b>Penilaian Driver</b></h3>
+              <div id="validasi">
+                <div class="ct-page-title">
+                  <h3 class="ct-title" id="content"><b>Penilaian Driver</b></h3>
+                </div>
+                <div id="tampilkan_content"></div>
               </div>
-              <div id="tampilkan_content">
-                
-              </div>
-              <table border="0" width="100%">
+              <table border="0" width="100%" id="button">
                 <tr>
                   <td align="center">
                     <button type="button" id="submit_nilai" class="btn btn-primary">Kirim Nilai</button>
@@ -56,9 +49,9 @@
         </div>
       
         @include('content.nilai_driver.modal')
-       @include('layout.contentfooter')
+        @include('layout.contentfooter')
 
-       @include('script.nilaidriver')
+        @include('script.nilaidriver')
 </body>
 
 </html>
