@@ -8,13 +8,14 @@ use App\CheckType;
 use App\CheckDetail;
 use App\Pretrip_Check;
 use App\Pretrip_Check_Detail;
+use App\PretripCheckNotOke;
 
 class PreTripCheckController extends Controller
 {
     
 	public function index()
     {
-
+        date_default_timezone_set('Asia/Jakarta');
     	$date = date('Y-m-d');
 
     	$types = CheckDetail::select("check_detail.*","check_types.name As type_name")
@@ -25,17 +26,27 @@ class PreTripCheckController extends Controller
 
     }
 
-    public function GetData()
+    public function GetData(Request $request)
     {
         $gettype = CheckDetail::select("check_detail.*","check_types.name As type_name")
         ->leftJoin("check_types", "check_detail.checktype_id", "=", "check_types.id")
+        ->where("check_detail.checktype_id", $request->check_id)
         ->get();
 
         return response()->json($gettype);
     }
 
+    public function getkategori()
+    {
+        $gettypes = CheckType::select("id","name")
+        ->get();
+
+        return response()->json($gettypes);
+    }
+
     public function SubmitPretripCheck(Request $request) {
 
+        date_default_timezone_set('Asia/Jakarta');
     	$harini = date('Y-m-d');
     	$time = date("h:i:sa");
 
@@ -43,7 +54,6 @@ class PreTripCheckController extends Controller
         $pretrip_check->user_id= $request->created_by;
         $pretrip_check->date= $harini;
         $pretrip_check->time= $time;
-        $pretrip_check->status= 'PENDING';
         $pretrip_check->save();
 
         $count = count($request->check_id);
@@ -56,30 +66,18 @@ class PreTripCheckController extends Controller
             $detail_tripcheck->value = $request->value[$i];
             $detail_tripcheck->save();
 
-        }
+            if ($request->value[$i] == '0'){
 
-        $notoke = Pretrip_Check_Detail::select('id')
-        ->where([
-            ['pretripcheck_id', '=', $pretrip_check->id],
-            ['value', '=', '0'],
-        ])
-        ->get();
+                $notok = new PretripCheckNotOke();
+                $notok->pretripdetail_id = $detail_tripcheck->id;
+                $notok->status = "NOT APPROVED";
+                $notok->ket = $request->alasan[$i];
+                $notok->save();
 
-        $countcheck = count($notoke);
-
-        if ($countcheck == '0'){
-
-        	$updates = Pretrip_Check::findOrFail($pretrip_check->id);
-	        $updates->status = 'APPROVED';
-	        $updates->save();
-
-        } else {
-
-        	$updates = Pretrip_Check::findOrFail($pretrip_check->id);
-	        $updates->status = 'NOT APPROVED';
-	        $updates->save();
+            } 
 
         }
+
 
         return response()->json($detail_tripcheck);
 
@@ -87,11 +85,33 @@ class PreTripCheckController extends Controller
 
     public function Validasi(Request $request) {
 
+        date_default_timezone_set('Asia/Jakarta');
     	$harini = date('Y-m-d');
 
     	$validate = Pretrip_Check::where([
-            ['user_id', '=', $request->user_id],
-            ['date', '=', $harini],
+            ['pretrip_check.user_id', '=', $request->user_id],
+            ['pretrip_check.date', '=', $harini],
+        ])
+        ->get();
+
+        return response()->json($validate);
+
+    }
+
+    public function validasinotoke(Request $request) {
+
+        date_default_timezone_set('Asia/Jakarta');
+        $harini = date('Y-m-d');
+
+        $validate = Pretrip_Check::select("pretrip_check.id","pretrip_check_notoke.status","pretrip_check.time","check_detail.level")
+        ->leftJoin("pretrip_check_detail", "pretrip_check.id", "=", "pretrip_check_detail.pretripcheck_id")
+        ->leftJoin("pretrip_check_notoke", "pretrip_check_detail.id", "=", "pretrip_check_notoke.pretripdetail_id")
+        ->join("check_detail", "pretrip_check_detail.checkdetail_id", "=", "check_detail.id")
+        ->where([
+            ['pretrip_check.user_id', '=', $request->user_id],
+            ['pretrip_check.date', '=', $harini],
+            ['check_detail.level', '=', 'High'],
+            ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
         ])
         ->get();
 

@@ -11,45 +11,29 @@
                   <h6 class="text-uppercase text-white ls-1 mb-1">MENU</h6>
                 </div>
                 <div class="card-body bg-blue-par2" id="menu_icons" style="display: block;">
-                  <table border="0" align="center" id="foricons" width="100%" style="display: none;">
-                    <tr>
-                      <td width="5%"> </td>
-                      <td width="5%" id="icon_check">
-                      </td>
-                      <td width="20%" style="padding-top: 10px" id="word_check">
-                      </td>
-                      <td width="5%" id="icon_clock">
-                      </td>
-                      <td width="20%" style="padding-top: 10px" id="word_clock">
-                      </td>
-                      <td width="5%" id="icon_km">
-                      </td>
-                      <td width="20%" style="padding-top: 10px" id="word_km">
-                      </td>
-                    </tr>
-                    <tr height="20px">
-                      <td colspan="3"></td>
-                    </tr>
-                    
-                  </table>
+                  
                   <table border="0" align="center" width="100%">
                     <tr>
-                      <td align="center" width="33%">
-                        <div id="pretripcheck" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                            <i class="fas fa-check-circle" style="color: #0166b5"></i>
+                      <td align="center" width="25%">
+                        <div id="kendaraan" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                            <i class="fas fa-car" style="color: #0166b5"></i>
                         </div>
                       </td>
-                      <td align="center" width="33%" id="clock_icon">
-                        <div id="clockin" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                            <i class="fas fa-car" style="color: #0166b5"></i>
+                      <td align="center" width="25%">
+                        <div id="pengemudi" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                            <i class="fas fa-child" style="color: #0166b5"></i>
                             <input type="hidden" id="selesai" value="0">
                         </div>
                       </td>
-                      <td align="center" width="33%">
-                        <div id="history" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                            <i class="fas fa-history" style="color: #0166b5"></i>
+                      <td align="center" width="25%">
+                        <div id="suara" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                            <i class="fas fa-bullhorn" style="color: #0166b5"></i>
                         </div>
-                        
+                      </td>
+                      <td align="center" width="25%">
+                        <div id="approve" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                            <i class="fas fa-check" style="color: #0166b5"></i>
+                        </div>
                       </td>
                     </tr>
                     <tr>
@@ -57,13 +41,16 @@
                     </tr>
                     <tr>
                       <td align="center">
-                        <h6 class="text-uppercase text-white ls-1 mb-1">Pre-Trip Check</h6>
-                      </td>
-                      <td align="center" id="clock_desc">
-                        <h6 class="text-uppercase text-white ls-1 mb-1">Clock In</h6>
+                        <h6 class="text-uppercase text-white ls-1 mb-1">Nilai Kendaraan</h6>
                       </td>
                       <td align="center">
-                        <h6 class="text-uppercase text-white ls-1 mb-1">Riwayat Perjalanan</h6>
+                        <h6 class="text-uppercase text-white ls-1 mb-1">Nilai Pengemudi</h6>
+                      </td>
+                      <td align="center">
+                        <h6 class="text-uppercase text-white ls-1 mb-1">Suara Pelanggan</h6>
+                      </td>
+                      <td align="center">
+                        <h6 class="text-uppercase text-white ls-1 mb-1">Approve</h6>
                       </td>
                     </tr>
                   </table>
@@ -213,10 +200,9 @@
             </div>    
           </div>
 
-      @include('content.home.driver.modal')
+      
       @include('layout.contentfooter')
-
-      @include('script.driver')
+      @include('script.client')
 </body>
 
 </html>

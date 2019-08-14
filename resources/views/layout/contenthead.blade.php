@@ -1,18 +1,4 @@
-<!--
 
-=========================================================
-* Argon Dashboard - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,11 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme_color" content="#ffffff">   
-  @if(Auth::user())
   <title>PAR | Prima Armada Raya</title>
-  @else
-  <title>PAR | Prima Armada Raya/title>
-  @endif
   <!-- Favicon -->
   <link href="./assets/icons/72x72.png" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -38,6 +20,9 @@
   <link href="./assets/content/css/coba.css" rel="stylesheet" />
 
   <link rel="manifest" href="./manifest.json">
+  <!-- ios support -->
+  <link rel="apple-touch-icon" href="./assets/icons/96x96.png">
+  <meta name="apple-mobile-web-app-status-bar" content="#aa7700">
 </head>
 <body class="">
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
@@ -54,7 +39,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
         <span class="ni ni-bell-55"></span>
       </button>
-      {{ csrf_field() }}
+      <input type="hidden" class="form-control" id="created_by" value="{{Auth::guard('user')->user()->id}}">
       <!-- Collapse -->
       <div class="collapse navbar-collapse" id="sidenav-collapse-main">
         <!-- Collapse header -->
@@ -70,6 +55,7 @@
                 <span></span>
                 <span></span>
               </button>
+              {{ csrf_field() }}
             </div>
           </div>
         </div>

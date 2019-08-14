@@ -19,7 +19,7 @@
 
             		$('#foricons').attr('style', 'display: block;');
 
-            		var contents = '<div id="clockout" onclick="ClockOut()"class="icon icon-shape bg-white text-white rounded-circle shadow">'+
+            		var contents = '<div id="clockout" onclick="ClockOut()" class="icon icon-shape bg-white text-white rounded-circle shadow">'+
                             '<i class="fas fa-lock" style="color: #0166b5"></i>'+
                             '<input type="hidden" value="0" id="selesai">' +
                         '</div>';
@@ -155,7 +155,30 @@
 
                 } else {
 
-                	$('#modal_clockin').modal('show');
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('ValidasiNotOke') }}",
+                        data: {
+                            '_token': $('input[name=_token]').val(),
+                            'user_id': $('#created_by').val()
+                        },
+
+                        success: function (data) {
+
+                            if (data.length == 0){
+
+                                $('#modal_clockin').modal('show');
+
+                            } else {
+
+                                $('#notif_notoke').modal('show');
+
+                            }
+
+                        }
+
+                    });
+                	
 
                 }
 
@@ -308,5 +331,7 @@
 		setTimeout(function(){ window.location.href = 'history'; }, 10);
 
 	});
+
+    
 
 </script>

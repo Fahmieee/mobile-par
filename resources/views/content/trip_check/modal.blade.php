@@ -50,7 +50,7 @@
                     </tr>
                     <tr><td height="20px"></td></tr>
                     <tr>
-                        <td align="center"><h5 class="text-muted">Anda Yakin Akan Membatalkan Pre-Trip Check ini ?</h5></td>
+                        <td align="center"><h5 class="text-muted">Anda Yakin Akan Membatalkan Pre-Trip Check Saat ini?</h5></td>
                     </tr>
                 </table>
                 
@@ -92,7 +92,7 @@
             </div>
             
             <div class="modal-footer">
-                <button type="button" id="yakin_submit" class="btn btn-primary">Yakin</button>
+                <button type="button" id="yakin_submit_all" class="btn btn-primary">Yakin</button>
                 <button type="button" id="tolak-pairing" class="btn btn-danger ml-auto"  data-dismiss="modal">Tidak</button> 
             </div>
             

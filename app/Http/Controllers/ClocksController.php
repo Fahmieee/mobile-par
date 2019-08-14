@@ -29,14 +29,13 @@ class ClocksController extends Controller
 
     public function validasi(Request $request)
     {
+        date_default_timezone_set('Asia/Jakarta');
     	$harini = date('Y-m-d');
 
     	$validate = Clocks::where([
             ['user_id', '=', $request->user_id],
             ['date', '=', $harini],
-            ['type', '=', 'clock_in'],
         ])
-        ->orWhere('type', 'clock_out')
         ->get();
 
         return response()->json($validate);

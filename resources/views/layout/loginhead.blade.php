@@ -8,7 +8,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme_color" content="#ffffff">
 <!--===============================================================================================-->  
-    {{-- <link rel="icon" type="image/png" href="/assets/dist/img/favicon.png"/> --}}
+    {{-- <link rel="icon" type="image/png" href="/assets/icons/72x72.png"/> --}}
 <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/assets/login/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -28,5 +28,10 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="/assets/jquery-toast-plugin/dist/jquery.toast.min.css">
 <!--===============================================================================================-->
     <link rel="manifest" href="/manifest.json">
+
+    <!-- IOS SUPPORT -->
+
+    <link rel="apple-touch-icon" href="/assets/icons/96x96.png">
+    <meta name="apple-mobile-web-app-status-bar" content="#aa7700">
 
 </head>

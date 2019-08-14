@@ -5,8 +5,7 @@
       <div class="container-fluid">
         <div class="header-body">
           <!-- Card stats -->
-
-          @if(Auth::guard('user')->user()->role =="2")        
+                
           <div class="row">
             <div class="col">
               <div class="card shadow">
@@ -57,7 +56,6 @@
             </div>    
           </div>
 
-          @elseif(Auth::guard('user')->user()->role =="3") 
 
           <div class="row">
             <div class="col">
