@@ -5,7 +5,6 @@
       <div class="container-fluid">
         <div class="header-body">
           <!-- Card stats -->
-          
         </div>
       </div>
     </div>
@@ -31,7 +30,7 @@
               <br>
               <div id="validasi">
                 <div class="ct-page-title">
-                  <h3 class="ct-title" id="content"><b>Penilaian Driver</b></h3>
+                  <h3 class="ct-title" id="content"><b>Penilaian Kendaraan</b></h3>
                 </div>
                 <div id="tampilkan_content"></div>
               </div>
@@ -47,11 +46,9 @@
             </div>
           </div>
         </div>
-      
-        @include('content.nilai_driver.modal')
+        @include('content.nilai_kendaraan.modal')
         @include('layout.contentfooter')
-
-        @include('script.nilaidriver')
+        @include('script.nilaikendaraan')
 </body>
 
 </html>

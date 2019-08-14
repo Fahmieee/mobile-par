@@ -4,7 +4,7 @@
 
 		$.ajax({
             type: 'POST',
-            url: "{{ route('ValidasiNilaiDriver') }}",
+            url: "{{ route('ValidasiNilaiKendaraan') }}",
             data: {
             	'_token': $('input[name=_token]').val(),
                 'user_id': $('#created_by').val()
@@ -13,7 +13,6 @@
 
             	var total = data.total;
             	var count = data.count;
-            	var name = data.name;
 
             	var grandtotal = parseInt(total)/parseInt(count);
             	var rating = grandtotal.toFixed(1);
@@ -28,7 +27,7 @@
 
             		$('#tampilkan_content').attr('id','sudahnilai');
 
-            		content_data += "<div class='alert alert-danger role='alert' align='center'> <h5 class='text-white'>Anda Sudah Menilai Driver</h5>";
+            		content_data += "<div class='alert alert-danger role='alert' align='center'> <h5 class='text-white'>Anda Sudah Menilai Kendaraan</h5>";
             		content_data += "</div>";
 
             		$('#validasi').html(content_data);
@@ -88,13 +87,13 @@
 
             	$('#ratings_bintang').html(content_data);
 
-            	$('#nama').html(name);
+            	$('#nama').html(data.model+' - '+data.varian+' ('+data.years+')');
             }
 
         });
 
 		$.ajax({
-	        url: "{{ route('GetTypeNilaiDriver') }}",
+	        url: "{{ route('GetTypeNilaiKendaraan') }}",
 	        type: "GET",
 	        dataType: "json",
 	        success:function(data) {
@@ -123,7 +122,7 @@
                     content_data += "</div><hr>";
 
                     $.ajax({
-				        url: "{{ route('GetDetailNilaiDriver') }}",
+				        url: "{{ route('GetDetailNilaiKendaraan') }}",
 				        type: "POST",
 				        data: {
 			                '_token': $('input[name=_token]').val(),
@@ -168,6 +167,7 @@
 
             }
         });
+
 	});
 
 	function DetailNilai(rnum,type) {
@@ -264,7 +264,7 @@
 
         $.ajax({
             type: 'POST',
-            url: "{{ route('SubmitNilaiDriver') }}",
+            url: "{{ route('SubmitNilaiKendaraan') }}",
             data: {
                 '_token': $('input[name=_token]').val(),
                 'value' : val,
@@ -273,7 +273,7 @@
                 },
             success: function(data) {
 
-            	swal("Penilaian Driver Telah Terkirim!", {
+            	swal("Penilaian Kendaraan Telah Terkirim!", {
                     icon: "success",
                     buttons: false,
                     timer: 2000,
@@ -292,4 +292,5 @@
 		setTimeout(function(){ window.location.href = 'client'; }, 10);
 
 	}
+
 </script>

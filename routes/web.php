@@ -84,6 +84,12 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('nilaidriver/submit', 'NilaiDriverController@submit')->name('SubmitNilaiDriver');
 	Route::post('nilaidriver/validasi', 'NilaiDriverController@validasi')->name('ValidasiNilaiDriver');
 
+	Route::get('nilaikendaraan', 'NilaiKendaraanController@index');
+	Route::get('nilaikendaraan/gettype', 'NilaiKendaraanController@gettype')->name('GetTypeNilaiKendaraan');
+	Route::post('nilaikendaraan/getdetail', 'NilaiKendaraanController@getdetail')->name('GetDetailNilaiKendaraan');
+	Route::post('nilaikendaraan/submit', 'NilaiKendaraanController@submit')->name('SubmitNilaiKendaraan');
+	Route::post('nilaikendaraan/validasi', 'NilaiKendaraanController@validasi')->name('ValidasiNilaiKendaraan');
+
 	Route::get('/home2', function () {
 	    return view('content.home.korlap');
 	});

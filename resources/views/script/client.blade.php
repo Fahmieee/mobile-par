@@ -11,4 +11,10 @@ $('#pengemudi').on('click', function () {
 	setTimeout(function(){ window.location.href = 'nilaidriver'; }, 10);
 
 });
+
+$('#kendaraan').on('click', function () {
+
+	setTimeout(function(){ window.location.href = 'nilaikendaraan'; }, 10);
+
+});
 </script>
