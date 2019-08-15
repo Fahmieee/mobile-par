@@ -78,6 +78,11 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::get('suara', 'SuaraPelangganController@index');
 	Route::post('suara/save', 'SuaraPelangganController@submit')->name('SubmitSuara');
 
+	Route::get('lihatsuara', 'LihatSuaraController@index');
+	Route::post('lihatsuara/get', 'LihatSuaraController@getsuara')->name('GetLihatSuara');
+	Route::post('lihatsuara/detail', 'LihatSuaraController@getsuaradetail')->name('LihatSuaraDetail');
+
+
 	Route::get('nilaidriver', 'NilaiDriverController@index');
 	Route::get('nilaidriver/gettype', 'NilaiDriverController@gettype')->name('GetTypeNilaiDriver');
 	Route::post('nilaidriver/getdetail', 'NilaiDriverController@getdetail')->name('GetDetailNilaiDriver');
@@ -89,6 +94,8 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('nilaikendaraan/getdetail', 'NilaiKendaraanController@getdetail')->name('GetDetailNilaiKendaraan');
 	Route::post('nilaikendaraan/submit', 'NilaiKendaraanController@submit')->name('SubmitNilaiKendaraan');
 	Route::post('nilaikendaraan/validasi', 'NilaiKendaraanController@validasi')->name('ValidasiNilaiKendaraan');
+
+
 
 	Route::get('/home2', function () {
 	    return view('content.home.korlap');

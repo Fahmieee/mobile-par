@@ -27,4 +27,10 @@
 
 	});
 
+    $('#keluhan').on('click', function () {
+
+        setTimeout(function(){ window.location.href = 'lihatsuara'; }, 10);
+
+    });
+
 </script>
