@@ -36,6 +36,7 @@ class PreTripCheckController extends Controller
         return response()->json($gettype);
     }
 
+
     public function getkategori()
     {
         $gettypes = CheckType::select("id","name")
@@ -62,24 +63,42 @@ class PreTripCheckController extends Controller
 
             $detail_tripcheck = new Pretrip_Check_Detail();
             $detail_tripcheck->pretripcheck_id = $pretrip_check->id;
-            $detail_tripcheck->checkdetail_id = $request->check_id[$i];
+            $detail_tripcheck->checktype_id = $request->check_id[$i];
             $detail_tripcheck->value = $request->value[$i];
             $detail_tripcheck->save();
 
-            if ($request->value[$i] == '0'){
-
-                $notok = new PretripCheckNotOke();
-                $notok->pretripdetail_id = $detail_tripcheck->id;
-                $notok->status = "NOT APPROVED";
-                $notok->ket = $request->alasan[$i];
-                $notok->save();
-
-            } 
-
         }
 
+        $ada = Pretrip_Check_Detail::where([
+            ['pretripcheck_id', '=', $pretrip_check->id],
+            ['value', '=', 0],
+        ])
+        ->count();
 
-        return response()->json($detail_tripcheck);
+        $arrayNames = array(    
+            'ada' => $ada, 
+            'pretripcheck_id' => $pretrip_check->id
+        );
+
+
+        return response()->json($arrayNames);
+
+    }
+
+
+    public function submitnotoke(Request $request) {
+
+        $count = count($request->checkdetail_id);
+
+        for($i=0; $i < $count; $i++){
+
+            $detail_tripcheck = new PretripCheckNotOke();
+            $detail_tripcheck->pretripcheck_id = $request->pretripcheck_id;
+            $detail_tripcheck->checkdetail_id = $request->checkdetail_id[$i];
+            $detail_tripcheck->status = 'NOT APPROVED';
+            $detail_tripcheck->save();
+
+        }
 
     }
 

@@ -23,10 +23,9 @@ class ApproveController extends Controller
 
     public function getdata(Request $request)
     {
-    	$getdatas = Pretrip_Check_Detail::select("users.first_name", "pretrip_check_detail.created_at", "units.no_police","pretrip_check_detail.id","check_detail.level")
-    	->join("pretrip_check_notoke", "pretrip_check_detail.id", "=", "pretrip_check_notoke.pretripdetail_id")
-    	->join("pretrip_check", "pretrip_check_detail.pretripcheck_id", "=", "pretrip_check.id")
-    	->join("check_detail", "pretrip_check_detail.checkdetail_id", "=", "check_detail.id")
+    	$getdatas = PretripCheckNotOke::select("users.first_name", "units.no_police","pretrip_check_notoke.id","check_detail.level","pretrip_check_notoke.created_at")
+    	->join("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
+    	->join("check_detail", "pretrip_check_notoke.checkdetail_id", "=", "check_detail.id")
     	->join("users", "pretrip_check.user_id", "=", "users.id")
     	->join("drivers", "users.id", "=", "drivers.driver_id")
     	->join("units", "drivers.unit_id", "=", "units.id")
@@ -43,11 +42,10 @@ class ApproveController extends Controller
 
     public function getdetail(Request $request)
     {
-    	$getdetail = Pretrip_Check_Detail::select("check_types.name as type", "check_detail.name as detail_name", "pretrip_check_notoke.ket","pretrip_check_detail.id","pretrip_check_notoke.id as notoke_id")
-    	->join("pretrip_check_notoke", "pretrip_check_detail.id", "=", "pretrip_check_notoke.pretripdetail_id")
-    	->join("check_detail", "pretrip_check_detail.checkdetail_id", "=", "check_detail.id")
+    	$getdetail = PretripCheckNotOke::select("check_types.name as type", "check_detail.name as detail_name","pretrip_check_notoke.id","pretrip_check_notoke.id as notoke_id")
+    	->join("check_detail", "pretrip_check_notoke.checkdetail_id", "=", "check_detail.id")
     	->join("check_types", "check_detail.checktype_id", "=", "check_types.id")
-    	->where("pretrip_check_notoke.pretripdetail_id", $request->id)
+    	->where("pretrip_check_notoke.id", $request->id)
         ->first();
 
     	return response()->json($getdetail);

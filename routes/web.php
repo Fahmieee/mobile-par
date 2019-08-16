@@ -46,13 +46,14 @@ Route::group(['middleware' => 'auth:user'], function(){
 	    return view('content.home.index');
 	});
 
-	Route::get('/driver', function () {
-	    return view('content.home.driver.index');
-	});
+	Route::get('driver', 'DriverController@index');
+	Route::post('driver/get', 'DriverController@getdata')->name('GetDataDriver');
 
 	Route::get('pretripcheck', 'PreTripCheckController@index');
 	Route::post('pretripcheck/get', 'PreTripCheckController@GetData')->name('GetPreTripCheck');
 	Route::post('pretripcheck/submit', 'PreTripCheckController@SubmitPretripCheck')->name('SubmitPretripCheck');
+	Route::post('pretripcheck/submitnotoke', 'PreTripCheckController@submitnotoke')->name('SubmitPretripCheckNotoke');
+	
 	Route::post('pretripcheck/validasi', 'PreTripCheckController@Validasi')->name('ValidasiPretripCheck');
 	Route::get('pretripcheck/kategori', 'PreTripCheckController@getkategori')->name('GetKategori');
 	Route::post('pretripcheck/valiadasinotoke', 'PreTripCheckController@validasinotoke')->name('ValidasiNotOke');
@@ -67,6 +68,8 @@ Route::group(['middleware' => 'auth:user'], function(){
 
 	Route::get('korlap', 'KorlapController@index');
 	Route::post('korlap/getprofile', 'KorlapController@getprofile')->name('GetProfile');
+	Route::get('lihatdriver', 'KorlapController@lihatdriver');
+	Route::post('korlap/lihatnilaidriver', 'KorlapController@getnilaidriver')->name('LihatNilaiDriver');
 
 	Route::get('approve', 'ApproveController@index');
 	Route::post('approve/get', 'ApproveController@getdata')->name('GetApprove');
@@ -74,6 +77,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('approve/store', 'ApproveController@approve')->name('Approved');
 
 	Route::get('client', 'ClientController@index');
+	Route::post('client/get', 'ClientController@getdata')->name('GetDataClient');
 
 	Route::get('suara', 'SuaraPelangganController@index');
 	Route::post('suara/save', 'SuaraPelangganController@submit')->name('SubmitSuara');
@@ -95,11 +99,6 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('nilaikendaraan/submit', 'NilaiKendaraanController@submit')->name('SubmitNilaiKendaraan');
 	Route::post('nilaikendaraan/validasi', 'NilaiKendaraanController@validasi')->name('ValidasiNilaiKendaraan');
 
-
-
-	Route::get('/home2', function () {
-	    return view('content.home.korlap');
-	});
 
 
 	Route::get('/approve', function () {

@@ -95,13 +95,12 @@
                 content_data += "<table border='0' width='100%'>";
                 content_data += "<tr>";
                 content_data += "<td align='left'>";
-                content_data += "<span class='alert-inner--text'> <h4 class='text-muted-white'>"+data.ket+"</h4></span>";
-                content_data += "<h6 class='text-muted-white'>Jenis :</h6>";
-                content_data += "<h6 class='text-muted-white'>"+data.detail_name+" ("+data.type+")</h6>";
+                content_data += "<span class='alert-inner--text'> <h4 class='text-muted-white'>"+data.detail_name+"</h4></span>";
+                content_data += "<h6 class='text-muted-white'>Jenis : "+data.type+"</h6>";
                 content_data += "</td>";
                 content_data += "<td width='10px'></td>";
                 content_data += "<td align='right'>";
-                content_data += "<button type='button' onclick='Approve("+data.notoke_id+")' class='btn btn-sm btn-success'>Approve</button>";
+                content_data += "<button type='button' onclick='Approve("+data.id+")' class='btn btn-sm btn-success'>Approve</button>";
                 content_data += "</td>";
                 content_data += "</tr>";
                 content_data += "</table>";
@@ -126,7 +125,7 @@
 
 		var content_button="";
 
-		content_button += "<button type='button' onclick='Detail("+rnum+")' class='btn btn-sm btn-success'>Approve</button>";
+		content_button += "<button type='button' onclick='Detail("+rnum+")' class='btn btn-sm btn-success'>Lihat</button>";
 
         $('#lihat_'+rnum).html(content_button);
 

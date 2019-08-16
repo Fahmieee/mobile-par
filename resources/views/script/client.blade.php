@@ -1,20 +1,40 @@
 <script type="text/javascript">
 
-$('#suara').on('click', function () {
+	$(function() {
 
-	setTimeout(function(){ window.location.href = 'suara'; }, 10);
+		$.ajax({
+            type: 'POST',
+            url: "{{ route('GetDataClient') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val()
+                },
+            success: function(data) {
 
-});
+            	$('#nama_users').html('<b>'+data.nama_user+'</b>');
+            	$('#nama_drivers').html('<b>'+data.nama_driver+'</b>');
+            	$('#nopol').html('<h6>'+data.no_polisi+'</h6>');
+            	$('#model').html('<h6>'+data.model+' - '+data.varian+'</h6>');
+            	$('#date').html('<h6>'+data.stnk+'</h6>');
+            }
+        });
+	});
 
-$('#pengemudi').on('click', function () {
+	$('#suara').on('click', function () {
 
-	setTimeout(function(){ window.location.href = 'nilaidriver'; }, 10);
+		setTimeout(function(){ window.location.href = 'suara'; }, 10);
 
-});
+	});
 
-$('#kendaraan').on('click', function () {
+	$('#pengemudi').on('click', function () {
 
-	setTimeout(function(){ window.location.href = 'nilaikendaraan'; }, 10);
+		setTimeout(function(){ window.location.href = 'nilaidriver'; }, 10);
 
-});
+	});
+
+	$('#kendaraan').on('click', function () {
+
+		setTimeout(function(){ window.location.href = 'nilaikendaraan'; }, 10);
+
+	});
 </script>

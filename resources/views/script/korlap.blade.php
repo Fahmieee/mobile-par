@@ -33,4 +33,10 @@
 
     });
 
+    $('#pengemudi').on('click', function () {
+
+        setTimeout(function(){ window.location.href = 'lihatdriver'; }, 10);
+
+    });
+
 </script>

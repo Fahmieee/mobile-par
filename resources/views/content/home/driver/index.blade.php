@@ -89,7 +89,7 @@
                     </tr>
                     <tr>
                       <td colspan="3">
-                        <h5 class="text-black"><b>Azzam Khalif Prastyo</b></h5>
+                        <h5 class="text-black" id="nama_users"><b>Azzam Khalif Prastyo</b></h5>
                       </td>
                     </tr>
                     <tr>
@@ -139,7 +139,7 @@
                     </tr>
                     <tr>
                       <td colspan="3">
-                        <h5 class="text-black"><b>Bayu Rahardjo</b></h5>
+                        <h5 class="text-black" id="nama_drivers"><b>Bayu Rahardjo</b></h5>
                       </td>
                     </tr>
                     <tr>
@@ -188,19 +188,19 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><h6>Nomor Rangka</h6></td>
+                      <td><h6>Nopol</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>-</h6></td>  
+                      <td id="nopol"><h6>-</h6></td>  
                     </tr>
                     <tr>
-                      <td><h6>Nomor Mesin</h6></td>
+                      <td><h6>Model</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>-</h6></td>  
+                      <td id="model"><h6>-</h6></td>  
                     </tr>
                     <tr>
-                      <td><h6>Nomor STNK</h6></td>
+                      <td><h6>Date STNK</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>089809809809</h6></td>  
+                      <td id="date"><h6>089809809809</h6></td>  
                     </tr>
 
                     <tr height="10px">

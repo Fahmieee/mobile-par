@@ -8,26 +8,26 @@ use App\Users;
 use App\Drivers;
 use App\Units;
 
-class ClientController extends Controller
+class DriverController extends Controller
 {
     public function index()
     {
     	date_default_timezone_set('Asia/Jakarta');
     	$date = date('Y-m-d');
 
-    	return view('content.home.client.index', compact('date'));
+    	return view('content.home.driver.index', compact('date'));
 
     }
 
     public function getdata(Request $request)
     {
-        $getusers = Users::where('id', $request->user_id)
+        $getdrivers = Users::where('id', $request->user_id)
         ->first();
 
-        $get = Drivers::where('user_id', $request->user_id)
+        $get = Drivers::where('driver_id', $request->user_id)
         ->first();
 
-        $getdrivers = Users::where('id', $get->driver_id)
+        $getusers = Users::where('id', $get->user_id)
         ->first();
 
         $getunits = Units::where('id', $get->unit_id)

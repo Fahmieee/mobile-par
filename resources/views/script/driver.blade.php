@@ -2,6 +2,23 @@
 
 	$(function() {
 
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('GetDataDriver') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val()
+                },
+            success: function(data) {
+
+                $('#nama_users').html('<b>'+data.nama_user+'</b>');
+                $('#nama_drivers').html('<b>'+data.nama_driver+'</b>');
+                $('#nopol').html('<h6>'+data.no_polisi+'</h6>');
+                $('#model').html('<h6>'+data.model+' - '+data.varian+'</h6>');
+                $('#date').html('<h6>'+data.stnk+'</h6>');
+            }
+        });
+
 		$.ajax({
             type: 'POST',
             url: "{{ route('ValidasiClock') }}",
