@@ -12,32 +12,45 @@
 
             success: function (data) {
 
-            	var content_data="";
-	            var no = -1;
-	            $.each(data, function() {
+                var content_data="";
+                var no = -1;
 
-	            	no++;
-	                var type = data[no]['type'];
-	                var name = data[no]['first_name'];
-	                var id = data[no]['id'];
-	                var date = data[no]['created_at'];
+                if(data.length == 0){
 
-	                content_data += "<div class='alert alert-default' role='alert'>";
-                	content_data += "<table width='100%'>"; 
-                  	content_data += "<tr>";
-                  	content_data += "<td><strong>"+name+"</strong></td>";
-                  	content_data += "<td align='right' rowspan='2' id='button_"+id+"'><button onclick='Lihat("+id+");' class='btn btn-sm btn-primary' type='button'>Lihat</button></td>";
-                  	content_data += "</tr>";
-                  	content_data += "<tr>";
-                    content_data += "<td><h6 class='text-white'>"+date+" ("+type+")</h6></td>";
-                  	content_data += "</tr>";
-                	content_data += "</table>";
-                	content_data += "<div id='detail_"+id+"'></div>";
-                	content_data += "</div>";
+                    content_data += "<div class='alert alert-default' role='alert'>";
+                    content_data += "Tidak Ada Keluhan untuk Saat ini!</div>";
 
-                });
+                    $('.muncul_suara').html(content_data);
 
-                $('.muncul_suara').html(content_data);
+                } else {
+
+                	
+    	            $.each(data, function() {
+
+    	            	no++;
+    	                var type = data[no]['type'];
+    	                var name = data[no]['first_name'];
+    	                var id = data[no]['id'];
+    	                var date = data[no]['created_at'];
+
+    	                content_data += "<div class='alert alert-default' role='alert'>";
+                    	content_data += "<table width='100%'>"; 
+                      	content_data += "<tr>";
+                      	content_data += "<td><strong>"+name+"</strong></td>";
+                      	content_data += "<td align='right' rowspan='2' id='button_"+id+"'><button onclick='Lihat("+id+");' class='btn btn-sm btn-primary' type='button'>Lihat</button></td>";
+                      	content_data += "</tr>";
+                      	content_data += "<tr>";
+                        content_data += "<td><h6 class='text-white'>"+date+" ("+type+")</h6></td>";
+                      	content_data += "</tr>";
+                    	content_data += "</table>";
+                    	content_data += "<div id='detail_"+id+"'></div>";
+                    	content_data += "</div>";
+
+                    });
+
+                    $('.muncul_suara').html(content_data);
+
+                }
 
             }
         });
