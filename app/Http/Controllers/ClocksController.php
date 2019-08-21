@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Clocks;
+use App\Drivers;
 
 class ClocksController extends Controller
 {
@@ -12,15 +13,20 @@ class ClocksController extends Controller
     {	
     	date_default_timezone_set('Asia/Jakarta');
     	$hari = date('Y-m-d');
-    	$time = date("h:i:sa");
+    	$time = date("g:i:s");
+
+        $client = Drivers::where('driver_id', $request->user_id)
+        ->first();
 
         $clock = new Clocks();
         $clock->date = $hari;
         $clock->user_id = $request->user_id;
+        $clock->client_id = $client->user_id;
         $clock->time = $time;
         $clock->kilometer = $request->km;
         $clock->unit_gs = $request->unitgs;
         $clock->type = 'clock_in';
+        $clock->status = 'NOT APPROVED';
         $clock->save();
 
 
@@ -45,15 +51,20 @@ class ClocksController extends Controller
     {	
     	date_default_timezone_set('Asia/Jakarta');
     	$hari = date('Y-m-d');
-    	$time = date("h:i:sa");
+    	$time = date("g:i:s");
+
+        $client = Drivers::where('driver_id', $request->user_id)
+        ->first();
 
         $clock = new Clocks();
         $clock->date = $hari;
         $clock->user_id = $request->user_id;
+        $clock->client_id = $client->user_id;
         $clock->time = $time;
         $clock->kilometer = $request->km;
         $clock->unit_gs = '0';
         $clock->type = 'clock_out';
+        $clock->status = 'NOT APPROVED';
         $clock->save();
 
 

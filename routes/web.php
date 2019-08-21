@@ -79,13 +79,17 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::get('client', 'ClientController@index');
 	Route::post('client/get', 'ClientController@getdata')->name('GetDataClient');
 
+	Route::get('client-approve', 'ClientController@client_approve');
+	Route::post('client-approve/get', 'ClientController@getdataapprove')->name('GetApproveClient');
+	Route::post('client-approve/detail', 'ClientController@getdataapprovedetail')->name('GetApproveClientDetail');
+	Route::post('client-approve/approve', 'ClientController@approve')->name('ClientApprove');
+
 	Route::get('suara', 'SuaraPelangganController@index');
 	Route::post('suara/save', 'SuaraPelangganController@submit')->name('SubmitSuara');
 
 	Route::get('lihatsuara', 'LihatSuaraController@index');
 	Route::post('lihatsuara/get', 'LihatSuaraController@getsuara')->name('GetLihatSuara');
 	Route::post('lihatsuara/detail', 'LihatSuaraController@getsuaradetail')->name('LihatSuaraDetail');
-
 
 	Route::get('nilaidriver', 'NilaiDriverController@index');
 	Route::get('nilaidriver/gettype', 'NilaiDriverController@gettype')->name('GetTypeNilaiDriver');

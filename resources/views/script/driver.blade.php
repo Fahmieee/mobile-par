@@ -2,6 +2,7 @@
 
 	$(function() {
 
+
         $.ajax({
             type: 'POST',
             url: "{{ route('GetDataDriver') }}",

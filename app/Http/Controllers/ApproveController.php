@@ -55,7 +55,7 @@ class ApproveController extends Controller
     public function approve(Request $request)
     {
     	date_default_timezone_set('Asia/Jakarta');
-    	$date = date('Y-m-d h:i:s');
+    	$date = date('Y-m-d g:i:s');
 
     	$approved = PretripCheckNotOke::findOrFail($request->id);
         $approved->status = "APPROVED";

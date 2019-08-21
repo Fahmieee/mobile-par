@@ -2,11 +2,10 @@
   <div class="main-content">
     <!-- Header -->
     <div class="container-fluid pb-4 pt-5 pt-md-8">
-          <!-- Card stats -->
+          
           <div class="row">
             <div class="col">
               <div class="card shadow">
-                
                 <div class="card-header bg-blue-par">
                   <h6 class="text-uppercase text-white ls-1 mb-1">MENU</h6>
                 </div>
@@ -34,18 +33,23 @@
                   </table>
                   <table border="0" align="center" width="100%">
                     <tr>
-                      <td align="center" width="33%">
+                      <td align="center" width="25%">
                         <div id="pretripcheck" class="icon icon-shape bg-white text-white rounded-circle shadow">
                             <i class="fas fa-check-circle" style="color: #0166b5"></i>
                         </div>
                       </td>
-                      <td align="center" width="33%" id="clock_icon">
+                      <td align="center" width="25%">
+                        <div id="medical" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                            <i class="fas fa-medkit" style="color: #0166b5"></i>
+                        </div>
+                      </td>
+                      <td align="center" width="25%" id="clock_icon">
                         <div id="clockin" class="icon icon-shape bg-white text-white rounded-circle shadow">
                             <i class="fas fa-car" style="color: #0166b5"></i>
                             <input type="hidden" id="selesai" value="0">
                         </div>
                       </td>
-                      <td align="center" width="33%">
+                      <td align="center" width="25%">
                         <div id="history" class="icon icon-shape bg-white text-white rounded-circle shadow">
                             <i class="fas fa-history" style="color: #0166b5"></i>
                         </div>
@@ -59,6 +63,9 @@
                       <td align="center">
                         <h6 class="text-uppercase text-white ls-1 mb-1">Pre-Trip Check</h6>
                       </td>
+                      <td align="center">
+                        <h6 class="text-uppercase text-white ls-1 mb-1">Medical Check-Up</h6>
+                      </td>
                       <td align="center" id="clock_desc">
                         <h6 class="text-uppercase text-white ls-1 mb-1">Clock In</h6>
                       </td>
@@ -67,6 +74,32 @@
                       </td>
                     </tr>
                   </table>
+                </div>
+              </div>
+            </div>    
+          </div>
+          <br>
+          <!-- Card stats -->
+          <div class="row">
+            <div class="col">
+              <div class="card shadow">
+                <div class="card-header bg-blue-par">
+                  <h6 class="text-uppercase text-white ls-1 mb-1">Batas Lembur Bulan Ini</h6>
+                </div>
+                <div class="card-body bg-white" id="menu_icons">
+                  <div class="progress-wrapper">
+                    <div class="progress-info">
+                      <div class="progress-label">
+                        <span>Lembur</span>
+                      </div>
+                      <div class="progress-percentage">
+                        <span>0 Jam / 40 Jam</span>
+                      </div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar bg-default" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>    

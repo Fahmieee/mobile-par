@@ -49,7 +49,7 @@ class PreTripCheckController extends Controller
 
         date_default_timezone_set('Asia/Jakarta');
     	$harini = date('Y-m-d');
-    	$time = date("h:i:sa");
+    	$time = date("g:i:s");
 
     	$pretrip_check = new Pretrip_Check();
         $pretrip_check->user_id= $request->created_by;
@@ -123,9 +123,8 @@ class PreTripCheckController extends Controller
         $harini = date('Y-m-d');
 
         $validate = Pretrip_Check::select("pretrip_check.id","pretrip_check_notoke.status","pretrip_check.time","check_detail.level")
-        ->leftJoin("pretrip_check_detail", "pretrip_check.id", "=", "pretrip_check_detail.pretripcheck_id")
-        ->leftJoin("pretrip_check_notoke", "pretrip_check_detail.id", "=", "pretrip_check_notoke.pretripdetail_id")
-        ->join("check_detail", "pretrip_check_detail.checkdetail_id", "=", "check_detail.id")
+        ->leftJoin("pretrip_check_notoke", "pretrip_check.id", "=", "pretrip_check_notoke.pretripcheck_id")
+        ->join("check_detail", "pretrip_check_notoke.checkdetail_id", "=", "check_detail.id")
         ->where([
             ['pretrip_check.user_id', '=', $request->user_id],
             ['pretrip_check.date', '=', $harini],

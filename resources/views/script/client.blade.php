@@ -37,4 +37,10 @@
 		setTimeout(function(){ window.location.href = 'nilaikendaraan'; }, 10);
 
 	});
+
+    $('#approve').on('click', function () {
+
+        setTimeout(function(){ window.location.href = 'client-approve'; }, 10);
+
+    });
 </script>

@@ -17,8 +17,6 @@
   <!-- CSS Files -->
   <link href="./assets/content/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
 
-  <link href="./assets/content/css/coba.css" rel="stylesheet" />
-
   <link rel="manifest" href="./manifest.json">
   <!-- ios support -->
   <link rel="apple-touch-icon" href="./assets/icons/96x96.png">

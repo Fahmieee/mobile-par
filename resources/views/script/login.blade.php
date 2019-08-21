@@ -1,7 +1,10 @@
 <script type="text/javascript">
 
+
 	$('#login-submit').on('click', function () {
 
+		$("#loader2").attr("style","display: block;");
+		$("#login-form").attr("style","display: none;");
 
         var data = {
             _token:$('input[name=_token]').val(),
@@ -23,6 +26,9 @@
 	            buttons: false,
 	            timer: 2000,
 	        });
+
+	        $("#loader2").attr("style","display: none;");
+	        $("#login-form").attr("style","display: block;");
 
 	    } else {
 
@@ -68,6 +74,9 @@
                         buttons: false,
                         timer: 2000,
                     });
+
+                    $("#loader2").attr("style","display: none;");
+                    $("#login-form").attr("style","display: block;");
 
                     }
 
