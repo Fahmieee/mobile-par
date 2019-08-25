@@ -12,12 +12,15 @@
                 <div class="card-body bg-blue-par2" id="menu_icons" style="display: block;">
                   <table border="0" align="center" id="foricons" width="100%" style="display: none;">
                     <tr>
-                      <td width="5%"> </td>
                       <td width="5%" id="icon_check">
                       </td>
                       <td width="20%" style="padding-top: 10px" id="word_check">
                       </td>
-                      <td width="5%" id="icon_clock">
+                      <td width="5%" id="icon_medic">
+                      </td>
+                      <td width="20%" style="padding-top: 10px" id="word_medic">
+                      </td>
+                      <td  width="5%"id="icon_clock">
                       </td>
                       <td width="20%" style="padding-top: 10px" id="word_clock">
                       </td>
@@ -31,6 +34,7 @@
                     </tr>
                     
                   </table>
+
                   <table border="0" align="center" width="100%">
                     <tr>
                       <td align="center" width="25%">
@@ -84,7 +88,11 @@
             <div class="col">
               <div class="card shadow">
                 <div class="card-header bg-blue-par">
-                  <h6 class="text-uppercase text-white ls-1 mb-1">Batas Lembur Bulan Ini</h6>
+                  <table width="100%">
+                    <tr>
+                      <td style="padding-top: 10px"><h5 class="text-uppercase text-white">BATAS LEMBUR</h5></td>
+                    </tr>
+                  </table>
                 </div>
                 <div class="card-body bg-white" id="menu_icons">
                   <div class="progress-wrapper">
@@ -97,7 +105,7 @@
                       </div>
                     </div>
                     <div class="progress">
-                      <div class="progress-bar bg-default" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                      <div class="progress-bar bg-default" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 1%;"></div>
                     </div>
                   </div>
                 </div>
@@ -109,7 +117,11 @@
             <div class="col">
               <div class="card shadow">
                 <div class="card-header bg-green-par">
-                  <h6 class="text-uppercase text-white">INFORMASI CLIENT</h6>
+                  <table width="100%">
+                    <tr>
+                      <td style="padding-top: 10px"><h5 class="text-uppercase text-white">INFORMASI CLIENT</h5></td>
+                    </tr>
+                  </table>
                 </div>
                 <div class="card-body-par" id="menu" style="display: block;">
                   <table border="0" align="center" width="100%">
@@ -117,7 +129,7 @@
                       <td width="22px" rowspan="6"></td>
                       <td colspan="4"></td>
                       <td rowspan="6" align="right" >
-                        <img src="./assets/content/img/theme/users.png" width="65%">
+                        <img src="./assets/content/img/theme/users.png" width="75%">
                       </td>
                     </tr>
                     <tr>
@@ -159,7 +171,13 @@
             <div class="col">
               <div class="card shadow">
                 <div class="card-header bg-green-par">
-                  <h6 class="text-uppercase text-white">INFORMASI ANDA</h6>
+                  <table width="100%">
+                    <tr>
+                      <td style="padding-top: 10px"><h5 class="text-uppercase text-white">INFORMASI ANDA</h5></td>
+                      <td align="right"><span class="badge badge-dark">DDT</span> <span class="badge badge-light">MCU</span> <span class="badge badge-dark">LPR</span> <span class="badge badge-dark">FAI</span></td>
+                    </tr>
+                  </table>
+                  
                 </div>
                 <div class="card-body-par" id="menu" style="display: block;">
                   <table border="0" align="center" width="100%">
@@ -209,7 +227,11 @@
             <div class="col">
               <div class="card shadow">
                 <div class="card-header bg-green-par">
-                  <h6 class="text-uppercase text-white">INFORMASI KENDARAAN</h6>
+                  <table width="100%">
+                    <tr>
+                      <td style="padding-top: 10px"><h5 class="text-uppercase text-white">INFORMASI KENDARAAN</h5></td>
+                    </tr>
+                  </table>
                 </div>
                 <div class="card-body-par" id="menu" style="display: block;">
                   <table border="0" align="center" width="100%">
@@ -221,19 +243,24 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><h6>Nopol</h6></td>
-                      <td><h6>:</h6></td>
-                      <td id="nopol"><h6>-</h6></td>  
+                      <td colspan="3">
+                        <h5 class="text-black" id="nopol"><b></b></h5>
+                      </td>  
                     </tr>
                     <tr>
                       <td><h6>Model</h6></td>
                       <td><h6>:</h6></td>
-                      <td id="model"><h6>-</h6></td>  
+                      <td id="model"></td>  
+                    </tr>
+                    <tr>
+                      <td><h6>Tahun</h6></td>
+                      <td><h6>:</h6></td>
+                      <td id="tahun"></td>  
                     </tr>
                     <tr>
                       <td><h6>Date STNK</h6></td>
                       <td><h6>:</h6></td>
-                      <td id="date"><h6>089809809809</h6></td>  
+                      <td id="date"></td>  
                     </tr>
 
                     <tr height="10px">
@@ -245,11 +272,10 @@
               </div>
             </div>    
           </div>
+          
 
       @include('content.home.driver.modal')
       @include('layout.contentfooter')
-
       @include('script.driver')
-</body>
-
+  </body>
 </html>

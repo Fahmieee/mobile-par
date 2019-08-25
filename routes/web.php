@@ -62,6 +62,9 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('clocks/validasi', 'ClocksController@validasi')->name('ValidasiClock');
 	Route::post('clocks/clockout', 'ClocksController@clockout')->name('ClokoutSubmit');
 
+	Route::post('medical_checkup/store', 'MedicalCheckupController@create')->name('MedicalStore');
+	Route::post('medical_checkup/validasi', 'MedicalCheckupController@validasi')->name('MedicalValidasi');
+
 	Route::get('history', 'HistoryController@index');
 	Route::post('history/getdata', 'HistoryController@GetData')->name('GetdataHistory');
 	Route::post('history/detail', 'HistoryController@detail')->name('DetailRiwayatHistory');

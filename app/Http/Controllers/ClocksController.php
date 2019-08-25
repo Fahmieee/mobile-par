@@ -13,7 +13,7 @@ class ClocksController extends Controller
     {	
     	date_default_timezone_set('Asia/Jakarta');
     	$hari = date('Y-m-d');
-    	$time = date("g:i:s");
+    	$time = date("H:i:s");
 
         $client = Drivers::where('driver_id', $request->user_id)
         ->first();
@@ -51,7 +51,7 @@ class ClocksController extends Controller
     {	
     	date_default_timezone_set('Asia/Jakarta');
     	$hari = date('Y-m-d');
-    	$time = date("g:i:s");
+    	$time = date("H:i:s");
 
         $client = Drivers::where('driver_id', $request->user_id)
         ->first();

@@ -14,9 +14,10 @@
 
                 $('#nama_users').html('<b>'+data.nama_user+'</b>');
                 $('#nama_drivers').html('<b>'+data.nama_driver+'</b>');
-                $('#nopol').html('<h6>'+data.no_polisi+'</h6>');
+                $('#nopol').html('<b>'+data.no_polisi+'</b>');
                 $('#model').html('<h6>'+data.model+' - '+data.varian+'</h6>');
                 $('#date').html('<h6>'+data.stnk+'</h6>');
+                $('#tahun').html('<h6>'+data.tahun+'</h6>');
             }
         });
 
@@ -44,21 +45,15 @@
                     
             		$('#clock_icon').html(contents);
 
-            		var contentc = '<h6 class="text-uppercase text-white ls-1 mb-1">Clock Out</h6>';
+                	$('#clock_desc').html('<h6 class="text-uppercase text-white ls-1 mb-1">Clock Out</h6>');
 
-                	$('#clock_desc').html(contentc);
+                	$('#icon_clock').html('<i class="fas fa-car" style="color: #ffffff"></i>');
 
-                	var icon_clocks = '<i class="fas fa-car" style="color: #ffffff"></i>';
-                	$('#icon_clock').html(icon_clocks);
+                	$('#word_clock').html('<h6 class="text-white text-uppercase">'+waktu+'</h6>');
 
-                	var word_clock = '<h6 class="text-white text-uppercase">'+waktu+'</h6>';
-                	$('#word_clock').html(word_clock);
+                	$('#icon_km').html('<i class="fas fa-road" style="color: #ffffff"></i>');
 
-                	var icon_kms = '<i class="fas fa-road" style="color: #ffffff"></i>';
-                	$('#icon_km').html(icon_kms);
-
-                	var word_kms = '<h6 class="text-white text-uppercase">'+jarak+'</h6>';
-                	$('#word_km').html(word_kms);
+                	$('#word_km').html('<h6 class="text-white text-uppercase">'+jarak+'</h6>');
 
                 	$('#km_awal').val(jarak);
 
@@ -112,6 +107,38 @@
 
             	}
 
+
+            }
+
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('MedicalValidasi') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val()
+            },
+
+            success: function (data) {
+
+                var selesai = $('#selesai').val();
+
+                var waktu_mcu = data[0]['time'];
+
+                if (data.length >= 1 && selesai == '0'){
+
+                    $('#icon_medic').html('<i class="fa fa-medkit" style="color: #ffffff"></i>');
+
+                    $('#word_medic').html('<h6 class="text-white text-uppercase">'+waktu_mcu+'</h6>');
+
+                    $('#foricons').attr('style', 'display: block;');
+
+                } else if (selesai == '1'){
+
+                    $('#foricons').attr('style', 'display: none;');
+
+                }
 
             }
 
@@ -175,28 +202,52 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('ValidasiNotOke') }}",
+                        url: "{{ route('MedicalValidasi') }}",
                         data: {
                             '_token': $('input[name=_token]').val(),
                             'user_id': $('#created_by').val()
                         },
 
-                        success: function (data) {
+                        success: function (datax) {
 
-                            if (data.length == 0){
-
-                                $('#modal_clockin').modal('show');
+                            if (datax.length == 0){
+                                swal({
+                                    text: "Lakukan Medical Checkup Terlebih Dahulu!",
+                                    icon: "error",
+                                    buttons: false,
+                                    timer: 2000,
+                                });
 
                             } else {
 
-                                $('#notif_notoke').modal('show');
+                                $.ajax({
+                                    type: 'POST',
+                                    url: "{{ route('ValidasiNotOke') }}",
+                                    data: {
+                                        '_token': $('input[name=_token]').val(),
+                                        'user_id': $('#created_by').val()
+                                    },
 
+                                    success: function (datas) {
+
+                                        if (datas.length == 0){
+
+                                            $('#modal_clockin').modal('show');
+
+                                        } else {
+
+                                            $('#notif_notoke').modal('show');
+
+                                        }
+
+                                    }
+
+                                });
                             }
 
                         }
 
                     });
-                	
 
                 }
 
@@ -350,6 +401,91 @@
 
 	});
 
+    $('#medical').on('click', function () {
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('MedicalValidasi') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val()
+            },
+
+            success: function (data) {
+
+                if (data.length >= 1){
+                    swal({
+                        text: "Anda Sudah Melakukan Medical Checkup!",
+                        icon: "error",
+                        buttons: false,
+                        timer: 2000,
+                    });
+
+                } else {
+
+                    $('#medical_checkup').modal('show');
+
+                }
+
+            }
+        });
+
+    });
+
+    $('#approve_medical').on('click', function () {
+
+        $('.modal-form').attr("style", "display: none;");
+        $('#loader').attr("style", "display: block;");
+
+        var empty = false;
+        $('.medical').each(function() {
+            if ($(this).val() == '') {
+                empty = true;
+            }
+        });
+        if (empty) {
+
+            swal({
+                title: "Tidak Tersimpan!",
+                text: "Isian harus terisi semua!",
+                icon: "error",
+                buttons: false,
+                timer: 2000,
+            });
+
+            $('.modal-form').attr("style", "display: block;");
+            $('#loader').attr("style", "display: none;");
+
+        } else {
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('MedicalStore') }}",
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                    'user_id': $('#created_by').val(),
+                    'darah1': $('#darah1').val(),
+                    'darah2': $('#darah2').val(),
+                    'suhu': $('#suhu').val()
+                    },
+                success: function(data) {
+
+                    swal({
+                        text: "Medical Check Up Anda Berhasil!",
+                        icon: "success",
+                        buttons: false,
+                        timer: 2000,
+                    });
+
+                    setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+
+                }
+
+            });
+
+        }
+
+    });
     
 
 </script>

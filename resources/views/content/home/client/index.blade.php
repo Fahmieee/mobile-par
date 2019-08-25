@@ -63,7 +63,11 @@
             <div class="col">
               <div class="card shadow">
                 <div class="card-header bg-green-par">
-                  <h6 class="text-uppercase text-white">INFORMASI ANDA</h6>
+                  <table width="100%">
+                    <tr>
+                      <td style="padding-top: 10px"><h5 class="text-uppercase text-white">INFORMASI ANDA</h5></td>
+                    </tr>
+                  </table>
                 </div>
                 <div class="card-body-par" id="menu" style="display: block;">
                   <table border="0" align="center" width="100%">
@@ -71,7 +75,7 @@
                       <td width="22px" rowspan="6"></td>
                       <td colspan="4"></td>
                       <td rowspan="6" align="right" >
-                        <img src="./assets/content/img/theme/users.png" width="65%">
+                        <img src="./assets/content/img/theme/users.png" width="70%">
                       </td>
                     </tr>
                     <tr>
@@ -113,7 +117,12 @@
             <div class="col">
               <div class="card shadow">
                 <div class="card-header bg-green-par">
-                  <h6 class="text-uppercase text-white">INFORMASI DRIVER</h6>
+                  <table width="100%">
+                    <tr>
+                      <td style="padding-top: 10px"><h5 class="text-uppercase text-white">INFORMASI DRIVER</h5></td>
+                      <td align="right"><span class="badge badge-dark">DDT</span> <span class="badge badge-light">MCU</span> <span class="badge badge-dark">LPR</span> <span class="badge badge-dark">FAI</span></td>
+                    </tr>
+                  </table>
                 </div>
                 <div class="card-body-par" id="menu" style="display: block;">
                   <table border="0" align="center" width="100%">
@@ -163,7 +172,11 @@
             <div class="col">
               <div class="card shadow">
                 <div class="card-header bg-green-par">
-                  <h6 class="text-uppercase text-white">INFORMASI KENDARAAN</h6>
+                  <table width="100%">
+                    <tr>
+                      <td style="padding-top: 10px"><h5 class="text-uppercase text-white">INFORMASI KENDARAAN</h5></td>
+                    </tr>
+                  </table>
                 </div>
                 <div class="card-body-par" id="menu" style="display: block;">
                   <table border="0" align="center" width="100%">
@@ -175,19 +188,24 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><h6>Nopol</h6></td>
-                      <td><h6>:</h6></td>
-                      <td id="nopol"><h6></h6></td>  
+                      <td colspan="3">
+                        <h5 class="text-black" id="nopol"><b></b></h5>
+                      </td>  
                     </tr>
                     <tr>
                       <td><h6>Model</h6></td>
                       <td><h6>:</h6></td>
-                      <td id="model"><h6>-</h6></td>  
+                      <td id="model"></td>  
                     </tr>
                     <tr>
-                      <td><h6>STNK</h6></td>
+                      <td><h6>Tahun</h6></td>
                       <td><h6>:</h6></td>
-                      <td id="date"><h6>089809809809</h6></td>  
+                      <td id="tahun"></td>  
+                    </tr>
+                    <tr>
+                      <td><h6>Date STNK</h6></td>
+                      <td><h6>:</h6></td>
+                      <td id="date"></td>  
                     </tr>
 
                     <tr height="10px">

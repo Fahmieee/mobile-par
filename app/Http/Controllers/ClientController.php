@@ -40,7 +40,8 @@ class ClientController extends Controller
             'model' => $getunits->model, 
             'varian' => $getunits->varian, 
             'years' => $getunits->years,
-            'stnk' => $getunits->stnk_due_date  
+            'stnk' => $getunits->stnk_due_date,
+            'tahun' => $getunits->years   
         );
 
         return response()->json($arrayNames);
@@ -118,12 +119,12 @@ class ClientController extends Controller
     public function approve(Request $request)
     {
         date_default_timezone_set('Asia/Jakarta');
-        $date = date('Y-m-d g:i:s');
+        $date = date('Y-m-d H:i:s');
 
         $approved = Clocks::findOrFail($request->id);
         $approved->status = "APPROVED";
         $approved->approved_at = $date;
-        $approved->time = $request->waktu;
+        $approved->actual = $request->waktu;
         $approved->save();
 
         return response()->json($approved);

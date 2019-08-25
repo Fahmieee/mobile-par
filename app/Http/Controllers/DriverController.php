@@ -27,6 +27,9 @@ class DriverController extends Controller
         $get = Drivers::where('driver_id', $request->user_id)
         ->first();
 
+        $korlap = Drivers::where('korlap_id', $request->user_id)
+        ->first();
+
         $getusers = Users::where('id', $get->user_id)
         ->first();
 
@@ -40,7 +43,8 @@ class DriverController extends Controller
             'model' => $getunits->model, 
             'varian' => $getunits->varian, 
             'years' => $getunits->years,
-            'stnk' => $getunits->stnk_due_date  
+            'stnk' => $getunits->stnk_due_date,
+            'tahun' => $getunits->years 
         );
 
         return response()->json($arrayNames);

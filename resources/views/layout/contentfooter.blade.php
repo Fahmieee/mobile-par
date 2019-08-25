@@ -11,14 +11,57 @@
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="./js/app2.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-app.js"></script>
 
-  
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-messaging.js"></script>
+ 
   <script>
     window.TrackJS &&
       TrackJS.install({
         token: "ee6fab19c5a04ac1a32a645abde4613a",
         application: "argon-dashboard-free"
       });
+  </script>
 
+  <script type="text/javascript">
+    function angka(e) {
+      if (!/^[0-9]+$/.test(e.value)) {
+        e.value = e.value.substring(0,e.value.length-1);
+      }
+    }
+  </script>
 
+  <script type="text/javascript">
+    
+  var config = {
+      apiKey: "AIzaSyAQn23VgrD6AM_0STEPFiDFniBBeIRQNTk",
+      authDomain: "pars-e903c.firebaseapp.com",
+      databaseURL: "https://pars-e903c.firebaseio.com",
+      projectId: "pars-e903c",
+      storageBucket: "",
+      messagingSenderId: "1061259679604",
+      appId: "1:1061259679604:web:d967b8997b29cf2d"
+  };
+
+  firebase.initializeApp(config);
+
+  const messaging = firebase.messaging();
+  messaging.requestPermission()
+  .then(function() {
+    console.log('Have Permission');
+    return messaging.getToken();
+  })
+  .then(function(token){
+    console.log(token);
+    $('.tokenss').html(token);
+  })
+  .catch(function(err){
+    console.log('Error Ocured');
+  })
+
+  messaging.onMessage(function(payload){
+    console.log('onMessage: ', payload);
+  });
   </script>

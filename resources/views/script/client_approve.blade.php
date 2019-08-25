@@ -191,7 +191,7 @@
 
 		$('.ganti_button').html('<button type="button" onclick="oke()" class="btn btn-sm btn-primary">OK</button>');
 
-		$('.waktu').html('<input type="text" value="'+waktu+'" style="font-size: 30px;text-align: center;" class="form-control actual">');
+		$('.waktu').html('<input type="text" onkeyup="angka(this);" value="'+waktu+'" style="font-size: 30px;text-align: center;" class="form-control actual">');
 	}
 
 	function oke(){

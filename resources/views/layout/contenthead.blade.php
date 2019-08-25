@@ -21,6 +21,17 @@
   <!-- ios support -->
   <link rel="apple-touch-icon" href="./assets/icons/96x96.png">
   <meta name="apple-mobile-web-app-status-bar" content="#aa7700">
+
+  <style type="text/css" media="screen">
+    .swal-text {    
+      text-align: center;
+    }
+    
+    .swal-overlay {
+      background-color: rgba(1, 73, 127, 0.7);
+    }
+
+  </style>
 </head>
 <body class="">
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
@@ -67,7 +78,7 @@
               <i class="ni ni-tv-2 text-primary"></i>
             </td>
             <td>
-              <h4><b>Approved Berhasil Dilakukan</b></h4>
+              <h4><b class="tokenss"></b></h4>
             </td>
           </tr>
           <tr>

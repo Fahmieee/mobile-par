@@ -35,6 +35,18 @@
 
 				        	var content_datax="";
 				            var no = -1;
+
+				            content_datax = "<h4 class='text-muted' align='center'>Apa Kondisi Kendaraan Anda ?</h4><br>";
+				            content_datax += "<div class='alert alert-default' role='alert'>";
+							content_datax += "<table width='100%'>";
+							content_datax += "<tr>";
+							content_datax += "<td width='70%'><h5 class='text-muted-white'>Kondisi</h5></td>";
+							content_datax += "<td width='15%'><h5 class='text-muted-white'>Ya</h5></td>";
+							content_datax += "<td width='15%'><h5 class='text-muted-white'>Tidak</h5></td>";
+							content_datax += "</tr>";
+							content_datax += "</table>";
+							content_datax += "</div>";
+
 				            $.each(data, function() {
 
 				                no++;
@@ -43,29 +55,24 @@
 				                var type_name = data[no]['type_name'];
 				                var level = data[no]['level'];	
 
-				                
-				               	content_datax += "<div class='alert alert-success tanda_"+ids+"' role='alert'>";
-					            content_datax += "<table border='0' width='100%'>";
-					            content_datax += "<tr>";
-					            content_datax += "<td align='justify'>";
-					            content_datax += "<input type='hidden' value='1' class='val_"+ids+" pretrip_check_val'>";
-					            content_datax += "<span class='alert-inner--text'> <h5 class='text-muted-white'>"+name+"</h5></span>";
-					            content_datax += " <span class='badge badge-default'>Level : "+level+"</span>";
-					            content_datax += "</td>";
-					            content_datax += "<td width='10px'></td>";
-					            content_datax += "<td align='right'>";
-					            content_datax += "<label class='custom-toggle'>";
-					            content_datax += "<input type='checkbox' id='checked_"+ids+"' class='pretrip_check' onclick='AksiTripCheckfalse("+ids+");' value="+ids+" checked>";
-					            content_datax += "<span class='custom-toggle-slider rounded-circle'></span>";
-					            content_datax += "</label>";
-					            content_datax += "</td>";
-					            content_datax += "</tr>";
-					            content_datax += "</table>";
-					            content_datax += "<div class='alasan_"+ids+"'><input type='hidden' value='-' class='alasan'></div>";
-					            content_datax += "</div>";
+				                content_datax += "<div class='alert alert-primary tanda_"+ids+"' role='alert'>";
+				                content_datax += "<table width='100%'>";
+								content_datax += "<tr>";
+								content_datax += "<td width='60%'><h5 class='text-muted-white'>"+name+"</h5></td>";
+								content_datax += "<td width='5%'><input type='hidden' id='vals_"+ids+"' class='valuechecked'></td>";
+								content_datax += "<td width='10%'>";
+								content_datax += "<img onclick='Yes("+ids+","+id+")' class='yes_"+ids+"' src='./assets/content/img/theme/uncheck.png' width='30'></td>";
+								content_datax += "<td width='5%'><input type='hidden' class='notchecked' id='value_"+ids+"' value='"+ids+"'></td>";
+								content_datax += "<td width='10%'>";
+								content_datax += "<img  onclick='Tidak("+ids+","+id+")' class='tidak_"+ids+"' src='./assets/content/img/theme/uncheck.png' width='30'></td>";
+								content_datax += "</tr>";
+								content_datax += "</table>";
+								content_datax += "</div>";
 
 				            });
 
+				            content_datax += "</tbody>";
+				            content_datax += "</table>";
 				            
 				            $('#kategori_'+id+'').html(content_datax);
 				        }
@@ -84,41 +91,24 @@
 
 	});
 
-	function AksiTripChecktrue(rnum) {
+	function Yes(rnum,id) {
 
-
-	    	$('.tanda_'+rnum).attr("class","alert alert-success tanda_"+rnum+"");
-	    	$('#checked_'+rnum).attr("onclick","AksiTripCheckfalse("+rnum+");");
-	    	$('.val_'+rnum).val(1);
-
-	    	var content_alasan = "";
-
-	    	content_alasan += "<input type='hidden' value='' class='alasan'>";
-
-	    	$('.alasan_'+rnum).html(content_alasan);
-
+    	$('.tanda_'+rnum).attr("class","alert alert-danger tanda_"+rnum+"");
+    	$('.yes_'+rnum).attr("src","./assets/content/img/theme/check2.png");
+    	$('.tidak_'+rnum).attr("src","./assets/content/img/theme/uncheck.png");
+    	$('#value_'+rnum).attr("class","notchecked");
+    	$('#vals_'+rnum).val(0);
 
 	}
 
-	function AksiTripCheckfalse(rnum) {
+	function Tidak(rnum,id) {
 
-
-	    	$('.tanda_'+rnum).attr("class","alert alert-danger tanda_"+rnum+"");
-	    	$('#checked_'+rnum).attr("onclick","AksiTripChecktrue("+rnum+");");
-	    	$('.val_'+rnum).val(0);    
-
-	    	var content_alasan = "";
-
-	    	content_alasan += "<hr><table border='0' width='100%'>";
-            content_alasan += "<tr>";
-            content_alasan += "<td align='justify'>";
-            content_alasan += "<input type='text' class='form-control alasan' placeholder='Masukan Alasan Kondisi Tidak OKE'>";
-            content_alasan += "</td>";
-            content_alasan += "</tr>";
-            content_alasan += "</table>";
-
-            $('.alasan_'+rnum).html(content_alasan);
-
+		$('.tanda_'+rnum).attr("class","alert alert-success tanda_"+rnum+"");
+    	$('.yes_'+rnum).attr("src","./assets/content/img/theme/uncheck.png");
+    	$('.tidak_'+rnum).attr("src","./assets/content/img/theme/check.png");
+    	$('#value_'+rnum).attr("class","checked");
+    	$('#vals_'+rnum).val(1);
+	    	
 	}
 
 
@@ -127,8 +117,8 @@
 	$('#submit_pretrip_check').on('click', function () {
 
 		var empty = false;
-		$('.pretrip_check_val').each(function() {
-        if ($(this).val() == '0') {
+		$('.valuechecked').each(function() {
+        if ($(this).val() == '0' || $(this).val() == '') {
 	            empty = true;
 	        }
 	    });
@@ -160,89 +150,76 @@
 
 	$('#yakin_submit').on('click', function () {
 
-		var value = [];
-		var check_id = [];
-		var alasan = [];
+		var empty = false;
+		$('.valuechecked').each(function() {
+        if ($(this).val() == '') {
+	            empty = true;
+	        }
+	    });
 
-        $('.pretrip_check').each(function(){
-            check_id.push($(this).val());
-        });
+	    if (empty) { 
 
-        $('.pretrip_check_val').each(function(){
-            value.push($(this).val());
-        });
+	    	swal("Pastikan Anda Mengisi Semua!", {
+                icon: "error",
+                buttons: false,
+                timer: 2000,
+            });
 
-        $('.alasan').each(function(){
-            alasan.push($(this).val());
-        });
+	    } else {
 
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('SubmitPretripCheck') }}",
-            data: {
-                '_token': $('input[name=_token]').val(),
-                'value' : value,
-                'check_id' : check_id,
-                'alasan' : alasan,
-                'created_by': $('#created_by').val()
-                },
-            success: function(data) {
+			var check_id = [];
 
-            	swal("Pre Trip Check Berhasil Terkirim!", {
-                    icon: "success",
-                    buttons: false,
-                    timer: 2000,
-                });
+	        $('.notchecked').each(function(){
+	            check_id.push($(this).val());
+	        });
 
-                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+	        $.ajax({
+	            type: 'POST',
+	            url: "{{ route('SubmitPretripCheckNotoke') }}",
+	            data: {
+	                '_token': $('input[name=_token]').val(),
+	                'check_id' : check_id,
+	                'user_id': $('#created_by').val()
+	                },
+	            success: function(data) {
 
-            }
+	            	swal("Pre Trip Check Berhasil Terkirim!", {
+	                    icon: "success",
+	                    buttons: false,
+	                    timer: 2000,
+	                });
 
-        });
+	                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
 
+	            }
+
+	        });
+	    }
 	});
 
 	$('#yakin_submit_all').on('click', function () {
 
-		var value = [];
-		var check_id = [];
-		var alasan = [];
+		$.ajax({
+	            type: 'POST',
+	            url: "{{ route('SubmitPretripCheckNotoke') }}",
+	            data: {
+	                '_token': $('input[name=_token]').val(),
+	                'check_id' : '0',
+	                'user_id': $('#created_by').val()
+	                },
+	            success: function(data) {
 
-        $('.pretrip_check').each(function(){
-            check_id.push($(this).val());
-        });
+	            	swal("Pre Trip Check Berhasil Terkirim!", {
+	                    icon: "success",
+	                    buttons: false,
+	                    timer: 2000,
+	                });
 
-        $('.pretrip_check_val').each(function(){
-            value.push($(this).val());
-        });
+	                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
 
-        $('.alasan').each(function(){
-            alasan.push($(this).val());
-        });
+	            }
 
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('SubmitPretripCheck') }}",
-            data: {
-                '_token': $('input[name=_token]').val(),
-                'value' : value,
-                'check_id' : check_id,
-                'alasan' : alasan,
-                'created_by': $('#created_by').val()
-                },
-            success: function(data) {
-
-            	swal("Pre Trip Check Berhasil Terkirim!", {
-                    icon: "success",
-                    buttons: false,
-                    timer: 2000,
-                });
-
-                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
-
-            }
-
-        });
+	        });
 
 	});
 

@@ -1,11 +1,6 @@
-// if('serviceWorker' in navigator){
-//   navigator.serviceWorker.register('/sw.js')
-//     .then(reg => console.log('service worker registered', reg))
-//     .catch(err => console.log('service worker not registered', err));
-// }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').then(function(reg) {
+  navigator.serviceWorker.register('/firebase-messaging-sw.js').then(function(reg) {
     console.log('Service Worker Registered!', reg);
 
     reg.pushManager.getSubscription().then(function(sub) {
@@ -23,6 +18,5 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-Notification.requestPermission(function(status) {
-    console.log('Notification permission status:', status);
-});
+
+

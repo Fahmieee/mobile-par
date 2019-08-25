@@ -13,9 +13,10 @@
 
             	$('#nama_users').html('<b>'+data.nama_user+'</b>');
             	$('#nama_drivers').html('<b>'+data.nama_driver+'</b>');
-            	$('#nopol').html('<h6>'+data.no_polisi+'</h6>');
+            	$('#nopol').html('<b>'+data.no_polisi+'</b>');
             	$('#model').html('<h6>'+data.model+' - '+data.varian+'</h6>');
             	$('#date').html('<h6>'+data.stnk+'</h6>');
+                $('#tahun').html('<h6>'+data.tahun+'</h6>');
             }
         });
 	});

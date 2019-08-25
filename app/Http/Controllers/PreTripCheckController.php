@@ -49,7 +49,7 @@ class PreTripCheckController extends Controller
 
         date_default_timezone_set('Asia/Jakarta');
     	$harini = date('Y-m-d');
-    	$time = date("g:i:s");
+    	$time = date("H:i:s");
 
     	$pretrip_check = new Pretrip_Check();
         $pretrip_check->user_id= $request->created_by;
@@ -88,16 +88,31 @@ class PreTripCheckController extends Controller
 
     public function submitnotoke(Request $request) {
 
-        $count = count($request->checkdetail_id);
+        date_default_timezone_set('Asia/Jakarta');
+        $harini = date('Y-m-d');
+        $time = date("H:i:s");
 
-        for($i=0; $i < $count; $i++){
+        $pretrip_check = new Pretrip_Check();
+        $pretrip_check->user_id= $request->user_id;
+        $pretrip_check->date= $harini;
+        $pretrip_check->time= $time;
+        $pretrip_check->save();
 
-            $detail_tripcheck = new PretripCheckNotOke();
-            $detail_tripcheck->pretripcheck_id = $request->pretripcheck_id;
-            $detail_tripcheck->checkdetail_id = $request->checkdetail_id[$i];
-            $detail_tripcheck->status = 'NOT APPROVED';
-            $detail_tripcheck->save();
+        $count = count($request->check_id);
 
+        if ($count <= 1){
+
+        } else {
+
+            for($i=0; $i < $count; $i++){
+
+                $detail_tripcheck = new PretripCheckNotOke();
+                $detail_tripcheck->pretripcheck_id = $pretrip_check->id;
+                $detail_tripcheck->checkdetail_id = $request->check_id[$i];
+                $detail_tripcheck->status = 'NOT APPROVED';
+                $detail_tripcheck->save();
+
+            }
         }
 
     }

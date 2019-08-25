@@ -13,16 +13,20 @@
             <tr><h5 class="ct-title" id="content"><b>Keterangan :</b></h5></td>
             </tr>
             <tr>
+              <td width="5%"><div class="alert alert-primary" role="alert"></div></td>
+              <td><h6 class="text-muted-black"> : Belum Dipilih</h6></td>
+
               <td width="5%"><div class="alert alert-success" role="alert"></div></td>
               <td width="10%"><h6 class="text-muted-black"> : Oke</h6></td>
 
-              <td width="5%"><div class="alert alert-default" role="alert"></div></td>
+              <td width="5%"><div class="alert alert-danger" role="alert"></div></td>
               <td><h6 class="text-muted-black"> : Not Oke</h6></td>
             </tr>
           </table>
           <hr>
 
           <div id="content_tripcheck">
+
             
           </div>
             
@@ -42,7 +46,7 @@
     
       @include('content.trip_check.modal')
       @include('layout.contentfooter')
-      @include('script.pretrip')
+      @include('script.pretripcheck')
 
 </body>
 

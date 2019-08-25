@@ -5430,8 +5430,8 @@ input[type="button"].btn-block {
 }
 
 .badge-light {
-  color: #879cb0;
-  background-color: rgba(244, 245, 246, 0.5);
+  color: #ffffff;
+  background-color: rgba(91,192,222, 0.9);
 }
 
 .badge-light[href]:hover,
