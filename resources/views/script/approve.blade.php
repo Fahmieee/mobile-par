@@ -40,9 +40,9 @@
 	                var id = data[no]['id'];
 	                var level = data[no]['level'];
 
-	                if (level == 'High'){
+	                if (level == 'HIGH'){
 	                	alert = 'danger';
-	                } else if (level == 'Medium'){
+	                } else if (level == 'MEDIUM'){
 	                	alert = 'warning';
 	                } else {
 	                	alert = 'primary';
@@ -95,8 +95,8 @@
                 content_data += "<table border='0' width='100%'>";
                 content_data += "<tr>";
                 content_data += "<td align='left'>";
-                content_data += "<span class='alert-inner--text'> <h4 class='text-muted-white'>"+data.detail_name+"</h4></span>";
-                content_data += "<h6 class='text-muted-white'>Jenis : "+data.type+"</h6>";
+                content_data += "<span class='alert-inner--text'> <h4 class='text-muted-white'>"+data.detail_name+" - "+data.parameter+"</h4></span>";
+                content_data += "<h6 class='text-muted-white'>Bagian : "+data.type+"</h6>";
                 content_data += "</td>";
                 content_data += "<td width='10px'></td>";
                 content_data += "<td align='right'>";
@@ -147,7 +147,8 @@
             url: "{{ route('Approved') }}",
             data: {
                 '_token': $('input[name=_token]').val(),
-                'id': $('#id').val()
+                'id': $('#id').val(),
+                'user_id': $('#created_by').val()
             },
 
             success: function (data) {

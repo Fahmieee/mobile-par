@@ -23,9 +23,10 @@ class ApproveController extends Controller
 
     public function getdata(Request $request)
     {
-    	$getdatas = PretripCheckNotOke::select("users.first_name", "units.no_police","pretrip_check_notoke.id","check_detail.level","pretrip_check_notoke.created_at")
-    	->join("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
-    	->join("check_detail", "pretrip_check_notoke.checkdetail_id", "=", "check_detail.id")
+    	$getdatas = PretripCheckNotOke::select("users.first_name", "units.no_police","pretrip_check_notoke.id","check_answer.level","pretrip_check_notoke.created_at")
+    	->join("pretrip_check_detail", "pretrip_check_notoke.pretripcheckdetail_id", "=", "pretrip_check_detail.id")
+        ->join("pretrip_check", "pretrip_check_detail.pretripcheck_id", "=", "pretrip_check.id")
+    	->join("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
     	->join("users", "pretrip_check.user_id", "=", "users.id")
     	->join("drivers", "users.id", "=", "drivers.driver_id")
     	->join("units", "drivers.unit_id", "=", "units.id")
@@ -33,7 +34,7 @@ class ApproveController extends Controller
             ['drivers.korlap_id', '=', $request->user_id],
             ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
         ])
-    	->orderBy('check_detail.level', 'asc')
+    	->orderBy('check_answer.level', 'asc')
         ->get();
 
     	return response()->json($getdatas);
@@ -42,8 +43,9 @@ class ApproveController extends Controller
 
     public function getdetail(Request $request)
     {
-    	$getdetail = PretripCheckNotOke::select("check_types.name as type", "check_detail.name as detail_name","pretrip_check_notoke.id","pretrip_check_notoke.id as notoke_id")
-    	->join("check_detail", "pretrip_check_notoke.checkdetail_id", "=", "check_detail.id")
+    	$getdetail = PretripCheckNotOke::select("check_types.name as type", "check_detail.name as detail_name","check_answer.parameter","pretrip_check_notoke.id")
+    	->join("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+        ->join("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
     	->join("check_types", "check_detail.checktype_id", "=", "check_types.id")
     	->where("pretrip_check_notoke.id", $request->id)
         ->first();
@@ -60,6 +62,7 @@ class ApproveController extends Controller
     	$approved = PretripCheckNotOke::findOrFail($request->id);
         $approved->status = "APPROVED";
         $approved->approved_at = $date;
+        $approved->approved_by = $request->user_id;
         $approved->save();
 
         return response()->json($approved);

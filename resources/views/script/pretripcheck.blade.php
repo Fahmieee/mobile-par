@@ -17,7 +17,7 @@
 	                var name = data[no]['name'];
 	                var id = data[no]['id'];
 
-		            content_data += "<div class='card-header bg-blue-par'>";
+		            content_data += "<div class='card-header bg-blue-par2'>";
 	                content_data += "<h5 class='text-uppercase text-white ls-1 mb-1'>"+name+"</h5>";
 	                content_data += "</div>";	
 	                content_data += "<div class='card-body bg-white' id=kategori_"+id+">";
@@ -86,8 +86,6 @@
 	        }
 
 	    });
-
-		
 
 	});
 

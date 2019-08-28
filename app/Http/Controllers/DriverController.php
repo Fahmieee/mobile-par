@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Users;
 use App\Drivers;
 use App\Units;
+use App\UnitKilometers;
 
 class DriverController extends Controller
 {
@@ -49,4 +50,17 @@ class DriverController extends Controller
 
         return response()->json($arrayNames);
     }
+
+    public function getunitkilometer(Request $request)
+    {
+        $getkm = UnitKilometers::leftJoin("drivers", "unit_kilometers.unit_id", "=", "drivers.unit_id")
+        ->where([
+                ['drivers.driver_id', '=', $request->user_id],
+                ['km_akhir', '!=', null],
+            ])
+        ->get();
+
+        return response()->json($getkm);
+    }
+
 }

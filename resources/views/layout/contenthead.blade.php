@@ -37,99 +37,45 @@
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->
-      <a href="login/logout"><button class="navbar-toggler" id="logout" type="button">
-        <span class="ni ni-user-run"></span>
+      <a href="#"><button class="navbar-toggler" id="logout" type="button">
+        <span class="ni ni-notification-70"></span>
       </button></a>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="driver">
-        <img src="./assets/login/images/par.png" class="navbar-brand-img" alt="...">
+        <img src="./assets/login/images/par.png" class="navbar-brand-img">
       </a>
       <!-- User -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="ni ni-bell-55"></span>
-      </button>
-      <input type="hidden" class="form-control" id="created_by" value="{{Auth::guard('user')->user()->id}}">
-      <!-- Collapse -->
-      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-        <!-- Collapse header -->
-        <div class="navbar-collapse-header d-md-none">
-          <div class="row">
-            <div class="col-6 collapse-brand">
-              <a href="./index.html">
-                <img src="./assets/login/images/par.png">
-              </a>
+      <ul class="nav align-items-center d-md-none">
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="media align-items-center">
+              <span class="avatar avatar-sm rounded-circle">
+                <img alt="Image placeholder" src="./assets/content/img/theme/team-1-800x800.jpg
+">
+              </span>
             </div>
-            <div class="col-6 collapse-close">
-              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
-                <span></span>
-                <span></span>
-              </button>
-              {{ csrf_field() }}
+          </a>
+          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+            <div class=" dropdown-header noti-title">
+              <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
+            <a href="./examples/profile.html" class="dropdown-item">
+              <i class="ni ni-single-02"></i>
+              <span>Profile Saya</span>
+            </a>
+            <a href="./examples/profile.html" class="dropdown-item">
+              <i class="ni ni-settings-gear-65"></i>
+              <span>Ubah Password</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="login/logout" class="dropdown-item">
+              <i class="ni ni-user-run"></i>
+              <span>Keluar</span>
+            </a>
           </div>
-        </div>
-        <!-- Navigation -->
-        <h6 class="navbar-heading text-muted">Notifications</h6>
-        <hr class="my-3">
+        </li>
+      </ul>
+      <input type="hidden" class="form-control" id="created_by" value="{{Auth::guard('user')->user()->id}}">
 
-        <table border="0" width="100%">
-          <tr>
-            <td width="30px">
-              <i class="ni ni-tv-2 text-primary"></i>
-            </td>
-            <td>
-              <h4><b class="tokenss"></b></h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="30px">
-              
-            </td>
-            <td>
-              <h6 class="text-muted ls-1 mb-1" align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
-            </td>
-          </tr>
-        </table>
-        <hr class="my-3">
-        <table border="0" width="100%">
-          <tr>
-            <td width="30px">
-              <i class="ni ni-planet text-blue"></i>
-            </td>
-            <td>
-              <h4><b>Selamat Hari Raya Idul Fitri</b></h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="30px">
-              
-            </td>
-            <td>
-              <h6 class="text-muted ls-1 mb-1" align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
-            </td>
-          </tr>
-        </table>
-        <hr class="my-3">
-        <table border="0" width="100%">
-          <tr>
-            <td width="30px">
-              <i class="ni ni-key-25 text-info"></i>
-            </td>
-            <td>
-              <h4><b>Berhasil Memberikan Nilai</b></h4>
-            </td>
-          </tr>
-          <tr>
-            <td width="30px">
-              
-            </td>
-            <td>
-              <h6 class="text-muted ls-1 mb-1" align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
-            </td>
-          </tr>
-        </table>
-        <hr class="my-3">
-        
-      </div>
     </div>
   </nav>

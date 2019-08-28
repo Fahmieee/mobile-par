@@ -48,22 +48,26 @@ Route::group(['middleware' => 'auth:user'], function(){
 
 	Route::get('driver', 'DriverController@index');
 	Route::post('driver/get', 'DriverController@getdata')->name('GetDataDriver');
+	Route::post('driver/getkilometers', 'DriverController@getunitkilometer')->name('GetUnitKilometers');
 
 	Route::get('pretripcheck', 'PreTripCheckController@index');
 	Route::post('pretripcheck/get', 'PreTripCheckController@GetData')->name('GetPreTripCheck');
 	Route::post('pretripcheck/submit', 'PreTripCheckController@SubmitPretripCheck')->name('SubmitPretripCheck');
 	Route::post('pretripcheck/submitnotoke', 'PreTripCheckController@submitnotoke')->name('SubmitPretripCheckNotoke');
-	
 	Route::post('pretripcheck/validasi', 'PreTripCheckController@Validasi')->name('ValidasiPretripCheck');
 	Route::get('pretripcheck/kategori', 'PreTripCheckController@getkategori')->name('GetKategori');
 	Route::post('pretripcheck/valiadasinotoke', 'PreTripCheckController@validasinotoke')->name('ValidasiNotOke');
+	Route::post('pretripcheck/answer', 'PreTripCheckController@getdataanswer')->name('GetPreTripCheckAnswer');
+	Route::post('pretripcheck/koordinat', 'PreTripCheckController@koordinat')->name('KoordinatPTC');
 
 	Route::post('clocks/clockin', 'ClocksController@create')->name('ClokinSubmit');
 	Route::post('clocks/validasi', 'ClocksController@validasi')->name('ValidasiClock');
 	Route::post('clocks/clockout', 'ClocksController@clockout')->name('ClokoutSubmit');
+	Route::post('clocks/clockinkoordinat', 'ClocksController@clockinkoordinat')->name('KoordinatClockin');
 
 	Route::post('medical_checkup/store', 'MedicalCheckupController@create')->name('MedicalStore');
 	Route::post('medical_checkup/validasi', 'MedicalCheckupController@validasi')->name('MedicalValidasi');
+	Route::post('medical_checkup/koordinat', 'MedicalCheckupController@koordinat')->name('KoordinatMedical');
 
 	Route::get('history', 'HistoryController@index');
 	Route::post('history/getdata', 'HistoryController@GetData')->name('GetdataHistory');

@@ -68,7 +68,7 @@
                         <h6 class="text-uppercase text-white ls-1 mb-1">Pre-Trip Check</h6>
                       </td>
                       <td align="center">
-                        <h6 class="text-uppercase text-white ls-1 mb-1">Medical Check-Up</h6>
+                        <h6 class="text-uppercase text-white ls-1 mb-1">Daily Check Up</h6>
                       </td>
                       <td align="center" id="clock_desc">
                         <h6 class="text-uppercase text-white ls-1 mb-1">Clock In</h6>
@@ -90,7 +90,7 @@
                 <div class="card-header bg-blue-par">
                   <table width="100%">
                     <tr>
-                      <td style="padding-top: 10px"><h5 class="text-uppercase text-white">BATAS LEMBUR</h5></td>
+                      <td style="padding-top: 10px"><h5 class="text-uppercase text-white">DASHBOARD</h5></td>
                     </tr>
                   </table>
                 </div>
@@ -98,7 +98,7 @@
                   <div class="progress-wrapper">
                     <div class="progress-info">
                       <div class="progress-label">
-                        <span>Lembur</span>
+                        <span>Batas Lembur</span>
                       </div>
                       <div class="progress-percentage">
                         <span>0 Jam / 40 Jam</span>
@@ -106,6 +106,22 @@
                     </div>
                     <div class="progress">
                       <div class="progress-bar bg-default" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 1%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="card-body bg-white" id="menu_icons">
+                  <div class="progress-wrapper">
+                    <div class="progress-info">
+                      <div class="progress-label">
+                        <span>Masa Service</span>
+                      </div>
+                      <div class="progress-percentage">
+                        <span class="text-km">-</span>
+                      </div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar bg-default percent" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                     </div>
                   </div>
                 </div>

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Clocks;
 use App\Drivers;
+use App\Koordinat;
+use App\UnitKilometers;
 
 class ClocksController extends Controller
 {
@@ -29,8 +31,22 @@ class ClocksController extends Controller
         $clock->status = 'NOT APPROVED';
         $clock->save();
 
+        $units = Drivers::where('driver_id', $request->user_id)
+        ->first();
 
-        return response()->json($clock);
+        $unitkm = new UnitKilometers();
+        $unitkm->unit_id = $units->unit_id;
+        $unitkm->date = $hari;
+        $unitkm->km_awal = $request->km;
+        $unitkm->save();
+
+
+        $ClockId = array(    
+            'clockin_id' => $clock->id  
+        );
+
+
+        return response()->json($ClockId);
     }
 
     public function validasi(Request $request)
@@ -67,7 +83,28 @@ class ClocksController extends Controller
         $clock->status = 'NOT APPROVED';
         $clock->save();
 
+        $units = Drivers::where('driver_id', $request->user_id)
+        ->first();
+
+        $unitkms = UnitKilometers::where(['date'=>$hari,'unit_id'=>$units->unit_id])
+        ->update(['km_akhir'=>$request->km]);
 
         return response()->json($clock);
     }
+
+    public function clockinkoordinat(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+
+        $koordinat = new Koordinat();
+        $koordinat->action_id = $request->clockin_id;
+        $koordinat->type = $request->type;
+        $koordinat->long = $request->long;
+        $koordinat->lat = $request->lat;
+        $koordinat->save();
+
+        return response()->json($koordinat);
+
+    }
+
 }

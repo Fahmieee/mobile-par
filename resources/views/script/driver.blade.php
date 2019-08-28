@@ -2,6 +2,58 @@
 
 	$(function() {
 
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('GetUnitKilometers') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val()
+                },
+            success: function(data) {
+
+                var no = -1;
+                var total = 0;
+
+                if (data.length == 0){
+
+                    $('.text-km').html('0 Km / 10000 km');
+
+                } else {
+
+                    $.each(data, function() {
+
+                        no++;
+                        var km_awal = data[no]['km_awal'];
+                        var km_akhir = data[no]['km_akhir'];
+
+                        var pengurangan = km_akhir - km_awal;
+
+                        total += pengurangan;
+
+                    });
+
+                    var percent = Math.floor((total / 10000) * 100);
+                    $('.percent').attr("style", "width: "+percent+"%;");
+
+                    if (percent <= 60){
+
+                        $('.percent').attr("class", "progress-bar bg-success percent");
+
+                    } else if (percent > 60 && percent < 85){
+
+                        $('.percent').attr("class", "progress-bar bg-warning percent");
+
+                    } else {
+
+                        $('.percent').attr("class", "progress-bar bg-danger percent");
+
+                    }
+
+                    $('.text-km').html(total+' Km / 10000 Km');
+                }
+                
+            }
+        });
 
         $.ajax({
             type: 'POST',
@@ -202,52 +254,50 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "{{ route('MedicalValidasi') }}",
+                        url: "{{ route('ValidasiNotOke') }}",
                         data: {
                             '_token': $('input[name=_token]').val(),
                             'user_id': $('#created_by').val()
                         },
 
-                        success: function (datax) {
+                        success: function (datas) {
 
-                            if (datax.length == 0){
-                                swal({
-                                    text: "Lakukan Medical Checkup Terlebih Dahulu!",
-                                    icon: "error",
-                                    buttons: false,
-                                    timer: 2000,
-                                });
-
-                            } else {
+                            if (datas.length == 0){
 
                                 $.ajax({
                                     type: 'POST',
-                                    url: "{{ route('ValidasiNotOke') }}",
+                                    url: "{{ route('MedicalValidasi') }}",
                                     data: {
                                         '_token': $('input[name=_token]').val(),
                                         'user_id': $('#created_by').val()
                                     },
 
-                                    success: function (datas) {
+                                    success: function (datax) {
 
-                                        if (datas.length == 0){
+                                        if (datax.length == 0){
 
-                                            $('#modal_clockin').modal('show');
+                                            $('#notif_medical').modal('show');
 
                                         } else {
 
-                                            $('#notif_notoke').modal('show');
-
+                                            $('#modal_clockin').modal('show');
                                         }
 
                                     }
 
                                 });
+
+                            } else {
+
+                                $('#notif_notoke').modal('show');
+
                             }
 
                         }
 
                     });
+
+                    
 
                 }
 
@@ -312,17 +362,36 @@
 	                },
 	            success: function(data) {
 
-	            	swal({
-	                    text: "Clock In Anda Berhasil!",
-	                    icon: "success",
-	                    buttons: false,
-	                    timer: 2000,
-	                });
+                    navigator.geolocation.getCurrentPosition(function (position) {
 
-	                $('#modal_clockin').modal('hide');
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{ route('KoordinatClockin') }}",
+                            data: {
+                                '_token': $('input[name=_token]').val(),
+                                'clockin_id': data.clockin_id,
+                                'type': 'clockin',
+                                'long': position.coords.latitude,
+                                'lat': position.coords.longitude
+                                },
+                            success: function(data) {
 
-	                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
 
+                                swal({
+                                    text: "Clock In Anda Berhasil!",
+                                    icon: "success",
+                                    buttons: false,
+                                    timer: 2000,
+                                });
+
+                                $('#modal_clockin').modal('hide');
+
+                                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+
+                            }
+
+                        });
+                    });
 	            }
 	        });
 		}
@@ -432,8 +501,9 @@
 
     });
 
-    $('#approve_medical').on('click', function () {
+    $('#upload_form').on('submit', function(event){
 
+        event.preventDefault();
         $('.modal-form').attr("style", "display: none;");
         $('#loader').attr("style", "display: block;");
 
@@ -459,30 +529,160 @@
         } else {
 
             $.ajax({
-                type: 'POST',
                 url: "{{ route('MedicalStore') }}",
-                data: {
-                    '_token': $('input[name=_token]').val(),
-                    'user_id': $('#created_by').val(),
-                    'darah1': $('#darah1').val(),
-                    'darah2': $('#darah2').val(),
-                    'suhu': $('#suhu').val()
-                    },
-                success: function(data) {
+                method:"POST",
+                data:new FormData(this),
+                dataType:'JSON',
+                contentType: false,
+                cache: false,
+                processData: false,
 
-                    swal({
-                        text: "Medical Check Up Anda Berhasil!",
-                        icon: "success",
-                        buttons: false,
-                        timer: 2000,
-                    });
+                success:function(data) {
 
-                    setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+                    if(data.message == "success"){
+
+                        navigator.geolocation.getCurrentPosition(function (position) {
+
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{ route('KoordinatMedical') }}",
+                            data: {
+                                '_token': $('input[name=_token]').val(),
+                                'dcu_id': data.dcu_id,
+                                'type': 'dcu',
+                                'long': position.coords.latitude,
+                                'lat': position.coords.longitude
+                                },
+                            success: function(data) {
+
+                                swal("Medical Check Up Anda Berhasil!", {
+                                    icon: "success",
+                                    buttons: false,
+                                    timer: 2000,
+                                });
+
+                                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+
+                            }
+
+                        });
+
+                        });
+
+                    } else {
+
+
+                        if (data.message == "The file1 must be an image.,The file1 must be a file of type: jpeg, png, jpg, gif."){
+
+                            swal({
+                                title: "File Ekstensi Salah!",
+                                text: "Pastikan Foto yang Anda Upload Benar!",
+                                icon: "error",
+                                buttons: false,
+                                timer: 2000,
+                            });
+
+                        } else {
+
+                            swal({
+                                title: "Ukuran Foto Besar!",
+                                text: "Ukuran Foto jangan terlalu besar!",
+                                icon: "error",
+                                buttons: false,
+                                timer: 2000,
+                            });
+                            
+                        }
+                        
+                        $('.modal-form').attr("style", "display: block;");
+                        $('#loader').attr("style", "display: none;");
+                    }
+
+                    // swal({
+                    //     text: "Medical Check Up Anda Berhasil!",
+                    //     icon: "success",
+                    //     buttons: false,
+                    //     timer: 2000,
+                    // });
+
+                    // setTimeout(function(){ window.location.href = 'driver'; }, 1500);
 
                 }
 
             });
 
+        }
+
+    });
+
+    $('#ok_clockin').on('click', function () {
+
+        $('#notif_medical').modal('hide');
+
+        $('#modal_clockin').modal('show');
+
+    });
+
+    $('#suhu').on('keyup', function () {
+
+        var value = $(this).val();
+
+        if (value == ''){
+         
+            $('.notif_suhu').html('');
+
+        } else if (value > 36){
+
+            $('.notif_suhu').html('<div class="alert alert-danger" role="alert"><strong>Hati-hati!</strong> Suhu Anda Demam!</div>');
+
+        } else if (value <= 36){
+
+            $('.notif_suhu').html('<div class="alert alert-success" role="alert"><strong>Sehat!</strong> Suhu Anda Normal!</div>');
+
+        } 
+
+    });
+
+    $('#darah1').on('keyup', function () {
+
+        var dar1 = $(this).val();
+        var dar2 = $('#darah2').val();
+
+        if (dar2 == ''){
+
+            $('.notif_darah').html('');
+
+        } else if (dar1 < 120 && dar2 < 80){
+
+            $('.notif_darah').html('<div class="alert alert-success" role="alert"><strong>Sehat!</strong> Tekanan Darah Normal!</div>');
+        } else if (dar1 >= 120 && dar1 < 140 || dar2 >= 80 && dar2 < 90){
+            $('.notif_darah').html('<div class="alert alert-yellow" role="alert"><strong>Hati-Hati!</strong> Prehypertension!</div>');
+        } else if (dar1 >= 140 && dar1 < 160 || dar2 >= 90 && dar2 < 100){
+            $('.notif_darah').html('<div class="alert alert-warning" role="alert"><strong>Hati-hati!</strong> High Blood Presure!</div>');
+        } else if (dar1 >= 160 || dar2 >= 100){
+            $('.notif_darah').html('<div class="alert alert-danger" role="alert"><strong>Berbahaya!</strong> Hypertensive Crisis!</div>');
+        }
+
+    });
+
+    $('#darah2').on('keyup', function () {
+
+        var dar2 = $(this).val();
+        var dar1 = $('#darah1').val();
+
+        if (dar1 == ''){
+
+            $('.notif_darah').html('');
+
+        } else if (dar1 < 120 && dar2 < 80){
+
+            $('.notif_darah').html('<div class="alert alert-success" role="alert"><strong>Sehat!</strong> Tekanan Darah Normal!</div>');
+        } else if (dar1 >= 120 && dar1 < 140 || dar2 >= 80 && dar2 < 90){
+            $('.notif_darah').html('<div class="alert alert-yellow" role="alert"><strong>Hati-Hati!</strong> Prehypertension!</div>');
+        } else if (dar1 >= 140 && dar1 < 160 || dar2 >= 90 && dar2 < 100){
+            $('.notif_darah').html('<div class="alert alert-warning" role="alert"><strong>Hati-hati!</strong> High Blood Presure!</div>');
+        } else if (dar1 >= 160 || dar2 >= 100){
+            $('.notif_darah').html('<div class="alert alert-danger" role="alert"><strong>Berbahaya!</strong> Hypertensive Crisis!</div>');
         }
 
     });
