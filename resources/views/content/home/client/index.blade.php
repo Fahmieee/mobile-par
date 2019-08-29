@@ -10,7 +10,7 @@
                 <div class="card-header bg-blue-par">
                   <h6 class="text-uppercase text-white ls-1 mb-1">MENU</h6>
                 </div>
-                <div class="card-body bg-blue-par2" id="menu_icons" style="display: block;">
+                <div class="card-body bg-blue-par2" id="menu_icons" style="display: none;">
                   
                   <table border="0" align="center" width="100%">
                     <tr>
@@ -55,6 +55,20 @@
                     </tr>
                   </table>
                 </div>
+                <div class="card-body bg-blue-par2" id="menu_pairing" style="display: none;"> 
+                  <table border="0" align="center" width="100%">
+                    <tr>
+                      <td>
+                        <h5 align="center" class="text-white">Anda Belum Memiliki Driver Saat ini, Klik Pairing Sekarang untuk Memilih Driver Anda!</h5>
+                      </td>
+                    </tr>
+                    <tr align="center">
+                      <td id="pairs">
+                      <button class="btn btn-success" id="pairing" type="button">Pairing Sekarang</button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
               </div>
             </div>    
           </div>
@@ -80,7 +94,7 @@
                     </tr>
                     <tr>
                       <td colspan="3">
-                        <h5 class="text-black" id="nama_users"><b>Azzam Khalif Prastyo</b></h5>
+                        <h5 class="text-black" id="nama_users"><b></b></h5>
                       </td>
                     </tr>
                     <tr>
@@ -91,12 +105,12 @@
                     <tr>
                       <td><h6>Perusahaan</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>PT NDT</h6></td>  
+                      <td><h6>PT Pertamina</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>No HP</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>089809809809</h6></td>  
+                      <td id="no_hp"><h6></h6></td>  
                     </tr>
 
                     <tr height="10px">
@@ -113,7 +127,7 @@
 
           <br>
 
-          <div class="row">
+          <div class="row" id="infodriver" style="display: block;">
             <div class="col">
               <div class="card shadow">
                 <div class="card-header bg-green-par">
@@ -124,7 +138,7 @@
                     </tr>
                   </table>
                 </div>
-                <div class="card-body-par" id="menu" style="display: block;">
+                <div class="card-body-par" id="menu">
                   <table border="0" align="center" width="100%">
                     <tr height ="10px">
                       <td width="22px" rowspan="6"></td>
@@ -168,7 +182,7 @@
 
           <br>
           
-          <div class="row">
+          <div class="row" id="infokendaraan" style="display: block;">
             <div class="col">
               <div class="card shadow">
                 <div class="card-header bg-green-par">
@@ -178,7 +192,7 @@
                     </tr>
                   </table>
                 </div>
-                <div class="card-body-par" id="menu" style="display: block;">
+                <div class="card-body-par" id="menu">
                   <table border="0" align="center" width="100%">
                     <tr height ="10px">
                       <td width="22px" rowspan="5"></td>
@@ -218,7 +232,7 @@
             </div>    
           </div>
 
-      
+      @include('content.home.client.modal')
       @include('layout.contentfooter')
       @include('script.client')
 </body>

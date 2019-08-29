@@ -42,7 +42,8 @@
       </button></a>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="driver">
-        <img src="./assets/login/images/par.png" class="navbar-brand-img">
+        <img src="./assets/login/images/par2.png" class="navbar-brand-img">
+        {{ csrf_field() }}
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -59,11 +60,11 @@
             <div class=" dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="profile" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>Profile Saya</span>
             </a>
-            <a href="./examples/profile.html" class="dropdown-item">
+            <a href="ubahpassword" class="dropdown-item">
               <i class="ni ni-settings-gear-65"></i>
               <span>Ubah Password</span>
             </a>

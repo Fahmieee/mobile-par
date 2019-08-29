@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Users;
 use App\Drivers;
+use App\Pairing;
 use App\Units;
 use App\Clocks;
 
@@ -27,21 +28,34 @@ class ClientController extends Controller
         $get = Drivers::where('user_id', $request->user_id)
         ->first();
 
-        $getdrivers = Users::where('id', $get->driver_id)
+        $pairingin = Pairing::where([
+            ['user_id', '=', $request->user_id],
+            ['status', '=', 'NOT APPROVED'],
+        ])
         ->first();
 
-        $getunits = Units::where('id', $get->unit_id)
-        ->first();
+        if($get){
+
+            $getdrivers = Users::where('id', $get->driver_id)
+            ->first();
+
+            $getunits = Units::where('id', $get->unit_id)
+            ->first();
+
+        }
 
         $arrayNames = array(    
-            'nama_user' => $getusers->first_name,
-            'nama_driver' => $getdrivers->first_name, 
-            'no_polisi' => $getunits->no_police, 
-            'model' => $getunits->model, 
-            'varian' => $getunits->varian, 
-            'years' => $getunits->years,
-            'stnk' => $getunits->stnk_due_date,
-            'tahun' => $getunits->years   
+            'nama_depan' => $getusers->first_name,
+            'nama_belakang' => $getusers->last_name,
+            'no_hp' => $getusers->phone,
+            'driver_depan' => $get ? $getdrivers->first_name : '-',
+            'driver_belakang' => $get ? $getdrivers->last_name : '-',
+            'no_polisi' => $get ? $getunits->no_police : '-',
+            'model' => $get ? $getunits->model : '-', 
+            'varian' => $get ? $getunits->varian : '-',
+            'years' => $get ? $getunits->years : '-',
+            'stnk' => $get ? $getunits->stnk_due_date : '-',
+            'pair' => $pairingin ? 'ada' : 'tidakada'   
         );
 
         return response()->json($arrayNames);
@@ -128,5 +142,44 @@ class ClientController extends Controller
         $approved->save();
 
         return response()->json($approved);
+    }
+
+    public function listdriver(Request $request)
+    {
+
+        $getbranch = Users::select('branch_id')
+        ->join("user_branches", "users.id", "=", "user_branches.user_id")
+        ->where('users.id', $request->user_id)
+        ->first();
+
+        $branch = $getbranch->branch_id;
+
+        $getdrivers = Users::select("users.id","users.first_name","users.last_name","units.no_police","units.model")
+        ->join("users_roles", "users.id", "=", "users_roles.user_id")
+        ->join("drivers", "users.id", "=", "drivers.driver_id")
+        ->join("user_branches", "users.id", "=", "user_branches.user_id")
+        ->join("units", "drivers.unit_id", "=", "units.id")
+        ->leftjoin("pairing", "drivers.driver_id", "=", "pairing.driver_id")
+        ->where([
+            ['users_roles.role_id', '=', '2'],
+            ['drivers.user_id', '=', null],
+            ['user_branches.branch_id', '=', $branch]
+        ])
+        ->get();
+
+        return response()->json($getdrivers);
+
+    }
+
+    public function pairing(Request $request)
+    {
+
+        $pairs = new Pairing();
+        $pairs->user_id = $request->user_id;
+        $pairs->driver_id = $request->driver_id;
+        $pairs->status = 'NOT APPROVED';
+        $pairs->save();
+
+        return response()->json($pairs);
     }
 }

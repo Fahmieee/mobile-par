@@ -28,6 +28,7 @@ Route::get('login/logout', array(
 
 Route::post('login/user', 'LoginController@loginUser')->name('login_submit');
 Route::get('/logins', 'LoginController@showLoginForm')->name('login.user');
+Route::post('logins/store', 'LoginController@store')->name('StoreUsers');
 
 
 Route::get('/', function () {
@@ -49,6 +50,8 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::get('driver', 'DriverController@index');
 	Route::post('driver/get', 'DriverController@getdata')->name('GetDataDriver');
 	Route::post('driver/getkilometers', 'DriverController@getunitkilometer')->name('GetUnitKilometers');
+	Route::post('driver/terimapair', 'DriverController@terimapair')->name('TerimaPair');
+	Route::post('driver/tolakpair', 'DriverController@tolakpair')->name('TolakPair');
 
 	Route::get('pretripcheck', 'PreTripCheckController@index');
 	Route::post('pretripcheck/get', 'PreTripCheckController@GetData')->name('GetPreTripCheck');
@@ -85,6 +88,8 @@ Route::group(['middleware' => 'auth:user'], function(){
 
 	Route::get('client', 'ClientController@index');
 	Route::post('client/get', 'ClientController@getdata')->name('GetDataClient');
+	Route::post('client/listdriver', 'ClientController@listdriver')->name('DriverListPairing');
+	Route::post('client/pairing', 'ClientController@pairing')->name('ProsesPairing');
 
 	Route::get('client-approve', 'ClientController@client_approve');
 	Route::post('client-approve/get', 'ClientController@getdataapprove')->name('GetApproveClient');
@@ -110,6 +115,13 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('nilaikendaraan/submit', 'NilaiKendaraanController@submit')->name('SubmitNilaiKendaraan');
 	Route::post('nilaikendaraan/validasi', 'NilaiKendaraanController@validasi')->name('ValidasiNilaiKendaraan');
 
+	Route::get('profile', 'ProfileController@index');
+	Route::post('profile/get', 'ProfileController@getdata')->name('GetDataProfile');
+	Route::post('profile/update', 'ProfileController@store')->name('UpdateProfile');
+	Route::post('profile/role', 'ProfileController@role')->name('RoleProfile');
+
+	Route::get('ubahpassword', 'ProfileController@ubahpassword');
+	Route::post('ubahpassword/update', 'ProfileController@updatepass')->name('UpdatePassword');
 
 
 	Route::get('/approve', function () {

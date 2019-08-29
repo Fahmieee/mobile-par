@@ -1,0 +1,119 @@
+@include('layout.contenthead')
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-9 pt-5 pt-md-8">
+      <div class="container-fluid">
+        <div class="header-body">
+          <!-- Card stats -->
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="container-fluid mt--7">
+      <div class="row">
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+          <div class="card card-profile shadow">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a href="#">
+                    <img src="./assets/content/img/theme/team-1-800x800.jpg" class="rounded-circle">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card-header border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+              <div align="center">
+                <button class="btn btn-sm btn-primary">Ganti Photo</button>
+              </div>
+              <br>
+              <div class="text-center" id="namalengkap"></div>
+
+              <div class="h5 font-weight-300" align="center">
+                <i class="ni location_pin mr-2"></i>Bucharest, Romania
+              </div>
+              <br>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">My Profile</h3>
+                </div>
+                <div class="col-4 text-right" id="button">
+                  <button class="btn btn-sm btn-primary" id="edited">Edit Profile</button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h6 class="heading-small text-muted mb-4">Informasi User</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-username">Username</label>
+                      <input type="text" id="username" class="form-control form-control-alternative edited" placeholder="Username" disabled>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-email">Email</label>
+                      <input type="text" id="email" class="form-control form-control-alternative edited" placeholder="budi@example.com" disabled>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-first-name">Nama Depan</label>
+                      <input type="text" id="first-name" class="form-control form-control-alternative edited" placeholder="Nama Depan" disabled>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-last-name">Nama Belakang</label>
+                      <input type="text" id="last-name" class="form-control form-control-alternative edited" placeholder="Nama Belakang" disabled>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              <hr class="my-4" />
+              <!-- Address -->
+              <h6 class="heading-small text-muted mb-4">Informasi Kontak</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-address">Alamat</label>
+                      <input id="alamat" class="form-control form-control-alternative edited" placeholder="Alamat Lengkap" type="text" disabled>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-address">Nomor Handphone</label>
+                      <input id="no_hp" class="form-control form-control-alternative edited" placeholder="Nomor Handphone Anda" type="text" disabled>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              <div id="button-simpan" align="center"><button class="btn btn-warning" id="kembali">Kembali</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+      @include('content.profile.modal')
+      @include('layout.contentfooter')
+      @include('script.profile')
+</body>
+
+</html>

@@ -153,7 +153,9 @@
 
             success: function (data) {
 
-            	swal("Approve Anda Berhasil!", {
+            	swal({
+                    title: "Berhasil",
+                    text: "Approve Anda Berhasil!",
                     icon: "success",
                     buttons: false,
                     timer: 2000,

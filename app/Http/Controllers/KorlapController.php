@@ -21,7 +21,7 @@ class KorlapController extends Controller
 
     public function getprofile(Request $request)
     {
-    	$getprof = Users::select("first_name", "email", "phone")
+    	$getprof = Users::select("first_name", "email", "phone","last_name")
     	->where("id", $request->user_id)
         ->first();
 

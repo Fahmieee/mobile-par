@@ -184,7 +184,7 @@
             <div class="col">
               <div class="card shadow">
                 <div class="card-header bg-green-par">
-                  <h6 class="text-uppercase text-white ls-1 mb-1">PROFILE ANDA</h6s>
+                  <h6 class="text-uppercase text-white ls-1 mb-1">PROFILE ANDA</h6>
                 </div>
                 <div class="card-body-par" id="menu" style="display: block;">
                   <table border="0" align="center" width="100%">

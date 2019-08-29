@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Users;
 use App\Drivers;
 use App\Units;
+use App\Pairing;
 use App\UnitKilometers;
 
 class DriverController extends Controller
@@ -31,6 +32,14 @@ class DriverController extends Controller
         $korlap = Drivers::where('korlap_id', $request->user_id)
         ->first();
 
+        $pairingin = Pairing::select("first_name","last_name","pairing.id")
+        ->join("users", "pairing.user_id", "=", "users.id")
+        ->where([
+            ['driver_id', '=', $request->user_id],
+            ['status', '=', 'NOT APPROVED'],
+        ])
+        ->first();
+
         $getusers = Users::where('id', $get->user_id)
         ->first();
 
@@ -38,14 +47,19 @@ class DriverController extends Controller
         ->first();
 
         $arrayNames = array(    
-            'nama_user' => $getusers->first_name,
-            'nama_driver' => $getdrivers->first_name, 
+            'nama_depan' => $getusers ? $getusers->first_name : '-',
+            'nama_belakang' => $getusers ? $getusers->last_name : '-',
+            'driver_depan' => $getdrivers->first_name, 
+            'driver_belakang' => $getdrivers->last_name, 
             'no_polisi' => $getunits->no_police, 
             'model' => $getunits->model, 
             'varian' => $getunits->varian, 
             'years' => $getunits->years,
             'stnk' => $getunits->stnk_due_date,
-            'tahun' => $getunits->years 
+            'pair' => $pairingin ? 'ada' : 'tidakada',
+            'pair_depan' => $pairingin ? $pairingin->first_name : 'tidakada',
+            'pair_belakang' => $pairingin ? $pairingin->last_name : 'tidakada',
+            'pair_id' => $pairingin ? $pairingin->id : 'tidakada'
         );
 
         return response()->json($arrayNames);
@@ -62,5 +76,39 @@ class DriverController extends Controller
 
         return response()->json($getkm);
     }
+
+    public function tolakpair(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d H:i:s');
+
+        $rejected = Pairing::findOrFail($request->pair_id);
+        $rejected->status = "REJECTED";
+        $rejected->approved_at = $date;
+        $rejected->save();
+
+        return response()->json($rejected);
+    }
+
+    public function terimapair(Request $request)
+    {
+
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d H:i:s');
+
+        $approved = Pairing::findOrFail($request->pair_id);
+        $approved->status = "APPROVED";
+        $approved->approved_at = $date;
+        $approved->save();
+
+        $getpair = Pairing::where('id',$request->pair_id)
+        ->first();
+
+        $approveds = Drivers::where(['driver_id'=>$request->user_id])->update(['user_id'=>$getpair->user_id]);
+
+        return response()->json($approved);
+
+    }
+
 
 }

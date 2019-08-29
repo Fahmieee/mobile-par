@@ -64,12 +64,38 @@
                 },
             success: function(data) {
 
-                $('#nama_users').html('<b>'+data.nama_user+'</b>');
-                $('#nama_drivers').html('<b>'+data.nama_driver+'</b>');
+                $('#nama_users').html('<b>'+data.nama_depan+' '+data.nama_belakang+'</b>');
+                $('#nama_drivers').html('<b>'+data.driver_depan+' '+data.driver_belakang+'</b>');
                 $('#nopol').html('<b>'+data.no_polisi+'</b>');
                 $('#model').html('<h6>'+data.model+' - '+data.varian+'</h6>');
                 $('#date').html('<h6>'+data.stnk+'</h6>');
-                $('#tahun').html('<h6>'+data.tahun+'</h6>');
+                $('#tahun').html('<h6>'+data.years+'</h6>');
+
+                if(data.nama_depan == '-'){
+
+                    $('#client').attr("style", "display: none;");
+                    $('#approve_driver').attr("style", "display: block;");
+                    $('#menudrivers').attr("style", "display: none;");
+
+                } else {
+
+                    $('#client').attr("style", "display: block;");
+                    $('#approve_driver').attr("style", "display: none;");
+                    $('#menudrivers').attr("style", "display: block;");
+
+                }
+
+                if (data.pair == 'tidakada'){
+                    $('#pair_driver').html('<h5 align="center" class="text-white">Anda Belum Memiliki Client Saat ini, Tunggu Saat Client Pairing dengan Anda!</h5>');
+                    $('#terima').html('');
+                    $('#tolak').html('');
+                } else {
+
+                    $('#pair_driver').html('<h5 align="center" class="text-white"><b>Client '+data.pair_depan+' '+data.pair_belakang+'</b> Melakukan Pairing Dengan Anda. Apakah Anda akan Menerimanya?</h5>');
+                    $('#terima').html('<button class="btn btn-success" onclick="Terima('+data.pair_id+')" type="button">Terima</button>');
+                    $('#tolak').html('<button class="btn btn-danger" onclick="Tolak('+data.pair_id+')" type="button">Tolak</button>');
+
+                }
             }
         });
 
@@ -376,8 +402,8 @@
                                 },
                             success: function(data) {
 
-
                                 swal({
+                                    title: "Berhasil",
                                     text: "Clock In Anda Berhasil!",
                                     icon: "success",
                                     buttons: false,
@@ -448,12 +474,14 @@
 	                },
 	            success: function(data) {
 
-	            	swal({
-	                    text: "Clock Out Anda Berhasil!",
-	                    icon: "success",
-	                    buttons: false,
-	                    timer: 2000,
-	                });
+                    swal({
+                        title: "Berhasil",
+                        text: "Clock Out Anda Berhasil!",
+                        icon: "success",
+                        buttons: false,
+                        timer: 2000,
+                    });
+
 
 	                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
 
@@ -555,7 +583,9 @@
                                 },
                             success: function(data) {
 
-                                swal("Medical Check Up Anda Berhasil!", {
+                                swal({
+                                    title: "Berhasil",
+                                    text: "Medical Check Up Anda Berhasil!",
                                     icon: "success",
                                     buttons: false,
                                     timer: 2000,
@@ -685,6 +715,78 @@
             $('.notif_darah').html('<div class="alert alert-danger" role="alert"><strong>Berbahaya!</strong> Hypertensive Crisis!</div>');
         }
 
+    });
+
+    function Terima(id){
+
+        $('#id').val(id);
+
+        $('#terima_pair').modal('show');
+
+    }
+
+    function Tolak(id){
+
+        $('#id').val(id);
+
+        $('#tolak_pair').modal('show');
+
+    }
+
+    $('#yakin_terima').on('click', function () {
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('TerimaPair') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val(),
+                'pair_id': $('#id').val()
+            },
+
+            success: function (data) {
+
+                swal({
+                    title: "Berhasil",
+                    text: "Penerimaan Anda Berhasil!",
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                });
+
+                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+
+            }
+
+        });
+    });
+
+    $('#yakin_tolak').on('click', function () {
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('TolakPair') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val(),
+                'pair_id': $('#id').val()
+            },
+
+            success: function (data) {
+
+                swal({
+                    title: "Berhasil",
+                    text: "Penolakan Anda Berhasil!",
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                });
+
+                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+
+            }
+
+        });
     });
     
 

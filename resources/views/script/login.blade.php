@@ -47,7 +47,20 @@
                             buttons: false,
                             timer: 2000,
                         });
-                        setTimeout(function(){ window.location.href='driver'; }, 1500);
+
+                        if (data.flag_pass == '0' || data.flag_pass == null){
+
+                        	setTimeout(function(){ window.location.href='ubahpassword'; }, 1500);
+
+                        } else if (data.flag_prof == '0' || data.flag_prof == null){
+
+                        	setTimeout(function(){ window.location.href='profile'; }, 1500);
+
+                        } else {
+
+                        	setTimeout(function(){ window.location.href='driver'; }, 1500);
+
+                        }    
 
                     } else if (data.role == 3 && data.status == 'success'){
 
@@ -60,23 +73,36 @@
 
                     } else if (data.role == 5 && data.status == 'success'){
 
-                    swal("Sign In Success!", {
-                        icon: "success",
-                        buttons: false,
-                        timer: 2000,
-                    });
-                    setTimeout(function(){ window.location.href='korlap'; }, 1500);
+	                    swal("Sign In Success!", {
+	                        icon: "success",
+	                        buttons: false,
+	                        timer: 2000,
+	                    });
+
+	                    if (data.flag_pass == '0' || data.flag_pass == null){
+
+                        	setTimeout(function(){ window.location.href='ubahpassword'; }, 1500);
+
+                        } else if (data.flag_prof == '0' || data.flag_prof == null){
+
+                        	setTimeout(function(){ window.location.href='profile'; }, 1500);
+
+                        } else {
+
+                        	setTimeout(function(){ window.location.href='korlap'; }, 1500);
+
+                        }
 
                     } else if (data.status == 'error'){
 
                         swal("Username or Password Wrong!", {
-                        icon: "error",
-                        buttons: false,
-                        timer: 2000,
-                    });
+	                        icon: "error",
+	                        buttons: false,
+	                        timer: 2000,
+	                    });
 
-                    $("#loader2").attr("style","display: none;");
-                    $("#login-form").attr("style","display: block;");
+	                    $("#loader2").attr("style","display: none;");
+	                    $("#login-form").attr("style","display: block;");
 
                     }
 
@@ -86,142 +112,179 @@
 	    }
 	});
 
-	function kedaftar(){
+	function KeInfoDasar(){
 
 		$("#loader2").attr("style","display: none;");
-		$("#register-form").attr("style","display: block;");
+		$("#registerdasar-form").attr("style","display: block;");
 	}
 
 	function kelogin(){
 
 		$("#loader2").attr("style","display: none;");
 		$("#login-form").attr("style","display: block;");
-
 	}
 
-	function kedaftar2(){
+	function kedaftarlogin(){
 
 		$("#loader2").attr("style","display: none;");
-		$("#register2-form").attr("style","display: block;");
-
+		$("#registerlogins-form").attr("style","display: block;");
 	}
 
-	function kedaftarDriver(){
+	function kedaftarlanjutan(){
 
 		$("#loader2").attr("style","display: none;");
-		$("#register4-form").attr("style","display: block;");
-
+		$("#registerlanjutan-form").attr("style","display: block;");
 	}
 
-	function kedaftarKorlap(){
-
-		$("#loader2").attr("style","display: none;");
-		$("#register5-form").attr("style","display: block;");
-
-	}
-
-	function kembali2(){
-
-		$("#loader2").attr("style","display: none;");
-		$("#register-form").attr("style","display: block;");
-
-	}
-
-	function kedaftarUsers(){
-
-		$("#loader2").attr("style","display: none;");
-		$("#register3-form").attr("style","display: block;");
-
-	}
-
-	function kembali3(){
-
-		$("#loader2").attr("style","display: none;");
-		$("#register2-form").attr("style","display: block;");
-
-	}
 
 	$('#login-register').on('click', function () {
 
 		$("#loader2").attr("style","display: block;");
 		$("#login-form").attr("style","display: none;");
-		setTimeout(kedaftar, 2000);
+		setTimeout(KeInfoDasar, 1000);
 
 	});
 
-	$('#register-kembali').on('click', function () {
+	$('#registerdasar-kembali').on('click', function () {
 
 		$("#loader2").attr("style","display: block;");
-		$("#register-form").attr("style","display: none;");
-		setTimeout(kelogin, 2000);
+		$("#registerdasar-form").attr("style","display: none;");
+		setTimeout(kelogin, 1000);
 
 	});
 
-	$('#register-submit').on('click', function () {
+	$('#registerdasar-submit').on('click', function () {
+
+		$("#loader2").attr("style","display: block;");
+		$("#registerdasar-form").attr("style","display: none;");
+
+		setTimeout(kedaftarlogin, 1000);
+	});
+
+	$('#registerlogins-kembali').on('click', function () {
+
+		$("#loader2").attr("style","display: block;");
+		$("#registerlogins-form").attr("style","display: none;");
+
+		setTimeout(KeInfoDasar, 1000);
+
+	});
+
+	$('#registerlogins-submit').on('click', function () {
+
+		$("#loader2").attr("style","display: block;");
+		$("#registerlogins-form").attr("style","display: none;");
+
+		var news = $('#password_new').val();
+		var confirms = $('#password_confirm').val();
+		var limit = confirms.length;
+
+		if (limit <= 6){
+
+			swal("Harus lebih Dari 7 Karakter", {
+	                icon: "error",
+	                buttons: false,
+	                timer: 2000,
+	            });
+
+			$("#loader2").attr("style","display: none;");
+			$("#registerlogins-form").attr("style","display: block;");
+
+		} else {
+
+			if (news == confirms){
+
+				setTimeout(kedaftarlanjutan, 1000);
+
+			} else {
+
+				swal("Password Confirm Harus Sama!", {
+	                icon: "error",
+	                buttons: false,
+	                timer: 2000,
+	            });
+
+	            $("#loader2").attr("style","display: none;");
+				$("#registerlogins-form").attr("style","display: block;");
+
+			}
+
+		}
+
+		
+	});
+
+	$('#registerlanjutan-kembali').on('click', function () {
+
+		$("#loader2").attr("style","display: block;");
+		$("#registerlanjutan-form").attr("style","display: none;");
+
+		setTimeout(kedaftarlogin, 1000);
+
+	});
+
+	$('#registerlanjutan-submit').on('click', function () {
+
+		$("#loader2").attr("style","display: block;");
+		$("#registerlanjutan-form").attr("style","display: none;");
+
 		var empty = false;
-		$('input.no_token').each(function() {
-                if ($(this).val() == '') {
-                    empty = true;
-                }
-            });
-            if (empty) { 
-                swal({
-                    title: "Error!",
-                    text: "Isian harus terisi semua!",
-                    icon: "error",
-                    buttons: false,
-                    timer: 2000,
-                });
-            
-            } else {
-
-            	$("#loader2").attr("style","display: block;");
-				$("#register-form").attr("style","display: none;");
-				$('userx').val($(this).val());
-            	setTimeout(kedaftar2, 2000);
+        $('input.userbaru, select.userbaru').each(function() {
+            if ($(this).val() == '') {
+                empty = true;
             }
-	});
-
-	$('#register2-kembali').on('click', function () {
-
-		$("#loader2").attr("style","display: block;");
-		$("#register2-form").attr("style","display: none;");
-		setTimeout(kembali2, 2000);
-
-	});
-
-	$('#register2-submit').on('click', function () {
-
-		$("#loader2").attr("style","display: block;");
-		$("#register2-form").attr("style","display: none;");
-
-		setTimeout(kedaftarUsers, 2000);
-	});
-
-	$('#register3-kembali').on('click', function () {
-
-		$("#loader2").attr("style","display: block;");
-		$("#register3-form").attr("style","display: none;");
-
-		setTimeout(kembali3, 2000);
-
-	});
-
-
-	$('#register3-submit').on('click', function () {
-
-		swal({
-            title: "Sukses!",
-            text: "Pendaftaran Berhasil!",
-            icon: "success",
-            buttons: false,
-            timer: 2000,
         });
+        if (empty) { 
+            swal({
+	            text: "Harap Isi Semua Isian!",
+	            icon: "error",
+	            buttons: false,
+	            timer: 2000,
+	        });
 
-        $("#loader2").attr("style","display: block;");
-		$("#register3-form").attr("style","display: none;");
+	        $("#loader2").attr("style","display: none;");
+	        $("#registerlanjutan-form").attr("style","display: block;");
 
-		setTimeout(function(){ window.location.href = 'login'; }, 2000);
+	    } else {
+
+
+			$.ajax({
+	            type: 'POST',
+	            url: "{{ route('StoreUsers') }}",
+	            data: {
+	                '_token': $('input[name=_token]').val(),
+	                'nama_depan': $('#nama_depan').val(),
+	                'nama_belakang': $('#nama_belakang').val(),
+	                'email': $('#email').val(),
+	                'alamat': $('#alamat').val(),
+	                'no_hp': $('#no_hp').val(),
+	                'perusahaan': $('#perusahaan').val(),
+	                'jabatan': $('#jabatan').val(),
+	                'branch': $('#branch').val(),
+	                'username': $('#username').val(),
+	                'password_confirm': $('#password_confirm').val()
+	                },
+
+	            success: function(data) {
+
+	            	swal({
+	                    title: "Berhasil",
+	                    text: "Registrasi Anda Berhasil!",
+	                    icon: "success",
+	                    buttons: false,
+	                    timer: 2000,
+	                });
+
+	                $("#loader2").attr("style","display: none;");
+	        		$("#login-form").attr("style","display: block;");
+
+	            }
+
+	        });
+
+		}
+
+		
 	});
 
 

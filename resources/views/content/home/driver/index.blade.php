@@ -2,14 +2,41 @@
   <div class="main-content">
     <!-- Header -->
     <div class="container-fluid pb-4 pt-5 pt-md-8">
-          
-          <div class="row">
+
+          <div class="row" id="approve_driver" style="display: none;">
             <div class="col">
               <div class="card shadow">
                 <div class="card-header bg-blue-par">
                   <h6 class="text-uppercase text-white ls-1 mb-1">MENU</h6>
                 </div>
-                <div class="card-body bg-blue-par2" id="menu_icons" style="display: block;">
+                <div class="card-body bg-blue-par2">
+                  <table border="0" align="center" width="100%">
+                    <tr>
+                      <td id="pair_driver" colspan="2">
+                        <h5 align="center" class="text-white">Anda Belum Memiliki Client Saat ini, Tunggu Saat Client Pairing dengan Anda!</h5>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" id="terima">
+                        
+                      </td>
+                      <td align="center" id="tolak">
+                        
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>    
+          </div>
+          
+          <div class="row" id="menudrivers" style="display: block;">
+            <div class="col">
+              <div class="card shadow">
+                <div class="card-header bg-blue-par">
+                  <h6 class="text-uppercase text-white ls-1 mb-1">MENU</h6>
+                </div>
+                <div class="card-body bg-blue-par2" id="menu_icons">
                   <table border="0" align="center" id="foricons" width="100%" style="display: none;">
                     <tr>
                       <td width="5%" id="icon_check">
@@ -83,6 +110,8 @@
             </div>    
           </div>
           <br>
+
+          
           <!-- Card stats -->
           <div class="row">
             <div class="col">
@@ -129,7 +158,7 @@
             </div>    
           </div>
           <br>
-          <div class="row">
+          <div class="row" id="client" style="display: block;">
             <div class="col">
               <div class="card shadow">
                 <div class="card-header bg-green-par">
@@ -139,7 +168,7 @@
                     </tr>
                   </table>
                 </div>
-                <div class="card-body-par" id="menu" style="display: block;">
+                <div class="card-body-par" id="menu">
                   <table border="0" align="center" width="100%">
                     <tr height ="10px">
                       <td width="22px" rowspan="6"></td>
@@ -195,7 +224,7 @@
                   </table>
                   
                 </div>
-                <div class="card-body-par" id="menu" style="display: block;">
+                <div class="card-body-par" id="menu">
                   <table border="0" align="center" width="100%">
                     <tr height ="10px">
                       <td width="22px" rowspan="6"></td>
@@ -288,6 +317,8 @@
               </div>
             </div>    
           </div>
+      </div>
+    </div>
           
 
       @include('content.home.driver.modal')

@@ -2527,8 +2527,8 @@ fieldset:disabled a.btn {
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #5e72e4;
-  border-color: #5e72e4;
+  background-color: #01497f;
+  border-color: #01497f;
 }
 
 .btn-primary:focus,
@@ -13498,7 +13498,7 @@ button.bg-lighter:focus {
 }
 
 .bg-gradient-primary {
-  background: #0c659f !important;
+  background: #2566AF !important;
 }
 
 .bg-gradient-secondary {

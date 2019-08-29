@@ -12,7 +12,7 @@
 
             success: function (data) {
 
-            	$('#nama').html('<b>'+data.first_name+'</b>');
+            	$('#nama').html('<b>'+data.first_name+' '+data.last_name+'</b>');
             	$('.email').html(data.email);
             	$('.seluler').html(data.phone);
 

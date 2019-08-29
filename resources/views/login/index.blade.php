@@ -4,7 +4,7 @@
         <div class="container-login100" style="background-image: url('assets/login/images/img-01.jpg');">
             <div class="wrap-login100 p-t-90 p-b-30">
                 <div class="" align="center">
-                    <img src="assets/login/images/par.png" width="180px" alt="AVATAR" align="center">
+                    <img src="assets/login/images/par2.png" width="200px" alt="AVATAR" align="center">
                 </div>
 
                     <div id="loader2" style="display: none;" align="center">
