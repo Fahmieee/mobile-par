@@ -19,14 +19,22 @@
                         <td align="center"><h5 class="text-muted">Anda Yakin Akan Membatalkan Pre-Trip Check Saat ini?</h5></td>
                     </tr>
                 </table>
-                
-
             </div>
             
             <div class="modal-footer">
                 <button type="button" id="batal_yakin" class="btn btn-primary">Yakin</button>
                 <button type="button" id="tolak-pairing" class="btn btn-danger ml-auto"  data-dismiss="modal">Tidak</button> 
             </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="content-modals" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content contentnya">
+            
+            
             
         </div>
     </div>
@@ -65,3 +73,4 @@
         </div>
     </div>
 </div>
+

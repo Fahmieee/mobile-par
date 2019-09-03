@@ -32,7 +32,7 @@
                 }
 
                 if(data.pair == 'tidakada'){
-                    $('#pairs').html("<button class='btn btn-success' id='pairing' type='button'>Pairing Sekarang</button>");
+                    $('#pairs').html("<button class='btn btn-success' onclick='ListPairing();' id='pairing' type='button'>Pairing Sekarang</button>");
                 } else {
                     $('#pairs').html("<button class='btn btn-warning' type='button' disabled>Menunggu Konfirmasi Driver</button>");
                 }
@@ -65,7 +65,7 @@
 
     });
 
-    $('#pairing').on('click', function () {
+    function ListPairing(){
 
         $('#modal_pairing').modal('show');
 
@@ -110,7 +110,7 @@
             }
         });
 
-    });
+    }
 
     function Pilih(id){
 

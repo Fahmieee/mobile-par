@@ -12,22 +12,6 @@
                  <input type="text" placeholder="Cari Driver" class="form-control">
                     <br>
                 <div id="pairing-content"></div>
-                    <div class="alert alert-primary" role="alert">
-                    <table width="100%" border="0"> 
-                      <tr>
-                        <td width="25%" rowspan="3"><img src="./assets/content/img/theme/team-1-800x800.jpg" width="100%" class="rounded-circle"></td>
-                        <td width="5%" rowspan="3"></td>
-                        <td><h5 class="text-white">Agus Budi Sudarsono</h5></td>
-                        <td rowspan="3">
-                          <button type="button" class="btn btn-sm btn-secondary">Pilih</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td><h6 class="text-white">AVANZA - B 6789 KIL</h6></td>
-                      </tr>
-                    </table>
-                    <hr>
-                </div>
             </div>
             
         </div>

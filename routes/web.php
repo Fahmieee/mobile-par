@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('splash.index');
 });
 
-Route::get('/login', function () {
+Route::get('/logins', function () {
     return view('login.index');
 })->name('login');
 
@@ -62,6 +62,8 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('pretripcheck/valiadasinotoke', 'PreTripCheckController@validasinotoke')->name('ValidasiNotOke');
 	Route::post('pretripcheck/answer', 'PreTripCheckController@getdataanswer')->name('GetPreTripCheckAnswer');
 	Route::post('pretripcheck/koordinat', 'PreTripCheckController@koordinat')->name('KoordinatPTC');
+	Route::post('pretripcheck/kategorisubmited', 'PreTripCheckController@getsubmited')->name('GetKategoriSubmited');
+	Route::post('pretripcheck/kirimptc', 'PreTripCheckController@kirimptc')->name('KirimPretripCheck');
 
 	Route::post('clocks/clockin', 'ClocksController@create')->name('ClokinSubmit');
 	Route::post('clocks/validasi', 'ClocksController@validasi')->name('ValidasiClock');

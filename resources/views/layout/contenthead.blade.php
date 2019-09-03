@@ -37,9 +37,9 @@
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->
-      <a href="#"><button class="navbar-toggler" id="logout" type="button">
+      <button class="navbar-toggler" id="darurat" type="button">
         <span class="ni ni-notification-70"></span>
-      </button></a>
+      </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="driver">
         <img src="./assets/login/images/par2.png" class="navbar-brand-img">

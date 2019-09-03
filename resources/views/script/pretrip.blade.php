@@ -2,7 +2,6 @@
 
 	$(function() {
 
-
 		$.ajax({
 	        url: "{{ route('GetKategori') }}",
 	        type: "GET",
@@ -16,160 +15,166 @@
 	            	no++;
 	                var name = data[no]['name'];
 	                var id = data[no]['id'];
+	                var icon = data[no]['icons'];
 
-		            content_data += "<div class='alert alert-success' id='kategori_"+id+"' role='alert'>";
-		            content_data += "<input type='hidden' value='1' class='val_"+id+" pretrip_check_val'>";
-	                content_data += "<table border='0' width='100%'>";
-	                content_data += "<tr>";
-	                content_data += "<td><h4 class='text-white'>"+name+"</h4></td>";
-	                content_data += "<td align='right'>";
-		            content_data += "<label class='custom-toggle'>";
-		            content_data += "<input type='checkbox' id='checked_"+id+"' class='pretrip_check' onclick='AksiTripCheckfalse("+id+");' value="+id+" checked>";
-		            content_data += "<span class='custom-toggle-slider rounded-circle'></span>";
-		            content_data += "</label>";
-		            content_data += "</td>";
-	                content_data += "</tr>";
-	                content_data += "</table><hr>";
-	                content_data += "<div id='notoke_"+id+"'></div>";
-	                content_data += "</div>";
+	                content_data += "<div class='row'>";
+                  	content_data += "<div class='col-lg-12'>";
+                    content_data += "<div class='alert2 alert_"+id+" alert-primary' onclick='GetModal("+id+")' role='alert'>";
+                    content_data += "<table width='100%'><tr>";
+                    content_data += "<td width='10%'><i class='fa "+icon+"' style='color: #ffffff'></i></td>";
+                    content_data += "<td align='left'><h5 class='text-white'>"+name+"</h5></td>";
+                    content_data += "<td align='right' id='sudah_"+id+"'></td>";
+                    content_data += "</tr></table>";
+                    content_data += "</div>";
+                  	content_data += "</div>";
+                	content_data += "</div>";
 
 	            });
 
-	            $('#content_tripcheck').html(content_data);
+	            $('#content-ptc').html(content_data);
 
 
 	        }
 
 	    });
 
-		
+		$.ajax({
+	        url: "{{ route('GetKategoriSubmited') }}",
+	        type: "POST",
+	        data: {
+                '_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val(),
+            },
+	        success:function(data) {
+
+	        	var no = -1;
+
+	        	var terisi = data.length;
+	        	$('#count_terisi').val(terisi);
+
+
+	        	$.each(data, function() {
+
+	                no++;
+	                var id = data[no]['id'];
+
+	                $('.alert_'+id+'').attr('class','alert2 alert_'+id+' alert-success');
+	                $('#sudah_'+id+'').html("<img src='./assets/content/img/theme/check_success.png' width='23'>");
+
+	            });
+
+	        	
+
+	        }
+
+	    });
 
 	});
 
-	function AksiTripCheckfalse(rnum) {
+	function GetModal(id) {
+
+		var content_data = "";
+
+		content_data += "<div class='modal-header'>";
+		content_data += "<h4 class='modal-title' id='modal-title-default'>Konfirmasi Pre Trip Check</h4>";
+		content_data += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
+		content_data += "<span aria-hidden='true'>×</span>";
+		content_data += "</button>";
+		content_data += "</div>";
+          
+		content_data += "<div class='modal-body'>";
+
+        content_data += "<div class='details_"+id+"'></div>";  
+              
+		content_data += "</div>";            
+		content_data += "<div class='modal-footer'>";
+		content_data += "<button type='button' onclick='Submit("+id+")' class='btn btn-primary'>Submit</button>";
+		content_data += "<button type='button' class='btn btn-danger ml-auto' data-dismiss='modal'>Close</button>"; 
+		content_data += "</div>";
+
+		$('.contentnya').html(content_data);
 
 
-    	$('#kategori_'+rnum).attr("class","alert alert-danger");
-    	$('#checked_'+rnum).attr("onclick","AksiTripChecktrue("+rnum+");");
-    	$('.val_'+rnum).val(0);
-
-    	$.ajax({
+		$.ajax({
 	        url: "{{ route('GetPreTripCheck') }}",
 	        type: "POST",
 	        data: {
                 '_token': $('input[name=_token]').val(),
-                'check_id': rnum
+                'checktype_id': id
             },
 	        success:function(data) {
 
-	        	var content_data="";
-	            var no = -1;
+	        	var content_datax="";
+				var no = -1;
+
+				var type = data[0]['type_name'];
+
+				$('.modal-title').html(type);
+
 	            $.each(data, function() {
 
 	                no++;
 	                var name = data[no]['name'];
+	                var detail_id = data[no]['id'];
 	                var type_name = data[no]['type_name'];
-	                var level = data[no]['level'];
-	                var kategori = data[no]['kategori'];
-	                var id = data[no]['id'];
 
-	                content_data += "<div class='alert alert-success' id='detail_"+id+"' role='alert'>";
-	                content_data += "<table border='0' width='100%'>";
-	                content_data += "<tr>";
-	                content_data += "<td><h5 class='text-white'>"+name+"</h5></td>";
-	                content_data += "<td align='right'>";
-		            content_data += "<label class='custom-toggle'>";
-		            content_data += "<input type='checkbox' id='checkeddetail_"+id+"' class='detail_check' onclick='AksiDetailCheckfalse("+id+");' value="+id+">";
-		            content_data += "<span class='custom-toggle-slider rounded-circle'></span>";
-		            content_data += "</label>";
-		            content_data += "</td>";
-	                content_data += "</tr>";
-	                content_data += "</table>";
-	                content_data += "</div><hr>";
+	                content_datax += "<div class='row'>";
+			        content_datax += "<div class='col-lg-12'>";
+			        content_datax += "<div class='form-group'>";
+			        content_datax += "<label class='form-control-label' for='input-username'>"+name+"</label>";
+			        content_datax += "<select class='form-control answered' id='answer_"+detail_id+"'>";
+			        content_datax += "</select>";
+			        content_datax += "</div>";
+			        content_datax += "</div>"; 
+			        content_datax += "</div>";
+
+			        $.ajax({
+				        url: "{{ route('GetPreTripCheckAnswer') }}",
+				        type: "POST",
+				        data: {
+			                '_token': $('input[name=_token]').val(),
+			                'checkdetail_id': detail_id
+			            },
+				        success:function(data) {
+
+				        	var content_datas="";
+							var no = -1;
+
+				            $.each(data, function() {
+
+				                no++;
+				                var parameter = data[no]['parameter'];
+				                var answer_id = data[no]['id'];
+
+				                content_datas += "<option value='"+answer_id+"'>"+parameter+"</option>";
+
+				            });
+
+				            $('#answer_'+detail_id+'').html(content_datas); 
+
+				        }
+				    });
+
+
 
 	            });
 
-	            $('#notoke_'+rnum).html(content_data);
+	           $('.details_'+id+'').html(content_datax); 
 
 	        }
 	    });
 
-
-	}
-
-	function AksiTripChecktrue(rnum) {
-
-		$('#kategori_'+rnum).attr("class","alert alert-success");	
-		$('#checked_'+rnum).attr("onclick","AksiTripCheckfalse("+rnum+");");
-		$('.val_'+rnum).val(1);
-
-		$('#notoke_'+rnum).html('');
-	}
-
-
-	function AksiDetailCheckfalse(rnum) {
-
-		$('#detail_'+rnum).attr("class","alert alert-default");	
-		$('#checkeddetail_'+rnum).attr("onclick","AksiDetailChecktrue("+rnum+");");
-		$('#checkeddetail_'+rnum).attr("class","checked");
-	}
-
-	function AksiDetailChecktrue(rnum) {
-
-		$('#detail_'+rnum).attr("class","alert alert-success");	
-		$('#checkeddetail_'+rnum).attr("onclick","AksiDetailCheckfalse("+rnum+");");
-		$('#checkeddetail_'+rnum).attr("class","detail_check");
+		$('#content-modals').modal('show');
 
 	}
 
 
-	// ==== SIMPAN HASIL PRETRIP CHECK ===
+	function Submit(id) {
 
-	$('#submit_pretrip_check').on('click', function () {
+		var checkanswer_id = [];
 
-		var empty = false;
-		$('.pretrip_check_val').each(function() {
-        if ($(this).val() == '0') {
-	            empty = true;
-	        }
-	    });
-
-	    if (empty) { 
-
-	    	$('#modal_pretrip_check').modal('show');
-	    	
-	    } else {
-	    	
-	    	$('#modal_pretrip_check_all').modal('show');
-	    }
-
-	});
-
-	$('#batal_submit').on('click', function () {
-
-		$('#modal_batal_submit').modal('show');
-
-	});
-
-	$('#batal_yakin').on('click', function () {
-
-		$('#modal_batal_submit').modal('hide');
-
-		setTimeout(function(){ window.location.href='driver'; }, 10);
-
-	});
-
-	$('#yakin_submit').on('click', function () {
-
-		var value = [];
-		var check_id = [];
-
-        $('.pretrip_check').each(function(){
-            check_id.push($(this).val());
-        });
-
-        $('.pretrip_check_val').each(function(){
-            value.push($(this).val());
+        $('.answered').each(function(){
+            checkanswer_id.push($(this).val());
         });
 
         $.ajax({
@@ -177,100 +182,70 @@
             url: "{{ route('SubmitPretripCheck') }}",
             data: {
                 '_token': $('input[name=_token]').val(),
-                'value' : value,
-                'check_id' : check_id,
-                'created_by': $('#created_by').val()
+                'checkanswer_id' : checkanswer_id,
+                'created_by': $('#created_by').val(),
+                'type_id': id
                 },
             success: function(data) {
 
-            	if (data.ada >= 1){
+            	swal("Berhasil Terkirim!", {
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                });
 
-            		var checkdetail_id = [];
+                $('#content-modals').modal('hide');
 
-            		$('.checked').each(function(){
-            			checkdetail_id.push($(this).val());
-        			});
+                $('.alert_'+id).attr('class','alert2 alert_'+id+' alert-success');
+	            $('#sudah_'+id).html("<img src='./assets/content/img/theme/check_success.png' width='23'>");
 
-            		$.ajax({
-			            type: 'POST',
-			            url: "{{ route('SubmitPretripCheckNotoke') }}",
-			            data: {
-			                '_token': $('input[name=_token]').val(),
-			                'checkdetail_id' : checkdetail_id,
-			                'pretripcheck_id': data.pretripcheck_id,
-			                'created_by': $('#created_by').val()
-			                },
-			            success: function(data) {
+            }
 
-			            	swal("Pre Trip Check Berhasil Terkirim!", {
-			                    icon: "success",
-			                    buttons: false,
-			                    timer: 2000,
-			                });
+        });
 
-			                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+	}
 
-			            }
+	$('#kirim_ptc').on('click', function () {
 
-			        });
+		$.ajax({
+            type: 'POST',
+            url: "{{ route('KirimPretripCheck') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val(),
+                'terisi': $('#count_terisi').val(),
+            },
+            success: function(data) {
+
+            	if (data.hasil == 0){
+
+            		swal({
+	                    title: "Error",
+	                    text: "Ada Data yang Belum dipilih!",
+	                    icon: "error",
+	                    buttons: false,
+	                    timer: 2000,
+	                });
 
             	} else {
 
-            		swal("Pre Trip Check Berhasil Terkirim!", {
+            		swal({
+	                    title: "Berhasil",
+	                    text: "Pre Trip Check Anda Berhasil Terkirim!",
 	                    icon: "success",
 	                    buttons: false,
 	                    timer: 2000,
 	                });
 
-	                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+                	setTimeout(function(){ window.location.href = 'driver'; }, 1500);
 
             	}
 
             }
 
         });
-
 	});
 
-
-	$('#yakin_submit_all').on('click', function () {
-
-		var value = [];
-		var check_id = [];
-
-        $('.pretrip_check').each(function(){
-            check_id.push($(this).val());
-        });
-
-        $('.pretrip_check_val').each(function(){
-            value.push($(this).val());
-        });
-
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('SubmitPretripCheck') }}",
-            data: {
-                '_token': $('input[name=_token]').val(),
-                'value' : value,
-                'check_id' : check_id,
-                'created_by': $('#created_by').val()
-                },
-            success: function(data) {
-
-        		swal("Pre Trip Check Berhasil Terkirim!", {
-                    icon: "success",
-                    buttons: false,
-                    timer: 2000,
-                });
-
-                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
-
-        	}
-
-
-        });
-
-	});
-
+	
 
 </script>

@@ -8,21 +8,17 @@
           <div class="ct-page-title">
             <h1 class="ct-title" id="content">Pre Trip Checks</h1><span class="badge badge-primary">{{ $date }}</span>
           </div>
-
-          <div id="content_tripcheck">
-
+            <div class="card-body bg-white">
+              <h6 class="heading-small text-muted">Pilih Kategori yang Tersedia</h6><br>
+              <input type="hidden" id="count_terisi">
+              <div class="pl-lg-4" id="content-ptc">
+                
+              </div>
+              <div align="center">
+              <button class="btn btn-success" id="kirim_ptc">Kirim</button>
+              </div>
+            </div>
             
-          </div>
-            
-          <table border="0" width="100%">
-            <tr>
-              <td align="center">
-                <button type="button" id="submit_pretrip_check" class="btn btn-primary">Simpan</button>
-                <button type="button" class="btn btn-danger ml-auto" id="batal_submit">Batal</button> 
-              </td>
-            </tr>
-          </table>
-          
         </div>
       </div>
 
@@ -30,7 +26,7 @@
     
       @include('content.trip_check.modal')
       @include('layout.contentfooter')
-      @include('script.ptc')
+      @include('script.pretrip')
 
 </body>
 

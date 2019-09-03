@@ -66,7 +66,7 @@ class LoginController extends Controller
     public function Coba()
     {
 
-        $password = Hash::make('akupastibisa');
+        $password = Hash::make('123');
         return($password);
 
     }
