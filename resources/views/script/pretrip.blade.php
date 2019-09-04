@@ -3,42 +3,6 @@
 	$(function() {
 
 		$.ajax({
-	        url: "{{ route('GetKategori') }}",
-	        type: "GET",
-	        dataType: "json",
-	        success:function(data) {
-
-	        	var content_data="";
-	            var no = -1;
-	            $.each(data, function() {
-
-	            	no++;
-	                var name = data[no]['name'];
-	                var id = data[no]['id'];
-	                var icon = data[no]['icons'];
-
-	                content_data += "<div class='row'>";
-                  	content_data += "<div class='col-lg-12'>";
-                    content_data += "<div class='alert2 alert_"+id+" alert-primary' onclick='GetModal("+id+")' role='alert'>";
-                    content_data += "<table width='100%'><tr>";
-                    content_data += "<td width='10%'><i class='fa "+icon+"' style='color: #ffffff'></i></td>";
-                    content_data += "<td align='left'><h5 class='text-white'>"+name+"</h5></td>";
-                    content_data += "<td align='right' id='sudah_"+id+"'></td>";
-                    content_data += "</tr></table>";
-                    content_data += "</div>";
-                  	content_data += "</div>";
-                	content_data += "</div>";
-
-	            });
-
-	            $('#content-ptc').html(content_data);
-
-
-	        }
-
-	    });
-
-		$.ajax({
 	        url: "{{ route('GetKategoriSubmited') }}",
 	        type: "POST",
 	        data: {
@@ -52,19 +16,15 @@
 	        	var terisi = data.length;
 	        	$('#count_terisi').val(terisi);
 
-
 	        	$.each(data, function() {
 
 	                no++;
 	                var id = data[no]['id'];
 
 	                $('.alert_'+id+'').attr('class','alert2 alert_'+id+' alert-success');
-	                $('#sudah_'+id+'').html("<img src='./assets/content/img/theme/check_success.png' width='23'>");
+	                $('#sudah_'+id+'').html("<img src='./assets/content/img/theme/check_success.png' width='21'>");
 
 	            });
-
-	        	
-
 	        }
 
 	    });
@@ -83,7 +43,6 @@
 		content_data += "</div>";
           
 		content_data += "<div class='modal-body'>";
-
         content_data += "<div class='details_"+id+"'></div>";  
               
 		content_data += "</div>";            
@@ -197,7 +156,9 @@
                 $('#content-modals').modal('hide');
 
                 $('.alert_'+id).attr('class','alert2 alert_'+id+' alert-success');
-	            $('#sudah_'+id).html("<img src='./assets/content/img/theme/check_success.png' width='23'>");
+	            $('#sudah_'+id).html("<img src='./assets/content/img/theme/check_success.png' width='21'>");
+
+	            setTimeout(function(){ location.reload(); }, 1500);
 
             }
 

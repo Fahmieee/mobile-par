@@ -20,11 +20,10 @@ class PreTripCheckController extends Controller
         date_default_timezone_set('Asia/Jakarta');
     	$date = date('Y-m-d');
 
-    	$types = CheckDetail::select("check_detail.*","check_types.name As type_name")
-        ->leftJoin("check_types", "check_detail.checktype_id", "=", "check_types.id")
+        $gettypes = CheckType::select("id","name","icons")
         ->get();
 
-    	return view('content.trip_check.index', compact('types', 'date'));
+    	return view('content.trip_check.index', compact('gettypes', 'date'));
 
     }
 
@@ -48,14 +47,6 @@ class PreTripCheckController extends Controller
         return response()->json($getanswer);
     }
 
-
-    public function getkategori()
-    {
-        $gettypes = CheckType::select("id","name","icons")
-        ->get();
-
-        return response()->json($gettypes);
-    }
 
     public function getsubmited(Request $request)
     {

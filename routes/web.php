@@ -16,9 +16,7 @@ Route::get('/', function () {
     return view('splash.index');
 });
 
-Route::get('/logins', function () {
-    return view('login.index');
-})->name('login');
+Route::get('/login', 'LoginController@showLoginForm')->name('login');
 
 
 Route::get('login/logout', array(
@@ -56,9 +54,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::get('pretripcheck', 'PreTripCheckController@index');
 	Route::post('pretripcheck/get', 'PreTripCheckController@GetData')->name('GetPreTripCheck');
 	Route::post('pretripcheck/submit', 'PreTripCheckController@SubmitPretripCheck')->name('SubmitPretripCheck');
-	Route::post('pretripcheck/submitnotoke', 'PreTripCheckController@submitnotoke')->name('SubmitPretripCheckNotoke');
 	Route::post('pretripcheck/validasi', 'PreTripCheckController@Validasi')->name('ValidasiPretripCheck');
-	Route::get('pretripcheck/kategori', 'PreTripCheckController@getkategori')->name('GetKategori');
 	Route::post('pretripcheck/valiadasinotoke', 'PreTripCheckController@validasinotoke')->name('ValidasiNotOke');
 	Route::post('pretripcheck/answer', 'PreTripCheckController@getdataanswer')->name('GetPreTripCheckAnswer');
 	Route::post('pretripcheck/koordinat', 'PreTripCheckController@koordinat')->name('KoordinatPTC');
@@ -106,10 +102,12 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('lihatsuara/detail', 'LihatSuaraController@getsuaradetail')->name('LihatSuaraDetail');
 
 	Route::get('nilaidriver', 'NilaiDriverController@index');
-	Route::get('nilaidriver/gettype', 'NilaiDriverController@gettype')->name('GetTypeNilaiDriver');
 	Route::post('nilaidriver/getdetail', 'NilaiDriverController@getdetail')->name('GetDetailNilaiDriver');
 	Route::post('nilaidriver/submit', 'NilaiDriverController@submit')->name('SubmitNilaiDriver');
 	Route::post('nilaidriver/validasi', 'NilaiDriverController@validasi')->name('ValidasiNilaiDriver');
+	Route::post('nilaidriver/getsubmited', 'NilaiDriverController@getsubmited')->name('GetNilaiDrivers');
+	Route::post('nilaidriver/getrating', 'NilaiDriverController@getratingkategori')->name('GetRatingKategori');
+	Route::post('nilaidriver/getdrivers', 'NilaiDriverController@getdriver')->name('GetDriver');
 
 	Route::get('nilaikendaraan', 'NilaiKendaraanController@index');
 	Route::get('nilaikendaraan/gettype', 'NilaiKendaraanController@gettype')->name('GetTypeNilaiKendaraan');

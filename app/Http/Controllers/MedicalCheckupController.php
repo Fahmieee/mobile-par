@@ -17,7 +17,7 @@ class MedicalCheckupController extends Controller
     	$time = date("H:i:s");
 
         $validation = Validator::make($request->all(), [
-        'file1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        'file1' => 'required|image|mimes:jpeg,png,jpg,gif'
         ]);
 
         if($validation->passes()) {

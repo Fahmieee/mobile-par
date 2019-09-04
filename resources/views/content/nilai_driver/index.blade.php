@@ -33,16 +33,22 @@
                 <div class="ct-page-title">
                   <h3 class="ct-title" id="content"><b>Penilaian Driver</b></h3>
                 </div>
-                <div id="tampilkan_content"></div>
+
+                @foreach($gettypes as $type)
+                  <div class="alert2 alert_{{ $type->id }} alert-primary" onclick="GetModal({{ $type->id }})" role="alert">
+                      <table width="100%">
+                        <tr>
+                          <td width="10%"><i class="fa {{ $type->icon }}" style="color: #ffffff"></i></td>
+                          <td align="left"><h5 class="text-white">{{ $type->type }}</h5></td>
+                          <td align="right" id="sudah_{{ $type->id }}"></td>
+                        </tr>
+                      </table>
+                      <div id="rating_{{ $type->id }}"></div>
+                  </div>
+                @endforeach
+
               </div>
-              <table border="0" width="100%">
-                <tr>
-                  <td align="center" id="button">
-                    <button type="button" id="submit_nilai" class="btn btn-primary">Kirim Nilai</button>
-                    <button type="button" class="btn btn-danger ml-auto" id="batal_submit">Batal</button> 
-                  </td>
-                </tr>
-              </table>
+              
               <br>
             </div>
           </div>
