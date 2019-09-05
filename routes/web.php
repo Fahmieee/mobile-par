@@ -110,10 +110,12 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('nilaidriver/getdrivers', 'NilaiDriverController@getdriver')->name('GetDriver');
 
 	Route::get('nilaikendaraan', 'NilaiKendaraanController@index');
-	Route::get('nilaikendaraan/gettype', 'NilaiKendaraanController@gettype')->name('GetTypeNilaiKendaraan');
 	Route::post('nilaikendaraan/getdetail', 'NilaiKendaraanController@getdetail')->name('GetDetailNilaiKendaraan');
 	Route::post('nilaikendaraan/submit', 'NilaiKendaraanController@submit')->name('SubmitNilaiKendaraan');
 	Route::post('nilaikendaraan/validasi', 'NilaiKendaraanController@validasi')->name('ValidasiNilaiKendaraan');
+	Route::post('nilaikendaraan/getsubmited', 'NilaiKendaraanController@getsubmited')->name('GetNilaiKendaraan');
+	Route::post('nilaikendaraan/getrating', 'NilaiKendaraanController@getratingkategori')->name('GetRatingKategoriKendaraan');
+	Route::post('nilaikendaraan/getkendaraan', 'NilaiKendaraanController@getkendaraan')->name('GetKendaraan');
 
 	Route::get('profile', 'ProfileController@index');
 	Route::post('profile/get', 'ProfileController@getdata')->name('GetDataProfile');

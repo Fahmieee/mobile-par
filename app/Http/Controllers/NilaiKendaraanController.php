@@ -19,21 +19,17 @@ class NilaiKendaraanController extends Controller
     	date_default_timezone_set('Asia/Jakarta');
     	$date = date('Y-m-d');
 
-    	return view('content.nilai_kendaraan.index', compact('date'));
+        $gettypes = NilaiTypeKendaraan::all();
 
-    }
+    	return view('content.nilai_kendaraan.index', compact('date','gettypes'));
 
-    public function gettype()
-    {
-        $gettype = NilaiTypeKendaraan::all();
-
-        return response()->json($gettype);
     }
 
     public function getdetail(Request $request)
     {
-        $getdetail = NilaiDetailKendaraan::where("nilaitypekendaraan_id", $request->nilaitype_id)
-        ->orderby("value", "desc")
+        $getdetail = NilaiDetailKendaraan::select('nilaidetail_kendaraan.id', 'nilaidetail_kendaraan.name','nilaitype_kendaraan.type')
+        ->join("nilaitype_kendaraan", "nilaidetail_kendaraan.nilaitypekendaraan_id", "=", "nilaitype_kendaraan.id")
+        ->where("nilaitypekendaraan_id", $request->nilaitype_id)
         ->get();
 
         return response()->json($getdetail);
@@ -41,25 +37,25 @@ class NilaiKendaraanController extends Controller
 
     public function submit(Request $request) {
 
-            $getuser = Drivers::where('user_id',$request->user_id)
-            ->first();
+        date_default_timezone_set('Asia/Jakarta');
 
-            $units = $getuser->unit_id;
+        $getuser = Drivers::where('user_id',$request->user_id)
+        ->first();
 
-            $count = count($request->nilaidetail_id);
+        $count = count($request->detail_id);
 
         for($i=0; $i < $count; $i++){
 
             $nilai = new NilaiKendaraan();
-            $nilai->unit_id = $units;
-            $nilai->nilaidetailkendaraan_id = $request->nilaidetail_id[$i];
+            $nilai->unit_id = $getuser->unit_id;
+            $nilai->nilaidetailkendaraan_id = $request->detail_id[$i];
             $nilai->periode_id = '1';
             $nilai->value = $request->value[$i];
             $nilai->save();
 
         }
 
-        return response()->json($units);
+        return response()->json($getuser);
     }
 
     public function validasi(Request $request)
@@ -71,27 +67,77 @@ class NilaiKendaraanController extends Controller
         $getunit = Units::where('id',$units)
         ->first();
 
-        $gettotal = NilaiKendaraan::select(DB::raw('SUM(value) AS total'))
+        $gettotal = NilaiKendaraan::select('nilai_kendaraan.value as nilai_kendaraan','nilaidetail_kendaraan.value')
+        ->join("nilaidetail_kendaraan", "nilai_kendaraan.nilaidetailkendaraan_id", "=", "nilaidetail_kendaraan.id")
+        ->join("nilaitype_kendaraan", "nilaidetail_kendaraan.nilaitypekendaraan_id", "=", "nilaitype_kendaraan.id")
         ->where([
-            ['unit_id', '=', $units],
-            ['periode_id', '=', 1],
-        ])
-        ->first();
-
-        $getcount = NilaiKendaraan::where([
-            ['unit_id', '=', $units],
-            ['periode_id', '=', 1],
+            ['periode_id', '=', '1'],
+            ['nilai_kendaraan.unit_id', '=', $units]
         ])
         ->get();
 
+        return response()->json($gettotal);
+    }
+
+    public function getsubmited(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $harini = date('Y-m-d');
+
+        $getuser = Drivers::where('user_id',$request->user_id)
+        ->first();
+        $units = $getuser->unit_id;
+
+        $gettypesx = NilaiTypeKendaraan::select('nilaitype_kendaraan.id')
+        ->join("nilaidetail_kendaraan", "nilaitype_kendaraan.id", "=", "nilaidetail_kendaraan.nilaitypekendaraan_id")
+        ->join("nilai_kendaraan", "nilaidetail_kendaraan.id", "=", "nilai_kendaraan.nilaidetailkendaraan_id")
+        ->where([
+            ['nilai_kendaraan.unit_id', '=', $units],
+            ['periode_id', '=', '1']
+        ])
+        ->groupby('nilaitype_kendaraan.id')
+        ->get();
+
+        return response()->json($gettypesx);
+    }
+
+    public function getratingkategori(Request $request)
+    {
+
+        $getuser = Drivers::where('user_id',$request->user_id)
+        ->first();
+        $units = $getuser->unit_id;
+
+        $getnilai = NilaiKendaraan::select('nilai_kendaraan.value as nilai','nilaidetail_kendaraan.value')
+        ->join("nilaidetail_kendaraan", "nilai_kendaraan.nilaidetailkendaraan_id", "=", "nilaidetail_kendaraan.id")
+        ->join("nilaitype_kendaraan", "nilaidetail_kendaraan.nilaitypekendaraan_id", "=", "nilaitype_kendaraan.id")
+        ->where([
+            ['nilaitype_kendaraan.id', '=', $request->id],
+            ['periode_id', '=', '1'],
+            ['nilai_kendaraan.unit_id', '=', $units]
+        ])
+        ->get();
+
+        return response()->json($getnilai);
+
+    }
+
+    public function getkendaraan(Request $request)
+    {
+        $getdrive = Drivers::where('user_id',$request->user_id)
+        ->first();
+        $units = $getdrive->unit_id;
+
+        $getunit = Units::where('id',$units)
+        ->first();
+
         $arrayNames = array(    
-            'model' => $getunit->model, 
-            'varian' => $getunit->varian,
-            'years' => $getunit->years,  
-            'total' => $gettotal->total,
-            'count' => count($getcount)
+            'first' => $getunit->model, 
+            'last' => $getunit->varian,
+            'nopol' => $getunit->no_police
         );
 
         return response()->json($arrayNames);
+
     }
 }

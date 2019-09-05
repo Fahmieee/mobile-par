@@ -35,6 +35,7 @@
 	            	no++;
 	            	var alert ='';
 	                var name = data[no]['first_name'];
+	                var last_name = data[no]['last_name'];
 	                var date = data[no]['created_at']; 
 	                var no_police = data[no]['no_police'];
 	                var id = data[no]['id'];
@@ -53,7 +54,7 @@
 	                content_data += "<table border='0' width='100%'>";
 	                content_data += "<tr>";
 	                content_data += "<td align='left'>";
-	                content_data += "<span class='alert-inner--text'> <h5 class='text-muted-white'>"+name+"</h5></span>";
+	                content_data += "<span class='alert-inner--text'> <h5 class='text-muted-white'>"+name+" "+last_name+"</h5></span>";
 	                content_data += "<span class='badge badge-default'>"+date+"</span> <span class='badge badge-default'>"+no_police+"</span></td>";
 	                content_data += "<td width='10px'></td>";
 	                content_data += "<td align='right' id='lihat_"+id+"'>";

@@ -23,7 +23,7 @@ class ApproveController extends Controller
 
     public function getdata(Request $request)
     {
-    	$getdatas = PretripCheckNotOke::select("users.first_name", "units.no_police","pretrip_check_notoke.id","check_answer.level","pretrip_check_notoke.created_at")
+    	$getdatas = PretripCheckNotOke::select("users.first_name","users.last_name", "units.no_police","pretrip_check_notoke.id","check_answer.level","pretrip_check_notoke.created_at")
     	->join("pretrip_check_detail", "pretrip_check_notoke.pretripcheckdetail_id", "=", "pretrip_check_detail.id")
         ->join("pretrip_check", "pretrip_check_detail.pretripcheck_id", "=", "pretrip_check.id")
     	->join("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")

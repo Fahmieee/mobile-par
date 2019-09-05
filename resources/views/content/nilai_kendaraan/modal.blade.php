@@ -32,6 +32,16 @@
     </div>
 </div>
 
+<div class="modal fade" id="content-modals" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content contentnya">
+            
+            
+            
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="confirm_batal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
         <div class="modal-content">

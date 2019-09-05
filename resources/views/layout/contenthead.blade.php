@@ -41,7 +41,7 @@
         <span class="ni ni-notification-70"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0" href="driver">
+      <a class="navbar-brand pt-0" href="#">
         <img src="./assets/login/images/par2.png" class="navbar-brand-img">
         {{ csrf_field() }}
       </a>
