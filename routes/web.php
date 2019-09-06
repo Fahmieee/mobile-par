@@ -96,6 +96,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 
 	Route::get('suara', 'SuaraPelangganController@index');
 	Route::post('suara/save', 'SuaraPelangganController@submit')->name('SubmitSuara');
+	Route::post('suara/change', 'SuaraPelangganController@change')->name('ChangeTypes');
 
 	Route::get('lihatsuara', 'LihatSuaraController@index');
 	Route::post('lihatsuara/get', 'LihatSuaraController@getsuara')->name('GetLihatSuara');
@@ -121,6 +122,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('profile/get', 'ProfileController@getdata')->name('GetDataProfile');
 	Route::post('profile/update', 'ProfileController@store')->name('UpdateProfile');
 	Route::post('profile/role', 'ProfileController@role')->name('RoleProfile');
+	Route::post('profile/photo', 'ProfileController@gantiphoto')->name('GantiPhoto');
 
 	Route::get('ubahpassword', 'ProfileController@ubahpassword');
 	Route::post('ubahpassword/update', 'ProfileController@updatepass')->name('UpdatePassword');

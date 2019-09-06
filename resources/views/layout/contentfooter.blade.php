@@ -129,4 +129,33 @@
 
     });
 
+    $.ajax({
+      type: 'POST',
+      url: "{{ route('GetDataProfile') }}",
+      data: {
+          '_token': $('input[name=_token]').val(),
+          'user_id': $('#created_by').val()
+      },
+
+      success: function (data) {
+
+        var photo = data.photo;
+
+        $('#namaatas').html(data.first_name+' '+data.last_name);
+
+        if (photo == null){
+
+          $('#photo_users').attr('src','./assets/content/img/theme/team-1-800x800.jpg');
+
+        } else {
+
+          $('#photo_users').attr('src','./assets/profile_photo/'+photo+'');
+
+        }
+
+
+      }
+
+    });
+
   </script>

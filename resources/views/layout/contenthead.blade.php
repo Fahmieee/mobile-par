@@ -51,14 +51,13 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="./assets/content/img/theme/team-1-800x800.jpg
-">
+                <img alt="Image placeholder" id="photo_users" src="#" width="60" height="35">
               </span>
             </div>
           </a>
           <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
             <div class=" dropdown-header noti-title">
-              <h6 class="text-overflow m-0">Welcome!</h6>
+              <h6 class="text-overflow m-0">Welcome! <b id="namaatas"></b></h6>
             </div>
             <a href="profile" class="dropdown-item">
               <i class="ni ni-single-02"></i>

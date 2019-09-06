@@ -7,7 +7,7 @@
         <div class="col">
           <button type="button" id="back" class='btn btn-sm btn-success'>Back</button>
           <div class="ct-page-title">
-            <h1 class="ct-title" id="content">Suara Keluhan Anda</h1>
+            <h1 class="ct-title" id="content">Suara Anda</h1>
           </div>
           <input type="hidden" class="form-control" id="created_by" value="{{Auth::guard('user')->user()->id}}">
 
@@ -15,7 +15,7 @@
             <div class="card-header bg-white border-0">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Keluhan dan Saran </h3>
+                  <h5 class="mb-0">Masukan Suara Anda </h5>
                 </div>
               </div>
             </div>
@@ -27,6 +27,7 @@
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Keluhan Untuk :</label>
                         <select class="form-control keluhan" id="types">
+                            <option value="">-- Pilih Kategori --</option>
                             <option value="Driver">Driver</option>
                             <option value="kendaraan">Kendaraan</option>
                         </select>
@@ -36,9 +37,7 @@
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Keluhan/Saran Tentang :</label>
                         <select class="form-control keluhan" id="jenis">
-                            @foreach($suaras as $suara)
-                            <option value="{{ $suara->id }}">{{ $suara->name }}</option>
-                            @endforeach
+                            <option>-</option>
                         </select>
                       </div>
                     </div>

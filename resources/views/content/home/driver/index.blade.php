@@ -119,7 +119,7 @@
                 <div class="card-header bg-blue-par">
                   <table width="100%">
                     <tr>
-                      <td style="padding-top: 10px"><h5 class="text-uppercase text-white">DASHBOARD</h5></td>
+                      <td><h5 class="text-uppercase text-white">DASHBOARD</h5></td>
                     </tr>
                   </table>
                 </div>
@@ -164,7 +164,7 @@
                 <div class="card-header bg-green-par">
                   <table width="100%">
                     <tr>
-                      <td style="padding-top: 10px"><h5 class="text-uppercase text-white">INFORMASI CLIENT</h5></td>
+                      <td><h5 class="text-uppercase text-white">INFORMASI CLIENT</h5></td>
                     </tr>
                   </table>
                 </div>
@@ -218,8 +218,8 @@
                 <div class="card-header bg-green-par">
                   <table width="100%">
                     <tr>
-                      <td style="padding-top: 10px"><h5 class="text-uppercase text-white">INFORMASI ANDA</h5></td>
-                      <td align="right"><span class="badge badge-dark">DDT</span> <span class="badge badge-light">MCU</span> <span class="badge badge-dark">LPR</span> <span class="badge badge-dark">FAI</span></td>
+                      <td style="padding-top: 5px"><h5 class="text-uppercase text-white">INFO ANDA</h5></td>
+                      <td align="right"><span class="badge badge-dark">DDT</span> <span class="badge badge-light">MCU</span> <span class="badge badge-dark">SVC</span> <span class="badge badge-dark">FA</span> <span class="badge badge-light">FF</span></td>
                     </tr>
                   </table>
                   
@@ -274,7 +274,7 @@
                 <div class="card-header bg-green-par">
                   <table width="100%">
                     <tr>
-                      <td style="padding-top: 10px"><h5 class="text-uppercase text-white">INFORMASI KENDARAAN</h5></td>
+                      <td><h5 class="text-uppercase text-white">INFORMASI KENDARAAN</h5></td>
                     </tr>
                   </table>
                 </div>

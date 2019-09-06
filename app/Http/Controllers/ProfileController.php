@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Users;
 use App\Role;
 use Hash;
+use Validator;
 
 class ProfileController extends Controller
 {
@@ -22,7 +23,8 @@ class ProfileController extends Controller
     public function getdata(Request $request)
     {
 
-    	$getprof = Users::where("id", $request->user_id)
+    	$getprof = Users::leftJoin("users_roles", "users.id", "=", "users_roles.user_id")
+        ->where("users.id", $request->user_id)
         ->first();
 
     	return response()->json($getprof);
@@ -103,6 +105,41 @@ class ProfileController extends Controller
         );
 
         return response()->json($arrayNames);
+
+    }
+
+    public function gantiphoto(Request $request)
+    {   
+        date_default_timezone_set('Asia/Jakarta');
+        $hari = date('Y-m-d');
+        $time = date("H:i:s");
+
+        $validation = Validator::make($request->all(), [
+        'file1' => 'required|image|mimes:jpeg,png,jpg,gif'
+        ]);
+
+        if($validation->passes()) {
+
+            $image = $request->file('file1');
+            $new_name = rand() . '.' . $image->getClientOriginalExtension();
+
+
+            $unitkms = Users::where(['id'=>$request->user_id])
+            ->update(['photo'=>$new_name]);
+
+            $image->move(public_path('./assets/profile_photo'), $new_name);
+
+            return response()->json([
+                'message'   => 'success',
+            ]);
+
+        } else {
+
+            return response()->json([                                                                                                                    
+            'message'   => $validation->errors()->all(),
+
+            ]);
+        }
 
     }
 }

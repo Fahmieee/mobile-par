@@ -19,6 +19,25 @@
             	$('#last-name').val(data.last_name);
             	$('#alamat').val(data.address);
             	$('#no_hp').val(data.phone);
+
+            	var role = data.role_id;
+            	var photo = data.photo;
+
+            	if (role == 2 || role == 5){
+
+            	} else {
+            		$('#tombol_ganti').html('');
+            	}
+
+            	if (photo == null){
+
+            		$('#photo_profile').attr('src','./assets/content/img/theme/team-1-800x800.jpg');
+
+            	} else {
+
+            		$('#photo_profile').attr('src','./assets/profile_photo/'+photo+'');
+
+            	}
 				
 				if(data.flag_prof == 0 || data.flag_prof == null ){
 					$('#button-simpan').html('');
@@ -128,5 +147,88 @@
         });
 
 	});
+
+	$('#ganti').on('click', function () {
+
+		$('#ganti-photo').modal('show');
+
+	});
+
+	$('#upload_form').on('submit', function(event){
+
+        event.preventDefault();
+
+        var empty = false;
+        $('.photo').each(function() {
+            if ($(this).val() == '') {
+                empty = true;
+            }
+        });
+        if (empty) {
+
+            swal({
+                title: "Error!",
+                text: "Pilih Foto Anda Terlebih Dahulu!",
+                icon: "error",
+                buttons: false,
+                timer: 2000,
+            });
+
+        } else {
+
+            $.ajax({
+                url: "{{ route('GantiPhoto') }}",
+                method:"POST",
+                data:new FormData(this),
+                dataType:'JSON',
+                contentType: false,
+                cache: false,
+                processData: false,
+
+                success:function(data) {
+
+                	if(data.message == "success"){
+
+                		swal({
+                            title: "Berhasil",
+                            text: "Anda Berhasil Mengganti Photo",
+                            icon: "success",
+                            buttons: false,
+                            timer: 2000,
+                        });
+
+                        setTimeout(function(){ window.location.href = 'profile'; }, 1500);
+
+                	} else {
+
+                		if (data.message == "The file1 must be an image.,The file1 must be a file of type: jpeg, png, jpg, gif."){
+
+                            swal({
+                                title: "File Ekstensi Salah!",
+                                text: "Pastikan Foto yang Anda Upload Benar!",
+                                icon: "error",
+                                buttons: false,
+                                timer: 2000,
+                            });
+
+                        } else {
+
+                            swal({
+                                title: "Ukuran Foto Besar!",
+                                text: "Ukuran Foto jangan terlalu besar!",
+                                icon: "error",
+                                buttons: false,
+                                timer: 2000,
+                            });
+                            
+                        }
+                	}
+
+                }
+
+            });
+        }
+
+    });
 
 </script>

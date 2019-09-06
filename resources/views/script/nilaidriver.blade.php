@@ -437,6 +437,11 @@
             
         }
 
-
     }
+
+    $('#kembali').on('click', function () {
+
+        setTimeout(function(){ window.location.href = 'client'; }, 10);
+
+    });
 </script>

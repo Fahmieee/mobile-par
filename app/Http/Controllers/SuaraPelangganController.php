@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\JenisSuara;
 use App\Drivers;
 use App\SuaraPelanggan;
+use App\NilaiTypeDriver;
+use App\NilaiTypeKendaraan;
 
 
 class SuaraPelangganController extends Controller
@@ -15,7 +17,7 @@ class SuaraPelangganController extends Controller
     {
     	date_default_timezone_set('Asia/Jakarta');
 
-    	$suara = JenisSuara::all();
+    	$suara = NilaiTypeDriver::all();
 
     	return view('content.suara.index',['suaras'=>$suara]);
 
@@ -39,6 +41,25 @@ class SuaraPelangganController extends Controller
 
         return response()->json($suarauser);
 
+    }
+
+    public function change(Request $request) {
+
+        if ($request->type == 'Driver'){
+
+            $suara = NilaiTypeDriver::all();
+
+        } else if ($request->type == 'kendaraan'){
+
+            $suara = NilaiTypeKendaraan::all();
+
+        } else {
+
+            $suara = '-';
+
+        }
+
+        return response()->json($suara);
 
     }
 }

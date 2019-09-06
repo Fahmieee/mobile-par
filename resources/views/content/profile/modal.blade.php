@@ -31,3 +31,32 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="ganti-photo" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            <form method="post" id="upload_form" enctype="multipart/form-data">
+                {{ csrf_field() }}
+
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modal-title-default">Upload Foto Anda</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body" align="center">
+                    <input type="file" id="file1" name="file1" class="form-control photo">
+                    <input type="hidden" class="form-control" name="user_id" id="user_id" value="{{Auth::guard('user')->user()->id}}">
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="submit" id="yakin_ganti" class="btn btn-primary">Ganti</button>
+                    <button type="button" class="btn btn-danger ml-auto"  data-dismiss="modal">Tutup</button> 
+                </div>
+
+            </form>  
+        </div>
+    </div>
+</div>

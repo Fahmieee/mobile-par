@@ -70,5 +70,47 @@
 
 	});
 
+	$('#types').on('change', function () {
+
+		var type = $(this).val();
+
+		$.ajax({
+            type: 'POST',
+            url: "{{ route('ChangeTypes') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'type': type
+                },
+            success: function(data) {
+
+            	var content_datax="";
+	            var no = -1;
+
+	            if(data == '-'){
+
+	            	content_datax += "<option>-</option>";
+
+	            } else {
+
+	            	$.each(data, function() {
+
+		                no++;
+		                var type = data[no]['type'];
+
+		                content_datax += "<option>"+type+"</option>";
+
+		            });
+
+	            }
+
+	            $('#jenis').html(content_datax);
+
+
+            }
+
+        });
+
+	});
+
 </script>
 </script>

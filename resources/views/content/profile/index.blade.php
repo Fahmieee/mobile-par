@@ -17,21 +17,19 @@
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
-                  <a href="#">
-                    <img src="./assets/content/img/theme/team-1-800x800.jpg" class="rounded-circle">
-                  </a>
+                    <img src="#" id="photo_profile" class="rounded-circle" width="150" height="130">
                 </div>
               </div>
             </div>
             <div class="card-header border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-              <div align="center">
-                <button class="btn btn-sm btn-primary">Ganti Photo</button>
+              <div align="center" id="tombol_ganti">
+                <button id="ganti" class="btn btn-sm btn-primary">Ganti Photo</button>
               </div>
               <br>
               <div class="text-center" id="namalengkap"></div>
 
               <div class="h5 font-weight-300" align="center">
-                <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                <i class="ni location_pin mr-2"></i>Serpong, Tangerang
               </div>
               <br>
             </div>

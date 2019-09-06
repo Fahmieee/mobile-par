@@ -5,6 +5,7 @@
           <!-- Card stats -->
       <div class="row">
         <div class="col">
+          <button type="button" id="back" class='btn btn-sm btn-success'>Back</button>
           <div class="ct-page-title">
             <h1 class="ct-title" id="content">Pre Trip Checks</h1><span class="badge badge-primary">{{ $date }}</span>
           </div>
