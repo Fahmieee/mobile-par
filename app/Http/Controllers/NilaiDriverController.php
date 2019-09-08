@@ -136,7 +136,8 @@ class NilaiDriverController extends Controller
 
         $arrayNames = array(    
             'first' => $getuser->first_name, 
-            'last' => $getuser->last_name
+            'last' => $getuser->last_name,
+            'photo' => $getuser->photo,
         );
 
         return response()->json($arrayNames);

@@ -66,7 +66,7 @@
             url: "{{ route('LihatSuaraDetail') }}",
             data: {
                 '_token': $('input[name=_token]').val(),
-                'suara_id': rnum
+                'suara_id': rnum,
             },
 
             success: function (data) {

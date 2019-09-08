@@ -13,6 +13,18 @@
 
                 $('#nama').text(data.first+' '+data.last);
 
+                var photo = data.photo;
+
+                if (photo == null){
+
+                    $('#photo_drivers').attr('src','./assets/content/img/theme/team-1-800x800.jpg');
+
+                } else {
+
+                    $('#photo_drivers').attr('src','./assets/profile_photo/'+photo+'');
+
+                }
+
             }
 
         });

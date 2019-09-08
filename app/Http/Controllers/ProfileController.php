@@ -127,7 +127,7 @@ class ProfileController extends Controller
             $unitkms = Users::where(['id'=>$request->user_id])
             ->update(['photo'=>$new_name]);
 
-            $image->move(public_path('./assets/profile_photo'), $new_name);
+            $image->move(public_path('/assets/profile_photo'), $new_name);
 
             return response()->json([
                 'message'   => 'success',

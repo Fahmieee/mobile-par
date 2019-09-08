@@ -96,8 +96,9 @@
 
 		                no++;
 		                var type = data[no]['type'];
+		                var id = data[no]['id'];
 
-		                content_datax += "<option>"+type+"</option>";
+		                content_datax += "<option value='"+id+"'>"+type+"</option>";
 
 		            });
 

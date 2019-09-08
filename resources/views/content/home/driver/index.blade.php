@@ -2,7 +2,18 @@
   <div class="main-content">
     <!-- Header -->
     <div class="container-fluid pb-4 pt-5 pt-md-8">
-
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <table width="100%" border="1">
+              <tr>
+                <td align="left"><span class="alert-inner--text"><h6 class="text-white"> Asuransi Anda akan segera Berakhir!</h6></span></td>
+                <td align="right"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button></td>
+              </tr>       
+            </table>
+              
+              
+          </div>
           <div class="row" id="approve_driver" style="display: none;">
             <div class="col">
               <div class="card shadow">

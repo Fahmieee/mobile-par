@@ -17,7 +17,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src="./assets/content/img/theme/team-1-800x800.jpg" class="rounded-circle">
+                    <img src="#" id="photo_drivers" class="rounded-circle">
                   </a>
                 </div>
               </div>
@@ -31,7 +31,7 @@
               <br>
               <div id="validasi">
                 <div class="ct-page-title">
-                  <h3 class="ct-title" id="content"><b>Penilaian Driver</b></h3>
+                  <h3 class="ct-title" id="content"><b>Penilaian Pengemudi</b></h3>
                 </div>
 
                 @foreach($gettypes as $type)
