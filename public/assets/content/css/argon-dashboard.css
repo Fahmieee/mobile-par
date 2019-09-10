@@ -5530,7 +5530,15 @@ input[type="button"].btn-block {
 
 .alert2 {
   position: relative;
-  padding: 0.4rem 1rem;
+  padding: 0.6rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+}
+
+.alert3 {
+  position: relative;
+  padding: 0.2rem 1rem;
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.375rem;
@@ -6863,7 +6871,7 @@ button.bg-secondary:focus {
 }
 
 .bg-success {
-  background-color: #2dce89 !important;
+  background-color: #92C04F !important;
 }
 
 a.bg-success:hover,
@@ -6989,7 +6997,7 @@ button.bg-darker:focus {
 }
 
 .bg-green-par {
-  background-color: #7cd322 !important;
+  background-color: #92C04F !important;
 }
 
 .border {

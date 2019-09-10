@@ -2,15 +2,14 @@
   <div class="main-content">
     <!-- Header -->
     <div class="container-fluid pb-4 pt-5 pt-md-8">
-          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+         
+          <div class="alert2 alert-primary fade show" role="alert">
             <table width="100%">
               <tr>
                 <td align="left"><span class="alert-inner--text"><h6 class="text-white"> Asuransi Anda akan segera Berakhir!</h6></span></td>
-                <td align="right"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></td>
+                <td align="right"><i class="fa fa-times"></i></td>
               </tr>       
             </table>
-              
-              
           </div>
           <div class="row" id="approve_driver" style="display: none;">
             <div class="col">
@@ -38,7 +37,7 @@
               </div>
             </div>    
           </div>
-          
+
           <div class="row" id="menudrivers" style="display: block;">
             <div class="col">
               <div class="card shadow">
