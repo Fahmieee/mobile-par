@@ -72,24 +72,51 @@ class ClocksController extends Controller
         $client = Drivers::where('driver_id', $request->user_id)
         ->first();
 
-        $clock = new Clocks();
-        $clock->date = $hari;
-        $clock->user_id = $request->user_id;
-        $clock->client_id = $client->user_id;
-        $clock->time = $time;
-        $clock->kilometer = $request->km;
-        $clock->unit_gs = '0';
-        $clock->type = 'clock_out';
-        $clock->status = 'NOT APPROVED';
-        $clock->save();
-
-        $units = Drivers::where('driver_id', $request->user_id)
+        $kmclocks = Clocks::select("kilometer")
+        ->where([
+            ['user_id', '=', $request->user_id],
+            ['date', '=', $hari],
+        ])
         ->first();
 
-        $unitkms = UnitKilometers::where(['date'=>$hari,'unit_id'=>$units->unit_id])
-        ->update(['km_akhir'=>$request->km]);
+        if ($kmclocks->kilometer >= $request->km){
 
-        return response()->json($clock);
+            $notif = '0';
+
+            $datanotif = array(    
+                'notif' => $notif, 
+                'clockout_id' => '-' 
+            );
+
+        } else {
+
+            $clock = new Clocks();
+            $clock->date = $hari;
+            $clock->user_id = $request->user_id;
+            $clock->client_id = $client->user_id;
+            $clock->time = $time;
+            $clock->kilometer = $request->km;
+            $clock->unit_gs = '0';
+            $clock->type = 'clock_out';
+            $clock->status = 'NOT APPROVED';
+            $clock->save();
+
+            $units = Drivers::where('driver_id', $request->user_id)
+            ->first();
+
+            $unitkms = UnitKilometers::where(['date'=>$hari,'unit_id'=>$units->unit_id])
+            ->update(['km_akhir'=>$request->km]);
+
+            $notif = '1';
+
+            $datanotif = array(    
+                'notif' => $notif, 
+                'clockout_id' => $clock->id 
+            );
+
+        }
+
+        return response()->json($datanotif);
     }
 
     public function clockinkoordinat(Request $request)

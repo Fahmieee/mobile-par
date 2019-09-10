@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Clocks;
 use App\Pretrip_Check;
+use App\MedicalCheckup;
 
 class HistoryController extends Controller
 {
@@ -25,7 +26,7 @@ class HistoryController extends Controller
             ['user_id', '=', $request->user_id],
             ['type', '=', 'clock_out'],
         ])
-        ->limit(15)
+        ->limit(10)
         ->orderBy('id', 'desc')
         ->get();
 
@@ -40,7 +41,6 @@ class HistoryController extends Controller
             ['id', '=', $request->id],
         ])
         ->first();
-
 
     	$getclocksin = Clocks::select("time","kilometer")
     	->where([
@@ -65,6 +65,13 @@ class HistoryController extends Controller
         ])
         ->first();
 
+        $getdcu = MedicalCheckup::select("time")
+        ->where([
+            ['user_id', '=', $request->user_id],
+            ['date', '=', $getdate->date],
+        ])
+        ->first();
+
         $awal  = strtotime($getclocksin->time); //waktu awal
 		$akhir = strtotime($getclocksout->time); //waktu akhir
 		$diff  = $akhir - $awal;
@@ -80,9 +87,10 @@ class HistoryController extends Controller
             'clockout_time' => $getclocksout->time,
             'clockin_jarak' => $getclocksin->kilometer,
             'clockout_jarak' => $getclocksout->kilometer,
-            'pretripcheck' => $tripcheck->time,
+            'pretripcheck' => $tripcheck ? $tripcheck->time : '-', 
             'total_jarak' => $totaljarak,
-            'total_waktu' => $total_waktu
+            'total_waktu' => $total_waktu,
+            'dcu' => $getdcu ? $getdcu->time : '-',
         );
 
         return response()->json($arrayNames);

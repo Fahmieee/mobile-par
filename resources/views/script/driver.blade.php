@@ -474,17 +474,45 @@
 	                },
 	            success: function(data) {
 
-                    swal({
-                        title: "Berhasil",
-                        text: "Clock Out Anda Berhasil!",
-                        icon: "success",
-                        buttons: false,
-                        timer: 2000,
-                    });
+                    if (data == '0'){
 
+                        swal({
+                            title: "Gagal",
+                            text: "Kilometer Lebih Besar Dari Sebelumnya",
+                            icon: "error",
+                            buttons: false,
+                            timer: 2000,
+                        });
 
-	                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+                    } else {
 
+                        navigator.geolocation.getCurrentPosition(function (position) {  
+
+                            $.ajax({
+                                type: 'POST',
+                                url: "{{ route('KoordinatClockin') }}",
+                                data: {
+                                    '_token': $('input[name=_token]').val(),
+                                    'clockin_id': data.clockout_id,
+                                    'type': 'clockout',
+                                    'long': position.coords.latitude,
+                                    'lat': position.coords.longitude
+                                    },
+                                success: function(data) {
+
+                                    swal({
+                                        title: "Berhasil",
+                                        text: "Clock Out Anda Berhasil!",
+                                        icon: "success",
+                                        buttons: false,
+                                        timer: 2000,
+                                    });
+
+                                    setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+                                }
+                            });   
+                       });
+                   }
 	            }
 	        });
 
@@ -571,31 +599,31 @@
 
                         navigator.geolocation.getCurrentPosition(function (position) {
 
-                        $.ajax({
-                            type: 'POST',
-                            url: "{{ route('KoordinatMedical') }}",
-                            data: {
-                                '_token': $('input[name=_token]').val(),
-                                'dcu_id': data.dcu_id,
-                                'type': 'dcu',
-                                'long': position.coords.latitude,
-                                'lat': position.coords.longitude
-                                },
-                            success: function(data) {
+                            $.ajax({
+                                type: 'POST',
+                                url: "{{ route('KoordinatMedical') }}",
+                                data: {
+                                    '_token': $('input[name=_token]').val(),
+                                    'dcu_id': data.dcu_id,
+                                    'type': 'dcu',
+                                    'long': position.coords.latitude,
+                                    'lat': position.coords.longitude
+                                    },
+                                success: function(data) {
 
-                                swal({
-                                    title: "Berhasil",
-                                    text: "Medical Check Up Anda Berhasil!",
-                                    icon: "success",
-                                    buttons: false,
-                                    timer: 2000,
-                                });
+                                    swal({
+                                        title: "Berhasil",
+                                        text: "Medical Check Up Anda Berhasil!",
+                                        icon: "success",
+                                        buttons: false,
+                                        timer: 2000,
+                                    });
 
-                                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+                                    setTimeout(function(){ window.location.href = 'driver'; }, 1500);
 
-                            }
+                                }
 
-                        });
+                            });
 
                         });
 

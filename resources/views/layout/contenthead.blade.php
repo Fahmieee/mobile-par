@@ -38,7 +38,8 @@
     <div class="container-fluid">
       <!-- Toggler -->
       <button class="navbar-toggler" id="darurat" type="button">
-        <span class="ni ni-notification-70"></span>
+        <i class="fa fa-exclamation-triangle"></i>
+        <!-- <span class="ni ni-notification-70"></span> -->
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="#">

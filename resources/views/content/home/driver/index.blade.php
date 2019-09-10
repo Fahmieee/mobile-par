@@ -3,12 +3,10 @@
     <!-- Header -->
     <div class="container-fluid pb-4 pt-5 pt-md-8">
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <table width="100%" border="1">
+            <table width="100%">
               <tr>
                 <td align="left"><span class="alert-inner--text"><h6 class="text-white"> Asuransi Anda akan segera Berakhir!</h6></span></td>
-                <td align="right"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button></td>
+                <td align="right"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></td>
               </tr>       
             </table>
               
@@ -201,7 +199,12 @@
                     <tr>
                       <td><h6>Perusahaan</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>PT NDT</h6></td>  
+                      <td><h6>PT Pertamina</h6></td>  
+                    </tr>
+                    <tr>
+                      <td><h6>Unit Kerja</h6></td>
+                      <td><h6>:</h6></td>
+                      <td><h6>MOR 2</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>No HP</h6></td>
@@ -230,7 +233,7 @@
                   <table width="100%">
                     <tr>
                       <td style="padding-top: 5px"><h5 class="text-uppercase text-white">INFO ANDA</h5></td>
-                      <td align="right"><span class="badge badge-dark">DDT</span> <span class="badge badge-light">MCU</span> <span class="badge badge-dark">SVC</span> <span class="badge badge-dark">FA</span> <span class="badge badge-light">FF</span></td>
+                      <td align="right"><span class="badge badge-dark">DDT</span> <span class="badge badge-light">MCU</span> <span class="badge badge-dark">SVX</span> <span class="badge badge-dark">FA</span> <span class="badge badge-light">FF</span></td>
                     </tr>
                   </table>
                   
@@ -241,7 +244,7 @@
                       <td width="22px" rowspan="6"></td>
                       <td colspan="4"></td>
                       <td rowspan="6" align="right" >
-                        <img src="./assets/content/img/theme/drivers.png" width="65%">
+                        <img src="./assets/content/img/theme/drivers.png" width="75%">
                       </td>
                     </tr>
                     <tr>
@@ -257,14 +260,18 @@
                     <tr>
                       <td><h6>Masa SIM</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>3 Oktober 2019</h6></td>  
+                      <td><h6>3 Mei 2020</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>No HP</h6></td>
                       <td><h6>:</h6></td>
                       <td><h6>089809809809</h6></td>  
                     </tr>
-
+                    <tr>
+                      <td><h6>MCU </h6></td>
+                      <td><h6>:</h6></td>
+                      <td><h6>3 Agustus 2019</h6></td>  
+                    </tr>
                     <tr height="10px">
                       <td colspan="4"></td>
                     </tr>
@@ -290,16 +297,16 @@
                   </table>
                 </div>
                 <div class="card-body-par" id="menu" style="display: block;">
-                  <table border="0" align="center" width="100%">
+                  <table align="center" width="100%">
                     <tr height ="10px">
-                      <td width="22px" rowspan="5"></td>
+                      <td width="22px" rowspan="6"></td>
                       <td colspan="4"></td>
-                      <td rowspan="5" align="right" >
-                        <img src="./assets/content/img/theme/cars.png" width="65%">
+                      <td rowspan="7" align="right" >
+                        <img src="./assets/content/img/theme/cars.png" width="75%">
                       </td>
                     </tr>
                     <tr>
-                      <td colspan="3">
+                      <td colspan="4">
                         <h5 class="text-black" id="nopol"><b></b></h5>
                       </td>  
                     </tr>
@@ -314,9 +321,14 @@
                       <td id="tahun"></td>  
                     </tr>
                     <tr>
-                      <td><h6>Date STNK</h6></td>
+                      <td><h6>Exp Asuransi</h6></td>
                       <td><h6>:</h6></td>
-                      <td id="date"></td>  
+                      <td><h6>2 Januari 2020 </h6></td>  
+                    </tr>
+                    <tr>
+                      <td><h6>Exp KEUR</h6></td>
+                      <td><h6>:</h6></td>
+                      <td><h6>23 Mei 2019</h6></td>  
                     </tr>
 
                     <tr height="10px">

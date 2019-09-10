@@ -276,9 +276,9 @@
                 content_datax += "<table width='100%'><tr>";
                 content_datax += "<td><h5><b>Item Penilaian</b></h5></td>";
                 content_datax += "<td>&nbsp;</td>";
-                content_datax += "<td><h5><b>Not Ok</b></h5></td>";
+                content_datax += "<td><h5><b>Kurang</b></h5></td>";
                 content_datax += "<td>&nbsp;</td>";
-                content_datax += "<td><h5><b>Ok</b></h5></td></tr>";
+                content_datax += "<td><h5><b>Baik</b></h5></td></tr>";
                 content_datax += "<tr><td colspan='5'><hr></td></tr>";
                 
 

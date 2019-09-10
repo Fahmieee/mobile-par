@@ -42,13 +42,13 @@
 	                    content_data += "<tr>";
 	                    content_data += "<td width='5%'>";
 	                    content_data += "<i class='fa fa-address-book' style='color: #01497f'></i></td>";
-	                    content_data += "<td width='30%' style='padding-top: 10px'><h6>"+date+"</h6></td>";
+	                    content_data += "<td width='30%' style='padding-top: 5px'><h6>"+date+"</h6></td>";
 	                    content_data += "<td width='5%'>";
 	                    content_data += "<i class='fa fa-car' style='color: #01497f'></i></td>";
-	                    content_data += "<td width='30%' style='padding-top: 10px'><h6>6 Jam 5 Menit</h6></td>";
+	                    content_data += "<td width='30%' id='waktu_"+id+"' style='padding-top: 5px'><h6>6 Jam 5 Menit</h6></td>";
 	                    content_data += "<td width='5%'>";
 	                    content_data += "<i class='fa fa-road' style='color: #01497f'></i></td>";
-	                    content_data += "<td width='20%' style='padding-top: 10px'><h6>9011292</h6></td>";
+	                    content_data += "<td width='20%' id='kilometer_"+id+"' style='padding-top: 5px'><h6>9011292</h6></td>";
 	                    content_data += "</tr>";
 	                    content_data += "</table>";
 	                    content_data += "</div>";
@@ -58,6 +58,24 @@
 	                    content_data += "</div>";
 	                    content_data += "</div>";
 	                    content_data += "</div><hr>";
+
+	                    $.ajax({
+				            type: 'POST',
+				            url: "{{ route('DetailRiwayatHistory') }}",
+				            data: {
+				                '_token': $('input[name=_token]').val(),
+				                'user_id': $('#created_by').val(),
+				                'id': id
+				                },
+				            success: function(data) {
+
+				            	$('#waktu_'+id+'').html('<h6>'+data.total_waktu+'</h6>');
+				            	$('#kilometer_'+id+'').html('<h6>'+data.total_jarak+' Km</h6>');
+
+				            }
+				        });
+
+
 		            });
 		        }
 
@@ -117,6 +135,12 @@
 		            content_datas += "<td><h6 class='text-white'>Trip Check</h6></td>";
 		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
 		            content_datas += "<td><h6 class='text-white'>"+data.pretripcheck+"</h6></td>";
+
+		            content_datas += "<td width='10%'></td>";
+
+		            content_datas += "<td><h6 class='text-white'>DCU</h6></td>";
+		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
+		            content_datas += "<td><h6 class='text-white'>"+data.dcu+"</h6></td>";
 		            content_datas += "</tr>";
 		            content_datas += "</table>";
 

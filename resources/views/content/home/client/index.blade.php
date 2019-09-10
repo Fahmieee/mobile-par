@@ -108,9 +108,14 @@
                       <td><h6>PT Pertamina</h6></td>  
                     </tr>
                     <tr>
+                      <td><h6>Unit Kerja</h6></td>
+                      <td><h6>:</h6></td>
+                      <td><h6>MOR 2</h6></td>  
+                    </tr>
+                    <tr>
                       <td><h6>No HP</h6></td>
                       <td><h6>:</h6></td>
-                      <td id="no_hp"><h6></h6></td>  
+                      <td><h6>089809809809</h6></td>  
                     </tr>
 
                     <tr height="10px">
@@ -134,17 +139,17 @@
                   <table width="100%">
                     <tr>
                       <td style="padding-top: 5px"><h5 class="text-uppercase text-white">PENGEMUDI</h5></td>
-                      <td align="right"><span class="badge badge-dark">DDT</span> <span class="badge badge-light">MCU</span> <span class="badge badge-dark">SVC</span> <span class="badge badge-dark">FA</span> <span class="badge badge-light">FF</span></td>
+                      <td align="right"><span class="badge badge-dark">DDT</span> <span class="badge badge-light">MCU</span> <span class="badge badge-dark">SVX</span> <span class="badge badge-dark">FA</span> <span class="badge badge-light">FF</span></td>
                     </tr>
                   </table>
                 </div>
                 <div class="card-body-par" id="menu">
                   <table border="0" align="center" width="100%">
                     <tr height ="10px">
-                      <td width="22px" rowspan="6"></td>
+                      <td width="22px" rowspan="7"></td>
                       <td colspan="4"></td>
-                      <td rowspan="6" align="right" >
-                        <img src="./assets/content/img/theme/drivers.png" width="65%">
+                      <td rowspan="7" align="right" >
+                        <img src="./assets/content/img/theme/drivers.png" width="70%">
                       </td>
                     </tr>
                     <tr>
@@ -153,7 +158,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><h6>Jenis SIM</h6></td>
+                      <td style="padding-top: 5px"><h6>Jenis SIM</h6></td>
                       <td><h6>:</h6></td>
                       <td><h6>SIM A</h6></td>  
                     </tr>
@@ -166,6 +171,11 @@
                       <td><h6>No HP</h6></td>
                       <td><h6>:</h6></td>
                       <td><h6>089809809809</h6></td>  
+                    </tr>
+                    <tr>
+                      <td><h6>Lembur</h6></td>
+                      <td><h6>:</h6></td>
+                      <td><h6>6 Jam / 14 Jam</h6></td>  
                     </tr>
 
                     <tr height="10px">
@@ -195,10 +205,10 @@
                 <div class="card-body-par" id="menu">
                   <table border="0" align="center" width="100%">
                     <tr height ="10px">
-                      <td width="22px" rowspan="5"></td>
+                      <td width="22px" rowspan="6"></td>
                       <td colspan="4"></td>
-                      <td rowspan="5" align="right" >
-                        <img src="./assets/content/img/theme/cars.png" width="65%">
+                      <td rowspan="6" align="right" >
+                        <img src="./assets/content/img/theme/cars.png" width="75%">
                       </td>
                     </tr>
                     <tr>
@@ -217,9 +227,15 @@
                       <td id="tahun"></td>  
                     </tr>
                     <tr>
-                      <td><h6>Date STNK</h6></td>
+                      <td><h6>STNK</h6></td>
                       <td><h6>:</h6></td>
                       <td id="date"></td>  
+                    </tr>
+
+                    <tr>
+                      <td><h6>Service</h6></td>
+                      <td><h6>:</h6></td>
+                      <td><h6>3000 Km / 10.000 Km</h6></td>  
                     </tr>
 
                     <tr height="10px">
