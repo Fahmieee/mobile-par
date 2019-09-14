@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\MedicalCheckup;
 use App\Koordinat;
+use App\Clocks;
 use Validator;
 
 class MedicalCheckupController extends Controller
@@ -56,12 +57,32 @@ class MedicalCheckupController extends Controller
     {
         date_default_timezone_set('Asia/Jakarta');
     	$harini = date('Y-m-d');
+        $kemarin = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
 
-    	$validate = MedicalCheckup::where([
+        $validatekemarin = Clocks::where([
             ['user_id', '=', $request->user_id],
-            ['date', '=', $harini],
+            ['clockin_date', '=', $kemarin],
+            ['clockout_time', '=', null],
         ])
-        ->get();
+        ->first();
+
+        if (!$validatekemarin){
+
+            $validate = MedicalCheckup::where([
+                ['user_id', '=', $request->user_id],
+                ['date', '=', $harini],
+            ])
+            ->get();
+
+        } else {
+
+            $validate = MedicalCheckup::where([
+                ['user_id', '=', $request->user_id],
+                ['date', '=', $kemarin],
+            ])
+            ->get();
+
+        }
 
         return response()->json($validate);
     }

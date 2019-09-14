@@ -4,6 +4,71 @@
 
         $.ajax({
             type: 'POST',
+            url: "{{ route('GetLembur') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val()
+                },
+            success: function(data) {
+
+                var no = -1;
+                var totalmenit = 0;
+                var totaljam = 0;
+
+                if (data.length == 0){
+
+                    $('.text-lembur').html('0 Jam / 40 Jam');
+
+                } else {
+
+                    $.each(data, function() {
+
+                        no++;
+                        var time = data[no]['time'];
+                        var jam= time.substring(0,2);
+                        var jam_res = jam.replace(":","");
+                        var menit= time.substring(3,5);
+
+                        totalmenit += menit;
+                        totaljam += jam_res;
+
+                    });
+
+                    var minutes = totalmenit / 60;
+                    if (minutes >= 1){
+
+                        var TotalSemua = totaljam + minutes;
+
+                    } else {
+
+                        var TotalSemua = totaljam;
+                    }
+
+                    var percent = Math.floor((TotalSemua / 40) * 100);
+                    $('.lembur').attr("style", "width: "+percent+"%;");
+
+                    if (percent <= 50){
+
+                        $('.lembur').attr("class", "progress-bar bg-success lembur");
+
+                    } else if (TotalSemua > 50 && TotalSemua <= 70){
+
+                        $('.lembur').attr("class", "progress-bar bg-kuning lembur");
+
+                    } else {
+
+                        $('.lembur').attr("class", "progress-bar bg-danger lembur");
+
+                    }
+
+                    $('.text-lembur').html(TotalSemua+' Jam / 40 Jam');
+                }
+            }
+
+        });
+
+        $.ajax({
+            type: 'POST',
             url: "{{ route('GetUnitKilometers') }}",
             data: {
                 '_token': $('input[name=_token]').val(),
@@ -35,13 +100,13 @@
                     var percent = Math.floor((total / 10000) * 100);
                     $('.percent').attr("style", "width: "+percent+"%;");
 
-                    if (percent <= 60){
+                    if (percent <= 70){
 
                         $('.percent').attr("class", "progress-bar bg-success percent");
 
-                    } else if (percent > 60 && percent < 85){
+                    } else if (percent > 70 && percent <= 90){
 
-                        $('.percent').attr("class", "progress-bar bg-warning percent");
+                        $('.percent').attr("class", "progress-bar bg-kuning percent");
 
                     } else {
 
@@ -70,6 +135,7 @@
                 $('#model').html('<h6>'+data.model+' - '+data.varian+'</h6>');
                 $('#date').html('<h6>'+data.stnk+'</h6>');
                 $('#tahun').html('<h6>'+data.years+'</h6>');
+                $('#nopols').val(data.no_polisi);
 
                 if(data.nama_depan == '-'){
 
@@ -109,10 +175,7 @@
 
             success: function (data) {
 
-            	var waktu = data[0]['time'];
-            	var jarak = data[0]['kilometer'];
-
-            	if (data.length == 1){
+            	if (data.status == 'belumclock_out' || data.status == 'hariinibelum_clockout'){
 
             		$('#foricons').attr('style', 'display: block;');
 
@@ -127,15 +190,15 @@
 
                 	$('#icon_clock').html('<i class="fas fa-car" style="color: #ffffff"></i>');
 
-                	$('#word_clock').html('<h6 class="text-white text-uppercase">'+waktu+'</h6>');
+                	$('#word_clock').html('<h6 class="text-white text-uppercase">'+data.time+'</h6>');
 
                 	$('#icon_km').html('<i class="fas fa-road" style="color: #ffffff"></i>');
 
-                	$('#word_km').html('<h6 class="text-white text-uppercase">'+jarak+'</h6>');
+                	$('#word_km').html('<h6 class="text-white text-uppercase">'+data.km+'</h6>');
 
-                	$('#km_awal').val(jarak);
+                	$('#km_awal').val(data.km);
 
-                } else if (data.length == 2){
+                } else if (data.status == 'sudahclock_in'){
 
                 	var contents = '<div id="clockin" onclick="ClockIn()" class="icon icon-shape bg-white text-white rounded-circle shadow">'+
                             '<i class="fas fa-car" style="color: #0166b5"></i>'+
@@ -306,7 +369,11 @@
 
                                         } else {
 
+                                            var nopols = $('#nopols').val();
+
                                             $('#modal_clockin').modal('show');
+
+                                            $('#nopol_modal').val(nopols);
                                         }
 
                                     }
@@ -427,7 +494,9 @@
 	
 	function ClockOut(){
 
+        var nopols = $('#nopols').val();
 		$('#modal_clockout').modal('show');
+        $('#nopol_clockout').val(nopols);
 
 	}
 
@@ -474,7 +543,7 @@
 	                },
 	            success: function(data) {
 
-                    if (data == '0'){
+                    if (data.notif == '0'){
 
                         swal({
                             title: "Gagal",

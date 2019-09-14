@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('driver/getkilometers', 'DriverController@getunitkilometer')->name('GetUnitKilometers');
 	Route::post('driver/terimapair', 'DriverController@terimapair')->name('TerimaPair');
 	Route::post('driver/tolakpair', 'DriverController@tolakpair')->name('TolakPair');
+	Route::post('driver/getlembur', 'DriverController@getlembur')->name('GetLembur');
 
 	Route::get('pretripcheck', 'PreTripCheckController@index');
 	Route::post('pretripcheck/get', 'PreTripCheckController@GetData')->name('GetPreTripCheck');

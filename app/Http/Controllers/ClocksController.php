@@ -8,6 +8,8 @@ use App\Clocks;
 use App\Drivers;
 use App\Koordinat;
 use App\UnitKilometers;
+use App\JamKerja;
+use App\Lembur;
 
 class ClocksController extends Controller
 {
@@ -21,14 +23,12 @@ class ClocksController extends Controller
         ->first();
 
         $clock = new Clocks();
-        $clock->date = $hari;
+        $clock->clockin_date = $hari;
         $clock->user_id = $request->user_id;
         $clock->client_id = $client->user_id;
-        $clock->time = $time;
-        $clock->kilometer = $request->km;
-        $clock->unit_gs = $request->unitgs;
-        $clock->type = 'clock_in';
-        $clock->status = 'NOT APPROVED';
+        $clock->clockin_time = $time;
+        $clock->clockin_km = $request->km;
+        $clock->clockin_status = 'NOT APPROVED';
         $clock->save();
 
         $units = Drivers::where('driver_id', $request->user_id)
@@ -53,12 +53,67 @@ class ClocksController extends Controller
     {
         date_default_timezone_set('Asia/Jakarta');
     	$harini = date('Y-m-d');
+        $kemarin = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
 
-    	$validate = Clocks::where([
+        $validatekemarin = Clocks::where([
             ['user_id', '=', $request->user_id],
-            ['date', '=', $harini],
+            ['clockin_date', '=', $kemarin],
+            ['clockout_time', '=', null],
         ])
-        ->get();
+        ->first();
+
+        $validatehariini = Clocks::where([
+            ['user_id', '=', $request->user_id],
+            ['clockin_date', '=', $harini],
+        ])
+        ->first();
+
+        $validatehariiniclockout = Clocks::where([
+            ['user_id', '=', $request->user_id],
+            ['clockin_date', '=', $harini],
+            ['clockout_time', '=', null],
+        ])
+        ->first();
+
+
+        if (!$validatekemarin){
+
+            if (!$validatehariini){
+
+                $status = 'belumclock_in';
+                $time = '';
+                $kilometers = '';
+
+            } else {
+
+                if(!$validatehariiniclockout){
+
+                    $status = 'sudahclock_in';
+                    $time = '';
+                    $kilometers = '';
+
+                } else {
+
+                    $status = 'hariinibelum_clockout';
+                    $time = $validatehariiniclockout->clockin_time;
+                    $kilometers = $validatehariiniclockout->clockin_km;
+
+                }
+            }
+
+        } else {
+
+            $status = 'belumclock_out';
+            $time = $validatekemarin->clockin_time;
+            $kilometers = $validatekemarin->clockin_km;
+
+        }
+
+        $validate = array(    
+            'status' => $status, 
+            'time' => $time,
+            'km' => $kilometers
+        );
 
         return response()->json($validate);
     }
@@ -68,52 +123,125 @@ class ClocksController extends Controller
     	date_default_timezone_set('Asia/Jakarta');
     	$hari = date('Y-m-d');
     	$time = date("H:i:s");
+        $kemarin = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
 
-        $client = Drivers::where('driver_id', $request->user_id)
-        ->first();
-
-        $kmclocks = Clocks::select("kilometer")
-        ->where([
+        $validatekemarin = Clocks::where([
             ['user_id', '=', $request->user_id],
-            ['date', '=', $hari],
+            ['clockin_date', '=', $kemarin],
+            ['clockout_time', '=', null],
         ])
         ->first();
 
-        if ($kmclocks->kilometer >= $request->km){
+        $validatesekarang = Clocks::where([
+            ['user_id', '=', $request->user_id],
+            ['clockin_date', '=', $hari],
+            ['clockout_time', '=', null],
+        ])
+        ->first();
 
-            $notif = '0';
+        if (!$validatekemarin){
 
-            $datanotif = array(    
-                'notif' => $notif, 
-                'clockout_id' => '-' 
-            );
+            if ($validatesekarang->clockin_km >= $request->km){
+
+                $notif = '0';
+
+                $datanotif = array(
+                    'notif' => $notif, 
+                    'clockout_id' => '-' 
+                );
+
+            } else {
+
+                $clocks = Clocks::where(['clockin_date'=>$hari,'user_id'=>$request->user_id])
+                ->update(['clockout_date'=>$hari, 'clockout_time'=>$time, 'clockout_km'=>$request->km]);
+
+                $notif = '1';
+
+                $units = Drivers::where('driver_id', $request->user_id)
+                ->first();
+
+                $unitkms = UnitKilometers::where(['date'=>$hari,'unit_id'=>$units->unit_id])
+                ->update(['km_akhir'=>$request->km]);
+
+                $jamkerja = JamKerja::all();
+
+                $bataskerja = $hari+' '+$jamkerja->jamkeluar;
+                $waktu = $hari+' '+$time;
+
+                if ($bataskerja > $waktu){
+
+                    $diff  = date_diff($bataskerja, $waktu);
+
+                    $unitkm = new Lembur();
+                    $unitkm->user_id = $request->user_id;
+                    $unitkm->month = date('m');
+                    $unitkm->year = date('Y');
+                    $unitkm->time = $diff->h+':'+$diff->i+':'+$diff->s;
+                    $unitkm->save();
+
+                } 
+
+                $datanotif = array(    
+                    'notif' => $notif, 
+                    'clockout_id' => $validatesekarang->id 
+                );
+
+            }
+
 
         } else {
 
-            $clock = new Clocks();
-            $clock->date = $hari;
-            $clock->user_id = $request->user_id;
-            $clock->client_id = $client->user_id;
-            $clock->time = $time;
-            $clock->kilometer = $request->km;
-            $clock->unit_gs = '0';
-            $clock->type = 'clock_out';
-            $clock->status = 'NOT APPROVED';
-            $clock->save();
+            if ($validatekemarin->clockin_km >= $request->km){
 
-            $units = Drivers::where('driver_id', $request->user_id)
-            ->first();
+                $notif = '0';
 
-            $unitkms = UnitKilometers::where(['date'=>$hari,'unit_id'=>$units->unit_id])
-            ->update(['km_akhir'=>$request->km]);
+                $datanotif = array(
+                    'notif' => $notif, 
+                    'clockout_id' => '-' 
+                );
 
-            $notif = '1';
+            } else {
 
-            $datanotif = array(    
-                'notif' => $notif, 
-                'clockout_id' => $clock->id 
-            );
+                $clocks = Clocks::where(['clockin_date'=>$kemarin,'user_id'=>$request->user_id])
+                ->update(['clockout_date'=>$hari, 'clockout_time'=>$time, 'clockout_km'=>$request->km]);
 
+                $notif = '1';
+
+                $units = Drivers::where('driver_id', $request->user_id)
+                ->first();
+
+                $unitkms = UnitKilometers::where(['date'=>$kemarin,'unit_id'=>$units->unit_id])
+                ->update(['km_akhir'=>$request->km]);
+
+                $jamkerja = JamKerja::first();
+
+                $bataskerja = strtotime($kemarin.' '.$jamkerja->jam_keluar);
+                $waktu = strtotime($hari.' '.$time);
+
+                if ($bataskerja < $waktu){
+
+                    $diff  = $waktu - $bataskerja;
+                    $jam   = floor($diff / (60 * 60));
+                    $menit = $diff - $jam * (60 * 60);
+                    $minutes = floor( $menit / 60 );
+
+                    $unitkm = new Lembur();
+                    $unitkm->user_id = $request->user_id;
+                    $unitkm->month = date('m');
+                    $unitkm->year = date('Y');
+                    $unitkm->time = $jam.':'.$minutes.':00';
+                    $unitkm->save();
+
+                }
+
+                $datanotif = array(    
+                    'notif' => $notif, 
+                    'clockout_id' => $validatekemarin->id 
+                );
+
+            }
+
+            
         }
 
         return response()->json($datanotif);
@@ -133,5 +261,6 @@ class ClocksController extends Controller
         return response()->json($koordinat);
 
     }
+
 
 }

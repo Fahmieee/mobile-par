@@ -11,6 +11,7 @@ use App\Koordinat;
 use App\Pretrip_Check;
 use App\Pretrip_Check_Detail;
 use App\PretripCheckNotOke;
+use App\Clocks;
 
 class PreTripCheckController extends Controller
 {
@@ -249,13 +250,34 @@ class PreTripCheckController extends Controller
 
         date_default_timezone_set('Asia/Jakarta');
     	$harini = date('Y-m-d');
+        $kemarin = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
 
-    	$validate = Pretrip_Check::where([
+        $validatekemarin = Clocks::where([
             ['user_id', '=', $request->user_id],
-            ['date', '=', $harini],
-            ['status', '=', 'SUBMITED'],
+            ['clockin_date', '=', $kemarin],
+            ['clockout_time', '=', null],
         ])
-        ->get();
+        ->first();
+
+        if (!$validatekemarin){
+
+            $validate = Pretrip_Check::where([
+                ['user_id', '=', $request->user_id],
+                ['date', '=', $harini],
+                ['status', '=', 'SUBMITED'],
+            ])
+            ->get();
+
+        } else {
+
+            $validate = Pretrip_Check::where([
+                ['user_id', '=', $request->user_id],
+                ['date', '=', $kemarin],
+                ['status', '=', 'SUBMITED'],
+            ])
+            ->get();
+
+        }
 
         return response()->json($validate);
 

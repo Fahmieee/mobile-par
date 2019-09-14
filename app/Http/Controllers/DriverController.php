@@ -9,6 +9,7 @@ use App\Drivers;
 use App\Units;
 use App\Pairing;
 use App\UnitKilometers;
+use App\Lembur;
 
 class DriverController extends Controller
 {
@@ -108,6 +109,20 @@ class DriverController extends Controller
 
         return response()->json($approved);
 
+    }
+
+    public function getlembur(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+           
+        $getlembur = Lembur::where([
+                ['user_id', '=', $request->user_id],
+                ['month', '=', date('m')],
+                ['year', '=', date('Y')],
+            ])
+        ->get();
+
+        return response()->json($getlembur);
     }
 
 

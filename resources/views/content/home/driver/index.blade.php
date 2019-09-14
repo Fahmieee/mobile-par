@@ -3,10 +3,18 @@
     <!-- Header -->
     <div class="container-fluid pb-4 pt-5 pt-md-8">
          
-          <div class="alert2 alert-primary fade show" role="alert">
+          <div class="alert2 alert-danger fade show" role="alert">
             <table width="100%">
               <tr>
                 <td align="left"><span class="alert-inner--text"><h6 class="text-white"> Asuransi Anda akan segera Berakhir!</h6></span></td>
+                <td align="right"><i class="fa fa-times"></i></td>
+              </tr>       
+            </table>
+          </div>
+          <div class="alert2 alert-danger fade show" role="alert">
+            <table width="100%">
+              <tr>
+                <td align="left"><span class="alert-inner--text"><h6 class="text-white"> KEUR Anda akan segera Berakhir!</h6></span></td>
                 <td align="right"><i class="fa fa-times"></i></td>
               </tr>       
             </table>
@@ -138,16 +146,14 @@
                         <span>Batas Lembur</span>
                       </div>
                       <div class="progress-percentage">
-                        <span>0 Jam / 40 Jam</span>
+                        <span class="text-lembur">0 Jam / 40 Jam</span>
                       </div>
                     </div>
                     <div class="progress">
-                      <div class="progress-bar bg-default" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 1%;"></div>
+                      <div class="progress-bar bg-default lembur" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                     </div>
                   </div>
-                </div>
-                <hr>
-                <div class="card-body bg-white" id="menu_icons">
+                  <br>  
                   <div class="progress-wrapper">
                     <div class="progress-info">
                       <div class="progress-label">
@@ -161,6 +167,7 @@
                       <div class="progress-bar bg-default percent" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>    
@@ -296,6 +303,7 @@
                   </table>
                 </div>
                 <div class="card-body-par" id="menu" style="display: block;">
+                  <input type="hidden" id="nopols" value="0">
                   <table align="center" width="100%">
                     <tr height ="10px">
                       <td width="22px" rowspan="6"></td>
