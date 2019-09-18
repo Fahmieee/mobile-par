@@ -157,7 +157,7 @@
                   <div class="progress-wrapper">
                     <div class="progress-info">
                       <div class="progress-label">
-                        <span>Masa Service</span>
+                        <span>Service</span>
                       </div>
                       <div class="progress-percentage">
                         <span class="text-km">-</span>
@@ -210,7 +210,7 @@
                     <tr>
                       <td><h6>Unit Kerja</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>MOR 2</h6></td>  
+                      <td><h6>MOR 2 - Jakarta</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>No HP</h6></td>
@@ -274,7 +274,7 @@
                       <td><h6>089809809809</h6></td>  
                     </tr>
                     <tr>
-                      <td><h6>MCU </h6></td>
+                      <td><h6>Masa MCU </h6></td>
                       <td><h6>:</h6></td>
                       <td><h6>3 Agustus 2019</h6></td>  
                     </tr>
@@ -328,12 +328,12 @@
                       <td id="tahun"></td>  
                     </tr>
                     <tr>
-                      <td><h6>Exp Asuransi</h6></td>
+                      <td><h6>Masa Asuransi</h6></td>
                       <td><h6>:</h6></td>
                       <td><h6>2 Januari 2020 </h6></td>  
                     </tr>
                     <tr>
-                      <td><h6>Exp KEUR</h6></td>
+                      <td><h6>Masa KEUR</h6></td>
                       <td><h6>:</h6></td>
                       <td><h6>23 Mei 2019</h6></td>  
                     </tr>

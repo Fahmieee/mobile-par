@@ -110,7 +110,7 @@
                     <tr>
                       <td><h6>Unit Kerja</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>MOR 2</h6></td>  
+                      <td><h6>MOR 2 - Jakarta</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>No HP</h6></td>

@@ -72,13 +72,14 @@ class ClientController extends Controller
 
     public function getdataapprove(Request $request)
     {
-        $getdatas = Clocks::select("first_name","date","last_name","clocks.client_id")
+        $getdatas = Clocks::select("clocks.id","first_name","clockin_date","last_name","clocks.client_id")
         ->join("users", "clocks.user_id", "=", "users.id")
         ->where([
             ['client_id', '=', $request->user_id],
-            ['status', '=', 'NOT APPROVED'],
+            ['clockin_status', '=', 'NOT APPROVED'],
         ])
-        ->groupby('date','first_name','last_name', 'clocks.client_id')
+        ->orwhere('clockout_status', '=', 'NOT APPROVED')
+        ->groupby('clockin_date','first_name','last_name', 'clocks.client_id','clocks.id')
         ->get();
 
         return response()->json($getdatas);
@@ -87,59 +88,39 @@ class ClientController extends Controller
 
     public function getdataapprovedetail(Request $request)
     {
-        $thn = substr($request->date, 0,4);
-        $bln = substr($request->date, 4,2);
-        $tgl = substr($request->date, 6,2);
 
-        $date = $thn.'-'.$bln.'-'.$tgl;
-
-        $getclockin = Clocks::where([
-            ['client_id', '=', $request->client_id],
-            ['date', '=', $date],
-            ['type', '=', 'clock_in']
-        ])
+        $getclockin = Clocks::where("id", $request->clocks_id)
         ->first();
 
-        $getclockout = Clocks::where([
-            ['client_id', '=', $request->client_id],
-            ['date', '=', $date],
-            ['type', '=', 'clock_out'],
-        ])
-        ->first();
-
-        if (! $getclockout){
-            $ids = '';
-            $times = '';
-            $stat = '';
-        } else {
-            $ids = $getclockout->id;
-            $times = $getclockout->time;
-            $stat = $getclockout->status;
-        }
-
-        $arrayNames = array(    
-            'clockin_id' => $getclockin->id, 
-            'clockout_id' => $ids,
-            'clockin_time' => $getclockin->time,
-            'clockout_time' => $times,
-            'clockin_status' => $getclockin->status,
-            'clockout_status' => $stat
-        );
-
-        return response()->json($arrayNames);
+        return response()->json($getclockin);
 
     }
+
 
     public function approve(Request $request)
     {
         date_default_timezone_set('Asia/Jakarta');
         $date = date('Y-m-d H:i:s');
 
-        $approved = Clocks::findOrFail($request->id);
-        $approved->status = "APPROVED";
-        $approved->approved_at = $date;
-        $approved->actual = $request->waktu;
-        $approved->save();
+        if ($request->type == '0'){
+
+            $approved = Clocks::findOrFail($request->id);
+            $approved->clockin_status = "APPROVED";
+            $approved->clockin_approved_at = $date;
+            $approved->clockin_actual = $request->waktu;
+            $approved->save();
+
+        } else {
+
+            $approved = Clocks::findOrFail($request->id);
+            $approved->clockout_status = "APPROVED";
+            $approved->clockout_approved_at = $date;
+            $approved->clockout_actual = $request->waktu;
+            $approved->save();
+
+        }
+
+        
 
         return response()->json($approved);
     }

@@ -2525,6 +2525,13 @@ fieldset:disabled a.btn {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
+.btn-yellow {
+  color: #fff;
+  background-color: #ffdd42;
+  border-color: #ffdd42;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
 .btn-primary:hover {
   color: #fff;
   background-color: #01497f;
@@ -18487,7 +18494,7 @@ textarea[resize="horizontal"] {
 
 .card .table td,
 .card .table th {
-  padding-left: 1.5rem;
+  padding-left: 1.0rem;
   padding-right: 1.5rem;
 }
 

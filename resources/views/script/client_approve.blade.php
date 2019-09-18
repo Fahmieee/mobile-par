@@ -17,13 +17,11 @@
             	$.each(data, function() {
 
 	                no++;
-	                var date = data[no]['date'];
+	                var date = data[no]['clockin_date'];
 	                var first = data[no]['first_name']; 
 	                var last = data[no]['last_name'];
 	                var client_id = data[no]['client_id'];
-
-	                var satu = date.replace('-','');
-	                var ngetrim = satu.replace('-','');
+	                var id = data[no]['id'];
 	                
 
 	                content_data += "<div class='alert alert-default' role='alert'>";
@@ -31,10 +29,10 @@
                     content_data += "<tr>";
                     content_data += "<td align='left'><h5 class='text-white'>Tanggal : "+date+"</h5>";
                     content_data += "<h6 class='text-white'>Driver : "+first+" "+last+"</h6></td>";
-                    content_data += "<td align='right' class='btn_"+ngetrim+"'><button type='button' class='btn btn-sm btn-success' onclick='Lihat("+ngetrim+","+client_id+")'>Lihat</button></td>";
+                    content_data += "<td align='right' class='btn_"+id+"'><button type='button' class='btn btn-sm btn-success' onclick='Lihat("+id+")'>Lihat</button></td>";
                     content_data += "</tr>";
                   	content_data += "</table>";
-                  	content_data += "<div id='detail_"+ngetrim+"'></div>";
+                  	content_data += "<div id='detail_"+id+"'></div>";
                   	content_data += "</div>";
                   	
 
@@ -48,43 +46,51 @@
 
 	});
 
-	function Lihat(rnum,client){
+	function Lihat(rnum){
 
-		$('.btn_'+rnum).html('<button type="button" class="btn btn-sm btn-secondary" onclick="Tutup('+rnum+','+client+')">Tutup</button>');
+		$('.btn_'+rnum).html('<button type="button" class="btn btn-sm btn-secondary" onclick="Tutup('+rnum+')">Tutup</button>');
 
 		$.ajax({
             type: 'POST',
             url: "{{ route('GetApproveClientDetail') }}",
             data: {
                 '_token': $('input[name=_token]').val(),
-                'date': rnum,
-                'client_id': client
+                'clocks_id': rnum
             },
 
             success: function (data) {
 
-            	var satu = data.clockin_time.replace(':','');
-	            var clockins = satu.replace(':','');
-
-	            var dua = data.clockout_time.replace(':','');
-	            var clockouts = dua.replace(':','');
-
             	var content_data ="";
+            	var timeclockin = "";
+            	var timeclockout= "";
+
+            	if (data.clockin_actual == null){
+            		timeclockin = data.clockin_time;
+            	} else {
+            		timeclockin = data.clockin_actual;
+            	}
+
+            	if (data.clockout_actual == null){
+            		timeclockout = data.clockout_time;
+            	} else {
+            		timeclockout = data.clockout_actual;
+            	}
+
 
             	content_data += "<hr>";
                 content_data += "<div class='alert alert-secondary' role='alert'>";
                 content_data += "<table width='100%'>";
                 content_data += "<tr>";
                 content_data += "<td align='left'><h6>Mulai Bekerja :</h6></td>";
-                content_data += "<td align='right' rowspan='2' class='button_"+data.clockin_id+"'><button type='button' class='btn btn-sm btn-success' onclick='Approve("+data.clockin_id+", "+clockins+")'>Approve</button></td>";
+                content_data += "<td align='right' rowspan='2' class='button_"+data.id+"_0'><button type='button' class='btn btn-sm btn-success' onclick='Approve("+data.id+", 0)'>Approve</button></td>";
                 content_data += "</tr>";
                 content_data += "<tr>";
-                content_data += "<td align='left'><strong><h3>"+data.clockin_time+"</h3></strong></td>";
+                content_data += "<td align='left'><strong><h3>"+timeclockin+"</h3></strong></td>";
                 content_data += "</tr>";
                 content_data += "</table>";
                 content_data += "</div>";
 
-                if (data.clockout_id == ''){
+                if (data.clockout_date == null){
 
                 	content_data += "<div class='alert alert-secondary' role='alert'>";
 	                content_data += "<table width='100%'>";
@@ -104,10 +110,10 @@
 	                content_data += "<table width='100%'>";
 	                content_data += "<tr>";
 	                content_data += "<td align='left'><h6>Selesai Bekerja :</h6></td>";
-	                content_data += "<td align='right' rowspan='2' class='button_"+data.clockout_id+"'><button type='button' class='btn btn-sm btn-success' onclick='Approve("+data.clockout_id+", "+clockouts+")'>Approve</button></td>";
+	                content_data += "<td align='right' rowspan='2' class='button_"+data.id+"_1'><button type='button' class='btn btn-sm btn-success' onclick='Approve("+data.id+", 1)'>Approve</button></td>";
 	                content_data += "</tr>";
 	                content_data += "<tr>";
-	                content_data += "<td align='left'><strong><h3>"+data.clockout_time+"</h3></strong></td>";
+	                content_data += "<td align='left'><strong><h3>"+timeclockout+"</h3></strong></td>";
 	                content_data += "</tr>";
 	                content_data += "</table>";
 	                content_data += "</div>";
@@ -117,11 +123,11 @@
                 $('#detail_'+rnum).html(content_data);
 
                 if (data.clockin_status == 'APPROVED'){
-            		$('.button_'+data.clockin_id+'').html("<button type='button' class='btn btn-sm btn-primary' disabled>Sudah Di Approve</button>");
+            		$('.button_'+data.id+'_0').html("<button type='button' class='btn btn-sm btn-primary' disabled>Sudah Di Approve</button>");
             	} 
 
             	if (data.clockout_status == 'APPROVED'){
-            		$('.button_'+data.clockout_id+'').html("<button type='button' class='btn btn-sm btn-primary' disabled>Sudah Di Approve</button>");
+            		$('.button_'+data.id+'_1').html("<button type='button' class='btn btn-sm btn-primary' disabled>Sudah Di Approve</button>");
             	} 
 
             }
@@ -130,33 +136,45 @@
 
 	}
 
-	function Tutup(rnum,client){
+	function Tutup(rnum){
 
 		$('#detail_'+rnum).html('');
 
-		$('.btn_'+rnum).html('<button type="button" class="btn btn-sm btn-success" onclick="Lihat('+rnum+','+client+')"">Lihat</button>');
+		$('.btn_'+rnum).html('<button type="button" class="btn btn-sm btn-success" onclick="Lihat('+rnum+')"">Lihat</button>');
 
 	}
 
-	function Approve(id,time){
+	function Approve(id,type){
 
 		$('#notif_approve').modal('show');
 
-		var waktu = time.toString();
-		var panjang = waktu.length;
+		$.ajax({
+            type: 'POST',
+            url: "{{ route('GetApproveClientDetail') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'clocks_id': id
+            },
 
-		var detik = waktu.substr(-2);
-		var menit = waktu.substr(-4,2);
+            success: function (data) {
 
-		if(panjang == 5){
-			var jam = waktu.substr(-5,1);
-		} else {
-			var jam = waktu.substr(-6,2);
-		}
+            	if (type == '0'){
+
+            		$('.waktu').html('<h1><b>'+data.clockin_time+'</b></h1>');
+            		$('#times').val(data.clockin_time);
+
+            	} else {
+
+            		$('.waktu').html('<h1><b>'+data.clockout_time+'</b></h1>');
+            		$('#times').val(data.clockout_time);
+            	}
+
+            }
+
+        });
 		
 		$('#id').val(id);
-		$('.waktu').html('<h1><b>'+jam+':'+menit+':'+detik+'</b></h1>');
-		$('#times').val(jam+':'+menit+':'+detik);
+		$('#type').val(type);
 
 	}
 
@@ -168,7 +186,8 @@
             data: {
                 '_token': $('input[name=_token]').val(),
                 'id': $('#id').val(),
-                'waktu': $('#times').val()
+                'waktu': $('#times').val(),
+                'type': $('#type').val(),
             },
 
             success: function (data) {

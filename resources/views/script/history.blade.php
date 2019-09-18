@@ -31,7 +31,7 @@
 		            $.each(data, function() {
 
 		                no++;
-		                var date = data[no]['date'];
+		                var date = data[no]['clockin_date'];
 		                var id = data[no]['id']; 
 
 		                content_data += "<div class='row' onclick='DetailHistory("+id+")'>";
@@ -120,6 +120,19 @@
 		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
 		            content_datas += "<td><h6 class='text-white'>"+data.clockout_jarak+"</h6></td>";
 		            content_datas += "</tr>";
+
+		            content_datas += "<tr>";
+		            content_datas += "<td><h6 class='text-white'>In Date</h6></td>";
+		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
+		            content_datas += "<td><h6 class='text-white'>"+data.clockin_date+"</h6></td>";
+
+		            content_datas += "<td width='10%'></td>";
+
+		            content_datas += "<td><h6 class='text-white'>Out Date</h6></td>";
+		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
+		            content_datas += "<td><h6 class='text-white'>"+data.clockout_date+"</h6></td>";
+		            content_datas += "</tr>";
+
 		            content_datas += "<tr>";
 		            content_datas += "<td><h6 class='text-white'>Clock-In</h6></td>";
 		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
@@ -131,6 +144,7 @@
 		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
 		            content_datas += "<td><h6 class='text-white'>"+data.clockout_time+"</h6></td>";
 		            content_datas += "</tr>";
+
 		            content_datas += "<tr>";
 		            content_datas += "<td><h6 class='text-white'>Trip Check</h6></td>";
 		            content_datas += "<td><h6 class='text-white'> : </h6></td>";

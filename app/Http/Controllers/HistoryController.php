@@ -21,10 +21,10 @@ class HistoryController extends Controller
 
     public function GetData(Request $request)
     {
-        $gethistory = Clocks::select("date","id")
+        $gethistory = Clocks::select("clockin_date","id")
         ->where([
             ['user_id', '=', $request->user_id],
-            ['type', '=', 'clock_out'],
+            ['clockout_time', '!=', null],
         ])
         ->limit(10)
         ->orderBy('id', 'desc')
@@ -35,26 +35,16 @@ class HistoryController extends Controller
 
     public function detail(Request $request)
     {
-    	$getdate = Clocks::select("date")
+    	$getdate = Clocks::select("clockin_date")
     	->where([
             ['user_id', '=', $request->user_id],
             ['id', '=', $request->id],
         ])
         ->first();
 
-    	$getclocksin = Clocks::select("time","kilometer")
-    	->where([
+    	$getclocks = Clocks::where([
             ['user_id', '=', $request->user_id],
-            ['type', '=', 'clock_in'],
-            ['date', '=', $getdate->date],
-        ])
-        ->first();
-
-        $getclocksout = Clocks::select("time","kilometer")
-    	->where([
-            ['user_id', '=', $request->user_id],
-            ['type', '=', 'clock_out'],
-            ['date', '=', $getdate->date],
+            ['clockin_date', '=', $getdate->clockin_date],
         ])
         ->first();
 
@@ -72,21 +62,23 @@ class HistoryController extends Controller
         ])
         ->first();
 
-        $awal  = strtotime($getclocksin->time); //waktu awal
-		$akhir = strtotime($getclocksout->time); //waktu akhir
+        $awal  = strtotime($getclocks->clockin_date.' '.$getclocks->clockin_time);
+		$akhir = strtotime($getclocks->clockout_date.' '.$getclocks->clockout_time); //waktu akhir
 		$diff  = $akhir - $awal;
 		$jam   = floor($diff / (60 * 60));
 		$menit = $diff - $jam * (60 * 60);
 
 		$total_waktu = $jam .  ' jam, ' . floor( $menit / 60 ) . ' menit';
 
-        $totaljarak = $getclocksout->kilometer - $getclocksin->kilometer;
+        $totaljarak = $getclocks->clockout_km - $getclocks->clockin_km;
 
         $arrayNames = array(    
-            'clockin_time' => $getclocksin->time, 
-            'clockout_time' => $getclocksout->time,
-            'clockin_jarak' => $getclocksin->kilometer,
-            'clockout_jarak' => $getclocksout->kilometer,
+            'clockin_time' => $getclocks->clockin_time, 
+            'clockout_time' => $getclocks->clockout_time,
+            'clockin_date' => $getclocks->clockin_date, 
+            'clockout_date' => $getclocks->clockout_date,
+            'clockin_jarak' => $getclocks->clockin_km,
+            'clockout_jarak' => $getclocks->clockout_km,
             'pretripcheck' => $tripcheck ? $tripcheck->time : '-', 
             'total_jarak' => $totaljarak,
             'total_waktu' => $total_waktu,

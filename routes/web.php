@@ -45,6 +45,10 @@ Route::group(['middleware' => 'auth:user'], function(){
 	    return view('content.home.index');
 	});
 
+	Route::get('/dcu', function () {
+	    return view('content.dcu.index');
+	});
+
 	Route::get('driver', 'DriverController@index');
 	Route::post('driver/get', 'DriverController@getdata')->name('GetDataDriver');
 	Route::post('driver/getkilometers', 'DriverController@getunitkilometer')->name('GetUnitKilometers');

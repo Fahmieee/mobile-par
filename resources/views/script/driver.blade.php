@@ -17,7 +17,7 @@
 
                 if (data.length == 0){
 
-                    $('.text-lembur').html('0 Jam / 40 Jam');
+                    $('.text-lembur').html('0 Jam / 40 Jam (0%)');
 
                 } else {
 
@@ -25,12 +25,29 @@
 
                         no++;
                         var time = data[no]['time'];
-                        var jam= time.substring(0,2);
-                        var jam_res = jam.replace(":","");
-                        var menit= time.substring(3,5);
+                        var jams = "";
+                        var menits = "";
 
-                        totalmenit += menit;
-                        totaljam += jam_res;
+                        var jam= time.substring(2,3);
+
+                        if (jam == ':'){
+                            jams = time.substring(0,2);
+                        } else {
+                            jams = time.substring(0,1);
+                        }
+
+                        var menit= time.substring(5,6);
+
+                        if (menit == ':'){
+                            menits = time.substring(3,5);
+                        } else if(jams != ':'){
+                            menits = time.substring(2,4);
+                        } else {
+                            menits = time.substring(2,3);
+                        }
+
+                        totalmenit += menits;
+                        totaljam += jams;
 
                     });
 
@@ -61,7 +78,7 @@
 
                     }
 
-                    $('.text-lembur').html(TotalSemua+' Jam / 40 Jam');
+                    $('.text-lembur').html(TotalSemua+' Jam / 40 Jam ('+percent+'%)');
                 }
             }
 
@@ -81,7 +98,7 @@
 
                 if (data.length == 0){
 
-                    $('.text-km').html('0 Km / 10000 km');
+                    $('.text-km').html('0 Km / 10000 km (0%)');
 
                 } else {
 
@@ -114,7 +131,7 @@
 
                     }
 
-                    $('.text-km').html(total+' Km / 10000 Km');
+                    $('.text-km').html(total+' Km / 10000 Km ('+percent+'%)');
                 }
                 
             }
@@ -595,7 +612,7 @@
 
 	});
 
-    $('#medical').on('click', function () {
+    $('#dcu').on('click', function () {
 
         $.ajax({
             type: 'POST',
@@ -884,6 +901,18 @@
             }
 
         });
+    });
+
+    $('#medical').on('click', function () {
+
+        setTimeout(function(){ window.location.href = 'dcu'; }, 10);
+
+    });
+
+    $('#back').on('click', function () {
+
+        setTimeout(function(){ window.location.href = 'driver'; }, 10);
+
     });
     
 

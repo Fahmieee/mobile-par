@@ -153,7 +153,7 @@ class ClocksController extends Controller
             } else {
 
                 $clocks = Clocks::where(['clockin_date'=>$hari,'user_id'=>$request->user_id])
-                ->update(['clockout_date'=>$hari, 'clockout_time'=>$time, 'clockout_km'=>$request->km]);
+                ->update(['clockout_date'=>$hari, 'clockout_time'=>$time, 'clockout_km'=>$request->km, 'clockout_status'=> 'NOT APPROVED']);
 
                 $notif = '1';
 
@@ -163,23 +163,26 @@ class ClocksController extends Controller
                 $unitkms = UnitKilometers::where(['date'=>$hari,'unit_id'=>$units->unit_id])
                 ->update(['km_akhir'=>$request->km]);
 
-                $jamkerja = JamKerja::all();
+                $jamkerja = JamKerja::first();
 
-                $bataskerja = $hari+' '+$jamkerja->jamkeluar;
-                $waktu = $hari+' '+$time;
+                $bataskerja = strtotime($hari.' '.$jamkerja->jam_keluar);
+                $waktu = strtotime($hari.' '.$time);
 
-                if ($bataskerja > $waktu){
+                if ($bataskerja < $waktu){
 
-                    $diff  = date_diff($bataskerja, $waktu);
+                    $diff  = $waktu - $bataskerja;
+                    $jam   = floor($diff / (60 * 60));
+                    $menit = $diff - $jam * (60 * 60);
+                    $minutes = floor( $menit / 60 );
 
                     $unitkm = new Lembur();
                     $unitkm->user_id = $request->user_id;
                     $unitkm->month = date('m');
                     $unitkm->year = date('Y');
-                    $unitkm->time = $diff->h+':'+$diff->i+':'+$diff->s;
+                    $unitkm->time = $jam.':'.$minutes.':00';
                     $unitkm->save();
 
-                } 
+                }
 
                 $datanotif = array(    
                     'notif' => $notif, 
@@ -203,7 +206,7 @@ class ClocksController extends Controller
             } else {
 
                 $clocks = Clocks::where(['clockin_date'=>$kemarin,'user_id'=>$request->user_id])
-                ->update(['clockout_date'=>$hari, 'clockout_time'=>$time, 'clockout_km'=>$request->km]);
+                ->update(['clockout_date'=>$hari, 'clockout_time'=>$time, 'clockout_km'=>$request->km, 'clockout_status'=> 'NOT APPROVED']);
 
                 $notif = '1';
 
