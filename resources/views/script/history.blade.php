@@ -107,6 +107,28 @@
 	            success: function(data) {
 
 	            	var content_datas="";
+	            	var clockins = "";
+	            	var clockouts = "";
+
+	            	if (data.clockin_actual == null){
+
+	            		clockins = data.clockin_time;
+
+	            	}else {
+
+	            		clockins = data.clockin_actual;
+
+	            	}
+
+	            	if (data.clockout_actual == null){
+
+	            		clockouts = data.clockout_time;
+
+	            	}else {
+
+	            		clockouts = data.clockout_actual;
+
+	            	}
 
 	            	content_datas += "<table border='0' align='center' width='100%'>";
 		            content_datas += "<tr>";
@@ -136,13 +158,13 @@
 		            content_datas += "<tr>";
 		            content_datas += "<td><h6 class='text-white'>Clock-In</h6></td>";
 		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
-		            content_datas += "<td><h6 class='text-white'>"+data.clockin_time+"</h6></td>";
+		            content_datas += "<td><h6 class='text-white'>"+clockins+"</h6></td>";
 
 		            content_datas += "<td width='10%'></td>";
 
 		            content_datas += "<td><h6 class='text-white'>Clock-Out</h6></td>";
 		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
-		            content_datas += "<td><h6 class='text-white'>"+data.clockout_time+"</h6></td>";
+		            content_datas += "<td><h6 class='text-white'>"+clockouts+"</h6></td>";
 		            content_datas += "</tr>";
 
 		            content_datas += "<tr>";

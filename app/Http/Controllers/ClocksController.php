@@ -176,7 +176,7 @@ class ClocksController extends Controller
                     $minutes = floor( $menit / 60 );
 
                     $unitkm = new Lembur();
-                    $unitkm->user_id = $request->user_id;
+                    $unitkm->clock_id = $validatesekarang->id;
                     $unitkm->month = date('m');
                     $unitkm->year = date('Y');
                     $unitkm->time = $jam.':'.$minutes.':00';
@@ -229,7 +229,7 @@ class ClocksController extends Controller
                     $minutes = floor( $menit / 60 );
 
                     $unitkm = new Lembur();
-                    $unitkm->user_id = $request->user_id;
+                    $unitkm->clock_id = $validatekemarin->id;
                     $unitkm->month = date('m');
                     $unitkm->year = date('Y');
                     $unitkm->time = $jam.':'.$minutes.':00';

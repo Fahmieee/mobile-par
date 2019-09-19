@@ -9,6 +9,8 @@ use App\Drivers;
 use App\Pairing;
 use App\Units;
 use App\Clocks;
+use App\JamKerja;
+use App\Lembur;
 
 class ClientController extends Controller
 {
@@ -112,17 +114,125 @@ class ClientController extends Controller
 
         } else {
 
-            $approved = Clocks::findOrFail($request->id);
-            $approved->clockout_status = "APPROVED";
-            $approved->clockout_approved_at = $date;
-            $approved->clockout_actual = $request->waktu;
-            $approved->save();
+            $clocks = Clocks::where('id', $request->id)
+            ->first();
+
+            $depan = substr($clocks->clockout_time,0,1);
+            $actual = substr($request->waktu,0,1);
+
+            $selanjutnya = date('Y-m-d', strtotime('+1 day', strtotime($clocks->clockin_date)));
+
+            if ($depan == '0'){
+
+                if ($actual != '0'){
+
+                    $approved = Clocks::findOrFail($request->id);
+                    $approved->clockout_status = "APPROVED";
+                    $approved->clockout_approved_at = $date;
+                    $approved->clockoutdate_actual = $clocks->clockin_date;
+                    $approved->clockout_actual = $request->waktu;
+                    $approved->save();
+
+                } else {
+
+                    $approved = Clocks::findOrFail($request->id);
+                    $approved->clockout_status = "APPROVED";
+                    $approved->clockout_approved_at = $date;
+                    $approved->clockoutdate_actual = $clocks->clockout_date;
+                    $approved->clockout_actual = $request->waktu;
+                    $approved->save();
+
+                }
+
+            } else {
+
+                if ($actual == '0'){
+
+                    $approved = Clocks::findOrFail($request->id);
+                    $approved->clockout_status = "APPROVED";
+                    $approved->clockout_approved_at = $date;
+                    $approved->clockoutdate_actual = $selanjutnya;
+                    $approved->clockout_actual = $request->waktu;
+                    $approved->save();
+
+                } else {
+
+                    $approved = Clocks::findOrFail($request->id);
+                    $approved->clockout_status = "APPROVED";
+                    $approved->clockout_approved_at = $date;
+                    $approved->clockoutdate_actual = $clocks->clockout_date;
+                    $approved->clockout_actual = $request->waktu;
+                    $approved->save();
+
+                }
+
+            }
+
+            $clocks_now = Clocks::where('id', $request->id)
+            ->first();
+
+            $jamkerja = JamKerja::first();
+
+            $bataskerja = strtotime($clocks_now->clockin_date.' '.$jamkerja->jam_keluar);
+            $bataskerja1 = $clocks_now->clockin_date.' '.$jamkerja->jam_keluar;
+
+            if ($clocks_now->clockoutdate_actual == null){
+                $waktu = strtotime($clocks_now->clockout_date.' '.$request->waktu);
+                $waktu1 = $clocks_now->clockout_date.' '.$request->waktu;
+            } else {
+                $waktu = strtotime($clocks_now->clockoutdate_actual.' '.$request->waktu);
+                $waktu1 = $clocks_now->clockoutdate_actual.' '.$request->waktu;
+            }
+            
+            $adalembur = Lembur::where('clock_id', $request->id)
+            ->first();
+
+            if (!$adalembur){
+
+                if ($bataskerja < $waktu){
+
+                    $diff  = $waktu - $bataskerja;
+                    $jam   = floor($diff / (60 * 60));
+                    $menit = $diff - $jam * (60 * 60);
+                    $minutes = floor( $menit / 60 );
+
+                    $unitkm = new Lembur();
+                    $unitkm->clock_id = $request->id;
+                    $unitkm->month = date('m');
+                    $unitkm->year = date('Y');
+                    $unitkm->time = $jam.':'.$minutes.':00';
+                    $unitkm->save(); 
+
+                } 
+
+            } else {
+
+                if ($bataskerja < $waktu){
+
+                    $diff  = $waktu - $bataskerja;
+                    $jam   = floor($diff / (60 * 60));
+                    $menit = $diff - $jam * (60 * 60);
+                    $minutes = floor( $menit / 60 );
+
+                    $lemburs = Lembur::where(['clock_id'=>$request->id])
+                    ->update(['time'=>$jam.':'.$minutes.':00']); 
+
+                } else {
+
+                    $lemburs = Lembur::where(['clock_id'=>$request->id])
+                    ->delete();
+                }
+
+            }
 
         }
 
-        
+        $datanotif = array(
+            'batas' => $bataskerja1, 
+            'waktu' => $waktu1 
+        );
 
-        return response()->json($approved);
+        return response()->json($datanotif);
     }
 
     public function listdriver(Request $request)

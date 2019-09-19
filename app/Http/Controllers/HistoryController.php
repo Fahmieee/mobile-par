@@ -62,8 +62,27 @@ class HistoryController extends Controller
         ])
         ->first();
 
-        $awal  = strtotime($getclocks->clockin_date.' '.$getclocks->clockin_time);
-		$akhir = strtotime($getclocks->clockout_date.' '.$getclocks->clockout_time); //waktu akhir
+        if ($getclocks->clockin_actual == null){
+
+            $awal  = strtotime($getclocks->clockin_date.' '.$getclocks->clockin_time);
+
+        } else {
+
+            $awal  = strtotime($getclocks->clockin_date.' '.$getclocks->clockin_actual);
+
+        }
+
+        if ($getclocks->clockout_actual == null){
+
+            $akhir = strtotime($getclocks->clockout_date.' '.$getclocks->clockout_time);
+
+        } else {
+
+            $akhir = strtotime($getclocks->clockoutdate_actual.' '.$getclocks->clockout_actual);
+
+        }
+        
+		 //waktu akhir
 		$diff  = $akhir - $awal;
 		$jam   = floor($diff / (60 * 60));
 		$menit = $diff - $jam * (60 * 60);
@@ -79,6 +98,8 @@ class HistoryController extends Controller
             'clockout_date' => $getclocks->clockout_date,
             'clockin_jarak' => $getclocks->clockin_km,
             'clockout_jarak' => $getclocks->clockout_km,
+            'clockin_actual' => $getclocks->clockin_actual,
+            'clockout_actual' => $getclocks->clockout_actual,
             'pretripcheck' => $tripcheck ? $tripcheck->time : '-', 
             'total_jarak' => $totaljarak,
             'total_waktu' => $total_waktu,

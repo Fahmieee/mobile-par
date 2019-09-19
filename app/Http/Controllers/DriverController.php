@@ -115,8 +115,9 @@ class DriverController extends Controller
     {
         date_default_timezone_set('Asia/Jakarta');
            
-        $getlembur = Lembur::where([
-                ['user_id', '=', $request->user_id],
+        $getlembur = Lembur::leftJoin("clocks", "lembur.clock_id", "=", "clocks.id")
+        ->where([
+                ['clocks.user_id', '=', $request->user_id],
                 ['month', '=', date('m')],
                 ['year', '=', date('Y')],
             ])
