@@ -26,8 +26,6 @@
 
 	$('#submit_yakin').on('click', function () {
 
-
-
 		var empty = false;
         $('textarea.keluhan').each(function() {
             if ($(this).val() == '') {
@@ -51,7 +49,7 @@
 	                '_token': $('input[name=_token]').val(),
 	                'user_id': $('#created_by').val(),
 	                'type': $('#types').val(),
-	                'jenis_id': $('#jenis').val(),
+	                'jenis': $('#jenis').val(),
 	                'suara': $('textarea#suara').val()
 	                },
 	            success: function(data) {
@@ -98,7 +96,7 @@
 		                var type = data[no]['type'];
 		                var id = data[no]['id'];
 
-		                content_datax += "<option value='"+id+"'>"+type+"</option>";
+		                content_datax += "<option value='"+type+"'>"+type+"</option>";
 
 		            });
 

@@ -14,7 +14,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="form-control-label">UNIT :</label>
-                        <input type="text" id="nopol_modal" class="form-control" disabled>
+                        <input type="text" value="{{ $getunits->no_police }}" class="form-control" disabled>
                       </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="form-control-label">UNIT :</label>
-                        <input type="text" id="nopol_clockout" class="form-control" disabled>
+                        <input type="text" value="{{ $getunits->no_police }}" class="form-control" disabled>
                       </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="form-control-label">Kilometer Akhir</label>
-                        <input type="text" placeholder="Masukan Kilometer Akhir" class="form-control form_clockout" id="km_akhir">
+                        <input type="text" placeholder="Masukan Kilometer Akhir" class="form-control form_clockout" id="km_akhir" onkeyup="angka(this);">
                       </div>
                     </div>
                 </div>

@@ -50,8 +50,6 @@ Route::group(['middleware' => 'auth:user'], function(){
 	});
 
 	Route::get('driver', 'DriverController@index');
-	Route::post('driver/get', 'DriverController@getdata')->name('GetDataDriver');
-	Route::post('driver/getkilometers', 'DriverController@getunitkilometer')->name('GetUnitKilometers');
 	Route::post('driver/terimapair', 'DriverController@terimapair')->name('TerimaPair');
 	Route::post('driver/tolakpair', 'DriverController@tolakpair')->name('TolakPair');
 	Route::post('driver/getlembur', 'DriverController@getlembur')->name('GetLembur');
@@ -80,7 +78,6 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('history/detail', 'HistoryController@detail')->name('DetailRiwayatHistory');
 
 	Route::get('korlap', 'KorlapController@index');
-	Route::post('korlap/getprofile', 'KorlapController@getprofile')->name('GetProfile');
 	Route::get('lihatdriver', 'KorlapController@lihatdriver');
 	Route::post('korlap/lihatnilaidriver', 'KorlapController@getnilaidriver')->name('LihatNilaiDriver');
 

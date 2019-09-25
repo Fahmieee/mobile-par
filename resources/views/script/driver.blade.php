@@ -84,104 +84,6 @@
 
         });
 
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('GetUnitKilometers') }}",
-            data: {
-                '_token': $('input[name=_token]').val(),
-                'user_id': $('#created_by').val()
-                },
-            success: function(data) {
-
-                var no = -1;
-                var total = 0;
-
-                if (data.length == 0){
-
-                    $('.text-km').html('0 Km / 10000 km (0%)');
-
-                } else {
-
-                    $.each(data, function() {
-
-                        no++;
-                        var km_awal = data[no]['km_awal'];
-                        var km_akhir = data[no]['km_akhir'];
-
-                        var pengurangan = km_akhir - km_awal;
-
-                        total += pengurangan;
-
-                    });
-
-                    var percent = Math.floor((total / 10000) * 100);
-                    $('.percent').attr("style", "width: "+percent+"%;");
-
-                    if (percent <= 70){
-
-                        $('.percent').attr("class", "progress-bar bg-success percent");
-
-                    } else if (percent > 70 && percent <= 90){
-
-                        $('.percent').attr("class", "progress-bar bg-kuning percent");
-
-                    } else {
-
-                        $('.percent').attr("class", "progress-bar bg-danger percent");
-
-                    }
-
-                    $('.text-km').html(total+' Km / 10000 Km ('+percent+'%)');
-                }
-                
-            }
-        });
-
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('GetDataDriver') }}",
-            data: {
-                '_token': $('input[name=_token]').val(),
-                'user_id': $('#created_by').val()
-                },
-            success: function(data) {
-
-                $('#nama_users').html('<b>'+data.nama_depan+' '+data.nama_belakang+'</b>');
-                $('#nama_drivers').html('<b>'+data.driver_depan+' '+data.driver_belakang+'</b>');
-                $('#nopol').html('<b>'+data.no_polisi+'</b>');
-                $('#model').html('<h6>'+data.model+' - '+data.varian+'</h6>');
-                $('#date').html('<h6>'+data.stnk+'</h6>');
-                $('#tahun').html('<h6>'+data.years+'</h6>');
-                $('#nopols').val(data.no_polisi);
-
-                if(data.nama_depan == '-'){
-
-                    $('#client').attr("style", "display: none;");
-                    $('#approve_driver').attr("style", "display: block;");
-                    $('#menudrivers').attr("style", "display: none;");
-
-                } else {
-
-                    $('#client').attr("style", "display: block;");
-                    $('#approve_driver').attr("style", "display: none;");
-                    $('#menudrivers').attr("style", "display: block;");
-
-                }
-
-                if (data.pair == 'tidakada'){
-                    $('#pair_driver').html('<h5 align="center" class="text-white">Anda Belum Memiliki Client Saat ini, Tunggu Saat Client Pairing dengan Anda!</h5>');
-                    $('#terima').html('');
-                    $('#tolak').html('');
-                } else {
-
-                    $('#pair_driver').html('<h5 align="center" class="text-white"><b>Client '+data.pair_depan+' '+data.pair_belakang+'</b> Melakukan Pairing Dengan Anda. Apakah Anda akan Menerimanya?</h5>');
-                    $('#terima').html('<button class="btn btn-success" onclick="Terima('+data.pair_id+')" type="button">Terima</button>');
-                    $('#tolak').html('<button class="btn btn-danger" onclick="Tolak('+data.pair_id+')" type="button">Tolak</button>');
-
-                }
-            }
-        });
-
 		$.ajax({
             type: 'POST',
             url: "{{ route('ValidasiClock') }}",
@@ -386,11 +288,9 @@
 
                                         } else {
 
-                                            var nopols = $('#nopols').val();
 
                                             $('#modal_clockin').modal('show');
 
-                                            $('#nopol_modal').val(nopols);
                                         }
 
                                     }

@@ -16173,6 +16173,11 @@ textarea[resize="horizontal"] {
   height: 3rem;
 }
 
+.icon2 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
 .icon i,
 .icon svg {
   font-size: 2.25rem;
@@ -16236,7 +16241,7 @@ textarea[resize="horizontal"] {
 
 .icon-shape i,
 .icon-shape svg {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .icon-shape.icon-lg i,

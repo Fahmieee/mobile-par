@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Users;
 use App\Pretrip_Check;
 use App\Drivers;
+use Auth;
 
 class KorlapController extends Controller
 {
@@ -15,17 +16,15 @@ class KorlapController extends Controller
     	date_default_timezone_set('Asia/Jakarta');
     	$date = date('Y-m-d');
 
-    	return view('content.home.korlap.index', compact('date'));
+        $user = Auth::user();
 
-    }
-
-    public function getprofile(Request $request)
-    {
-    	$getprof = Users::select("first_name", "email", "phone","last_name")
-    	->where("id", $request->user_id)
+        $getkorlaps = Users::leftJoin("jabatan", "users.jabatan_id", "=", "jabatan.id")
+        ->leftJoin("wilayah", "users.wilayah_id", "=", "wilayah.id")
+        ->leftJoin("unit_kerja", "users.wilayah_id", "=", "wilayah.id")
+        ->where('users.id', $user->id)
         ->first();
 
-    	return response()->json($getprof);
+    	return view('content.home.korlap.index', compact('date','getkorlaps'));
 
     }
 

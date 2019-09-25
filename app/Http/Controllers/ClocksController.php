@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Clocks;
 use App\Drivers;
 use App\Koordinat;
-use App\UnitKilometers;
+use App\Units;
 use App\JamKerja;
 use App\Lembur;
 
@@ -33,13 +33,6 @@ class ClocksController extends Controller
 
         $units = Drivers::where('driver_id', $request->user_id)
         ->first();
-
-        $unitkm = new UnitKilometers();
-        $unitkm->unit_id = $units->unit_id;
-        $unitkm->date = $hari;
-        $unitkm->km_awal = $request->km;
-        $unitkm->save();
-
 
         $ClockId = array(    
             'clockin_id' => $clock->id  
@@ -157,11 +150,18 @@ class ClocksController extends Controller
 
                 $notif = '1';
 
+                $kilo = $request->km - $validatesekarang->clockin_km;
+
                 $units = Drivers::where('driver_id', $request->user_id)
                 ->first();
 
-                $unitkms = UnitKilometers::where(['date'=>$hari,'unit_id'=>$units->unit_id])
-                ->update(['km_akhir'=>$request->km]);
+                $getunitkm = Units::where('id',$units->unit_id)
+                ->first();
+
+                $tambahkilo = $getunitkm->mileage + $kilo;
+
+                $unitkms = Units::where(['id'=>$units->unit_id])
+                ->update(['mileage'=>$tambahkilo]);
 
                 $jamkerja = JamKerja::first();
 
@@ -210,11 +210,18 @@ class ClocksController extends Controller
 
                 $notif = '1';
 
+                $kilo = $request->km - $validatekemarin->clockin_km;
+
                 $units = Drivers::where('driver_id', $request->user_id)
                 ->first();
 
-                $unitkms = UnitKilometers::where(['date'=>$kemarin,'unit_id'=>$units->unit_id])
-                ->update(['km_akhir'=>$request->km]);
+                $getunitkm = Units::where('id',$units->unit_id)
+                ->first();
+
+                $tambahkilo = $getunitkm->mileage + $kilo;
+
+                $unitkms = Units::where(['id'=>$units->unit_id])
+                ->update(['mileage'=>$tambahkilo]);
 
                 $jamkerja = JamKerja::first();
 

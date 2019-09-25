@@ -159,12 +159,31 @@
                       <div class="progress-label">
                         <span>Service</span>
                       </div>
+                      @php
+                        $kilo = $getunits->mileage;
+                        $persen = ($kilo/10000)*100;
+
+                        if ($persen <= 70){
+
+                          $bg = 'bg-success';
+
+                        } else if ($persen > 70 && $persen <= 90){
+
+                          $bg = 'bg-kuning';
+
+                        } else {
+
+                          $bg = 'bg-danger';
+
+                        }
+
+                      @endphp
                       <div class="progress-percentage">
-                        <span class="text-km">-</span>
+                        <span>{{ $getunits->mileage }} Km / 10000 Km ({{ $persen }}%)</span>
                       </div>
                     </div>
                     <div class="progress">
-                      <div class="progress-bar bg-default percent" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                      <div class="progress-bar {{ $bg }}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{ $persen }}%;"></div>
                     </div>
                   </div>
 
@@ -189,40 +208,38 @@
                       <td width="22px" rowspan="6"></td>
                       <td colspan="4"></td>
                       <td rowspan="6" align="right" >
-                        <img src="./assets/content/img/theme/users.png" width="75%">
+                        <img src="./assets/content/img/theme/users.png" width="100%">
                       </td>
                     </tr>
                     <tr>
                       <td colspan="3">
-                        <h5 class="text-black" id="nama_users"><b>Azzam Khalif Prastyo</b></h5>
+                        <h5><b>{{ $getusers->first_name }} {{ $getusers->last_name }}</b></h5>
                       </td>
                     </tr>
                     <tr>
                       <td><h6>Jabatan</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>Manager HR</h6></td>  
+                      <td width="40%"><h6>{{ $getusers->jabatan_name }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Perusahaan</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>PT Pertamina</h6></td>  
+                      <td><h6>{{ $getusers->company_name }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Unit Kerja</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>MOR 2 - Jakarta</h6></td>  
+                      <td><h6>{{ $getusers->unitkerja_name }} - {{ $getusers->wilayah_name }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>No HP</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>089809809809</h6></td>  
+                      <td><h6>{{ $getusers->phone }}</h6></td>  
                     </tr>
 
                     <tr height="10px">
                       <td colspan="4"></td>
                     </tr>
-                    
-                    
                     
                   </table>
                 </div>
@@ -239,7 +256,34 @@
                   <table width="100%">
                     <tr>
                       <td style="padding-top: 5px"><h5 class="text-uppercase text-white">INFO ANDA</h5></td>
-                      <td align="right"><span class="badge badge-dark">DDT</span> <span class="badge badge-light">MCU</span> <span class="badge badge-dark">SVX</span> <span class="badge badge-dark">FA</span> <span class="badge badge-light">FF</span></td>
+                      <td align="right">
+                        @foreach ($gettrainings as $gettraining)
+                          @php
+
+                            $trainingx = DB::table('training_driver')
+                            ->join('trainings', 'training_driver.training_id', '=', 'trainings.id')
+                            ->where([
+                                ['training_driver.user_id', '=', $getdrivers->id],
+                                ['training_driver.training_id', '=', $gettraining->id],
+                            ])
+                            ->first();
+
+                            if ($trainingx){
+
+                                $bedge = 'badge-primary';
+
+                            } else {
+                                
+                                $bedge = 'badge-dark';
+
+                            }
+
+                          @endphp
+
+                           <span class="badge {{ $bedge }}">{{ $gettraining->nick_name }}</span>
+
+                        @endforeach
+                      </td>
                     </tr>
                   </table>
                   
@@ -255,7 +299,7 @@
                     </tr>
                     <tr>
                       <td colspan="3">
-                        <h5 class="text-black" id="nama_drivers"><b>Bayu Rahardjo</b></h5>
+                        <h5 class="text-black" id="nama_drivers"><b>{{ $getdrivers->first_name }} {{ $getdrivers->last_name }}</b></h5>
                       </td>
                     </tr>
                     <tr>
@@ -266,17 +310,17 @@
                     <tr>
                       <td><h6>Masa SIM</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>3 Mei 2020</h6></td>  
-                    </tr>
-                    <tr>
-                      <td><h6>No HP</h6></td>
-                      <td><h6>:</h6></td>
-                      <td><h6>089809809809</h6></td>  
+                      <td><h6>{{ date('d F Y', strtotime($getsim->exp_date)) }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Masa MCU </h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>3 Agustus 2019</h6></td>  
+                      <td><h6>{{ date('d F Y', strtotime($getmcu->exp_date)) }}</h6></td>  
+                    </tr>
+                    <tr>
+                      <td><h6>No HP</h6></td>
+                      <td><h6>:</h6></td>
+                      <td><h6>{{ $getdrivers->phone }}</h6></td>  
                     </tr>
                     <tr height="10px">
                       <td colspan="4"></td>
@@ -303,39 +347,38 @@
                   </table>
                 </div>
                 <div class="card-body-par" id="menu" style="display: block;">
-                  <input type="hidden" id="nopols" value="0">
                   <table align="center" width="100%">
                     <tr height ="10px">
                       <td width="22px" rowspan="6"></td>
                       <td colspan="4"></td>
                       <td rowspan="7" align="right" >
-                        <img src="./assets/content/img/theme/cars.png" width="75%">
+                        <img src="./assets/content/img/theme/cars.png" width="100%">
                       </td>
                     </tr>
                     <tr>
                       <td colspan="4">
-                        <h5 class="text-black" id="nopol"><b></b></h5>
+                        <h5><b>{{ $getunits->no_police }}</b></h5>
                       </td>  
                     </tr>
                     <tr>
-                      <td><h6>Model</h6></td>
+                      <td width="25%"><h6>Model</h6></td>
                       <td><h6>:</h6></td>
-                      <td id="model"></td>  
+                      <td width="40%"><h6>{{ $getunits->model }} {{ $getunits->varian }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Tahun</h6></td>
                       <td><h6>:</h6></td>
-                      <td id="tahun"></td>  
+                      <td><h6>{{ $getunits->years }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Masa Asuransi</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>2 Januari 2020 </h6></td>  
+                      <td><h6>{{ date('d F Y', strtotime($getasuransi->exp_date)) }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Masa KEUR</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>23 Mei 2019</h6></td>  
+                      <td><h6>{{ date('d F Y', strtotime($getkeur->exp_date)) }}</h6></td>  
                     </tr>
 
                     <tr height="10px">
@@ -347,6 +390,54 @@
               </div>
             </div>    
           </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col">
+              <div class="card shadow">
+                <div class="card-header bg-green-par">
+                  <table width="100%">
+                    <tr>
+                      <td><h5 class="text-uppercase text-white">INFORMASI KORLAP</h5></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="card-body-par" id="menu" style="display: block;">
+                  <table align="center" width="100%">
+                    <tr height ="10px">
+                      <td width="22px" rowspan="6"></td>
+                      <td colspan="4"></td>
+                      <td rowspan="7" align="right" >
+                        <img src="./assets/content/img/theme/users.png" width="70%">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">
+                        <h5><b>{{ $getkorlaps->first_name }} {{ $getkorlaps->last_name }}</b></h5>
+                      </td>  
+                    </tr>
+                    <tr>
+                      <td><h6>Email</h6></td>
+                      <td><h6>:</h6></td>
+                      <td width="40%"><h6>{{ $getkorlaps->email }}</h6></td>  
+                    </tr>
+                    <tr>
+                      <td><h6>NoHp</h6></td>
+                      <td><h6>:</h6></td>
+                      <td><h6>{{ $getkorlaps->phone }}</h6></td>  
+                    </tr>
+
+                    <tr height="10px">
+                      <td colspan="4"></td>
+                    </tr>
+                    
+                  </table>
+                </div>
+              </div>
+            </div>    
+          </div>
+
       </div>
     </div>
           

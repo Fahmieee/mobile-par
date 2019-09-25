@@ -11,14 +11,6 @@
                 },
             success: function(data) {
 
-            	$('#nama_users').html('<b>'+data.nama_depan+' '+data.nama_belakang+'</b>');
-            	$('#nama_drivers').html('<b>'+data.driver_depan+' '+data.driver_belakang+'</b>');
-            	$('#nopol').html('<b>'+data.no_polisi+'</b>');
-            	$('#model').html('<h6>'+data.model+' - '+data.varian+'</h6>');
-            	$('#date').html('<h6>'+data.stnk+'</h6>');
-                $('#tahun').html('<h6>'+data.years+'</h6>');
-                $('#no_hp').html('<h6>'+data.no_hp+'</h6>');
-
                 if(data.driver_depan == '-'){
                     $('#infodriver').attr("style", "display: none;");
                     $('#infokendaraan').attr("style", "display: none;");

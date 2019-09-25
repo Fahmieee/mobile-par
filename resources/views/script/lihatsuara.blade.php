@@ -29,14 +29,15 @@
 
     	            	no++;
     	                var type = data[no]['type'];
-    	                var name = data[no]['first_name'];
+    	                var first = data[no]['first_name'];
+                        var last = data[no]['last_name'];
     	                var id = data[no]['id'];
     	                var date = data[no]['created_at'];
 
     	                content_data += "<div class='alert alert-default' role='alert'>";
                     	content_data += "<table width='100%'>"; 
                       	content_data += "<tr>";
-                      	content_data += "<td><strong>"+name+"</strong></td>";
+                      	content_data += "<td><strong>"+first+" "+last+"</strong></td>";
                       	content_data += "<td align='right' rowspan='2' id='button_"+id+"'><button onclick='Lihat("+id+");' class='btn btn-sm btn-primary' type='button'>Lihat</button></td>";
                       	content_data += "</tr>";
                       	content_data += "<tr>";
@@ -76,7 +77,7 @@
             	content_data += "<hr>";
                 content_data += "<div class='alert alert-secondary' role='alert'>";
                 content_data += "<strong>"+data.ket+"</strong>";
-                content_data += "<h6>Kategori : "+data.name+"</h6>";
+                content_data += "<h6>Kategori : "+data.jenis+"</h6>";
                 content_data += "</div>";
 
                 $('#detail_'+rnum).html(content_data);

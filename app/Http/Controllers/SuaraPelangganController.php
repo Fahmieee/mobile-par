@@ -32,7 +32,7 @@ class SuaraPelangganController extends Controller
         $drivers_id = $caridriver->driver_id;
 
     	$suarauser = new SuaraPelanggan();
-        $suarauser->jenis_id= $request->jenis_id;
+        $suarauser->jenis= $request->jenis;
         $suarauser->user_id= $request->user_id;
         $suarauser->driver_id= $drivers_id;
         $suarauser->type= $request->type;

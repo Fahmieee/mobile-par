@@ -8,8 +8,11 @@ use App\Users;
 use App\Drivers;
 use App\Units;
 use App\Pairing;
-use App\UnitKilometers;
 use App\Lembur;
+use App\DocDriver;
+use App\DocUnit;
+use App\Trainings;
+use Auth;
 
 class DriverController extends Controller
 {
@@ -18,65 +21,57 @@ class DriverController extends Controller
     	date_default_timezone_set('Asia/Jakarta');
     	$date = date('Y-m-d');
 
-    	return view('content.home.driver.index', compact('date'));
+        $user = Auth::user();
 
-    }
-
-    public function getdata(Request $request)
-    {
-        $getdrivers = Users::where('id', $request->user_id)
+        $getdrivers = Users::where('users.id', $user->id)
         ->first();
 
-        $get = Drivers::where('driver_id', $request->user_id)
+        $getsim = DocDriver::where([
+                ['user_id', '=', $user->id],
+                ['document_id', '=', '1'],
+            ])
         ->first();
 
-        $korlap = Drivers::where('korlap_id', $request->user_id)
+        $getmcu = DocDriver::where([
+                ['user_id', '=', $user->id],
+                ['document_id', '=', '2'],
+            ])
         ->first();
 
-        $pairingin = Pairing::select("first_name","last_name","pairing.id")
-        ->join("users", "pairing.user_id", "=", "users.id")
-        ->where([
-            ['driver_id', '=', $request->user_id],
-            ['status', '=', 'NOT APPROVED'],
-        ])
+        $get = Drivers::where('driver_id', $user->id)
         ->first();
 
-        $getusers = Users::where('id', $get->user_id)
+        $getusers = Users::leftJoin("jabatan", "users.jabatan_id", "=", "jabatan.id")
+        ->leftJoin("wilayah", "users.wilayah_id", "=", "wilayah.id")
+        ->leftJoin("unit_kerja", "users.wilayah_id", "=", "wilayah.id")
+        ->leftJoin("company", "users.company_id", "=", "company.id")
+        ->where('users.id', $get->user_id)
         ->first();
 
         $getunits = Units::where('id', $get->unit_id)
         ->first();
 
-        $arrayNames = array(    
-            'nama_depan' => $getusers ? $getusers->first_name : '-',
-            'nama_belakang' => $getusers ? $getusers->last_name : '-',
-            'driver_depan' => $getdrivers->first_name, 
-            'driver_belakang' => $getdrivers->last_name, 
-            'no_polisi' => $getunits->no_police, 
-            'model' => $getunits->model, 
-            'varian' => $getunits->varian, 
-            'years' => $getunits->years,
-            'stnk' => $getunits->stnk_due_date,
-            'pair' => $pairingin ? 'ada' : 'tidakada',
-            'pair_depan' => $pairingin ? $pairingin->first_name : 'tidakada',
-            'pair_belakang' => $pairingin ? $pairingin->last_name : 'tidakada',
-            'pair_id' => $pairingin ? $pairingin->id : 'tidakada'
-        );
-
-        return response()->json($arrayNames);
-    }
-
-    public function getunitkilometer(Request $request)
-    {
-        $getkm = UnitKilometers::leftJoin("drivers", "unit_kilometers.unit_id", "=", "drivers.unit_id")
-        ->where([
-                ['drivers.driver_id', '=', $request->user_id],
-                ['km_akhir', '!=', null],
+        $getasuransi = DocUnit::where([
+                ['unit_id', '=', $get->unit_id],
+                ['document_id', '=', '3'],
             ])
-        ->get();
+        ->first();
 
-        return response()->json($getkm);
+        $getkeur= DocUnit::where([
+                ['unit_id', '=', $get->unit_id],
+                ['document_id', '=', '4'],
+            ])
+        ->first();
+
+        $getkorlaps = Users::where('id', $get->korlap_id)
+        ->first();
+
+        $gettrainings = Trainings::all();
+
+    	return view('content.home.driver.index', compact('date','getdrivers','getusers','getunits','getkorlaps','getsim','getmcu','getasuransi','getkeur','gettrainings'));
+
     }
+
 
     public function tolakpair(Request $request)
     {

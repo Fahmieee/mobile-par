@@ -19,7 +19,7 @@ class LihatSuaraController extends Controller
 
     public function getsuara(Request $request)
     {
-        $getsuara = SuaraPelanggan::select("suara_user.id","users.first_name","suara_user.created_at","suara_user.type")
+        $getsuara = SuaraPelanggan::select("suara_user.id","users.first_name","users.last_name","suara_user.created_at","suara_user.type")
         ->join("drivers", "suara_user.driver_id", "=", "drivers.driver_id")
         ->join("users", "suara_user.driver_id", "=", "users.id")
         ->where('drivers.korlap_id', $request->user_id)
@@ -32,8 +32,7 @@ class LihatSuaraController extends Controller
 
     public function getsuaradetail(Request $request)
     {
-        $getdetail = SuaraPelanggan::select("ket","jenis_suara.name")
-        ->join("jenis_suara", "suara_user.jenis_id", "=", "jenis_suara.id")
+        $getdetail = SuaraPelanggan::select("ket","jenis")
         ->where('suara_user.id', $request->suara_id)
         ->first();
 

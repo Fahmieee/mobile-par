@@ -11,6 +11,10 @@ use App\Units;
 use App\Clocks;
 use App\JamKerja;
 use App\Lembur;
+use App\Trainings;
+use App\DocDriver;
+use App\DocUnit;
+use Auth;
 
 class ClientController extends Controller
 {
@@ -19,7 +23,45 @@ class ClientController extends Controller
     	date_default_timezone_set('Asia/Jakarta');
     	$date = date('Y-m-d');
 
-    	return view('content.home.client.index', compact('date'));
+        $user = Auth::user();
+
+        $getusers = Users::leftJoin("jabatan", "users.jabatan_id", "=", "jabatan.id")
+        ->leftJoin("wilayah", "users.wilayah_id", "=", "wilayah.id")
+        ->leftJoin("unit_kerja", "users.wilayah_id", "=", "wilayah.id")
+        ->leftJoin("company", "users.company_id", "=", "company.id")
+        ->where('users.id', $user->id)
+        ->first();
+
+        $gettrainings = Trainings::all();
+
+        $get = Drivers::where('user_id', $user->id)
+        ->first();
+
+        $getdrivers = Users::where('users.id', $get->driver_id)
+        ->first();
+
+        $getsim = DocDriver::where([
+                ['user_id', '=', $get->driver_id],
+                ['document_id', '=', '1'],
+            ])
+        ->first();
+
+        $getmcu = DocDriver::where([
+                ['user_id', '=', $get->driver_id],
+                ['document_id', '=', '2'],
+            ])
+        ->first();
+
+        $getunits = Units::where('id', $get->unit_id)
+        ->first();
+
+        $getstnk = DocUnit::where([
+                ['unit_id', '=', $get->unit_id],
+                ['document_id', '=', '5'],
+            ])
+        ->first();
+
+    	return view('content.home.client.index', compact('date','getusers','gettrainings','getdrivers','getsim','getmcu','getunits','getstnk'));
     }
 
     public function getdata(Request $request)
@@ -47,16 +89,7 @@ class ClientController extends Controller
         }
 
         $arrayNames = array(    
-            'nama_depan' => $getusers->first_name,
-            'nama_belakang' => $getusers->last_name,
-            'no_hp' => $getusers->phone,
-            'driver_depan' => $get ? $getdrivers->first_name : '-',
-            'driver_belakang' => $get ? $getdrivers->last_name : '-',
-            'no_polisi' => $get ? $getunits->no_police : '-',
-            'model' => $get ? $getunits->model : '-', 
-            'varian' => $get ? $getunits->varian : '-',
-            'years' => $get ? $getunits->years : '-',
-            'stnk' => $get ? $getunits->stnk_due_date : '-',
+            'driver_depan' => $get ? $getdrivers->first_name : '-',           
             'pair' => $pairingin ? 'ada' : 'tidakada'   
         );
 

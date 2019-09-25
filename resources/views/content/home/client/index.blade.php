@@ -89,33 +89,33 @@
                       <td width="22px" rowspan="6"></td>
                       <td colspan="4"></td>
                       <td rowspan="6" align="right" >
-                        <img src="./assets/content/img/theme/users.png" width="70%">
+                        <img src="./assets/content/img/theme/users.png" width="100%">
                       </td>
                     </tr>
                     <tr>
                       <td colspan="3">
-                        <h5 class="text-black" id="nama_users"><b></b></h5>
+                        <h5><b>{{ $getusers->first_name }} {{ $getusers->last_name }}</b></h5>
                       </td>
                     </tr>
                     <tr>
                       <td><h6>Jabatan</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>Manager HR</h6></td>  
+                      <td width="40%"><h6>{{ $getusers->jabatan_name }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Perusahaan</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>PT Pertamina</h6></td>  
+                      <td><h6>{{ $getusers->company_name }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Unit Kerja</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>MOR 2 - Jakarta</h6></td>  
+                      <td><h6>{{ $getusers->unitkerja_name }} - {{ $getusers->wilayah_name }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>No HP</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>089809809809</h6></td>  
+                      <td><h6>{{ $getusers->phone }}</h6></td>  
                     </tr>
 
                     <tr height="10px">
@@ -139,7 +139,34 @@
                   <table width="100%">
                     <tr>
                       <td style="padding-top: 5px"><h5 class="text-uppercase text-white">PENGEMUDI</h5></td>
-                      <td align="right"><span class="badge badge-dark">DDT</span> <span class="badge badge-light">MCU</span> <span class="badge badge-dark">SVX</span> <span class="badge badge-dark">FA</span> <span class="badge badge-light">FF</span></td>
+                      <td align="right">
+                        @foreach ($gettrainings as $gettraining)
+                          @php
+
+                            $trainingx = DB::table('training_driver')
+                            ->join('trainings', 'training_driver.training_id', '=', 'trainings.id')
+                            ->where([
+                                ['training_driver.user_id', '=', $getdrivers->id],
+                                ['training_driver.training_id', '=', $gettraining->id],
+                            ])
+                            ->first();
+
+                            if ($trainingx){
+
+                                $bedge = 'badge-primary';
+
+                            } else {
+                                
+                                $bedge = 'badge-dark';
+
+                            }
+
+                          @endphp
+
+                           <span class="badge {{ $bedge }}">{{ $gettraining->nick_name }}</span>
+
+                        @endforeach
+                      </td>
                     </tr>
                   </table>
                 </div>
@@ -154,7 +181,7 @@
                     </tr>
                     <tr>
                       <td colspan="3">
-                        <h5 class="text-black" id="nama_drivers"><b>Bayu Rahardjo</b></h5>
+                        <h5><b>{{ $getdrivers->first_name }} {{ $getdrivers->last_name }}</b></h5>
                       </td>
                     </tr>
                     <tr>
@@ -165,25 +192,23 @@
                     <tr>
                       <td><h6>Masa SIM</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>3 Oktober 2019</h6></td>  
+                      <td><h6>{{ date('d F Y', strtotime($getsim->exp_date)) }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>No HP</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>089809809809</h6></td>  
+                      <td><h6>{{ $getdrivers->phone }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Lembur</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>6 Jam / 14 Jam</h6></td>  
+                      <td><h6>6 Jam / 40 Jam</h6></td>  
                     </tr>
 
                     <tr height="10px">
                       <td colspan="4"></td>
                     </tr>
-                    
-                    
-                    
+
                   </table>
                 </div>
               </div>
@@ -208,34 +233,34 @@
                       <td width="22px" rowspan="6"></td>
                       <td colspan="4"></td>
                       <td rowspan="6" align="right" >
-                        <img src="./assets/content/img/theme/cars.png" width="75%">
+                        <img src="./assets/content/img/theme/cars.png" width="100%">
                       </td>
                     </tr>
                     <tr>
                       <td colspan="3">
-                        <h5 class="text-black" id="nopol"><b></b></h5>
+                        <h5><b>{{ $getunits->no_police }}</b></h5>
                       </td>  
                     </tr>
                     <tr>
                       <td><h6>Model</h6></td>
                       <td><h6>:</h6></td>
-                      <td id="model"></td>  
+                      <td><h6>{{ $getunits->model }} {{ $getunits->varian }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Tahun</h6></td>
                       <td><h6>:</h6></td>
-                      <td id="tahun"></td>  
+                      <td><h6>{{ $getunits->years }}</h6></td>  
                     </tr>
                     <tr>
-                      <td><h6>STNK</h6></td>
+                      <td width="20%"><h6>Masa STNK</h6></td>
                       <td><h6>:</h6></td>
-                      <td id="date"></td>  
+                      <td width="40%"><h6>{{ date('d F Y', strtotime($getstnk->exp_date)) }}</h6></td>  
                     </tr>
 
                     <tr>
                       <td><h6>Service</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>3000 Km / 10.000 Km</h6></td>  
+                      <td><h6>{{ $getunits->mileage }} Km / 10.000 Km</h6></td>  
                     </tr>
 
                     <tr height="10px">
