@@ -5365,8 +5365,13 @@ input[type="button"].btn-block {
 }
 
 .badge-primary {
-  color: #2643e9;
+  color: #2566AF;
   background-color: rgba(203, 210, 246, 0.5);
+}
+
+.badge-primary2 {
+  color: #ffffff;
+  background-color: rgba(1,102,181, 0.8);
 }
 
 .badge-primary[href]:hover,

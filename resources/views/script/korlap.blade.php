@@ -19,4 +19,10 @@
 
     });
 
+    $('#contoh').on('click', function () {
+
+        $('#contohss').modal('show');
+
+    });
+
 </script>

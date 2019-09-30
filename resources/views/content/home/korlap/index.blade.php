@@ -31,11 +31,7 @@
                             <i class="fas fa-bullhorn" style="color: #0166b5"></i>
                         </div>
                       </td>
-                      <td align="center" width="25%">
-                        <div id="approve" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                            <i class="fas fa-check" style="color: #0166b5"></i>
-                        </div>
-                      </td>
+                      
                     </tr>
                     <tr>
                        <td height="10px" colspan="7"></td> 
@@ -48,11 +44,9 @@
                         <h6 class="text-uppercase text-white ls-1 mb-1">Penilaian Pengemudi</h6>
                       </td>
                       <td align="center">
-                        <h6 class="text-uppercase text-white ls-1 mb-1">Keluhan</h6>
+                        <h6 class="text-uppercase text-white ls-1 mb-1">Suara User</h6>
                       </td>
-                      <td align="center">
-                        <h6 class="text-uppercase text-white ls-1 mb-1">Approve</h6>
-                      </td>
+                      
                     </tr>
                   </table>
                 </div>
@@ -68,63 +62,249 @@
                   <h6 class="text-uppercase text-white ls-1 mb-1">Notifikasi</h6>
                 </div>
                 <div class="card-body bg-blue-par2" id="menu_icons" style="display: block;">
-                  <button class="btn btn-sm btn-success" type="button">PTC</button>
+                  <button class="btn btn-sm btn-secondary" type="button">PTC</button>
                   <button class="btn btn-sm btn-secondary" type="button">DCU</button>
                   <button class="btn btn-sm btn-secondary" type="button">DOC</button>
-                  <button class="btn btn-sm btn-secondary" type="button">LAINNYA</button>
-                  <br><br>
+                  <button class="btn btn-sm btn-success" type="button">LAINNYA</button>
+                  <br><hr>
+                  <!-- <hr>
 
-                  <div class="alert2 alert-secondary" role="alert">
-                    <table width="100%" border="0"> 
-                      <tr>
-                        <td width="20%" rowspan="2">
-                          <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
-                            <i class="fas fa-car" style="color: #ffffff"></i>
+                  <button class="btn btn-sm btn-danger" type="button">HIGH</button>
+                  <button class="btn btn-sm btn-secondary" type="button">MEDIUM</button>
+                  <button class="btn btn-sm btn-secondary" type="button">LOW</button>
+                  <br><br> -->
+
+                  <div id="high" style="display: block;">
+
+                    <div class="alert2 alert-secondary" role="alert">
+                      <table width="100%" border="0"> 
+                        <tr>
+                          <td width="20%" rowspan="3">
+                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                              <i class="fas fa-file" style="color: #ffffff"></i>
+                          </div>
+                          </td>
+                          <td><h5><b>Agus Budi Sudarsono</b></h5></td>
+                        </tr>
+                        <tr>
+                          <td><h6>Driver sudah hampir menggunakan Lembur nya</h6></td>
+                        </tr>
+                      </table>  
+                      <hr>
+                      <div class="progress-wrapper">
+                        <div class="progress-info">
+                          <div class="progress-label">
+                            <span>Batas Lembur</span>
+                          </div>
+                          <div class="progress-percentage">
+                            <span class="text-lembur">35 Jam / 40 Jam</span>
+                          </div>
                         </div>
-                        </td>
-                        <td><h5><b>Agus Budi Sudarsono</b></h5></td>
-                      </tr>
-                      <tr>
-                        <td align="justify"><h6>Perlengkapan Kendaraan. Ban Lecet</h6></td>
-                      </tr>
+                        <div class="progress">
+                          <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 85%;"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div id="high" style="display: none;">
+
+                    <div class="alert2 alert-secondary" role="alert">
+                      <table width="100%" border="0"> 
+                        <tr>
+                          <td width="20%" rowspan="3">
+                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                              <i class="fas fa-file" style="color: #ffffff"></i>
+                          </div>
+                          </td>
+                          <td colspan="2"><h5><b>Agus Budi Sudarsono</b></h5></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><h6>Dokument KEUR Driver Akan segera Habis, Mohon untuk segera diperpanjang</h6></td>
+                        </tr>
+                        <tr>
+                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> Exp : 2019-09-21</span></td>
+                          <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-clock"></i> 12 Hari Lagi</span></td>
+                        </tr> 
+                      </table>  
+                    </div>
+                    
+                    <div class="alert2 alert-secondary" role="alert">
+                      <table width="100%" border="0"> 
+                        <tr>
+                          <td width="20%" rowspan="3">
+                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                              <i class="fas fa-file" style="color: #ffffff"></i>
+                          </div>
+                          </td>
+                          <td colspan="2"><h5><b>Bambang Prayitno</b></h5></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><h6>Dokument Asuransi Driver Akan segera Habis, Mohon untuk segera diperpanjang</h6></td>
+                        </tr>
+                        <tr>
+                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> Exp : 2019-09-21</span></td>
+                          <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-clock"></i> 22 Hari Lagi</span></td>
+                        </tr> 
+                      </table>  
+                    </div>
+
+                  </div>
+
+                  <div id="high" style="display: none;">
+
+                    <div class="alert2 alert-secondary" role="alert">
+                      <table width="100%" border="0"> 
+                        <tr>
+                          <td width="20%" rowspan="4">
+                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                              <i class="fas fa-medkit" style="color: #ffffff"></i>
+                            </div>
+                          </td>
+
+                          <td><h5><b>Agus Budi Sudarsono</b></h5></td>
+                        </tr>
+                        <tr>
+                          <td><h6>Kondisi Driver Tidak memungkinkan untuk Melakukan Perjalanan</h6></td>
+                        </tr>
+                      </table>
+                      <hr>
+                      <div class="alert2 alert-primary" role="alert">
+                        <table width="100%" border="0"> 
+                          <tr>
+                            <td align="center"><h6 class="text-white">Suhu Badan</h6></td>
+                            <td align="center"><h6 class="text-white">Tekanan Darah</h6></td>
+                          </tr>
+                          <tr>
+                            <td align="center"><h2 class="text-white">30 C</h2><h6 class="text-white">Normal</h6></td>
+                            <td align="center"><h2 class="text-white">120/90 </h2><h6 class="text-white">High Blood Preasure</h6></td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                    
+                    <div class="alert2 alert-secondary" role="alert">
+                      <table width="100%" border="0"> 
+                        <tr>
+                          <td width="20%" rowspan="4">
+                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                              <i class="fas fa-medkit" style="color: #ffffff"></i>
+                            </div>
+                          </td>
+
+                          <td><h5><b>Sujatmiko Prayoga</b></h5></td>
+                        </tr>
+                        <tr>
+                          <td><h6>Kondisi Driver Tidak memungkinkan untuk Melakukan Perjalanan</h6></td>
+                        </tr>
+                      </table>
+                      <hr>
+                      <div class="alert2 alert-primary" role="alert">
+                        <table width="100%" border="0"> 
+                          <tr>
+                            <td align="center"><h6 class="text-white">Suhu Badan</h6></td>
+                            <td align="center"><h6 class="text-white">Tekanan Darah</h6></td>
+                          </tr>
+                          <tr>
+                            <td align="center"><h2 class="text-white">30 C</h2><h6 class="text-white">Sakit</h6></td>
+                            <td align="center"><h2 class="text-white">130/100 </h2><h6 class="text-white">High Blood Preasure</h6></td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="medium" style="display: none;">
+                    <div class="alert2 alert-secondary" role="alert">
+                      <table width="100%" border="0"> 
+                        <tr>
+                          <td width="20%" rowspan="3">
+                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                              <i class="fas fa-car" style="color: #ffffff"></i>
+                          </div>
+                          </td>
+                          <td colspan="3"><h5><b>Mahfud Zulfikar</b></h5></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><h6>Pintu Depan / Belakang Sisi Kanan - Baret  (Bagian : Exterior) </h6></td>
+                        </tr>
+                        <tr>
+                          <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 2019-09-21</span></td>
+                          <td><span class="badge badge-pill badge-warning" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> MEDIUM</span></td>
+                          <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-clock"></i> 2 Hari</span></td>
+                        </tr> 
+                      </table>  
                       
-                    </table>  
+                    </div>
+                    
+                    <div class="alert2 alert-secondary" role="alert">
+                      <table width="100%" border="0"> 
+                        <tr>
+                          <td width="20%" rowspan="3">
+                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                              <i class="fas fa-car" style="color: #ffffff"></i>
+                          </div>
+                          </td>
+                          <td colspan="3"><h5><b>Agus Budi Sudarsono</b></h5></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><h6>Fender Depan Sisi Kanan - Baret  (Bagian : Exterior)</h6></td>
+                        </tr>
+                        <tr>
+                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 2019-09-21</span></td>
+                          <td><span class="badge badge-pill badge-warning" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> MEDIUM</span></td>
+                          <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-clock"></i> 2 Hari</span></td>
+                        </tr> 
+                      </table>  
+                    </div>
+                  </div>
+
+                  <div id="medium" style="display: none;">
+                    <div class="alert2 alert-secondary" role="alert">
+                      <table width="100%" border="0"> 
+                        <tr>
+                          <td width="20%" rowspan="3">
+                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                              <i class="fas fa-car" style="color: #ffffff"></i>
+                          </div>
+                          </td>
+                          <td colspan="3"><h5><b>Mahfud Zulfikar</b></h5></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><h6>Sarung Jok Belakang - Terpasang Rapi / Bersih (Bagian : Perlengkapan Kendaraan) </h6></td>
+                        </tr>
+                        <tr>
+                          <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 2019-09-21</span></td>
+                          <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> LOW</span></td>
+                          <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-clock"></i> 4 Hari</span></td>
+                        </tr> 
+                      </table>  
+                      
+                    </div>
+                    
+                    <div class="alert2 alert-secondary" role="alert">
+                      <table width="100%" border="0"> 
+                        <tr>
+                          <td width="20%" rowspan="3">
+                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                              <i class="fas fa-car" style="color: #ffffff"></i>
+                          </div>
+                          </td>
+                          <td colspan="3"><h5><b>Agus Budi Sudarsono</b></h5></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3"><h6>Kemoceng Tidak Ada (Bagian : Perlengkapan Kendaraan)</h6></td>
+                        </tr>
+                        <tr>
+                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 2019-09-21</span></td>
+                          <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> LOW</span></td>
+                          <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-clock"></i> 2 Hari</span></td>
+                        </tr> 
+                      </table>  
+                    </div>
                   </div>
                   
-                  <div class="alert2 alert-secondary" role="alert">
-                    <table width="100%" border="0"> 
-                      <tr>
-                        <td width="20%" rowspan="2">
-                          <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
-                            <i class="fas fa-child" style="color: #ffffff"></i>
-                        </div>
-                        </td>
-                        <td><h5><b>Agus Budi Sudarsono</b></h5></td>
-                      </tr>
-                      <tr>
-                        <td align="justify"><h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h6></td>
-                      </tr>
-                      
-                    </table>  
-                  </div>
-
-                  <div class="alert2 alert-secondary" role="alert">
-                    <table width="100%" border="0"> 
-                      <tr>
-                        <td width="20%" rowspan="2">
-                          <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
-                            <i class="fas fa-users" style="color: #ffffff"></i>
-                        </div>
-                        </td>
-                        <td><h5><b>Agus Budi Sudarsono</b></h5></td>
-                      </tr>
-                      <tr>
-                        <td align="justify"><h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h6></td>
-                      </tr>
-                      
-                    </table>  
-                  </div>
-
                 </div>
               </div>
             </div>    
@@ -183,8 +363,8 @@
             </div>    
           </div>
 
+      @include('content.home.korlap.modal')
       @include('layout.contentfooter')
-
       @include('script.korlap')
 </body>
 

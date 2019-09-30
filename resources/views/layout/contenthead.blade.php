@@ -62,7 +62,7 @@
             </div>
             <a href="profile" class="dropdown-item">
               <i class="ni ni-single-02"></i>
-              <span>Profile Saya</span>
+              <span>Profil Saya</span>
             </a>
             <a href="ubahpassword" class="dropdown-item">
               <i class="ni ni-settings-gear-65"></i>

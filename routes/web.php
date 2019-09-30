@@ -45,9 +45,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	    return view('content.home.index');
 	});
 
-	Route::get('/dcu', function () {
-	    return view('content.dcu.index');
-	});
+	Route::get('dcu', 'DCUController@index');
 
 	Route::get('driver', 'DriverController@index');
 	Route::post('driver/terimapair', 'DriverController@terimapair')->name('TerimaPair');
@@ -80,6 +78,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::get('korlap', 'KorlapController@index');
 	Route::get('lihatdriver', 'KorlapController@lihatdriver');
 	Route::post('korlap/lihatnilaidriver', 'KorlapController@getnilaidriver')->name('LihatNilaiDriver');
+	Route::get('lihatkendaraan', 'KorlapController@lihatkendaraan');
 
 	Route::get('approve', 'ApproveController@index');
 	Route::post('approve/get', 'ApproveController@getdata')->name('GetApprove');

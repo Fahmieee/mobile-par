@@ -5,7 +5,7 @@
         <div class="col">
           <button type="button" id="back" class='btn btn-sm btn-success'>Back</button>
             <div class="ct-page-title">
-              <h1 class="ct-title" id="content">Penilaian Diver</h1><span class="badge badge-primary"></span>
+              <h1 class="ct-title" id="content">Penilaian Kendaraan</h1><span class="badge badge-primary"></span>
             </div>
             <select class="form-control">
               <option>Periode Bulan September</option>

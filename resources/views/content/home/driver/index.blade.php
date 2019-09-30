@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="container-fluid pb-4 pt-5 pt-md-8">
          
-          <div class="alert2 alert-danger fade show" role="alert">
+          <!-- <div class="alert2 alert-danger fade show" role="alert">
             <table width="100%">
               <tr>
                 <td align="left"><span class="alert-inner--text"><h6 class="text-white"> Asuransi Anda akan segera Berakhir!</h6></span></td>
@@ -18,7 +18,7 @@
                 <td align="right"><i class="fa fa-times"></i></td>
               </tr>       
             </table>
-          </div>
+          </div> -->
           <div class="row" id="approve_driver" style="display: none;">
             <div class="col">
               <div class="card shadow">

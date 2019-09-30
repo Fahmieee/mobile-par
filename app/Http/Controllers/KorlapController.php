@@ -35,6 +35,13 @@ class KorlapController extends Controller
 
     }
 
+    public function lihatkendaraan()
+    {
+        
+        return view('content.lihat_kendaraan.index', compact('date'));
+
+    }
+
     public function getnilaidriver(Request $request)
     {
         $getprof = Drivers::join("users", "drivers.driver_id", "=", "users.id")
