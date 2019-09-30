@@ -45,6 +45,14 @@ Route::group(['middleware' => 'auth:user'], function(){
 	    return view('content.home.index');
 	});
 
+	Route::get('/monitoring', function () {
+	    return view('content.monitoring.index');
+	});
+
+	Route::get('/detailmonitoring', function () {
+	    return view('content.monitoring.detail');
+	});
+
 	Route::get('dcu', 'DCUController@index');
 
 	Route::get('driver', 'DriverController@index');

@@ -37,10 +37,10 @@
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->
-      <button class="navbar-toggler" id="darurat" type="button">
+      <!-- <button class="navbar-toggler" id="darurat" type="button">
         <i class="fa fa-exclamation-triangle"></i>
-        <!-- <span class="ni ni-notification-70"></span> -->
-      </button>
+      </button> -->
+      <img src="./assets/content/img/theme/callcenter.png" width="13%" id="darurat">
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="#">
         <img src="./assets/login/images/par2.png" class="navbar-brand-img">
