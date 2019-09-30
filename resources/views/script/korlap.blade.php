@@ -39,6 +39,7 @@
         $('#ptcbtn').attr('style', 'display: block;');
         $('.inidcu').attr('style', 'display: none;');
         $('.inidoc').attr('style', 'display: none;');
+        $('.inilain').attr('style', 'display: none;');
 
         $('#ptchigh').attr('style', 'display: block;');
 
