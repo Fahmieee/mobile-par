@@ -14,7 +14,7 @@
             </div>
           </div>
         
-      </div>
+      </div> 
       
 <!--       @include('content.history.modal') -->
       @include('layout.contentfooter')
