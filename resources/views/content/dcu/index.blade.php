@@ -43,26 +43,26 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">16-09-2019</th>
-                      <th scope="row"><button type="button" class='btn btn-sm btn-success'>20 C</button></th>
-                      <th scope="row"><button type="button" class='btn btn-sm btn-warning'>90 /120 mmHg</button></th>
-                    </tr>
-                    <tr>
-                      <th scope="row">13-09-2019</th>
-                      <th scope="row"><button type="button" class='btn btn-sm btn-yellow'>29 C</button></th>
-                      <th scope="row"><button type="button" class='btn btn-sm btn-success'>90 /80 mmHg</button></th>
-                    </tr>
-                    <tr>
-                      <th scope="row">12-09-2019</th>
-                      <th scope="row"><button type="button" class='btn btn-sm btn-success'>25 C</button></th>
-                      <th scope="row"><button type="button" class='btn btn-sm btn-danger'>80 /150 mmHg</button></th>
-                    </tr>
-                    <tr>
-                      <th scope="row">11-09-2019</th>
-                      <th scope="row"><button type="button" class='btn btn-sm btn-success'>21 C</button></th>
-                      <th scope="row"><button type="button" class='btn btn-sm btn-yellow'>80 /100 mmHg</button></th>
-                    </tr>
+                    @foreach ($getdcus as $getdcu)
+                      @php
+
+                      if($getdcu->suhu > 36){
+
+                        $btn = "btn-danger";
+
+                      } else {
+
+                        $btn = "btn-success";
+
+                      }
+                      @endphp
+                      <tr>
+                        <th scope="row">{{ $getdcu->date }}</th>
+                        <th scope="row"><button type="button" class='btn btn-sm {{ $btn }}'>{{ $getdcu->suhu }} C</button></th>
+                        <th scope="row"><button type="button" class='btn btn-sm btn-warning'>{{ $getdcu->darah }} mmHg</button></th>
+                      </tr>
+
+                    @endforeach
                   </tbody>
                 </table>
               </div>
@@ -72,9 +72,9 @@
     </div>
   </div>
       
-      @include('content.home.driver.modal')
+      @include('content.dcu.modal')
       @include('layout.contentfooter')
-      @include('script.driver')
+      @include('script.dcu')
 
 </body>
 

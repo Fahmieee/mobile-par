@@ -16,15 +16,15 @@
               <div class="alert alert-primary" role="alert">
                 <table width="100%" border="0"> 
                   <tr>
-                    <td width="25%" rowspan="3"><img src="./assets/content/img/theme/team-1-800x800.jpg" width="100%" class="rounded-circle"></td>
+                    <td width="25%" rowspan="3"><img src="./assets/content/img/theme/mobil.jpg" width="100%" class="rounded-circle"></td>
                     <td width="5%" rowspan="3"></td>
-                    <td><h5 class="text-white">Agus Budi Sudarsono</h5></td>
+                    <td><h5 class="text-white">AVANZA - B 6789 KIL</h5></td>
                     <td rowspan="3">
                       <h1 class="text-white">4.8</h1>
                     </td>
                   </tr>
                   <tr>
-                    <td><h6 class="text-white">AVANZA - B 6789 KIL</h6></td>
+                    <td><h6 class="text-white">Agung Prayoga</h6></td>
                   </tr>
                   <tr>
                     <td>
@@ -41,15 +41,15 @@
               <div class="alert alert-primary" role="alert">
                 <table width="100%" border="0"> 
                   <tr>
-                    <td width="25%" rowspan="3"><img src="./assets/content/img/theme/team-1-800x800.jpg" width="100%" class="rounded-circle"></td>
+                    <td width="25%" rowspan="3"><img src="./assets/content/img/theme/mobil.jpg" width="100%" class="rounded-circle"></td>
                     <td width="5%" rowspan="3"></td>
-                    <td><h5 class="text-white">Ahmad Hasani</h5></td>
+                    <td><h5 class="text-white">AVANZA - B 8890 KIS</h5></td>
                     <td rowspan="3">
                       <h1 class="text-white">4.7</h1>
                     </td>
                   </tr>
                   <tr>
-                    <td><h6 class="text-white">AVANZA - B 8890 KIS</h6></td>
+                    <td><h6 class="text-white">Ahmad Hasani</h6></td>
                   </tr>
                   <tr>
                     <td>
@@ -67,15 +67,15 @@
             <div class="alert alert-primary" role="alert">
                 <table width="100%" border="0"> 
                   <tr>
-                    <td width="25%" rowspan="3"><img src="./assets/content/img/theme/team-1-800x800.jpg" width="100%" class="rounded-circle"></td>
+                    <td width="25%" rowspan="3"><img src="./assets/content/img/theme/mobil.jpg" width="100%" class="rounded-circle"></td>
                     <td width="5%" rowspan="3"></td>
-                    <td><h5 class="text-white">Darmadi Wicaksono</h5></td>
+                    <td><h5 class="text-white">AVANZA - B 9900 KIV</h5></td>
                     <td rowspan="3">
                       <h1 class="text-white">4.5</h1>
                     </td>
                   </tr>
                   <tr>
-                    <td><h6 class="text-white">AVANZA - B 9900 KIV</h6></td>
+                    <td><h6 class="text-white">Darmadi Wicaksono</h6></td>
                   </tr>
                   <tr>
                     <td>
@@ -92,15 +92,15 @@
               <div class="alert alert-primary" role="alert">
                 <table width="100%" border="0"> 
                   <tr>
-                    <td width="25%" rowspan="3"><img src="./assets/content/img/theme/team-1-800x800.jpg" width="100%" class="rounded-circle"></td>
+                    <td width="25%" rowspan="3"><img src="./assets/content/img/theme/mobil.jpg" width="100%" class="rounded-circle"></td>
                     <td width="5%" rowspan="3"></td>
-                    <td><h5 class="text-white">Asman Bayu Sotejo</h5></td>
+                    <td><h5 class="text-white">AVANZA - B 9900 POC</h5></td>
                     <td rowspan="3">
                       <h1 class="text-white">4.3</h1>
                     </td>
                   </tr>
                   <tr>
-                    <td><h6 class="text-white">AVANZA - B 9900 KIV</h6></td>
+                    <td><h6 class="text-white">Asman Bayu Sotejo</h6></td>
                   </tr>
                   <tr>
                     <td>

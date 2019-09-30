@@ -4,14 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Users;
-use App\Drivers;
-use App\Units;
-use App\Pairing;
-use App\Lembur;
-use App\DocDriver;
-use App\DocUnit;
-use App\Trainings;
+use App\MedicalCheckup;
 use Auth;
 
 class DCUController extends Controller
@@ -23,13 +16,12 @@ class DCUController extends Controller
 
         $user = Auth::user();
 
-        $get = Drivers::where('driver_id', $user->id)
-        ->first();
+        $getdcus = MedicalCheckup::where('user_id', $user->id)
+        ->limit(10)
+        ->orderBy('id', 'desc')
+        ->get();
 
-        $getunits = Units::where('id', $get->unit_id)
-        ->first();
-
-    	return view('content.dcu.index', compact('date','getdrivers','getusers','getunits','getkorlaps','getsim','getmcu','getasuransi','getkeur','gettrainings'));
+    	return view('content.dcu.index', compact('date','getdcus'));
 
     }
 }

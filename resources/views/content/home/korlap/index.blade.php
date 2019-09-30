@@ -31,7 +31,11 @@
                             <i class="fas fa-bullhorn" style="color: #0166b5"></i>
                         </div>
                       </td>
-                      
+                      <td align="center" width="25%">
+                        <div id="keluhan" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                            <i class="fas fa-paper-plane" style="color: #0166b5"></i>
+                        </div>
+                      </td>
                     </tr>
                     <tr>
                        <td height="10px" colspan="7"></td> 
@@ -45,6 +49,9 @@
                       </td>
                       <td align="center">
                         <h6 class="text-uppercase text-white ls-1 mb-1">Suara User</h6>
+                      </td>
+                      <td align="center">
+                        <h6 class="text-uppercase text-white ls-1 mb-1">Monitoring</h6>
                       </td>
                       
                     </tr>
@@ -62,26 +69,56 @@
                   <h6 class="text-uppercase text-white ls-1 mb-1">Notifikasi</h6>
                 </div>
                 <div class="card-body bg-blue-par2" id="menu_icons" style="display: block;">
-                  <button class="btn btn-sm btn-secondary" type="button">PTC</button>
-                  <button class="btn btn-sm btn-secondary" type="button">DCU</button>
-                  <button class="btn btn-sm btn-secondary" type="button">DOC</button>
-                  <button class="btn btn-sm btn-success" type="button">LAINNYA</button>
+                  <button id="ptc" class="btn btn-sm btn-success menus" type="button">PTC</button>
+                  <button id="dcu" class="btn btn-sm btn-secondary menus" type="button">DCU</button>
+                  <button id="doc" class="btn btn-sm btn-secondary menus" type="button">DOC</button>
+                  <button id="lainnya" class="btn btn-sm btn-secondary menus" type="button">LAINNYA</button>
                   <br><hr>
-                  <!-- <hr>
+                  <div id="ptcbtn" style="display: block;">
+                  <button class="btn btn-sm btn-danger tombol" id="btnhigh" type="button">HIGH</button>
+                  <button class="btn btn-sm btn-secondary tombol" id="btnmedium" type="button">MEDIUM</button>
+                  <button class="btn btn-sm btn-secondary tombol" id="btnlow" type="button">LOW</button>
+                  <br><br>
+                  </div>
 
-                  <button class="btn btn-sm btn-danger" type="button">HIGH</button>
-                  <button class="btn btn-sm btn-secondary" type="button">MEDIUM</button>
-                  <button class="btn btn-sm btn-secondary" type="button">LOW</button>
-                  <br><br> -->
-
-                  <div id="high" style="display: block;">
+                  <div id="contentlain" class="inilain" style="display: none;">
 
                     <div class="alert2 alert-secondary" role="alert">
                       <table width="100%" border="0"> 
                         <tr>
                           <td width="20%" rowspan="3">
                             <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
-                              <i class="fas fa-file" style="color: #ffffff"></i>
+                              <i class="fas fa-child" style="color: #ffffff"></i>
+                          </div>
+                          </td>
+                          <td><h5><b>Irsyad Bahrudin</b></h5></td>
+                        </tr>
+                        <tr>
+                          <td><h6>Driver sudah hampir menggunakan Lembur nya</h6></td>
+                        </tr>
+                      </table>  
+                      <hr>
+                      <div class="progress-wrapper">
+                        <div class="progress-info">
+                          <div class="progress-label">
+                            <span>Batas Lembur</span>
+                          </div>
+                          <div class="progress-percentage">
+                            <span class="text-lembur">38 Jam / 40 Jam</span>
+                          </div>
+                        </div>
+                        <div class="progress">
+                          <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="alert2 alert-secondary" role="alert">
+                      <table width="100%" border="0"> 
+                        <tr>
+                          <td width="20%" rowspan="3">
+                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                              <i class="fas fa-child" style="color: #ffffff"></i>
                           </div>
                           </td>
                           <td><h5><b>Agus Budi Sudarsono</b></h5></td>
@@ -108,7 +145,7 @@
 
                   </div>
 
-                  <div id="high" style="display: none;">
+                  <div id="contentdoc" class="inidoc" style="display: none;">
 
                     <div class="alert2 alert-secondary" role="alert">
                       <table width="100%" border="0"> 
@@ -152,7 +189,7 @@
 
                   </div>
 
-                  <div id="high" style="display: none;">
+                  <div id="contentdcu" class="inidcu" style="display: none;">
 
                     <div class="alert2 alert-secondary" role="alert">
                       <table width="100%" border="0"> 
@@ -215,7 +252,50 @@
                     </div>
                   </div>
 
-                  <div id="medium" style="display: none;">
+                   <div id="ptchigh" class="iniptc" style="display: block;">
+                    <div class="alert2 alert-secondary contoh" role="alert">
+                      <table width="100%" border="0"> 
+                        <tr>
+                          <td width="20%" rowspan="3">
+                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                              <i class="fas fa-car" style="color: #ffffff"></i>
+                          </div>
+                          </td>
+                          <td colspan="2"><h5><b>Mahfud Zulfikar</b></h5></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><h6>Air / Resevoir Wiper - Habis (Bagian Wiper) </h6></td>
+                        </tr>
+                        <tr>
+                          <td  width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 2019-09-21</span></td>
+                          <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> HIGH</span></td>
+                        </tr> 
+                      </table>  
+                      
+                    </div>
+                    
+                    <div class="alert2 alert-secondary contoh" role="alert">
+                      <table width="100%" border="0"> 
+                        <tr>
+                          <td width="20%" rowspan="3">
+                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                              <i class="fas fa-car" style="color: #ffffff"></i>
+                          </div>
+                          </td>
+                          <td colspan="2"><h5><b>Agus Budi Sudarsono</b></h5></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><h6>Fender Depan Sisi Kanan - Baret  (Bagian : Exterior)</h6></td>
+                        </tr>
+                        <tr>
+                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 2019-09-21</span></td>
+                          <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> HIGH</span></td>
+                        </tr> 
+                      </table>  
+                    </div>
+                  </div>
+
+                  <div id="ptcmedium" class="iniptc" style="display: none;">
                     <div class="alert2 alert-secondary" role="alert">
                       <table width="100%" border="0"> 
                         <tr>
@@ -260,7 +340,7 @@
                     </div>
                   </div>
 
-                  <div id="medium" style="display: none;">
+                  <div id="ptclow" class="iniptc" style="display: none;">
                     <div class="alert2 alert-secondary" role="alert">
                       <table width="100%" border="0"> 
                         <tr>
