@@ -25,6 +25,12 @@
 
     });
 
+    $('#monitoring').on('click', function () {
+
+        setTimeout(function(){ window.location.href = 'monitoring'; }, 10);
+
+    });
+
     $('.contoh').on('click', function () {
 
         $('#contohss').modal('show');

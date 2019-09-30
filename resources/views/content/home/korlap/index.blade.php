@@ -32,7 +32,7 @@
                         </div>
                       </td>
                       <td align="center" width="25%">
-                        <div id="keluhan" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                        <div id="monitoring" class="icon icon-shape bg-white text-white rounded-circle shadow">
                             <i class="fas fa-paper-plane" style="color: #0166b5"></i>
                         </div>
                       </td>

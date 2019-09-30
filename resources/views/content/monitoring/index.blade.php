@@ -35,7 +35,7 @@
                     <div class="progress-wrapper">
                       <div class="progress-info">
                         <div class="progress-percentage">
-                          <span class="text-lembur text-white">2019-09-29</span>
+                          <span class="text-lembur text-white">2019-09-29 (22/50)</span>
                         </div>
                       </div>
                       <div class="progress">
@@ -55,7 +55,7 @@
                     <div class="progress-wrapper">
                       <div class="progress-info">
                         <div class="progress-percentage">
-                          <span class="text-lembur text-white">2019-09-28</span>
+                          <span class="text-lembur text-white">2019-09-28 (21/50)</span>
                         </div>
                       </div>
                       <div class="progress">
@@ -75,7 +75,7 @@
                     <div class="progress-wrapper">
                       <div class="progress-info">
                         <div class="progress-percentage">
-                          <span class="text-lembur text-white">2019-09-27</span>
+                          <span class="text-lembur text-white">2019-09-27 (20/50)</span>
                         </div>
                       </div>
                       <div class="progress">
