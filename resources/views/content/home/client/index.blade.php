@@ -74,6 +74,28 @@
           </div>
           <br>
           <div class="row">
+            <div class="col-12">
+              <div class="alert2 alert-success" role="alert">
+                <table width="100%" border="0"> 
+                  <tr>
+                    <td colspan="2"> </td>
+                  </tr>
+                  <tr>
+                    <td width="23%" rowspan="3">
+                      <div class="icon icon-shape bg-white text-white rounded-circle shadow">
+                        <i class="fas fa-medkit" style="color: #92C04F"></i>
+                    </div>
+                    </td>
+                    <td><h3 class="text-white"><b>Driver SEHAT</b></h3></td>
+                  </tr>
+                  <tr>
+                    <td><h6 class="text-white">Driver sudah Melakukan DCU</h6></td>
+                  </tr>
+                </table>  
+              </div>
+            </div>    
+          </div>
+          <div class="row">
             <div class="col">
               <div class="card shadow">
                 <div class="card-header bg-green-par">
@@ -192,7 +214,7 @@
                     <tr>
                       <td><h6>Masa SIM</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>{{ date('d F Y', strtotime($getsim->exp_date)) }}</h6></td>  
+                      <td><h6>{{ date('d M Y', strtotime($getsim->exp_date)) }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>No HP</h6></td>
@@ -202,7 +224,7 @@
                     <tr>
                       <td><h6>Lembur</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>6 Jam / 40 Jam</h6></td>  
+                      <td><h6>6 Jam / 40 Jam (30%)</h6></td>  
                     </tr>
 
                     <tr height="10px">
@@ -254,13 +276,13 @@
                     <tr>
                       <td width="20%"><h6>Masa STNK</h6></td>
                       <td><h6>:</h6></td>
-                      <td width="40%"><h6>{{ date('d F Y', strtotime($getstnk->exp_date)) }}</h6></td>  
+                      <td width="40%"><h6>{{ date('d M Y', strtotime($getstnk->exp_date)) }}</h6></td>  
                     </tr>
 
                     <tr>
                       <td><h6>Service</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>{{ $getunits->mileage }} Km / 10.000 Km</h6></td>  
+                      <td><h6>{{ $getunits->mileage }} Km / 10000 Km (30%)</h6></td>  
                     </tr>
 
                     <tr height="10px">

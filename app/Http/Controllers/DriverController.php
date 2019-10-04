@@ -43,7 +43,7 @@ class DriverController extends Controller
 
         $getusers = Users::leftJoin("jabatan", "users.jabatan_id", "=", "jabatan.id")
         ->leftJoin("wilayah", "users.wilayah_id", "=", "wilayah.id")
-        ->leftJoin("unit_kerja", "users.wilayah_id", "=", "wilayah.id")
+        ->leftJoin("unit_kerja", "wilayah.unitkerja_id", "=", "unit_kerja.id")
         ->leftJoin("company", "users.company_id", "=", "company.id")
         ->where('users.id', $get->user_id)
         ->first();

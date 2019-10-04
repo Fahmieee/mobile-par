@@ -192,6 +192,7 @@
                             <td><input type="file" id="file1" name="file1" class="form-control medical"></td>
                         </tr>
                     </table>
+                    
                 </div>
                 
                 <div class="modal-footer">

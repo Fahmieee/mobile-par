@@ -94,7 +94,7 @@
                           <td><h5><b>Irsyad Bahrudin</b></h5></td>
                         </tr>
                         <tr>
-                          <td><h6>Driver sudah hampir menggunakan Lembur nya</h6></td>
+                          <td><h6>Batasan Lembur Hampir Tercapai</h6></td>
                         </tr>
                       </table>  
                       <hr>
@@ -124,7 +124,7 @@
                           <td><h5><b>Agus Budi Sudarsono</b></h5></td>
                         </tr>
                         <tr>
-                          <td><h6>Driver sudah hampir menggunakan Lembur nya</h6></td>
+                          <td><h6>Batasan Lembur Hampir Tercapai</h6></td>
                         </tr>
                       </table>  
                       <hr>
@@ -199,12 +199,14 @@
                               <i class="fas fa-medkit" style="color: #ffffff"></i>
                             </div>
                           </td>
-
                           <td><h5><b>Agus Budi Sudarsono</b></h5></td>
                         </tr>
                         <tr>
                           <td><h6>Kondisi Driver Tidak memungkinkan untuk Melakukan Perjalanan</h6></td>
                         </tr>
+                        <tr>
+                          <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-map-marker"></i> MOR III - Semarang</span></td>
+                        </tr> 
                       </table>
                       <hr>
                       <div class="alert2 alert-primary" role="alert">
@@ -214,8 +216,8 @@
                             <td align="center"><h6 class="text-white">Tekanan Darah</h6></td>
                           </tr>
                           <tr>
-                            <td align="center"><h2 class="text-white">30 C</h2><h6 class="text-white">Normal</h6></td>
-                            <td align="center"><h2 class="text-white">120/90 </h2><h6 class="text-white">High Blood Preasure</h6></td>
+                            <td align="center"><h2 class="text-white">25 C</h2><h6 class="text-white">Normal</h6></td>
+                            <td align="center"><h2 class="text-white">120/90 </h2><h6 class="text-red"><b>High Blood Preasure</b></h6></td>
                           </tr>
                         </table>
                       </div>
@@ -235,6 +237,9 @@
                         <tr>
                           <td><h6>Kondisi Driver Tidak memungkinkan untuk Melakukan Perjalanan</h6></td>
                         </tr>
+                        <tr>
+                          <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-map-marker"></i> MOR III - Cirebon</span></td>
+                        </tr>
                       </table>
                       <hr>
                       <div class="alert2 alert-primary" role="alert">
@@ -244,8 +249,8 @@
                             <td align="center"><h6 class="text-white">Tekanan Darah</h6></td>
                           </tr>
                           <tr>
-                            <td align="center"><h2 class="text-white">30 C</h2><h6 class="text-white">Sakit</h6></td>
-                            <td align="center"><h2 class="text-white">130/100 </h2><h6 class="text-white">High Blood Preasure</h6></td>
+                            <td align="center"><h2 class="text-white">30 C</h2><h6 class="text-red"><b>Sakit</b></h6></td>
+                            <td align="center"><h2 class="text-white">130/100 </h2><h6 class="text-red"><b>High Blood Preasure</b></h6></td>
                           </tr>
                         </table>
                       </div>
@@ -446,6 +451,7 @@
       @include('content.home.korlap.modal')
       @include('layout.contentfooter')
       @include('script.korlap')
+      
 </body>
 
 </html>

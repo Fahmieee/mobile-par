@@ -310,12 +310,12 @@
                     <tr>
                       <td><h6>Masa SIM</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>{{ date('d F Y', strtotime($getsim->exp_date)) }}</h6></td>  
+                      <td><h6>{{ date('d M Y', strtotime($getsim->exp_date)) }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Masa MCU </h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>{{ date('d F Y', strtotime($getmcu->exp_date)) }}</h6></td>  
+                      <td><h6>{{ date('d M Y', strtotime($getmcu->exp_date)) }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>No HP</h6></td>
@@ -363,7 +363,7 @@
                     <tr>
                       <td width="25%"><h6>Model</h6></td>
                       <td><h6>:</h6></td>
-                      <td width="40%"><h6>{{ $getunits->model }} {{ $getunits->varian }}</h6></td>  
+                      <td width="30%"><h6>{{ $getunits->model }} {{ $getunits->varian }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Tahun</h6></td>
@@ -373,12 +373,12 @@
                     <tr>
                       <td><h6>Masa Asuransi</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>{{ date('d F Y', strtotime($getasuransi->exp_date)) }}</h6></td>  
+                      <td><h6>{{ date('d M Y', strtotime($getasuransi->exp_date)) }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Masa KEUR</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>{{ date('d F Y', strtotime($getkeur->exp_date)) }}</h6></td>  
+                      <td><h6>{{ date('d M Y', strtotime($getkeur->exp_date)) }}</h6></td>  
                     </tr>
 
                     <tr height="10px">

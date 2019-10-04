@@ -58,6 +58,37 @@
                             <td><input type="file" id="file1" name="file1" class="form-control medical"></td>
                         </tr>
                     </table>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
+                              <input class="custom-control-input" id="customCheck9" type="checkbox">
+                              <label class="custom-control-label" for="customCheck9"><h5>Apakah Anda Sudah Cukup Tidur?</h5></label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
+                              <input class="custom-control-input" id="customCheck7" type="checkbox">
+                              <label class="custom-control-label" for="customCheck7"><h5>Apakah Anda Tidak Mengkonsumi Obat-Obat Terlarang?</h5></label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
+                              <input class="custom-control-input" id="customCheck8" type="checkbox">
+                              <label class="custom-control-label" for="customCheck8"><h5>Apakah Anda Tidak Mengkonsumi Obat yang Menyebabkan Ngantuk?</h5></label>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <h6><i>Ceklis Jika Pernyataan Diatas Menyatakan Kondisi Anda!</i></h6>
                 </div>
                 
                 <div class="modal-footer">
