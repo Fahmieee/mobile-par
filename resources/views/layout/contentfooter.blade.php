@@ -111,6 +111,8 @@
   .then(function(token){
     console.log(token);
 
+    alert(token);
+
     $.ajax({
       type: 'POST',
       url: "{{ route('TokenFCM') }}",
