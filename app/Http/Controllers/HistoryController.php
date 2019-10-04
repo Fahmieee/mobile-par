@@ -13,7 +13,7 @@ class HistoryController extends Controller
     public function index()
     {
     	date_default_timezone_set('Asia/Jakarta');
-    	$date = date('Y-m-d');
+    	$date = date('d M Y');
 
     	return view('content.history.index', compact('date'));
 

@@ -55,11 +55,34 @@
                         $btn = "btn-success";
 
                       }
+
+                      $gets = explode("/",$getdcu->darah);
+
+                      $depandarah = $gets[0];
+                      $belakangdarah = $gets[1];
+
+                      if ($depandarah < 120 && $belakangdarah < 80){
+
+                          $btndarah = "btn-success";
+
+                      } else if ($depandarah >= 120 && $depandarah < 140 || $belakangdarah >= 80 && $belakangdarah < 90){
+
+                          $btndarah = "btn-yellow";
+
+                      } else if ($depandarah >= 140 && $depandarah < 160 || $belakangdarah >= 90 && $belakangdarah < 100){
+
+                          $btndarah = "btn-warning";
+
+                      } else if ($depandarah >= 160 || $belakangdarah >= 100){
+
+                          $btndarah = "btn-danger";
+                      }
+
                       @endphp
                       <tr>
                         <th scope="row">{{ $getdcu->date }}</th>
                         <th scope="row"><button type="button" class='btn btn-sm {{ $btn }}'>{{ $getdcu->suhu }} C</button></th>
-                        <th scope="row"><button type="button" class='btn btn-sm btn-warning'>{{ $getdcu->darah }} mmHg</button></th>
+                        <th scope="row"><button type="button" class='btn btn-sm {{ $btndarah }}'>{{ $getdcu->darah }}  mmHg</button></th>
                       </tr>
 
                     @endforeach

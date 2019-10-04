@@ -30,7 +30,7 @@
                     <div class="notif_darah"></div>
                     <table border="0" align="center" width="100%">
                         <tr>
-                            <td colspan="2"><h5 class="text-muted">Masukan Suhu Tubuh Anda :</h5></td>
+                            <td colspan="2"><h5>Masukan Suhu Tubuh Anda :</h5></td>
                         </tr>
                         <tr>
                             <td><input type="text" onkeyup="angka(this);" id="suhu" name="suhu" class="form-control medical" style="font-size: 20px"></td>
@@ -40,7 +40,7 @@
                     <br>
                     <table border="0" align="center" width="100%">
                         <tr>
-                            <td colspan="4"><h5 class="text-muted">Masukan Tekanan Darah Anda :</h5></td>
+                            <td colspan="4"><h5>Masukan Tekanan Darah Anda :</h5></td>
                         </tr>
                         <tr>
                             <td><input type="text" id="darah1" name="darah1" onkeyup="angka(this);" class="form-control medical" style="font-size: 20px"></td>
@@ -52,7 +52,7 @@
                     <br>
                     <table border="0" align="center" width="100%">
                         <tr>
-                            <td colspan="4"><h5 class="text-muted">Masukan Foto DCU :</h5></td>
+                            <td colspan="4"><h5>Masukan Foto DCU :</h5></td>
                         </tr>
                         <tr>
                             <td><input type="file" id="file1" name="file1" class="form-control medical"></td>
@@ -65,6 +65,15 @@
                             <div class="custom-control custom-control-alternative custom-checkbox mb-3">
                               <input class="custom-control-input" id="customCheck9" type="checkbox">
                               <label class="custom-control-label" for="customCheck9"><h5>Apakah Anda Sudah Cukup Tidur?</h5></label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
+                              <input class="custom-control-input" id="customCheck11" type="checkbox">
+                              <label class="custom-control-label" for="customCheck11"><h5>Apakah Anda Tidak Mengkonsumi Minuman Beralkohol?</h5></label>
                             </div>
                           </div>
                         </div>

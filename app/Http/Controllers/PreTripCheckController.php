@@ -19,7 +19,7 @@ class PreTripCheckController extends Controller
 	public function index()
     {
         date_default_timezone_set('Asia/Jakarta');
-    	$date = date('Y-m-d');
+    	$date = date('d M Y');
 
         $gettypes = CheckType::select("id","name","icons")
         ->get();
