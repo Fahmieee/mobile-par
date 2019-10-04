@@ -132,6 +132,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('profile/update', 'ProfileController@store')->name('UpdateProfile');
 	Route::post('profile/role', 'ProfileController@role')->name('RoleProfile');
 	Route::post('profile/photo', 'ProfileController@gantiphoto')->name('GantiPhoto');
+	Route::post('profile/fcmtoken', 'ProfileController@gettoken')->name('TokenFCM');
 
 	Route::get('ubahpassword', 'ProfileController@ubahpassword');
 	Route::post('ubahpassword/update', 'ProfileController@updatepass')->name('UpdatePassword');

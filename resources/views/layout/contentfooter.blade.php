@@ -110,7 +110,25 @@
   })
   .then(function(token){
     console.log(token);
-    $('.tokenss').html(token);
+
+    $.ajax({
+      type: 'POST',
+      url: "{{ route('TokenFCM') }}",
+      data: {
+          '_token': $('input[name=_token]').val(),
+          'user_id': $('#created_by').val(),
+          'fcmtoken': token
+      },
+
+      success: function (data) {
+
+
+
+      }
+
+    });
+
+
   })
   .catch(function(err){
     console.log('Error Ocured');
@@ -157,5 +175,10 @@
       }
 
     });
+
+  </script>
+
+  <script type="text/javascript">
+    
 
   </script>

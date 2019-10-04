@@ -142,4 +142,18 @@ class ProfileController extends Controller
         }
 
     }
+
+    public function gettoken(Request $request)
+    { 
+
+        $clocks = Users::where(['id'=>$request->user_id])
+        ->update(['fcm_token'=>$request->fcmtoken]);
+
+        $arrayNames = array(    
+            'actions' => 'Berhasil'
+        );
+
+        return response()->json($arrayNames);
+
+    }
 }
