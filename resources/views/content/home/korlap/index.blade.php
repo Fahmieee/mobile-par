@@ -161,7 +161,7 @@
                           <td colspan="2"><h6>Dokument KEUR Driver Akan segera Habis, Mohon untuk segera diperpanjang</h6></td>
                         </tr>
                         <tr>
-                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> Exp : 2019-09-21</span></td>
+                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> Exp : 21 Sep 2019</span></td>
                           <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-clock"></i> 12 Hari Lagi</span></td>
                         </tr> 
                       </table>  
@@ -181,7 +181,7 @@
                           <td colspan="2"><h6>Dokument Asuransi Driver Akan segera Habis, Mohon untuk segera diperpanjang</h6></td>
                         </tr>
                         <tr>
-                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> Exp : 2019-09-21</span></td>
+                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> Exp : 21 Sep 2019</span></td>
                           <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-clock"></i> 22 Hari Lagi</span></td>
                         </tr> 
                       </table>  
@@ -272,7 +272,7 @@
                           <td colspan="2"><h6>Air / Resevoir Wiper - Habis (Bagian Wiper) </h6></td>
                         </tr>
                         <tr>
-                          <td  width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 2019-09-21</span></td>
+                          <td  width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 21 Sep 2019</span></td>
                           <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> HIGH</span></td>
                         </tr> 
                       </table>  
@@ -293,7 +293,7 @@
                           <td colspan="2"><h6>Fender Depan Sisi Kanan - Baret  (Bagian : Exterior)</h6></td>
                         </tr>
                         <tr>
-                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 2019-09-21</span></td>
+                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 23 Sep 2019</span></td>
                           <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> HIGH</span></td>
                         </tr> 
                       </table>  
@@ -315,7 +315,7 @@
                           <td colspan="3"><h6>Pintu Depan / Belakang Sisi Kanan - Baret  (Bagian : Exterior) </h6></td>
                         </tr>
                         <tr>
-                          <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 2019-09-21</span></td>
+                          <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 24 Sep 2019</span></td>
                           <td><span class="badge badge-pill badge-warning" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> MEDIUM</span></td>
                           <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-clock"></i> 2 Hari</span></td>
                         </tr> 
@@ -337,7 +337,7 @@
                           <td colspan="3"><h6>Fender Depan Sisi Kanan - Baret  (Bagian : Exterior)</h6></td>
                         </tr>
                         <tr>
-                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 2019-09-21</span></td>
+                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 22 Sep 2019</span></td>
                           <td><span class="badge badge-pill badge-warning" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> MEDIUM</span></td>
                           <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-clock"></i> 2 Hari</span></td>
                         </tr> 
@@ -360,7 +360,7 @@
                           <td colspan="3"><h6>Sarung Jok Belakang - Terpasang Rapi / Bersih (Bagian : Perlengkapan Kendaraan) </h6></td>
                         </tr>
                         <tr>
-                          <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 2019-09-21</span></td>
+                          <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 22 Sep 2019</span></td>
                           <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> LOW</span></td>
                           <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-clock"></i> 4 Hari</span></td>
                         </tr> 
@@ -382,7 +382,7 @@
                           <td colspan="3"><h6>Kemoceng Tidak Ada (Bagian : Perlengkapan Kendaraan)</h6></td>
                         </tr>
                         <tr>
-                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 2019-09-21</span></td>
+                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 22 Sep 2019</span></td>
                           <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> LOW</span></td>
                           <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-clock"></i> 2 Hari</span></td>
                         </tr> 
