@@ -363,6 +363,19 @@ iframe {
   width: 100%;
   z-index: 1;
 }
+.wrap2-input100 {
+  position: absolute;
+  width: 80%;
+  z-index: 1;
+}
+
+.eyehide{
+  position: absolute;
+  padding-top: 13px;
+  top: 0;
+  right: 0;
+  width: 35px;
+}
 
 .input100 {
   font-family: Montserrat-Bold;
@@ -372,6 +385,20 @@ iframe {
 
   display: block;
   width: 100%;
+  background: #fff;
+  height: 50px;
+  border-radius: 50px;
+  padding: 0 50px 0 53px;
+}
+
+.input200 {
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  line-height: 1.2;
+  color: #333333;
+
+  display: block;
+  width: 80%;
   background: #fff;
   height: 50px;
   border-radius: 25px;
@@ -430,6 +457,31 @@ iframe {
   width: 100%;
   height: 100%;
   padding-left: 30px;
+  pointer-events: none;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.symbol-input200 {
+  font-size: 15px;
+  color: #000000;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  border-radius: 25px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 0px;
   pointer-events: none;
 
   -webkit-transition: all 0.4s;
@@ -511,6 +563,20 @@ iframe {
 
   position: relative;
   z-index: 1;
+}
+
+.buttonss {
+  font-family: Montserrat-Bold;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 .masuk100-form-btn {

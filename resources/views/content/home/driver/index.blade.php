@@ -213,7 +213,7 @@
                     </tr>
                     <tr>
                       <td colspan="3">
-                        <h5><b>{{ $getusers->first_name }} {{ $getusers->last_name }}</b></h5>
+                        <h5><b>{{ $getusers->first_name  }} {{ $getusers->last_name }}</b></h5>
                       </td>
                     </tr>
                     <tr>

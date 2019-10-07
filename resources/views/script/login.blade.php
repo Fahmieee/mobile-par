@@ -1,5 +1,28 @@
 <script type="text/javascript">
 
+	$('#hide').on('click', function () {
+
+		var hide = $('#hideval').val();
+
+
+		if (hide == 0){
+
+			$('.password').attr('type','text');
+			$('#hideval').val(1);
+			$('#hide').attr('class','fa fa-eye iconhide');
+			$('#hide').attr('style','color: #2566AF;');
+
+		} else {
+
+			$('.password').attr('type','password');
+			$('#hideval').val(0);
+			$('#hide').attr('class','fa fa-eye-slash iconhide');
+			$('#hide').attr('style','');
+
+		}
+
+	});
+
 
 	$('#login-submit').on('click', function () {
 

@@ -29,6 +29,12 @@
 		                        <span class="symbol-input100">
 		                            <i class="fa fa-lock"></i>
 		                        </span>
+		                        <div class="eyehide">
+				                    
+	                        		<input type="hidden" id="hideval" value="0">
+	                        		<i id="hide" class="fa fa-eye-slash"></i>
+
+			                    </div>
 		                    </div>
 
 		                    <div class="container-login100-form-btn p-t-10" id="buttonsx">
