@@ -288,7 +288,6 @@
 
                                         } else {
 
-
                                             $('#modal_clockin').modal('show');
 
                                         }
@@ -595,6 +594,14 @@
     $('#back').on('click', function () {
 
         setTimeout(function(){ window.location.href = 'driver'; }, 10);
+
+    });
+
+    $('#ok_clockin').on('click', function () {
+
+        $('#notif_medical').modal('hide');
+
+        $('#modal_clockin').modal('show');
 
     });
     

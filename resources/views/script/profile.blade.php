@@ -12,7 +12,15 @@
 
             success: function (data) {
 
-            	$('#namalengkap').html('<h2>'+data.first_name+' '+data.last_name+'</h2>');
+                var last = '';
+
+                if (data.last_name == null){
+                    last = '';
+                } else {
+                    last = data.last_name;
+                }
+
+            	$('#namalengkap').html('<h2>'+data.first_name+' '+last+'</h2>');
             	$('#username').val(data.username);
             	$('#email').val(data.email);
             	$('#first-name').val(data.first_name);
@@ -64,7 +72,7 @@
 	$('#yakin_edit').on('click', function () {
 
 		var empty = false;
-		$('.edited').each(function() {
+		$('.harus').each(function() {
         if ($(this).val() == '') {
 	            empty = true;
 	        }

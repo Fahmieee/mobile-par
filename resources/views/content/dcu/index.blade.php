@@ -80,7 +80,7 @@
 
                       @endphp
                       <tr>
-                        <th scope="row">{{ $getdcu->date }}</th>
+                        <th scope="row">{{ date('d M Y', strtotime($getdcu->date)) }}</th>
                         <th scope="row"><button type="button" class='btn btn-sm {{ $btn }}'>{{ $getdcu->suhu }} C</button></th>
                         <th scope="row"><button type="button" class='btn btn-sm {{ $btndarah }}'>{{ $getdcu->darah }}  mmHg</button></th>
                       </tr>

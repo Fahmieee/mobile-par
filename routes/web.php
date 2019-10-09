@@ -28,6 +28,8 @@ Route::post('login/user', 'LoginController@loginUser')->name('login_submit');
 Route::get('/logins', 'LoginController@showLoginForm')->name('login.user');
 Route::post('logins/store', 'LoginController@store')->name('StoreUsers');
 
+Route::post('logins/activity', 'LoginController@activity')->name('ActivityLogin');
+
 
 Route::get('/', function () {
     return view('splash.index');
@@ -45,9 +47,6 @@ Route::group(['middleware' => 'auth:user'], function(){
 	    return view('content.home.index');
 	});
 
-	Route::get('/monitoring', function () {
-	    return view('content.monitoring.index');
-	});
 
 	Route::get('/detailmonitoring', function () {
 	    return view('content.monitoring.detail');
@@ -87,6 +86,12 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::get('lihatdriver', 'KorlapController@lihatdriver');
 	Route::post('korlap/lihatnilaidriver', 'KorlapController@getnilaidriver')->name('LihatNilaiDriver');
 	Route::get('lihatkendaraan', 'KorlapController@lihatkendaraan');
+	Route::post('getptchigh', 'KorlapController@getptchigh')->name('GetPTCHigh');
+	Route::post('getptcforapprove', 'KorlapController@getptcforapprove')->name('GetPTCforApprove');
+	Route::post('approveptcnow', 'KorlapController@approveptcnow')->name('ApprovePTCNow');
+	Route::post('approveptcsementara', 'KorlapController@approveptcsementara')->name('ApprovePTCSementara');
+	Route::post('getptcmedium', 'KorlapController@getptcmedium')->name('GetPTCMedium');
+	Route::post('getptclow', 'KorlapController@getptclow')->name('GetPTCLow');
 
 	Route::get('approve', 'ApproveController@index');
 	Route::post('approve/get', 'ApproveController@getdata')->name('GetApprove');
@@ -136,6 +141,9 @@ Route::group(['middleware' => 'auth:user'], function(){
 
 	Route::get('ubahpassword', 'ProfileController@ubahpassword');
 	Route::post('ubahpassword/update', 'ProfileController@updatepass')->name('UpdatePassword');
+
+	Route::get('monitoring', 'MonitoringController@index');
+	Route::get('detailmonitoring/{id}', 'MonitoringController@detail');
 
 
 	Route::get('/approve', function () {

@@ -1,4 +1,4 @@
-<div class="modal fade" id="contohss" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+<div class="modal fade" id="approveptc" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered" role="document">
         <div class="modal-content bg-blue-par2">
             
@@ -17,32 +17,74 @@
                     </tr>
                 </table>
                 <hr>
-                <div class="alert2 alert-secondary" id="contoh" role="alert">
+                <div class="alert2 alert-secondary" id="dataptcapprove" role="alert">
+
                   <table width="100%" border="0"> 
                     <tr>
-                      <td width="20%" rowspan="3">
-                        <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
-                          <i class="fas fa-car" style="color: #ffffff"></i>
-                      </div>
-                      </td>
-                      <td colspan="2"><h5><b>Mahfud Zulfikar</b></h5></td>
+                      <td width="35%"><h5><b>Pengemudi</b></h5></td>
+                      <td width="5%"><h5><b>:</b></h5></td>
+                      <td><h5 id="nama"></h5></td>
                     </tr>
-                    <tr>
-                      <td colspan="2"><h6>Air / Reservoir Wiper - Habis (Bagian : Wiper) </h6></td>
-                    </tr>
-                    <tr>
-                      <td width="20%"><span class="badge badge-pill badge-primary"  style="font-size: 9px;"><i class="fas fa-calendar"></i> 2019-09-21</span></td>
-                      <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> HIGH</span></td>
-                    </tr> 
                   </table>  
-                  
+                  <hr>
+                  <table width="100%" border="0"> 
+                    <tr>
+                      <td width="35%"><h5><b>Unit Kerja</b></h5></td>
+                      <td width="5%"><h5><b>:</b></h5></td>
+                      <td><h5 id="wilayah"></h5></td>
+                    </tr>
+                  </table>  
+                  <hr>
+                  <table width="100%" border="0"> 
+                    <tr>
+                      <td width="35%"><h5><b>Plat Nomor</b></h5></td>
+                      <td width="5%"><h5><b>:</b></h5></td>
+                      <td><h5 id="plat"></h5></td>
+                    </tr>
+                  </table>  
+                  <hr>
+                  <table width="100%" border="0"> 
+                    <tr>
+                      <td width="35%"><h5><b>Detail PTC</b></h5></td>
+                      <td width="5%"><h5><b>:</b></h5></td>
+                      <td><h4><b id="detail"></b></h4></td>
+                    </tr>
+                  </table> 
+                  <hr>
+                  <table width="100%" border="0"> 
+                    <tr>
+                      <td width="35%"><h5><b>Bagian PTC</b></h5></td>
+                      <td width="5%"><h5><b>:</b></h5></td>
+                      <td><h5 id="type"></h5></td>
+                    </tr>
+                  </table> 
+                  <hr>
+                  <table width="100%" border="0"> 
+                    <tr>
+                      <td width="35%"><h5><b>Level</b></h5></td>
+                      <td width="5%"><h5><b>:</b></h5></td>
+                      <td id="level"></td>
+                    </tr>
+                  </table> 
+                  <hr>
+                  <table width="100%" border="0"> 
+                    <tr>
+                      <td width="35%"><h5><b>Tanggal</b></h5></td>
+                      <td width="5%"><h5><b>:</b></h5></td>
+                      <td><h5 id="tanggal"></h5></td>
+                    </tr>
+                  </table> 
+                  <input type="hidden" id="id">
                 </div>
 
             </div>
             
             <div class="modal-footer">
-                <button type="button" id="clockin_submit" class="btn btn-success">Approve</button>
-                <button type="button" class="btn btn-danger ml-auto" data-dismiss="modal">Batal</button> 
+                <button type="button" id="approve_now" class="btn btn-success">Approve</button>
+                <div id="btnsementara" style="display: block;">
+                <button type="button" id="approve_sementara" class="btn btn-warning">Approve Sementara</button>
+                </div>
+
             </div>
             
         </div>

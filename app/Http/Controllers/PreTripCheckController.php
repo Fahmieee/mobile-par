@@ -12,6 +12,7 @@ use App\Pretrip_Check;
 use App\Pretrip_Check_Detail;
 use App\PretripCheckNotOke;
 use App\Clocks;
+use App\Drivers;
 
 class PreTripCheckController extends Controller
 {
@@ -75,6 +76,9 @@ class PreTripCheckController extends Controller
     	$harini = date('Y-m-d');
     	$time = date("H:i:s");
 
+        $userx = Drivers::where('driver_id', $request->created_by)
+        ->first();
+
         $adaga = Pretrip_Check::where([
             ['user_id', '=', $request->created_by],
             ['date', '=', $harini],
@@ -85,6 +89,7 @@ class PreTripCheckController extends Controller
 
         	$pretrip_check = new Pretrip_Check();
             $pretrip_check->user_id= $request->created_by;
+            $pretrip_check->unit_id= $userx->unit_id;
             $pretrip_check->date= $harini;
             $pretrip_check->time= $time;
             $pretrip_check->status= 'NOT SUBMITED';
@@ -111,6 +116,7 @@ class PreTripCheckController extends Controller
                     $detail_tripchecknot->pretripcheckdetail_id = $detail_tripcheck->id;
                     $detail_tripchecknot->checkanswer_id = $request->checkanswer_id[$i];
                     $detail_tripchecknot->status = 'NOT APPROVED';
+                    $detail_tripchecknot->approve_sementara = 'No';
                     $detail_tripchecknot->save();
 
                 }
@@ -152,6 +158,7 @@ class PreTripCheckController extends Controller
                             $detail_tripchecknot->pretripcheckdetail_id = $detail_tripcheck->id;
                             $detail_tripchecknot->checkanswer_id = $request->checkanswer_id[$i];
                             $detail_tripchecknot->status = 'NOT APPROVED';
+                            $detail_tripchecknot->approve_sementara = 'No';
                             $detail_tripchecknot->save();
 
                         }
@@ -199,6 +206,7 @@ class PreTripCheckController extends Controller
                             $detail_tripchecknot->pretripcheckdetail_id = $detail_tripcheck->id;
                             $detail_tripchecknot->checkanswer_id = $request->checkanswer_id[$i];
                             $detail_tripchecknot->status = 'NOT APPROVED';
+                            $detail_tripchecknot->approve_sementara = 'No';
                             $detail_tripchecknot->save();
 
                         }

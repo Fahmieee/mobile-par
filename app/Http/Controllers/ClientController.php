@@ -14,6 +14,7 @@ use App\Lembur;
 use App\Trainings;
 use App\DocDriver;
 use App\DocUnit;
+use App\MedicalCheckup;
 use Auth;
 
 class ClientController extends Controller
@@ -27,7 +28,7 @@ class ClientController extends Controller
 
         $getusers = Users::leftJoin("jabatan", "users.jabatan_id", "=", "jabatan.id")
         ->leftJoin("wilayah", "users.wilayah_id", "=", "wilayah.id")
-        ->leftJoin("unit_kerja", "users.wilayah_id", "=", "wilayah.id")
+        ->leftJoin("unit_kerja", "wilayah.unitkerja_id", "=", "unit_kerja.id")
         ->leftJoin("company", "users.company_id", "=", "company.id")
         ->where('users.id', $user->id)
         ->first();
@@ -61,7 +62,14 @@ class ClientController extends Controller
             ])
         ->first();
 
-    	return view('content.home.client.index', compact('date','getusers','gettrainings','getdrivers','getsim','getmcu','getunits','getstnk'));
+        $getdcu = MedicalCheckup::leftJoin("drivers", "medical_checkup.user_id", "=", "drivers.driver_id")
+        ->where([
+                ['drivers.user_id', '=', $user->id],
+                ['medical_checkup.date', '=', $date],
+            ])
+        ->count();
+
+    	return view('content.home.client.index', compact('date','getusers','gettrainings','getdrivers','getsim','getmcu','getunits','getstnk','getdcu'));
     }
 
     public function getdata(Request $request)

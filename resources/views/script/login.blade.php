@@ -92,7 +92,20 @@
                             buttons: false,
                             timer: 2000,
                         });
-                        setTimeout(function(){ window.location.href='client'; }, 1500);
+
+                        if (data.flag_pass == '0' || data.flag_pass == null){
+
+                        	setTimeout(function(){ window.location.href='ubahpassword'; }, 1500);
+
+                        } else if (data.flag_prof == '0' || data.flag_prof == null){
+
+                        	setTimeout(function(){ window.location.href='profile'; }, 1500);
+
+                        } else {
+
+                        	setTimeout(function(){ window.location.href='client'; }, 1500);
+
+                        } 
 
                     } else if (data.role == 5 && data.status == 'success'){
 
@@ -129,10 +142,26 @@
 
                     }
 
+                   	$.ajax({
+			            type: 'POST',
+			            url: "{{ route('ActivityLogin') }}",
+			            data: {
+			                '_token': $('input[name=_token]').val(),
+			                'id': data.id
+			                },
+			            success: function(data) {
+
+			            	
+
+			            }
+
+			        });
+
                 }
             });
-
 	    }
+
+
 	});
 
 	function KeInfoDasar(){

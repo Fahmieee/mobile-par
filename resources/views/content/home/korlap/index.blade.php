@@ -257,47 +257,9 @@
                     </div>
                   </div>
 
-                   <div id="ptchigh" class="iniptc" style="display: block;">
-                    <div class="alert2 alert-secondary contoh" role="alert">
-                      <table width="100%" border="0"> 
-                        <tr>
-                          <td width="20%" rowspan="3">
-                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
-                              <i class="fas fa-car" style="color: #ffffff"></i>
-                          </div>
-                          </td>
-                          <td colspan="2"><h5><b>Mahfud Zulfikar</b></h5></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2"><h6>Air / Resevoir Wiper - Habis (Bagian Wiper) </h6></td>
-                        </tr>
-                        <tr>
-                          <td  width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 21 Sep 2019</span></td>
-                          <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> HIGH</span></td>
-                        </tr> 
-                      </table>  
-                      
-                    </div>
+                   <div id="ptccontent" class="iniptc" style="display: block;">
                     
-                    <div class="alert2 alert-secondary contoh" role="alert">
-                      <table width="100%" border="0"> 
-                        <tr>
-                          <td width="20%" rowspan="3">
-                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
-                              <i class="fas fa-car" style="color: #ffffff"></i>
-                          </div>
-                          </td>
-                          <td colspan="2"><h5><b>Agus Budi Sudarsono</b></h5></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2"><h6>Fender Depan Sisi Kanan - Baret  (Bagian : Exterior)</h6></td>
-                        </tr>
-                        <tr>
-                          <td width="20%"><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-calendar"></i> 23 Sep 2019</span></td>
-                          <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-exclamation-triangle"></i> HIGH</span></td>
-                        </tr> 
-                      </table>  
-                    </div>
+                    
                   </div>
 
                   <div id="ptcmedium" class="iniptc" style="display: none;">

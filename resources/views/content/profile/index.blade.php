@@ -54,13 +54,13 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label class="form-control-label" for="input-username">Username</label>
-                      <input type="text" id="username" class="form-control form-control-alternative edited" placeholder="Username" disabled>
+                      <input type="text" id="username" class="form-control form-control-alternative edited harus" placeholder="Username" disabled>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label class="form-control-label" for="input-email">Email</label>
-                      <input type="text" id="email" class="form-control form-control-alternative edited" placeholder="budi@example.com" disabled>
+                      <input type="text" id="email" class="form-control form-control-alternative edited harus" placeholder="budi@example.com" disabled>
                     </div>
                   </div>
                 </div>
@@ -68,7 +68,7 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label class="form-control-label" for="input-first-name">Nama Depan</label>
-                      <input type="text" id="first-name" class="form-control form-control-alternative edited" placeholder="Nama Depan" disabled>
+                      <input type="text" id="first-name" class="form-control form-control-alternative edited harus" placeholder="Nama Depan" disabled>
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -88,7 +88,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label class="form-control-label" for="input-address">Alamat</label>
-                      <input id="alamat" class="form-control form-control-alternative edited" placeholder="Alamat Lengkap" type="text" disabled>
+                      <input id="alamat" class="form-control form-control-alternative edited harus" placeholder="Alamat Lengkap" type="text" disabled>
                     </div>
                   </div>
                 </div>
@@ -96,7 +96,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label class="form-control-label" for="input-address">Nomor Handphone</label>
-                      <input id="no_hp" class="form-control form-control-alternative edited" placeholder="Nomor Handphone Anda" type="text" disabled>
+                      <input id="no_hp" class="form-control form-control-alternative edited harus" placeholder="Nomor Handphone Anda" type="text" disabled>
                     </div>
                   </div>
                 </div>

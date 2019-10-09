@@ -28,7 +28,7 @@
                 <table border="0" align="center" width="100%">
                     <tr>
                         <td align="center">
-                            <h1 class="text-white">1500751</h1>
+                            <a href="tel:1500751"><h1 class="text-white">1500751</h1></a>
                         </td>
                     </tr>
                   </table>
@@ -58,14 +58,14 @@
     </div>
 </div>
   <!--   Core   -->
-  <script src="./assets/content/js/plugins/jquery/dist/jquery.min.js"></script>
-  <script src="./assets/content/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('assets/content/js/plugins/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/content/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
   <!--   Argon JS   -->
-  <script src="./assets/content/js/argon-dashboard.min.js?v=1.1.0"></script>
-  <script src="./assets/content/js/moment-with-locales.min.js"></script>
+  <script src="{{ asset('assets/content/js/argon-dashboard.min.js?v=1.1.0') }}"></script>
+  <script src="{{ asset('assets/content/js/moment-with-locales.min.js') }}"></script>
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="./js/app2.js"></script>
+  <script src="{{ asset('js/app2.js') }}"></script>
   <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-app.js"></script>
 
   <!-- Add Firebase products that you want to use -->
@@ -163,11 +163,11 @@
 
         if (photo == null){
 
-          $('#photo_users').attr('src','./assets/content/img/theme/team-1-800x800.jpg');
+          $('#photo_users').attr('src',"{{ asset('assets/content/img/theme/team-1-800x800.jpg') }}");
 
         } else {
 
-          $('#photo_users').attr('src','./assets/profile_photo/'+photo+'');
+          $('#photo_users').attr('src',"{{ asset('assets/profile_photo/"+photo+"') }}");
 
         }
 
@@ -175,10 +175,5 @@
       }
 
     });
-
-  </script>
-
-  <script type="text/javascript">
-    
 
   </script>

@@ -147,13 +147,6 @@
 
     });
 
-    $('#ok_clockin').on('click', function () {
-
-        $('#notif_medical').modal('hide');
-
-        $('#modal_clockin').modal('show');
-
-    });
 
     $('#suhu').on('keyup', function () {
 

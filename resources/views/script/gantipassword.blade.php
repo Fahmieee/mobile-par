@@ -85,23 +85,16 @@
 		                    	role = 'client';
 		                    }
 
-		                    if (data.sebagai == 3){
+	                    	if(data.flag_prof == 0 || data.flag_prof == null){
 
-		                    	setTimeout(function(){ window.location.href = role; }, 1500);
+	                    		setTimeout(function(){ window.location.href = 'profile'; }, 1500);
 
-		                    } else {
+	                    	} else {
 
-		                    	if(data.flag_prof == 0 || data.flag_prof == null){
+	                    		setTimeout(function(){ window.location.href = role; }, 1500);
 
-		                    		setTimeout(function(){ window.location.href = 'profile'; }, 1500);
+	                    	}
 
-		                    	} else {
-
-		                    		setTimeout(function(){ window.location.href = role; }, 1500);
-
-		                    	}
-
-		                    }
 
 		                }
 		            });

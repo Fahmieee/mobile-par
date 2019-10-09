@@ -310,12 +310,12 @@
                     <tr>
                       <td><h6>Masa SIM</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>{{ date('d M Y', strtotime($getsim->exp_date)) }}</h6></td>  
+                      <td><h6>{{ $getsim ? date('d M Y', strtotime($getsim->exp_date)) : '-' }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Masa MCU </h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>{{ date('d M Y', strtotime($getmcu->exp_date)) }}</h6></td>  
+                      <td><h6>{{ $getmcu ? date('d M Y', strtotime($getmcu->exp_date)) : '-' }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>No HP</h6></td>
@@ -373,12 +373,12 @@
                     <tr>
                       <td><h6>Masa Asuransi</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>{{ date('d M Y', strtotime($getasuransi->exp_date)) }}</h6></td>  
+                      <td><h6>{{ $getasuransi ? date('d M Y', strtotime($getasuransi->exp_date)) : '-' }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Masa KEUR</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>{{ date('d M Y', strtotime($getkeur->exp_date)) }}</h6></td>  
+                      <td><h6>{{ $getkeur ? date('d M Y', strtotime($getkeur->exp_date)) : '-' }}</h6></td>  
                     </tr>
 
                     <tr height="10px">

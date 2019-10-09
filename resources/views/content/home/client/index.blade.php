@@ -73,9 +73,27 @@
             </div>    
           </div>
           <br>
+          @php
+
+            if ($getdcu == '0'){
+
+                $alert = 'warning';
+                $ket = 'Belum DCU';
+                $detail = 'Driver Anda Belum Melakukan DCU';
+                $colour = '#fc7c5f';
+
+            } else {
+                $alert = 'success';
+                $ket = 'Driver SEHAT';
+                $detail = 'Driver Anda Sudah Melakukan DCU';
+                $colour = '#92C04F';
+            }
+
+          @endphp
           <div class="row">
             <div class="col-12">
-              <div class="alert2 alert-success" role="alert">
+              <div class="alert2 alert-{{ $alert }}" role="alert">
+
                 <table width="100%" border="0"> 
                   <tr>
                     <td colspan="2"> </td>
@@ -83,13 +101,13 @@
                   <tr>
                     <td width="23%" rowspan="3">
                       <div class="icon icon-shape bg-white text-white rounded-circle shadow">
-                        <i class="fas fa-medkit" style="color: #92C04F"></i>
+                        <i class="fas fa-medkit" style="color: {{ $colour }}"></i>
                     </div>
                     </td>
-                    <td><h3 class="text-white"><b>Driver SEHAT</b></h3></td>
+                    <td><h3 class="text-white"><b>{{ $ket }}</b></h3></td>
                   </tr>
                   <tr>
-                    <td><h6 class="text-white">Driver sudah Melakukan DCU</h6></td>
+                    <td><h6 class="text-white">{{ $detail }}</h6></td>
                   </tr>
                 </table>  
               </div>
@@ -214,7 +232,7 @@
                     <tr>
                       <td><h6>Masa SIM</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>{{ date('d M Y', strtotime($getsim->exp_date)) }}</h6></td>  
+                      <td><h6>{{ $getsim ? date('d M Y', strtotime($getsim->exp_date)) : '-' }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>No HP</h6></td>
@@ -224,7 +242,7 @@
                     <tr>
                       <td><h6>Lembur</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>6 Jam / 40 Jam (30%)</h6></td>  
+                      <td><h6>-</h6></td>  
                     </tr>
 
                     <tr height="10px">
@@ -276,13 +294,18 @@
                     <tr>
                       <td width="20%"><h6>Masa STNK</h6></td>
                       <td><h6>:</h6></td>
-                      <td width="40%"><h6>{{ date('d M Y', strtotime($getstnk->exp_date)) }}</h6></td>  
+                      <td width="40%"><h6>{{ $getstnk ? date('d M Y', strtotime($getstnk->exp_date)) : '-' }}</h6></td>  
                     </tr>
 
+                    @php
+
+                      $persen = ($getunits->mileage / 10000) * 100;
+
+                    @endphp
                     <tr>
                       <td><h6>Service</h6></td>
                       <td><h6>:</h6></td>
-                      <td><h6>{{ $getunits->mileage }} Km / 10000 Km (30%)</h6></td>  
+                      <td><h6>{{ $getunits->mileage }} Km / 10000 Km ({{ $persen }}%)</h6></td>  
                     </tr>
 
                     <tr height="10px">

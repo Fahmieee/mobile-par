@@ -19,7 +19,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
                         <div class="custom-control custom-control-alternative custom-checkbox mb-3">
@@ -31,7 +31,7 @@
                 </div>
                 <div id="mobil">
                     <input class="custom-control-input form_clockin" value="0" id="unitgs" type="checkbox">
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">

@@ -8,6 +8,7 @@ use App\Users;
 use App\UserBranch;
 use App\Role;
 use App\Branch;
+use App\ActivityLogin;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,7 +22,7 @@ class LoginController extends Controller
     public function loginUser(Request $request)
     {
 
-        $userc = Users::select('role_id','flag_pass','flag_prof')
+        $userc = Users::select('role_id','flag_pass','flag_prof','users.id')
         ->leftJoin("users_roles", "users.id", "=", "users_roles.user_id")
         ->where('users.username', $request->username)
         ->first();
@@ -32,6 +33,7 @@ class LoginController extends Controller
             $msg = array(
                 'role' => $userc->role_id,
                 'status' => 'success',
+                'id' => $userc->id,
                 'flag_pass' => $userc->flag_pass,
                 'flag_prof' => $userc->flag_prof
             );
@@ -99,6 +101,21 @@ class LoginController extends Controller
         $roles->save();
 
         return response()->json($usernew);
+
+    }
+
+    public function activity(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d');
+
+        $activity = new ActivityLogin();
+        $activity->user_id = $request->id;
+        $activity->date = $date;
+        $activity->save();
+
+        return response()->json($activity);
+
 
     }
 

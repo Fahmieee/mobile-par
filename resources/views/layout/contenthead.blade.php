@@ -8,18 +8,18 @@
   <meta name="theme_color" content="#ffffff">   
   <title>PAR | Prima Armada Raya</title>
   <!-- Favicon -->
-  <link href="./assets/icons/72x72.png" rel="icon" type="image/png">
+  <link href="{{ asset('icons/72x72.png') }}" rel="icon" type="image/png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
-  <link href="./assets/content/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
-  <link href="./assets/content/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+  <link href="{{ asset('assets/content/js/plugins/nucleo/css/nucleo.css') }}" rel="stylesheet" />
+  <link href="{{ asset('assets/content/js/plugins/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet" />
   <!-- CSS Files -->
-  <link href="./assets/content/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
+  <link href="{{ asset('assets/content/css/argon-dashboard.css?v=1.1.0') }}" rel="stylesheet" />
 
-  <link rel="manifest" href="./manifest.json">
+  <link rel="manifest" href="{{ asset('manifest.json') }}">
   <!-- ios support -->
-  <link rel="apple-touch-icon" href="./assets/icons/96x96.png">
+  <link rel="apple-touch-icon" href="{{ asset('assets/icons/96x96.png') }}">
   <meta name="apple-mobile-web-app-status-bar" content="#aa7700">
 
   <style type="text/css" media="screen">
@@ -40,10 +40,10 @@
       <!-- <button class="navbar-toggler" id="darurat" type="button">
         <i class="fa fa-exclamation-triangle"></i>
       </button> -->
-      <img src="./assets/content/img/theme/callcenter.png" width="13%" id="darurat">
+      <img src="{{ asset('assets/content/img/theme/callcenter.png') }}" width="13%" id="darurat">
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="#">
-        <img src="./assets/login/images/par2.png" class="navbar-brand-img">
+        <img src="{{ asset('assets/login/images/par2.png') }}" class="navbar-brand-img">
         {{ csrf_field() }}
       </a>
       <!-- User -->
