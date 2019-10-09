@@ -46,15 +46,13 @@
             </table>
           </div>
           </a>
-          @endforeach
-            
+          @endforeach 
         </div>
         
       </div>
       
 <!--       @include('content.history.modal') -->
       @include('layout.contentfooter')
-      @include('script.monitoring')
 
 </body>
 
