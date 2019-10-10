@@ -129,7 +129,7 @@
 
                         }
 
-                    } else if (data.status == 'error'){
+                    } else {
 
                         swal("Username or Password Wrong!", {
 	                        icon: "error",
@@ -142,20 +142,26 @@
 
                     }
 
-                   	$.ajax({
-			            type: 'POST',
-			            url: "{{ route('ActivityLogin') }}",
-			            data: {
-			                '_token': $('input[name=_token]').val(),
-			                'id': data.id
-			                },
-			            success: function(data) {
+                    if (data.role == '2'){
 
-			            	
+                    	$.ajax({
+				            type: 'POST',
+				            url: "{{ route('ActivityLogin') }}",
+				            data: {
+				                '_token': $('input[name=_token]').val(),
+				                'id': data.id
+				                },
+				            success: function(data) {
 
-			            }
+				            	
 
-			        });
+				            }
+
+				        });
+
+                    }
+
+                   	
 
                 }
             });
