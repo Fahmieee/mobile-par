@@ -13,6 +13,7 @@
 
                 var no = -1;
                 var content_data="";
+                var names="";
 
                 if (data.length == 0){
 
@@ -34,13 +35,19 @@
                         no++;
                         var nama_depan = data[no]['first_name'];
                         var nama_belakang = data[no]['last_name'];
+                        if (nama_belakang == null){
+                            names = '';
+                        } else {
+                            names = nama_belakang;
+                        }
                         var detail = data[no]['detail_name'];
                         var parameter = data[no]['parameter'];
                         var level = data[no]['level'];
                         var type_name = data[no]['type_name'];
                         var approve_sementara = data[no]['approve_sementara'];
                         var id = data[no]['id'];
-                        var created_date = new Date(data[no]['created_at']);
+                        var days = data[no]['days'];
+                        var created_date = new Date(data[no]['date']);
                         var day = created_date.getDate();
                         var monthIndex = created_date.getMonth();
                         var year = created_date.getFullYear();
@@ -56,15 +63,16 @@
                         content_data += "<i class='fas fa-car' style='color: #ffffff'></i>";
                         content_data += "</div>";
                         content_data += "</td>";
-                        content_data += "<td colspan='2'><h5><b>"+nama_depan+" "+nama_belakang+"</b></h5></td>";
+                        content_data += "<td colspan='3'><h5><b>"+nama_depan+" "+names+"</b></h5></td>";
                         content_data += "</tr>";
                         content_data += "<tr>";
-                        content_data += "<td colspan='2'><h6>"+detail+" - "+parameter+" ("+type_name+") </h6></td>";
+                        content_data += "<td colspan='3'><h6>"+detail+" - "+parameter+" ("+type_name+") </h6></td>";
                         content_data += "</tr>";
                         content_data += "<tr>";
                         content_data += "<td align='center'><span class='badge badge-pill badge-success' style='font-size: 9px;'>"+no_plat+"</span></td>";
-                        content_data += "<td  width='20%'><span class='badge badge-pill badge-primary' style='font-size: 9px;'><i class='fas fa-calendar'></i> "+date+"</span></td>";
-                        content_data += "<td><span class='badge badge-pill badge-danger' style='font-size: 9px;'><i class='fas fa-exclamation-triangle'></i> "+level+"</span></td>";
+                        content_data += "<td width='20%'><span class='badge badge-pill badge-primary' style='font-size: 9px;'><i class='fas fa-calendar'></i> "+date+"</span></td>";
+                        content_data += "<td width='20%'><span class='badge badge-pill badge-danger' style='font-size: 9px;'><i class='fas fa-exclamation-triangle'></i> "+level+"</span></td>";
+                        content_data += "<td><span class='badge badge-pill badge-primary' style='font-size: 9px;'>"+days+" Day</span></td>";
                         content_data += "</tr>";
                         content_data += "</table>"; 
 
@@ -103,11 +111,18 @@
 
                 var span = '';
 
-                $('#nama').html(data.first_name+' '+data.last_name);
+                if (data.last_name == null){
+                    names = '';
+                } else {
+                    names = data.last_name;
+                }
+
+                $('#nama').html(data.first_name+' '+names);
                 $('#wilayah').html(data.unitkerja_name+' - '+data.wilayah_name);
                 $('#plat').html(data.no_police);
                 $('#detail').html(data.detail_name+' - '+data.parameter);
                 $('#type').html(data.type_name);
+                $('#days').html(data.days+ ' Days');
 
                 if(data.level == 'HIGH'){
                     span = 'danger';
@@ -135,7 +150,7 @@
                     "Nov", "Dec"
                   ];
 
-                var created_date = new Date(data.created_at);
+                var created_date = new Date(data.date);
                 var day = created_date.getDate();
                 var monthIndex = created_date.getMonth();
                 var year = created_date.getFullYear();
@@ -243,13 +258,19 @@
                         no++;
                         var nama_depan = data[no]['first_name'];
                         var nama_belakang = data[no]['last_name'];
+                        if (nama_belakang == null){
+                            names = '';
+                        } else {
+                            names = nama_belakang;
+                        }
                         var detail = data[no]['detail_name'];
                         var parameter = data[no]['parameter'];
                         var level = data[no]['level'];
                         var type_name = data[no]['type_name'];
                         var approve_sementara = data[no]['approve_sementara'];
                         var id = data[no]['id'];
-                        var created_date = new Date(data[no]['created_at']);
+                        var days = data[no]['days'];
+                        var created_date = new Date(data[no]['date']);
                         var day = created_date.getDate();
                         var monthIndex = created_date.getMonth();
                         var year = created_date.getFullYear();
@@ -265,15 +286,16 @@
                         content_data += "<i class='fas fa-car' style='color: #ffffff'></i>";
                         content_data += "</div>";
                         content_data += "</td>";
-                        content_data += "<td colspan='2'><h5><b>"+nama_depan+" "+nama_belakang+"</b></h5></td>";
+                        content_data += "<td colspan='3'><h5><b>"+nama_depan+" "+names+"</b></h5></td>";
                         content_data += "</tr>";
                         content_data += "<tr>";
-                        content_data += "<td colspan='2'><h6>"+detail+" - "+parameter+" ("+type_name+") </h6></td>";
+                        content_data += "<td colspan='3'><h6>"+detail+" - "+parameter+" ("+type_name+") </h6></td>";
                         content_data += "</tr>";
                         content_data += "<tr>";
                         content_data += "<td align='center'><span class='badge badge-pill badge-success' style='font-size: 9px;'>"+no_plat+"</span></td>";
-                        content_data += "<td  width='20%'><span class='badge badge-pill badge-primary' style='font-size: 9px;'><i class='fas fa-calendar'></i> "+date+"</span></td>";
-                        content_data += "<td><span class='badge badge-pill badge-warning' style='font-size: 9px;'><i class='fas fa-exclamation-triangle'></i> "+level+"</span></td>";
+                        content_data += "<td width='20%'><span class='badge badge-pill badge-primary' style='font-size: 9px;'><i class='fas fa-calendar'></i> "+date+"</span></td>";
+                        content_data += "<td width='20%'><span class='badge badge-pill badge-warning' style='font-size: 9px;'><i class='fas fa-exclamation-triangle'></i> "+level+"</span></td>";
+                        content_data += "<td><span class='badge badge-pill badge-primary' style='font-size: 9px;'>"+days+" Day</span></td>";
                         content_data += "</tr>";
                         content_data += "</table>"; 
 
@@ -328,13 +350,19 @@
                         no++;
                         var nama_depan = data[no]['first_name'];
                         var nama_belakang = data[no]['last_name'];
+                        if (nama_belakang == null){
+                            names = '';
+                        } else {
+                            names = nama_belakang;
+                        }
                         var detail = data[no]['detail_name'];
                         var parameter = data[no]['parameter'];
                         var level = data[no]['level'];
                         var type_name = data[no]['type_name'];
                         var approve_sementara = data[no]['approve_sementara'];
                         var id = data[no]['id'];
-                        var created_date = new Date(data[no]['created_at']);
+                        var days = data[no]['days'];
+                        var created_date = new Date(data[no]['date']);
                         var day = created_date.getDate();
                         var monthIndex = created_date.getMonth();
                         var year = created_date.getFullYear();
@@ -350,15 +378,16 @@
                         content_data += "<i class='fas fa-car' style='color: #ffffff'></i>";
                         content_data += "</div>";
                         content_data += "</td>";
-                        content_data += "<td colspan='2'><h5><b>"+nama_depan+" "+nama_belakang+"</b></h5></td>";
+                        content_data += "<td colspan='3'><h5><b>"+nama_depan+" "+names+"</b></h5></td>";
                         content_data += "</tr>";
                         content_data += "<tr>";
-                        content_data += "<td colspan='2'><h6>"+detail+" - "+parameter+" ("+type_name+") </h6></td>";
+                        content_data += "<td colspan='3'><h6>"+detail+" - "+parameter+" ("+type_name+") </h6></td>";
                         content_data += "</tr>";
                         content_data += "<tr>";
                         content_data += "<td align='center'><span class='badge badge-pill badge-success' style='font-size: 9px;'>"+no_plat+"</span></td>";
                         content_data += "<td  width='20%'><span class='badge badge-pill badge-primary' style='font-size: 9px;'><i class='fas fa-calendar'></i> "+date+"</span></td>";
-                        content_data += "<td><span class='badge badge-pill badge-primary' style='font-size: 9px;'><i class='fas fa-exclamation-triangle'></i> "+level+"</span></td>";
+                        content_data += "<td width='20%'><span class='badge badge-pill badge-primary' style='font-size: 9px;'><i class='fas fa-exclamation-triangle'></i> "+level+"</span></td>";
+                        content_data += "<td><span class='badge badge-pill badge-primary' style='font-size: 9px;'>"+days+" Day</span></td>";
                         content_data += "</tr>";
                         content_data += "</table>"; 
 
@@ -413,13 +442,19 @@
                         no++;
                         var nama_depan = data[no]['first_name'];
                         var nama_belakang = data[no]['last_name'];
+                        if (nama_belakang == null){
+                            names = '';
+                        } else {
+                            names = nama_belakang;
+                        }
                         var detail = data[no]['detail_name'];
                         var parameter = data[no]['parameter'];
                         var level = data[no]['level'];
                         var type_name = data[no]['type_name'];
                         var approve_sementara = data[no]['approve_sementara'];
                         var id = data[no]['id'];
-                        var created_date = new Date(data[no]['created_at']);
+                        var days = data[no]['days'];
+                        var created_date = new Date(data[no]['date']);
                         var day = created_date.getDate();
                         var monthIndex = created_date.getMonth();
                         var year = created_date.getFullYear();
@@ -435,15 +470,16 @@
                         content_data += "<i class='fas fa-car' style='color: #ffffff'></i>";
                         content_data += "</div>";
                         content_data += "</td>";
-                        content_data += "<td colspan='2'><h5><b>"+nama_depan+" "+nama_belakang+"</b></h5></td>";
+                        content_data += "<td colspan='3'><h5><b>"+nama_depan+" "+names+"</b></h5></td>";
                         content_data += "</tr>";
                         content_data += "<tr>";
-                        content_data += "<td colspan='2'><h6>"+detail+" - "+parameter+" ("+type_name+") </h6></td>";
+                        content_data += "<td colspan='3'><h6>"+detail+" - "+parameter+" ("+type_name+") </h6></td>";
                         content_data += "</tr>";
                         content_data += "<tr>";
                         content_data += "<td align='center'><span class='badge badge-pill badge-success' style='font-size: 9px;'>"+no_plat+"</span></td>";
                         content_data += "<td  width='20%'><span class='badge badge-pill badge-primary' style='font-size: 9px;'><i class='fas fa-calendar'></i> "+date+"</span></td>";
-                        content_data += "<td><span class='badge badge-pill badge-danger' style='font-size: 9px;'><i class='fas fa-exclamation-triangle'></i> "+level+"</span></td>";
+                        content_data += "<td width='20%'><span class='badge badge-pill badge-danger' style='font-size: 9px;'><i class='fas fa-exclamation-triangle'></i> "+level+"</span></td>";
+                        content_data += "<td><span class='badge badge-pill badge-primary' style='font-size: 9px;'>"+days+" Day</span></td>";
                         content_data += "</tr>";
                         content_data += "</table>"; 
 

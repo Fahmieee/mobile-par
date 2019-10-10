@@ -14,7 +14,7 @@
             $drivers = DB::table('drivers')
             ->where('korlap_id', $user->id)
             ->count();
-
+            
             $checkup = DB::table('medical_checkup')
             ->where('date', $getdcu->date)
             ->count();

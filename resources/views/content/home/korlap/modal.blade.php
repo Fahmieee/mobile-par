@@ -74,6 +74,14 @@
                       <td><h5 id="tanggal"></h5></td>
                     </tr>
                   </table> 
+                  <hr>
+                  <table width="100%" border="0"> 
+                    <tr>
+                      <td width="35%"><h5><b>Days</b></h5></td>
+                      <td width="5%"><h5><b>:</b></h5></td>
+                      <td><h5 id="days"></h5></td>
+                    </tr>
+                  </table> 
                   <input type="hidden" id="id">
                 </div>
 

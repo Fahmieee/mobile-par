@@ -75,6 +75,8 @@ class PreTripCheckController extends Controller
         date_default_timezone_set('Asia/Jakarta');
     	$harini = date('Y-m-d');
     	$time = date("H:i:s");
+        $fulltime = date('Y-m-d H:i:s');
+        $kemarin = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
 
         $userx = Drivers::where('driver_id', $request->created_by)
         ->first();
@@ -112,12 +114,54 @@ class PreTripCheckController extends Controller
 
                 if (!$ada){
 
-                    $detail_tripchecknot = new PretripCheckNotOke();
-                    $detail_tripchecknot->pretripcheckdetail_id = $detail_tripcheck->id;
-                    $detail_tripchecknot->checkanswer_id = $request->checkanswer_id[$i];
-                    $detail_tripchecknot->status = 'NOT APPROVED';
-                    $detail_tripchecknot->approve_sementara = 'No';
-                    $detail_tripchecknot->save();
+                    $ceknotoke = PretripCheckNotOke::select('pretrip_check_notoke.id','pretrip_check_notoke.days')
+                    ->leftJoin("pretrip_check_detail", "pretrip_check_notoke.pretripcheckdetail_id", "=", "pretrip_check_detail.id")
+                    ->leftJoin("pretrip_check", "pretrip_check_detail.pretripcheck_id", "=", "pretrip_check.id")
+                    ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+                    ->where([
+                        ['pretrip_check.date', '=', $kemarin],
+                        ['pretrip_check.user_id', '=', $request->created_by],
+                        ['pretrip_check_notoke.checkanswer_id', '=', $request->checkanswer_id[$i]],
+                    ])
+                    ->first();
+
+                    if (!$ceknotoke){
+
+                        $detail_tripchecknot = new PretripCheckNotOke();
+                        $detail_tripchecknot->pretripcheckdetail_id = $detail_tripcheck->id;
+                        $detail_tripchecknot->checkanswer_id = $request->checkanswer_id[$i];
+                        $detail_tripchecknot->status = 'NOT APPROVED';
+                        $detail_tripchecknot->approve_sementara = 'No';
+                        $detail_tripchecknot->days = '1';
+                        $detail_tripchecknot->save();
+
+                    } else {
+
+                        $nambah = $ceknotoke->days + 1;
+
+                        $updates_days = PretripCheckNotOke::where(['id'=>$ceknotoke->id])->update(['days'=>$nambah]);
+
+                    }
+
+                } else {
+
+                    $cekdetail = PretripCheckNotOke::select("pretrip_check_notoke.id as not_id","check_detail.id")
+                    ->leftJoin("pretrip_check_detail", "pretrip_check_notoke.pretripcheckdetail_id", "=", "pretrip_check_detail.id")
+                    ->leftJoin("pretrip_check", "pretrip_check_detail.pretripcheck_id", "=", "pretrip_check.id")
+                    ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+                    ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
+                    ->where([
+                        ['pretrip_check.date', '=', $kemarin],
+                        ['pretrip_check.user_id', '=', $request->created_by],
+                        ['check_detail.id', '=', $ada->checkdetail_id],
+                    ])
+                    ->first();
+
+                    if ($cekdetail){
+
+                        $approveptcdrivers = PretripCheckNotOke::where(['id'=>$cekdetail->not_id])->update(['status'=>'APPROVED', 'approved_at'=> $fulltime, 'approved_by'=> $request->created_by]);
+
+                    }
 
                 }
 
@@ -154,12 +198,54 @@ class PreTripCheckController extends Controller
 
                         if (!$ada){
 
-                            $detail_tripchecknot = new PretripCheckNotOke();
-                            $detail_tripchecknot->pretripcheckdetail_id = $detail_tripcheck->id;
-                            $detail_tripchecknot->checkanswer_id = $request->checkanswer_id[$i];
-                            $detail_tripchecknot->status = 'NOT APPROVED';
-                            $detail_tripchecknot->approve_sementara = 'No';
-                            $detail_tripchecknot->save();
+                            $ceknotoke = PretripCheckNotOke::select('pretrip_check_notoke.id','pretrip_check_notoke.days')
+                            ->join("pretrip_check_detail", "pretrip_check_notoke.pretripcheckdetail_id", "=", "pretrip_check_detail.id")
+                            ->join("pretrip_check", "pretrip_check_detail.pretripcheck_id", "=", "pretrip_check.id")
+                            ->join("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+                            ->where([
+                                ['pretrip_check.date', '=', $kemarin],
+                                ['pretrip_check.user_id', '=', $request->created_by],
+                                ['pretrip_check_notoke.checkanswer_id', '=', $request->checkanswer_id[$i]],
+                            ])
+                            ->first();
+
+                            if (!$ceknotoke){
+
+                                $detail_tripchecknot = new PretripCheckNotOke();
+                                $detail_tripchecknot->pretripcheckdetail_id = $detail_tripcheck->id;
+                                $detail_tripchecknot->checkanswer_id = $request->checkanswer_id[$i];
+                                $detail_tripchecknot->status = 'NOT APPROVED';
+                                $detail_tripchecknot->approve_sementara = 'No';
+                                $detail_tripchecknot->days = '1';
+                                $detail_tripchecknot->save();
+
+                            } else {
+
+                                $nambah = $ceknotoke->days + 1;
+
+                                $updates_days = PretripCheckNotOke::where(['id'=>$ceknotoke->id])->update(['days'=>$nambah]);
+
+                            }
+
+                        } else {
+
+                            $cekdetail = PretripCheckNotOke::select("pretrip_check_notoke.id as not_id","check_detail.id")
+                            ->leftJoin("pretrip_check_detail", "pretrip_check_notoke.pretripcheckdetail_id", "=", "pretrip_check_detail.id")
+                            ->leftJoin("pretrip_check", "pretrip_check_detail.pretripcheck_id", "=", "pretrip_check.id")
+                            ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+                            ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
+                            ->where([
+                                ['pretrip_check.date', '=', $kemarin],
+                                ['pretrip_check.user_id', '=', $request->created_by],
+                                ['check_detail.id', '=', $ada->checkdetail_id],
+                            ])
+                            ->first();
+
+                            if ($cekdetail){
+
+                                $approveptcdrivers = PretripCheckNotOke::where(['id'=>$cekdetail->not_id])->update(['status'=>'APPROVED', 'approved_at'=> $fulltime, 'approved_by'=> $request->created_by]);
+
+                            }
 
                         }
 
@@ -202,12 +288,54 @@ class PreTripCheckController extends Controller
 
                         if (!$ada){
 
-                            $detail_tripchecknot = new PretripCheckNotOke();
-                            $detail_tripchecknot->pretripcheckdetail_id = $detail_tripcheck->id;
-                            $detail_tripchecknot->checkanswer_id = $request->checkanswer_id[$i];
-                            $detail_tripchecknot->status = 'NOT APPROVED';
-                            $detail_tripchecknot->approve_sementara = 'No';
-                            $detail_tripchecknot->save();
+                            $ceknotoke = PretripCheckNotOke::select('pretrip_check_notoke.id','pretrip_check_notoke.days')
+                            ->join("pretrip_check_detail", "pretrip_check_notoke.pretripcheckdetail_id", "=", "pretrip_check_detail.id")
+                            ->join("pretrip_check", "pretrip_check_detail.pretripcheck_id", "=", "pretrip_check.id")
+                            ->join("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+                            ->where([
+                                ['pretrip_check.date', '=', $kemarin],
+                                ['pretrip_check.user_id', '=', $request->created_by],
+                                ['pretrip_check_notoke.checkanswer_id', '=', $request->checkanswer_id[$i]],
+                            ])
+                            ->first();
+
+                            if (!$ceknotoke){
+
+                                $detail_tripchecknot = new PretripCheckNotOke();
+                                $detail_tripchecknot->pretripcheckdetail_id = $detail_tripcheck->id;
+                                $detail_tripchecknot->checkanswer_id = $request->checkanswer_id[$i];
+                                $detail_tripchecknot->status = 'NOT APPROVED';
+                                $detail_tripchecknot->approve_sementara = 'No';
+                                $detail_tripchecknot->days = '1';
+                                $detail_tripchecknot->save();
+
+                            } else {
+
+                                $nambah = $ceknotoke->days + 1;
+
+                                $updates_days = PretripCheckNotOke::where(['id'=>$ceknotoke->id])->update(['days'=>$nambah]);
+
+                            }
+
+                        } else {
+
+                            $cekdetail = PretripCheckNotOke::select("pretrip_check_notoke.id as not_id","check_detail.id")
+                            ->leftJoin("pretrip_check_detail", "pretrip_check_notoke.pretripcheckdetail_id", "=", "pretrip_check_detail.id")
+                            ->leftJoin("pretrip_check", "pretrip_check_detail.pretripcheck_id", "=", "pretrip_check.id")
+                            ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+                            ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
+                            ->where([
+                                ['pretrip_check.date', '=', $kemarin],
+                                ['pretrip_check.user_id', '=', $request->created_by],
+                                ['check_detail.id', '=', $ada->checkdetail_id],
+                            ])
+                            ->first();
+
+                            if ($cekdetail){
+
+                                $approveptcdrivers = PretripCheckNotOke::where(['id'=>$cekdetail->not_id])->update(['status'=>'APPROVED', 'approved_at'=> $fulltime, 'approved_by'=> $request->created_by]);
+
+                            }
 
                         }
 

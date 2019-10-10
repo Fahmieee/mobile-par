@@ -32,7 +32,7 @@ class KorlapController extends Controller
     public function getptchigh(Request $request)
     {
            
-        $getptc = PretripCheckNotOke::Select('users.first_name','users.last_name','check_detail.name as detail_name','check_answer.parameter','check_answer.level','check_types.name as type_name', 'pretrip_check.created_at','pretrip_check_notoke.id','units.no_police','pretrip_check_notoke.approve_sementara')
+        $getptc = PretripCheckNotOke::Select('users.first_name','users.last_name','check_detail.name as detail_name','check_answer.parameter','check_answer.level','check_types.name as type_name', 'pretrip_check.date','pretrip_check_notoke.id','units.no_police','pretrip_check_notoke.approve_sementara','pretrip_check_notoke.days')
         ->leftJoin("pretrip_check_detail", "pretrip_check_notoke.pretripcheckdetail_id", "=", "pretrip_check_detail.id")
         ->leftJoin("pretrip_check", "pretrip_check_detail.pretripcheck_id", "=", "pretrip_check.id")
         ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
@@ -58,7 +58,7 @@ class KorlapController extends Controller
     public function getptcmedium(Request $request)
     {
            
-        $getptcmedium = PretripCheckNotOke::Select('users.first_name','users.last_name','check_detail.name as detail_name','check_answer.parameter','check_answer.level','check_types.name as type_name', 'pretrip_check.created_at','pretrip_check_notoke.id','units.no_police','pretrip_check_notoke.approve_sementara')
+        $getptcmedium = PretripCheckNotOke::Select('users.first_name','users.last_name','check_detail.name as detail_name','check_answer.parameter','check_answer.level','check_types.name as type_name', 'pretrip_check.date','pretrip_check_notoke.id','units.no_police','pretrip_check_notoke.approve_sementara','pretrip_check_notoke.days')
         ->leftJoin("pretrip_check_detail", "pretrip_check_notoke.pretripcheckdetail_id", "=", "pretrip_check_detail.id")
         ->leftJoin("pretrip_check", "pretrip_check_detail.pretripcheck_id", "=", "pretrip_check.id")
         ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
@@ -83,7 +83,7 @@ class KorlapController extends Controller
     public function getptclow(Request $request)
     {
            
-        $getptclow = PretripCheckNotOke::Select('users.first_name','users.last_name','check_detail.name as detail_name','check_answer.parameter','check_answer.level','check_types.name as type_name', 'pretrip_check.created_at','pretrip_check_notoke.id','units.no_police','pretrip_check_notoke.approve_sementara')
+        $getptclow = PretripCheckNotOke::Select('users.first_name','users.last_name','check_detail.name as detail_name','check_answer.parameter','check_answer.level','check_types.name as type_name', 'pretrip_check.date','pretrip_check_notoke.id','units.no_police','pretrip_check_notoke.approve_sementara','pretrip_check_notoke.days')
         ->leftJoin("pretrip_check_detail", "pretrip_check_notoke.pretripcheckdetail_id", "=", "pretrip_check_detail.id")
         ->leftJoin("pretrip_check", "pretrip_check_detail.pretripcheck_id", "=", "pretrip_check.id")
         ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
@@ -110,7 +110,7 @@ class KorlapController extends Controller
         
         date_default_timezone_set('Asia/Jakarta');
            
-        $getapproved = PretripCheckNotOke::Select('users.first_name','users.last_name','check_detail.name as detail_name','check_answer.parameter','check_answer.level','check_types.name as type_name', 'pretrip_check.created_at','pretrip_check_notoke.id','units.no_police','unit_kerja.unitkerja_name', 'wilayah.wilayah_name','pretrip_check_notoke.approve_sementara')
+        $getapproved = PretripCheckNotOke::Select('users.first_name','users.last_name','check_detail.name as detail_name','check_answer.parameter','check_answer.level','check_types.name as type_name', 'pretrip_check.date','pretrip_check_notoke.id','units.no_police','unit_kerja.unitkerja_name', 'wilayah.wilayah_name','pretrip_check_notoke.approve_sementara','pretrip_check_notoke.days')
         ->leftJoin("pretrip_check_detail", "pretrip_check_notoke.pretripcheckdetail_id", "=", "pretrip_check_detail.id")
         ->leftJoin("pretrip_check", "pretrip_check_detail.pretripcheck_id", "=", "pretrip_check.id")
         ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
