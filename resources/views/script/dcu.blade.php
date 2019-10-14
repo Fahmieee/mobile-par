@@ -151,6 +151,8 @@
     $('#suhu').on('keyup', function () {
 
         var value = $(this).val();
+        var hasilsuhu = $('#suhuhasil').val();
+        var hasiltekanan = $('#tekananhasil').val();
 
         if (value == ''){
          
@@ -160,11 +162,40 @@
 
             $('.notif_suhu').html('<div class="alert alert-danger" role="alert"><strong>Hati-hati!</strong> Suhu Anda Demam!</div>');
 
+            $('#suhuhasil').val(3);
+
         } else if (value <= 36){
 
             $('.notif_suhu').html('<div class="alert alert-success" role="alert"><strong>Sehat!</strong> Suhu Anda Normal!</div>');
+            $('#suhuhasil').val(1);
 
         } 
+
+        if (hasilsuhu == '3'){
+
+            if (hasiltekanan == '3'){
+
+                $('#hasil').val(3);
+
+            } else {
+
+                $('#hasil').val(2);
+
+            } 
+
+        } else {
+
+            if (hasiltekanan == '1'){
+
+                $('#hasil').val(1);
+
+            }  else {
+
+                $('#hasil').val(2);
+
+            }
+
+        }
 
     });
 
@@ -172,6 +203,8 @@
 
         var dar1 = $(this).val();
         var dar2 = $('#darah2').val();
+        var hasilsuhu = $('#suhuhasil').val();
+        var hasiltekanan = $('#tekananhasil').val();
 
         if (dar2 == ''){
 
@@ -180,12 +213,42 @@
         } else if (dar1 < 120 && dar2 < 80){
 
             $('.notif_darah').html('<div class="alert alert-success" role="alert"><strong>Sehat!</strong> Tekanan Darah Normal!</div>');
+            $('#tekananhasil').val(1);
         } else if (dar1 >= 120 && dar1 < 140 || dar2 >= 80 && dar2 < 90){
             $('.notif_darah').html('<div class="alert alert-yellow" role="alert"><strong>Hati-Hati!</strong> Prehypertension!</div>');
+            $('#tekananhasil').val(2);
         } else if (dar1 >= 140 && dar1 < 160 || dar2 >= 90 && dar2 < 100){
             $('.notif_darah').html('<div class="alert alert-warning" role="alert"><strong>Hati-hati!</strong> High Blood Presure!</div>');
+            $('#tekananhasil').val(2);
         } else if (dar1 >= 160 || dar2 >= 100){
             $('.notif_darah').html('<div class="alert alert-danger" role="alert"><strong>Berbahaya!</strong> Hypertensive Crisis!</div>');
+            $('#tekananhasil').val(3);
+        }
+
+        if (hasilsuhu == '3'){
+
+            if (hasiltekanan == '3'){
+
+                $('#hasil').val(3);
+
+            } else {
+
+                $('#hasil').val(2);
+
+            } 
+
+        } else {
+
+            if (hasiltekanan == '1'){
+
+                $('#hasil').val(1);
+
+            }  else {
+
+                $('#hasil').val(2);
+
+            }
+
         }
 
     });
@@ -194,19 +257,52 @@
 
         var dar2 = $(this).val();
         var dar1 = $('#darah1').val();
+        var hasilsuhu = $('#suhuhasil').val();
+        var hasiltekanan = $('#tekananhasil').val();
 
         if (dar1 == ''){
 
             $('.notif_darah').html('');
 
         } else if (dar1 < 120 && dar2 < 80){
+
             $('.notif_darah').html('<div class="alert alert-success" role="alert"><strong>Sehat!</strong> Tekanan Darah Normal!</div>');
+            $('#tekananhasil').val(1);
         } else if (dar1 >= 120 && dar1 < 140 || dar2 >= 80 && dar2 < 90){
             $('.notif_darah').html('<div class="alert alert-yellow" role="alert"><strong>Hati-Hati!</strong> Prehypertension!</div>');
+            $('#tekananhasil').val(2);
         } else if (dar1 >= 140 && dar1 < 160 || dar2 >= 90 && dar2 < 100){
             $('.notif_darah').html('<div class="alert alert-warning" role="alert"><strong>Hati-hati!</strong> High Blood Presure!</div>');
+            $('#tekananhasil').val(2);
         } else if (dar1 >= 160 || dar2 >= 100){
             $('.notif_darah').html('<div class="alert alert-danger" role="alert"><strong>Berbahaya!</strong> Hypertensive Crisis!</div>');
+            $('#tekananhasil').val(3);
+        }
+
+        if (hasilsuhu == '3'){
+
+            if (hasiltekanan == '3'){
+
+                $('#hasil').val(3);
+
+            } else {
+
+                $('#hasil').val(2);
+
+            } 
+
+        } else {
+
+            if (hasiltekanan == '1'){
+
+                $('#hasil').val(1);
+
+            }  else {
+
+                $('#hasil').val(2);
+
+            }
+
         }
 
     });

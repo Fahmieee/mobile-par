@@ -545,66 +545,159 @@
 
 
 
-    // $('#ptc').on('click', function () {
+    $('#ptc').on('click', function () {
 
-    //     $('.menus').attr('class', 'btn btn-sm btn-secondary menus');
+        $('.menus').attr('class', 'btn btn-sm btn-secondary menus');
 
-    //     $('#ptc').attr('class', 'btn btn-sm btn-success menus');
-    //     $('#ptcbtn').attr('style', 'display: block;');
-    //     $('.inidcu').attr('style', 'display: none;');
-    //     $('.inidoc').attr('style', 'display: none;');
-    //     $('.inilain').attr('style', 'display: none;');
+        $('#ptc').attr('class', 'btn btn-sm btn-success menus');
+        $('#ptcbtn').attr('style', 'display: block;');
+        $('.inidcu').attr('style', 'display: none;');
+        $('.inidoc').attr('style', 'display: none;');
+        $('.inilain').attr('style', 'display: none;');
 
-    //     $('#ptchigh').attr('style', 'display: block;');
+        $('#ptccontent').attr('style', 'display: block;');
 
-    //     $('.tombol').attr('class', 'btn btn-sm btn-secondary tombol');
-    //     $('#btnhigh').attr('class', 'btn btn-sm btn-danger tombol');
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('GetPTCHigh') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val()
+                },
+            success: function(data) {
 
-    // });
+                var no = -1;
+                var content_data="";
+                var names="";
 
-    // $('#dcu').on('click', function () {
+                if (data.length == 0){
 
-    //     $('.menus').attr('class', 'btn btn-sm btn-secondary menus');
+                    content_data += "<div class='alert2 alert-secondary' role='alert'>";
+                    content_data += "<h6>Tidak Ada PTC Bermasalah Pada Tab ini!</h6>";
+                    content_data += "</div>";
 
-    //     $('#dcu').attr('class', 'btn btn-sm btn-success menus');
-    //     $('#ptcbtn').attr('style', 'display: none;');
-    //     $('.iniptc').attr('style', 'display: none;');
-    //     $('.inidoc').attr('style', 'display: none;');
-    //     $('.inilain').attr('style', 'display: none;');
+                } else {
 
-    //     $('#contentdcu').attr('style', 'display: block;');
+                    $.each(data, function() {
 
-    // });
+                        var monthNames = [
+                            "Jan", "Feb", "Mar",
+                            "Apr", "May", "Jun", "Jul",
+                            "Aug", "Sep", "Oct",
+                            "Nov", "Dec"
+                          ];
 
-    // $('#doc').on('click', function () {
+                        no++;
+                        var nama_depan = data[no]['first_name'];
+                        var nama_belakang = data[no]['last_name'];
+                        if (nama_belakang == null){
+                            names = '';
+                        } else {
+                            names = nama_belakang;
+                        }
+                        var detail = data[no]['detail_name'];
+                        var parameter = data[no]['parameter'];
+                        var level = data[no]['level'];
+                        var type_name = data[no]['type_name'];
+                        var approve_sementara = data[no]['approve_sementara'];
+                        var id = data[no]['id'];
+                        var days = data[no]['days'];
+                        var created_date = new Date(data[no]['date']);
+                        var day = created_date.getDate();
+                        var monthIndex = created_date.getMonth();
+                        var year = created_date.getFullYear();
+                        
+                        var date = day + ' ' + monthNames[monthIndex] + ' ' + year;
+                        var no_plat = data[no]['no_police'];
 
-    //     $('.menus').attr('class', 'btn btn-sm btn-secondary menus');
+                        content_data += "<div class='alert2 alert-secondary' onclick='Approve("+id+")' role='alert'>";
+                        content_data += "<table width='100%'' border='0'>";
+                        content_data += "<tr>";
+                        content_data += "<td align='center' width='20%' rowspan='2'>";
+                        content_data += "<div class='icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow'>";
+                        content_data += "<i class='fas fa-car' style='color: #ffffff'></i>";
+                        content_data += "</div>";
+                        content_data += "</td>";
+                        content_data += "<td colspan='3'><h5><b>"+nama_depan+" "+names+"</b></h5></td>";
+                        content_data += "</tr>";
+                        content_data += "<tr>";
+                        content_data += "<td colspan='3'><h6>"+detail+" - "+parameter+" ("+type_name+") </h6></td>";
+                        content_data += "</tr>";
+                        content_data += "<tr>";
+                        content_data += "<td align='center'><span class='badge badge-pill badge-success' style='font-size: 9px;'>"+no_plat+"</span></td>";
+                        content_data += "<td width='20%'><span class='badge badge-pill badge-primary' style='font-size: 9px;'><i class='fas fa-calendar'></i> "+date+"</span></td>";
+                        content_data += "<td width='20%'><span class='badge badge-pill badge-danger' style='font-size: 9px;'><i class='fas fa-exclamation-triangle'></i> "+level+"</span></td>";
+                        content_data += "<td><span class='badge badge-pill badge-primary' style='font-size: 9px;'>"+days+" Day</span></td>";
+                        content_data += "</tr>";
+                        content_data += "</table>"; 
 
-    //     $('#doc').attr('class', 'btn btn-sm btn-success menus');
+                        if(approve_sementara == 'Yes'){
+                            content_data += "<hr>";
+                            content_data += "<table width='100%'' border='0'>";
+                            content_data += "<tr>";
+                            content_data += "<td align='center'><h6><b>Anda Sudah Melakukan Approve Sementara pada PTC ini</b></h6></td>";
+                            content_data += "</tr>";
+                            content_data += "</table>";
+                        }
 
-    //     $('#ptcbtn').attr('style', 'display: none;');
-    //     $('.iniptc').attr('style', 'display: none;');
-    //     $('.inidcu').attr('style', 'display: none;');
-    //     $('.inilain').attr('style', 'display: none;');
+                        content_data += "</div>";
 
-    //     $('#contentdoc').attr('style', 'display: block;');
+                    });
+                }
 
-    // });
+                $('#ptccontent').html(content_data);
+            }
 
-    // $('#lainnya').on('click', function () {
+        });
 
-    //     $('.menus').attr('class', 'btn btn-sm btn-secondary menus');
+        $('.tombol').attr('class', 'btn btn-sm btn-secondary tombol');
+        $('#btnhigh').attr('class', 'btn btn-sm btn-danger tombol');
 
-    //     $('#lainnya').attr('class', 'btn btn-sm btn-success menus');
+    });
 
-    //     $('#ptcbtn').attr('style', 'display: none;');
-    //     $('.iniptc').attr('style', 'display: none;');
-    //     $('.inidcu').attr('style', 'display: none;');
-    //     $('.inidoc').attr('style', 'display: none;');
+    $('#dcu').on('click', function () {
 
-    //     $('#contentlain').attr('style', 'display: block;');
+        $('.menus').attr('class', 'btn btn-sm btn-secondary menus');
 
-    // });
+        $('#dcu').attr('class', 'btn btn-sm btn-success menus');
+        $('#ptcbtn').attr('style', 'display: none;');
+        $('.iniptc').attr('style', 'display: none;');
+        $('.inidoc').attr('style', 'display: none;');
+        $('.inilain').attr('style', 'display: none;');
+
+        $('#contentdcu').attr('style', 'display: block;');
+
+    });
+
+    $('#doc').on('click', function () {
+
+        $('.menus').attr('class', 'btn btn-sm btn-secondary menus');
+
+        $('#doc').attr('class', 'btn btn-sm btn-success menus');
+
+        $('#ptcbtn').attr('style', 'display: none;');
+        $('.iniptc').attr('style', 'display: none;');
+        $('.inidcu').attr('style', 'display: none;');
+        $('.inilain').attr('style', 'display: none;');
+
+        $('#contentdoc').attr('style', 'display: block;');
+
+    });
+
+    $('#lainnya').on('click', function () {
+
+        $('.menus').attr('class', 'btn btn-sm btn-secondary menus');
+
+        $('#lainnya').attr('class', 'btn btn-sm btn-success menus');
+
+        $('#ptcbtn').attr('style', 'display: none;');
+        $('.iniptc').attr('style', 'display: none;');
+        $('.inidcu').attr('style', 'display: none;');
+        $('.inidoc').attr('style', 'display: none;');
+
+        $('#contentlain').attr('style', 'display: block;');
+
+    });
 
     // $('#btnhigh').on('click', function () {
 

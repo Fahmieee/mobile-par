@@ -65,6 +65,9 @@
                             <div class="custom-control custom-control-alternative custom-checkbox mb-3">
                               <input class="custom-control-input" id="customCheck9" type="checkbox">
                               <label class="custom-control-label" for="customCheck9"><h5>Apakah Anda Sudah Cukup Tidur?</h5></label>
+                              <input type="hidden" id="hasil" name="hasil">
+                              <input type="hidden" id="suhuhasil">
+                              <input type="hidden" id="tekananhasil">
                             </div>
                           </div>
                         </div>

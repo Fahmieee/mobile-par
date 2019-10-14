@@ -83,6 +83,7 @@
                 $colour = '#fc7c5f';
 
             } else {
+            
                 $alert = 'success';
                 $ket = 'Driver SEHAT';
                 $detail = 'Driver Anda Sudah Melakukan DCU';

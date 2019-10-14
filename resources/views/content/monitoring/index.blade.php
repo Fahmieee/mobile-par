@@ -16,12 +16,42 @@
             ->count();
             
             $checkup = DB::table('medical_checkup')
-            ->where('date', $getdcu->date)
+            ->leftJoin("drivers", "drivers.driver_id", "=", "medical_checkup.user_id")
+            ->where([
+                ['date', '=', $getdcu->date],
+                ['korlap_id', '=', $user->id],
+            ])
             ->count();
 
             $persen = round(($checkup / $drivers) * 100);
 
-            $tanggal = str_replace("-","",$getdcu->date);
+            $sehat = DB::table('medical_checkup')
+            ->leftJoin("drivers", "drivers.driver_id", "=", "medical_checkup.user_id")
+            ->where([
+                ['date', '=', $getdcu->date],
+                ['korlap_id', '=', $user->id],
+                ['hasil', '=', '1']
+            ])
+            ->count();
+
+            $hatihati = DB::table('medical_checkup')
+            ->leftJoin("drivers", "drivers.driver_id", "=", "medical_checkup.user_id")
+            ->where([
+                ['date', '=', $getdcu->date],
+                ['korlap_id', '=', $user->id],
+                ['hasil', '=', '2']
+            ])
+            ->count();
+
+            $sakit = DB::table('medical_checkup')
+            ->leftJoin("drivers", "drivers.driver_id", "=", "medical_checkup.user_id")
+            ->where([
+                ['date', '=', $getdcu->date],
+                ['korlap_id', '=', $user->id],
+                ['hasil', '=', '3']
+            ])
+            ->count();
+
 
           @endphp
           <a href="detailmonitoring/{{ $getdcu->date }}">
@@ -42,6 +72,11 @@
                 </td>
                 <td width="5%"></td>
                 <td width="20%"><h1 class="text-white">{{ $persen }}%</h1></td>
+              </tr>
+            </table>
+            <table width="100%">
+              <tr>
+                <td><h5 class="text-white">SEHAT : {{ $sehat }} | HATI-HATI : {{ $hatihati }} | SAKIT : {{ $sakit }} </h5></td>
               </tr>
             </table>
           </div>

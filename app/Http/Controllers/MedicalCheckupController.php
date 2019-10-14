@@ -35,6 +35,7 @@ class MedicalCheckupController extends Controller
             $checkup->suhu = $request->suhu;
             $checkup->darah = $darah;
             $checkup->img = $new_name;
+            $checkup->hasil = $request->hasil;
             $checkup->save();
 
             $image->move(public_path('/assets/img_dcu'), $new_name);

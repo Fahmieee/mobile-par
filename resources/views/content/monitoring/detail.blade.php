@@ -47,28 +47,47 @@
 
                 $alert = 'default';
                 $times = '-';
+                $hasil = '-';
 
               } else {
 
                 $alert = 'success';
                 $times = $mcu->time;
 
+                if ($mcu->hasil == '1'){
+
+                  $hasil = 'Sehat';
+
+                } else if ($mcu->hasil == '2'){
+
+                  $hasil = 'Hati-Hati';
+
+                } else {
+
+                  $hasil = 'Sakit';
+
+                }
               }
 
               @endphp
             <div class="alert alert-{{ $alert }}" role="alert">
               <table width="100%" border="0">
                 <tr>
-                  <td width="25%" rowspan="3"><img src="{{ $photos }}" width="100%" class="rounded-circle"></td>
-                  <td width="5%" rowspan="3"></td>
+                  <td width="25%" rowspan="4"><img src="{{ $photos }}" width="100%" class="rounded-circle"></td>
+                  <td width="5%" rowspan="4"></td>
                   <td><h5 class="text-white">{{ $detail->first_name }} {{ $detail->last_name }}</h5></td>
-                  <td rowspan="3">
+                  <td rowspan="4">
                     <i class="fa fa-exclamation" style="font-size: 30px"></i>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <h6 class="text-white"><i class="fa fa-map-marker"></i> {{ $detail->unitkerja_name }} - {{ $detail->wilayah_name }}</h6>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h5 class="text-white"><i class="fa fa-heart"></i> {{ $hasil }}</h5>
                   </td>
                 </tr>
                 <tr>
