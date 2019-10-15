@@ -173,7 +173,7 @@
 
         if (hasilsuhu == '3'){
 
-            if (hasiltekanan == '3'){
+            if (hasiltekanan == '3' || hasiltekanan == '4'){
 
                 $('#hasil').val(3);
 
@@ -219,15 +219,15 @@
             $('#tekananhasil').val(2);
         } else if (dar1 >= 140 && dar1 < 160 || dar2 >= 90 && dar2 < 100){
             $('.notif_darah').html('<div class="alert alert-warning" role="alert"><strong>Hati-hati!</strong> High Blood Presure!</div>');
-            $('#tekananhasil').val(2);
+            $('#tekananhasil').val(3);
         } else if (dar1 >= 160 || dar2 >= 100){
             $('.notif_darah').html('<div class="alert alert-danger" role="alert"><strong>Berbahaya!</strong> Hypertensive Crisis!</div>');
-            $('#tekananhasil').val(3);
+            $('#tekananhasil').val(4);
         }
 
         if (hasilsuhu == '3'){
 
-            if (hasiltekanan == '3'){
+            if (hasiltekanan == '3' || hasiltekanan == '4'){
 
                 $('#hasil').val(3);
 
@@ -273,15 +273,15 @@
             $('#tekananhasil').val(2);
         } else if (dar1 >= 140 && dar1 < 160 || dar2 >= 90 && dar2 < 100){
             $('.notif_darah').html('<div class="alert alert-warning" role="alert"><strong>Hati-hati!</strong> High Blood Presure!</div>');
-            $('#tekananhasil').val(2);
+            $('#tekananhasil').val(3);
         } else if (dar1 >= 160 || dar2 >= 100){
             $('.notif_darah').html('<div class="alert alert-danger" role="alert"><strong>Berbahaya!</strong> Hypertensive Crisis!</div>');
-            $('#tekananhasil').val(3);
+            $('#tekananhasil').val(4);
         }
 
         if (hasilsuhu == '3'){
 
-            if (hasiltekanan == '3'){
+            if (hasiltekanan == '3' || hasiltekanan == '4'){
 
                 $('#hasil').val(3);
 

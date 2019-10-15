@@ -5434,6 +5434,16 @@ input[type="button"].btn-block {
   background-color: rgba(251, 175, 190, 0.5);
 }
 
+.badge-danger3 {
+  color: #ffffff;
+  background-color: rgba(358, 71, 47, 1);
+}
+
+.badge-danger2 {
+  color: #000000;
+  background-color: rgba(255, 221, 66, 1);
+}
+
 .badge-danger[href]:hover,
 .badge-danger[href]:focus {
   color: #fff;

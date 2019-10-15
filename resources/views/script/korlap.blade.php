@@ -667,6 +667,106 @@
 
         $('#contentdcu').attr('style', 'display: block;');
 
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('GetDCUSakit') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val()
+                },
+            success: function(data) {
+
+                var no = -1;
+                var content_data="";
+
+                if (data.length == 0){
+
+                    content_data += "<div class='alert2 alert-secondary' role='alert'>";
+                    content_data += "<h6>Tidak Ada DCU Bermasalah Pada Tab ini!</h6>";
+                    content_data += "</div>";
+
+                } else {
+
+                    $.each(data, function() {
+
+                        var monthNames = [
+                            "Jan", "Feb", "Mar",
+                            "Apr", "May", "Jun", "Jul",
+                            "Aug", "Sep", "Oct",
+                            "Nov", "Dec"
+                          ];
+
+                        no++;
+                        var nama_depan = data[no]['first_name'];
+                        var nama_belakang = data[no]['last_name'];
+                        if (nama_belakang == null){
+                            names = '';
+                        } else {
+                            names = nama_belakang;
+                        }
+                        var suhu = data[no]['suhu'];
+                        var darah = data[no]['darah'];
+
+                        var darah1 = darah.substring(0,3);
+                        var darah2 = darah.substring(4,7);
+
+                        if (darah1 >= 140 && darah1 < 160 || darah2 >= 90 && darah2 < 100){
+
+                            var hasildarah = 'High Blood Preasure!';
+                            var bedge = 'danger2';
+                           
+                        } else if (darah1 >= 160 || darah2 >= 100){
+
+                            var hasildarah = 'Hypertensive Crisis!';
+                            var bedge = 'danger3';
+
+                        }
+
+                        var wilayah = data[no]['wilayah_name'];
+                        var unitkerja = data[no]['unitkerja_name'];
+                        var id = data[no]['id'];
+                        
+
+                        content_data += "<div class='alert2 alert-secondary' role='alert'>";
+                        content_data += "<table width='100%' border='0'>"; 
+                        content_data += "<tr>";
+                        content_data += "<td width='23%' rowspan='4'>";
+                        content_data += "<div class='icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow'>";
+                        content_data += "<i class='fas fa-medkit' style='color: #ffffff'></i>";
+                        content_data += "</div>";
+                        content_data += "</td>";
+                        content_data += "<td><h5><b>"+nama_depan+" "+names+"</b></h5></td>";
+                        content_data += "</tr>";
+                        content_data += "<tr>";
+                        content_data += "<td><h6>Kondisi Driver Tidak memungkinkan untuk Melakukan Perjalanan</h6></td>";
+                        content_data += "</tr>";
+                        content_data += "<tr>";
+                        content_data += "<td><span class='badge badge-pill badge-primary' style='font-size: 9px;'><i class='fas fa-map-marker'></i> "+unitkerja+" - "+wilayah+"</span></td>";
+                        content_data += "</tr>";
+                        content_data += "</table>";
+                        content_data += "<hr>";
+                        content_data += "<div class='alert2 alert-primary' role='alert'>";
+                        content_data += "<table width='100%' border='0'>";
+                        content_data += "<tr>";
+                        content_data += "<td align='center'><h6 class='text-white'>Suhu Badan</h6></td>";
+                        content_data += "<td align='center'><h6 class='text-white'>Tekanan Darah</h6></td>";
+                        content_data += "</tr>";
+                        content_data += "<tr>";
+                        content_data += "<td align='center'><h2 class='text-white'>"+suhu+" C</h2><span class='badge badge-pill badge-danger3' style='font-size: 9px;'><i class='fas fa-heart'></i>  Sakit</span></td>";
+                        content_data += "<td align='center'><h2 class='text-white'>"+darah+"</h2><span class='badge badge-pill badge-"+bedge+"' style='font-size: 9px;'><i class='fas fa-tint'></i>  "+hasildarah+"</span></td>";
+                        content_data += "</tr>";
+                        content_data += "</table>";
+                        content_data += "</div>";
+                        content_data += "</div>";
+
+                    });
+                }
+
+                $('#contentdcu').html(content_data);
+
+            }
+        });
+
     });
 
     $('#doc').on('click', function () {

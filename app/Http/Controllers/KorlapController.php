@@ -8,6 +8,7 @@ use App\Users;
 use App\Pretrip_Check;
 use App\PretripCheckNotOke;
 use App\Drivers;
+use App\MedicalCheckup;
 use Auth;
 
 class KorlapController extends Controller
@@ -148,6 +149,27 @@ class KorlapController extends Controller
         ->update(['approve_sementara'=>'Yes', 'sementara_by'=>$request->user_id, 'sementara_at'=>$create, 'status'=>'APPROVED SEMENTARA']);
 
         return response()->json($approvesementara);
+
+    }
+
+    public function getdcusakit(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d');
+           
+        $getsakit = MedicalCheckup::Select('medical_checkup.*','wilayah_name','unitkerja_name','first_name','last_name')      
+        ->leftJoin("drivers", "medical_checkup.user_id", "=", "drivers.driver_id")
+        ->leftJoin("users", "medical_checkup.user_id", "=", "users.id")
+        ->leftJoin("wilayah", "users.wilayah_id", "=", "wilayah.id")
+        ->leftJoin("unit_kerja", "wilayah.unitkerja_id", "=", "unit_kerja.id")
+        ->where([
+                ['drivers.korlap_id', '=', $request->user_id],
+                ['hasil', '=', '3'],
+                ['date', '=', $date],
+            ])
+        ->get();
+
+        return response()->json($getsakit);
 
     }
 

@@ -191,70 +191,7 @@
 
                   <div id="contentdcu" class="inidcu" style="display: none;">
 
-                    <div class="alert2 alert-secondary" role="alert">
-                      <table width="100%" border="0"> 
-                        <tr>
-                          <td width="20%" rowspan="4">
-                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
-                              <i class="fas fa-medkit" style="color: #ffffff"></i>
-                            </div>
-                          </td>
-                          <td><h5><b>Agus Budi Sudarsono</b></h5></td>
-                        </tr>
-                        <tr>
-                          <td><h6>Kondisi Driver Tidak memungkinkan untuk Melakukan Perjalanan</h6></td>
-                        </tr>
-                        <tr>
-                          <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-map-marker"></i> MOR III - Semarang</span></td>
-                        </tr> 
-                      </table>
-                      <hr>
-                      <div class="alert2 alert-primary" role="alert">
-                        <table width="100%" border="0"> 
-                          <tr>
-                            <td align="center"><h6 class="text-white">Suhu Badan</h6></td>
-                            <td align="center"><h6 class="text-white">Tekanan Darah</h6></td>
-                          </tr>
-                          <tr>
-                            <td align="center"><h2 class="text-white">25 C</h2><h6 class="text-white">Normal</h6></td>
-                            <td align="center"><h2 class="text-white">120/90 </h2><h6 class="text-red"><b>High Blood Preasure</b></h6></td>
-                          </tr>
-                        </table>
-                      </div>
-                    </div>
                     
-                    <div class="alert2 alert-secondary" role="alert">
-                      <table width="100%" border="0"> 
-                        <tr>
-                          <td width="20%" rowspan="4">
-                            <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
-                              <i class="fas fa-medkit" style="color: #ffffff"></i>
-                            </div>
-                          </td>
-
-                          <td><h5><b>Sujatmiko Prayoga</b></h5></td>
-                        </tr>
-                        <tr>
-                          <td><h6>Kondisi Driver Tidak memungkinkan untuk Melakukan Perjalanan</h6></td>
-                        </tr>
-                        <tr>
-                          <td><span class="badge badge-pill badge-primary" style="font-size: 9px;"><i class="fas fa-map-marker"></i> MOR III - Cirebon</span></td>
-                        </tr>
-                      </table>
-                      <hr>
-                      <div class="alert2 alert-primary" role="alert">
-                        <table width="100%" border="0"> 
-                          <tr>
-                            <td align="center"><h6 class="text-white">Suhu Badan</h6></td>
-                            <td align="center"><h6 class="text-white">Tekanan Darah</h6></td>
-                          </tr>
-                          <tr>
-                            <td align="center"><h2 class="text-white">30 C</h2><h6 class="text-red"><b>Sakit</b></h6></td>
-                            <td align="center"><h2 class="text-white">130/100 </h2><h6 class="text-red"><b>High Blood Preasure</b></h6></td>
-                          </tr>
-                        </table>
-                      </div>
-                    </div>
                   </div>
 
                    <div id="ptccontent" class="iniptc" style="display: block;">
