@@ -82,7 +82,7 @@
                                 contentType : 'application/json',
                                 dataType: 'json',
                                 data: JSON.stringify({
-                                    "to": $('#fcm_token').val(), 
+                                    "to": data.fcm, 
                                     "notification": {
                                         "title":"Hasil DCU "+data.name,
                                         "body":"Kondisi Driver Anda Sakit Hasil dari DCU Hari ini!, Driver tidak Layak untuk Mengendarai Hari ini!",
@@ -108,7 +108,7 @@
                                 contentType : 'application/json',
                                 dataType: 'json',
                                 data: JSON.stringify({
-                                    "to": $('#fcm_token').val(), 
+                                    "to": data.fcm, 
                                     "notification": {
                                         "title":"Hasil DCU "+data.name,
                                         "body":"Kondisi Driver Anda Hati-hati Hasil dari DCU Hari ini!, Awasi Driver Tersebut dalam Berkendara!",
@@ -155,6 +155,30 @@
 
                             });
                         }
+
+                        $.ajax({        
+                            type : 'POST',
+                            url : "https://fcm.googleapis.com/fcm/send",
+                            headers : {
+                                Authorization : 'key=' + 'AIzaSyBBlLqWxqmpbgg-8ZjhMiYMOgzUrJDgQRM'
+                            },
+                            contentType : 'application/json',
+                            dataType: 'json',
+                            data: JSON.stringify({
+                                "to": $('#fcm_token').val(), 
+                                "notification": {
+                                    "title":"Terimakasih "+data.name,
+                                    "body":"Anda Sudah Melakukan DCU Hari ini, Berhati-hatilah dalam Berkendara!",
+                                    "icon": "./assets/icons/96x96.png",
+                                }
+                            }),
+                            success : function(response) {
+                                console.log(response);
+                            },
+                            error : function(xhr, status, error) {
+                                console.log(xhr.error);                   
+                            }
+                        });
 
                     } else {
 

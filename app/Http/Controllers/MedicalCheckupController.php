@@ -42,6 +42,13 @@ class MedicalCheckupController extends Controller
             ->where("id", $request->created_add)
             ->first();
 
+            $drivers = Drivers::where("user_id", $request->created_add)
+            ->first();
+
+            $userdriver = Users::select("fcm_token")
+            ->where("id", $drivers->user_id)
+            ->first();
+
             $image->move(public_path('/assets/img_dcu'), $new_name);
 
             return response()->json([
@@ -49,6 +56,7 @@ class MedicalCheckupController extends Controller
                 'dcu_id'   => $checkup->id,
                 'hasil' => $request->hasil,
                 'name' => $users->first_name,
+                'fcm' => $userdriver->fcm_token,
             ]);
 
         } else {
