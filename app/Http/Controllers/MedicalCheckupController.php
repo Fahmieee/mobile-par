@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\MedicalCheckup;
 use App\Koordinat;
 use App\Clocks;
+use App\Users;
+use App\Drivers;
 use Validator;
 
 class MedicalCheckupController extends Controller
@@ -28,6 +30,33 @@ class MedicalCheckupController extends Controller
 
             $darah = $request->darah1.'/'.$request->darah2;
 
+            if ($request->suhuhasil == '3'){
+
+                if ($request->tekananhasil == '3' || $request->tekananhasil == '4'){
+
+                    $hasil = '3';
+
+                } else {
+
+                    $hasil = '2';
+
+                } 
+
+            } else {
+
+                if ($request->tekananhasil == '1'){
+
+                    $hasil = '1';
+
+                }  else {
+
+                    $hasil = '2';
+
+                }
+
+            }
+
+
             $checkup = new MedicalCheckup();
             $checkup->date = $hari;
             $checkup->user_id = $request->created_add;
@@ -35,18 +64,16 @@ class MedicalCheckupController extends Controller
             $checkup->suhu = $request->suhu;
             $checkup->darah = $darah;
             $checkup->img = $new_name;
-            $checkup->hasil = $request->hasil;
+            $checkup->hasil = $hasil;
             $checkup->save();
 
-            $users = Users::select("first_name")
-            ->where("id", $request->created_add)
-            ->first();
-
-            $drivers = Drivers::where("user_id", $request->created_add)
+            $users = Users::select("first_name","korlap_id")
+            ->join("drivers", "users.id", "=", "drivers.driver_id")
+            ->where("users.id", $request->created_add)
             ->first();
 
             $userdriver = Users::select("fcm_token")
-            ->where("id", $drivers->user_id)
+            ->where("id", $users->korlap_id)
             ->first();
 
             $image->move(public_path('/assets/img_dcu'), $new_name);

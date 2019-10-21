@@ -71,6 +71,7 @@
 
                     if(data.message == "success"){
 
+                        
                         if(data.hasil == "3"){
 
                             $.ajax({        
@@ -123,62 +124,38 @@
                                 }
                             });
 
-                        } else {
+                        } 
 
-                            navigator.geolocation.getCurrentPosition(function (position) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
 
-                                $.ajax({
-                                    type: 'POST',
-                                    url: "{{ route('KoordinatMedical') }}",
-                                    data: {
-                                        '_token': $('input[name=_token]').val(),
-                                        'dcu_id': data.dcu_id,
-                                        'type': 'dcu',
-                                        'long': position.coords.latitude,
-                                        'lat': position.coords.longitude
-                                        },
-                                    success: function(data) {
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{ route('KoordinatMedical') }}",
+                            data: {
+                                '_token': $('input[name=_token]').val(),
+                                'dcu_id': data.dcu_id,
+                                'type': 'dcu',
+                                'long': position.coords.latitude,
+                                'lat': position.coords.longitude
+                                },
+                            success: function(data) {
 
-                                        swal({
-                                            title: "Berhasil",
-                                            text: "Medical Check Up Anda Berhasil!",
-                                            icon: "success",
-                                            buttons: false,
-                                            timer: 2000,
-                                        });
-
-                                        setTimeout(function(){ window.location.href = 'driver'; }, 1500);
-
-                                    }
-
+                                swal({
+                                    title: "Berhasil",
+                                    text: "Medical Check Up Anda Berhasil!",
+                                    icon: "success",
+                                    buttons: false,
+                                    timer: 2000,
                                 });
 
-                            });
-                        }
+                                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
 
-                        $.ajax({        
-                            type : 'POST',
-                            url : "https://fcm.googleapis.com/fcm/send",
-                            headers : {
-                                Authorization : 'key=' + 'AIzaSyBBlLqWxqmpbgg-8ZjhMiYMOgzUrJDgQRM'
-                            },
-                            contentType : 'application/json',
-                            dataType: 'json',
-                            data: JSON.stringify({
-                                "to": $('#fcm_token').val(), 
-                                "notification": {
-                                    "title":"Terimakasih "+data.name,
-                                    "body":"Anda Sudah Melakukan DCU Hari ini, Berhati-hatilah dalam Berkendara!",
-                                    "icon": "./assets/icons/96x96.png",
-                                }
-                            }),
-                            success : function(response) {
-                                console.log(response);
-                            },
-                            error : function(xhr, status, error) {
-                                console.log(xhr.error);                   
                             }
+
                         });
+
+                    });
+
 
                     } else {
 
@@ -250,31 +227,6 @@
 
         } 
 
-        if (hasilsuhu == '3'){
-
-            if (hasiltekanan == '3' || hasiltekanan == '4'){
-
-                $('#hasil').val(3);
-
-            } else {
-
-                $('#hasil').val(2);
-
-            } 
-
-        } else {
-
-            if (hasiltekanan == '1'){
-
-                $('#hasil').val(1);
-
-            }  else {
-
-                $('#hasil').val(2);
-
-            }
-
-        }
 
     });
 
@@ -304,31 +256,6 @@
             $('#tekananhasil').val(4);
         }
 
-        if (hasilsuhu == '3'){
-
-            if (hasiltekanan == '3' || hasiltekanan == '4'){
-
-                $('#hasil').val(3);
-
-            } else {
-
-                $('#hasil').val(2);
-
-            } 
-
-        } else {
-
-            if (hasiltekanan == '1'){
-
-                $('#hasil').val(1);
-
-            }  else {
-
-                $('#hasil').val(2);
-
-            }
-
-        }
 
     });
 
@@ -338,6 +265,7 @@
         var dar1 = $('#darah1').val();
         var hasilsuhu = $('#suhuhasil').val();
         var hasiltekanan = $('#tekananhasil').val();
+
 
         if (dar1 == ''){
 
@@ -358,31 +286,7 @@
             $('#tekananhasil').val(4);
         }
 
-        if (hasilsuhu == '3'){
-
-            if (hasiltekanan == '3' || hasiltekanan == '4'){
-
-                $('#hasil').val(3);
-
-            } else {
-
-                $('#hasil').val(2);
-
-            } 
-
-        } else {
-
-            if (hasiltekanan == '1'){
-
-                $('#hasil').val(1);
-
-            }  else {
-
-                $('#hasil').val(2);
-
-            }
-
-        }
+        
 
     });
 
