@@ -40,6 +40,32 @@
                       </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label">Apakah Anda Sedang Perjalanan Dinas?</label>
+
+                        <table width="100%">
+                            <tr>
+                                <td width="50%">
+                                    <div class="alert2 alert-success" id="perdin_tidak" role="alert">
+                                        <h5 class="text-white">Tidak</h5>
+                                        <input type="hidden" id="perdin_stat" value="No">
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td width="50%">
+                                    <div class="alert2 alert-default" id="perdin_ya" role="alert">
+                                        <h5 class="text-white">Ya</h5>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                      </div>
+                    </div>
+                </div>
             </div>
             
             <div class="modal-footer">
@@ -107,7 +133,7 @@
         <div class="modal-content bg-gradient-danger">
             
             <div class="modal-header">
-                <h6 class="modal-title" id="modal-title-notification">Notifikasi</h6>
+                <h4 class="modal-title" id="modal-title-notification">Notifikasi</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -221,7 +247,7 @@
                 
                 <div class="py-3 text-center">
                     <i class="ni ni-bell-55 ni-3x"></i><br><br>
-                    <h2 class="text-white"><b>Lakukan Daily Checkup Terlebih Dahulu!</b></h2>
+                    <h2 class="text-white"><b>Lakukan Daily Checkup Terlebih Dahulu!</b></h2><br>
                     <h5 class="text-white">Jika Tidak Melakukan nya Bisa Mengakibatkan Pemotongan Gaji Anda!, Boleh dilakukan setalah clockin jika darurat, namun tetap hari ini HARUS melakukan Daily Check Up!</h5>
                 </div>
                 

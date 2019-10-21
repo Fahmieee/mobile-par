@@ -93,6 +93,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('getptcmedium', 'KorlapController@getptcmedium')->name('GetPTCMedium');
 	Route::post('getptclow', 'KorlapController@getptclow')->name('GetPTCLow');
 	Route::post('getdcusakit', 'KorlapController@getdcusakit')->name('GetDCUSakit');
+	Route::post('korlap/getdcudetail', 'KorlapController@getdcudetail')->name('GetDCUDetail');
 
 	Route::get('approve', 'ApproveController@index');
 	Route::post('approve/get', 'ApproveController@getdata')->name('GetApprove');

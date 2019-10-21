@@ -98,3 +98,28 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="viewdcudetail" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered" role="document">
+        <div class="modal-content bg-blue-par2">
+            
+            <div class="modal-header">
+                <h3 class="modal-title text-white" id="modal-title-default">Detail DCU</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            
+            <div class="modal-body" align="center">
+
+            </div>
+            
+            <div class="modal-footer">
+                
+
+            </div>
+            
+        </div>
+    </div>
+</div>

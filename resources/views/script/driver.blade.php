@@ -367,7 +367,7 @@
 	                '_token': $('input[name=_token]').val(),
 	                'user_id': $('#created_by').val(),
 	                'km': $('#kilometer').val(),
-	                'unitgs': $('#unitgs').val()
+	                'status': $('#perdin_stat').val()
 	                },
 	            success: function(data) {
 
@@ -602,6 +602,22 @@
         $('#notif_medical').modal('hide');
 
         $('#modal_clockin').modal('show');
+
+    });
+
+    $('#perdin_tidak').on('click', function () {
+
+        $('#perdin_tidak').attr("class","alert2 alert-success");
+        $('#perdin_ya').attr("class","alert2 alert-default");
+        $('#perdin_stat').val("No");
+
+    });
+
+    $('#perdin_ya').on('click', function () {
+
+        $('#perdin_tidak').attr("class","alert2 alert-default");
+        $('#perdin_ya').attr("class","alert2 alert-success");
+        $('#perdin_stat').val("Yes");
 
     });
     

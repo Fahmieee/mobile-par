@@ -14,4 +14,17 @@
 <!--===============================================================================================-->
 	<script src="/js/app2.js"></script>
 
+	<script type="text/javascript">
+		var w = window.innerWidth;
+  	var h = window.innerHeight;
+
+  		if (w > 450){
+
+  			
+
+  		} else {
+
+  		}
+	</script>
+
 	

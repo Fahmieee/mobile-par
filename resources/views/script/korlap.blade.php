@@ -706,7 +706,7 @@
                         }
                         var suhu = data[no]['suhu'];
                         var darah = data[no]['darah'];
-
+                        var id = data[no]['id'];
                         var darah1 = darah.substring(0,3);
                         var darah2 = darah.substring(4,7);
 
@@ -727,7 +727,7 @@
                         var id = data[no]['id'];
                         
 
-                        content_data += "<div class='alert2 alert-secondary' role='alert'>";
+                        content_data += "<div class='alert2 alert-secondary' onclick='DCUView("+id+")' role='alert'>";
                         content_data += "<table width='100%' border='0'>"; 
                         content_data += "<tr>";
                         content_data += "<td width='23%' rowspan='4'>";
@@ -768,6 +768,25 @@
         });
 
     });
+
+    function ViewDCU(id){
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('GetDCUDetail') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'id': id
+                },
+            success: function(data) {
+
+                
+
+            }
+
+        });
+
+    }
 
     $('#doc').on('click', function () {
 

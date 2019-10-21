@@ -28,6 +28,7 @@ class ClocksController extends Controller
         $clock->client_id = $client->user_id;
         $clock->clockin_time = $time;
         $clock->clockin_km = $request->km;
+        $clock->perdin = $request->status;
         $clock->clockin_status = 'NOT APPROVED';
         $clock->save();
 
