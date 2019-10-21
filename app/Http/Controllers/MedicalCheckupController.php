@@ -38,11 +38,17 @@ class MedicalCheckupController extends Controller
             $checkup->hasil = $request->hasil;
             $checkup->save();
 
+            $users = Users::select("first_name")
+            ->where("id", $request->created_add)
+            ->first();
+
             $image->move(public_path('/assets/img_dcu'), $new_name);
 
             return response()->json([
                 'message'   => 'success',
                 'dcu_id'   => $checkup->id,
+                'hasil' => $request->hasil,
+                'name' => $users->first_name,
             ]);
 
         } else {

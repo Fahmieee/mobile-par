@@ -71,35 +71,90 @@
 
                     if(data.message == "success"){
 
-                        navigator.geolocation.getCurrentPosition(function (position) {
+                        if(data.hasil == "3"){
 
-                            $.ajax({
-                                type: 'POST',
-                                url: "{{ route('KoordinatMedical') }}",
-                                data: {
-                                    '_token': $('input[name=_token]').val(),
-                                    'dcu_id': data.dcu_id,
-                                    'type': 'dcu',
-                                    'long': position.coords.latitude,
-                                    'lat': position.coords.longitude
-                                    },
-                                success: function(data) {
-
-                                    swal({
-                                        title: "Berhasil",
-                                        text: "Medical Check Up Anda Berhasil!",
-                                        icon: "success",
-                                        buttons: false,
-                                        timer: 2000,
-                                    });
-
-                                    setTimeout(function(){ window.location.href = 'driver'; }, 1500);
-
+                            $.ajax({        
+                                type : 'POST',
+                                url : "https://fcm.googleapis.com/fcm/send",
+                                headers : {
+                                    Authorization : 'key=' + 'AIzaSyBBlLqWxqmpbgg-8ZjhMiYMOgzUrJDgQRM'
+                                },
+                                contentType : 'application/json',
+                                dataType: 'json',
+                                data: JSON.stringify({
+                                    "to": $('#fcm_token').val(), 
+                                    "notification": {
+                                        "title":"Hasil DCU "+data.name,
+                                        "body":"Kondisi Driver Anda Sakit Hasil dari DCU Hari ini!, Driver tidak Layak untuk Mengendarai Hari ini!",
+                                        "icon": "./assets/icons/96x96.png",
+                                    }
+                                }),
+                                success : function(response) {
+                                    console.log(response);
+                                },
+                                error : function(xhr, status, error) {
+                                    console.log(xhr.error);                   
                                 }
-
                             });
 
-                        });
+                        } else if (data.hasil == "2"){
+
+                            $.ajax({        
+                                type : 'POST',
+                                url : "https://fcm.googleapis.com/fcm/send",
+                                headers : {
+                                    Authorization : 'key=' + 'AIzaSyBBlLqWxqmpbgg-8ZjhMiYMOgzUrJDgQRM'
+                                },
+                                contentType : 'application/json',
+                                dataType: 'json',
+                                data: JSON.stringify({
+                                    "to": $('#fcm_token').val(), 
+                                    "notification": {
+                                        "title":"Hasil DCU "+data.name,
+                                        "body":"Kondisi Driver Anda Hati-hati Hasil dari DCU Hari ini!, Awasi Driver Tersebut dalam Berkendara!",
+                                        "icon": "./assets/icons/96x96.png",
+                                    }
+                                }),
+                                success : function(response) {
+                                    console.log(response);
+                                },
+                                error : function(xhr, status, error) {
+                                    console.log(xhr.error);                   
+                                }
+                            });
+
+                        } else {
+
+                            navigator.geolocation.getCurrentPosition(function (position) {
+
+                                $.ajax({
+                                    type: 'POST',
+                                    url: "{{ route('KoordinatMedical') }}",
+                                    data: {
+                                        '_token': $('input[name=_token]').val(),
+                                        'dcu_id': data.dcu_id,
+                                        'type': 'dcu',
+                                        'long': position.coords.latitude,
+                                        'lat': position.coords.longitude
+                                        },
+                                    success: function(data) {
+
+                                        swal({
+                                            title: "Berhasil",
+                                            text: "Medical Check Up Anda Berhasil!",
+                                            icon: "success",
+                                            buttons: false,
+                                            timer: 2000,
+                                        });
+
+                                        setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+
+                                    }
+
+                                });
+
+                            });
+                        }
 
                     } else {
 

@@ -77,6 +77,7 @@
         </li>
       </ul>
       <input type="hidden" class="form-control" id="created_by" value="{{Auth::guard('user')->user()->id}}">
+      <input type="hidden" class="form-control" id="fcm_token" value="{{Auth::guard('user')->user()->fcm_token}}">
 
     </div>
   </nav>

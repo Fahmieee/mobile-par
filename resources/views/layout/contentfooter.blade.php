@@ -122,8 +122,6 @@
 
       success: function (data) {
 
-
-
       }
 
     });
