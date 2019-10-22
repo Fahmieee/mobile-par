@@ -76,7 +76,7 @@ class MedicalCheckupController extends Controller
             ->where("id", $users->korlap_id)
             ->first();
 
-            $image->move(public_path('/assets/img_dcu'), $new_name);
+            $image->move(public_path('assets/img_dcu'), $new_name);
 
             return response()->json([
                 'message'   => 'success',
