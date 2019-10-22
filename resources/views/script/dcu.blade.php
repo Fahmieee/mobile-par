@@ -148,7 +148,7 @@
                                     timer: 2000,
                                 });
 
-                                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+                                
 
                             }
 
