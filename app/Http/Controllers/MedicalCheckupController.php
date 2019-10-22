@@ -81,7 +81,7 @@ class MedicalCheckupController extends Controller
             return response()->json([
                 'message'   => 'success',
                 'dcu_id'   => $checkup->id,
-                'hasil' => $request->hasil,
+                'hasil' => $hasil,
                 'name' => $users->first_name,
                 'fcm' => $userdriver->fcm_token,
             ]);
