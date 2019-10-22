@@ -105,18 +105,18 @@
         <div class="modal-content bg-blue-par2">
             
             <div class="modal-header">
-                <h3 class="modal-title text-white" id="modal-title-default">Detail DCU</h3>
+                <h3 class="modal-title text-white" id="modal-title-default">Foto DCU</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             
             <div class="modal-body" align="center">
-
+                <img src="" width="100%" id="imgdcu">
             </div>
             
             <div class="modal-footer">
-                
+                <button type="button" class="btn btn-danger ml-auto" data-dismiss="modal">Close</button> 
 
             </div>
             

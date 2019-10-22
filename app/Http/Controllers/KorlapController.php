@@ -175,12 +175,8 @@ class KorlapController extends Controller
 
     public function getdcudetail(Request $request)
     {
-        $getdcudet = MedicalCheckup::Select('medical_checkup.*','wilayah_name','unitkerja_name','first_name','last_name')      
-        ->leftJoin("users", "medical_checkup.user_id", "=", "users.id")
-        ->leftJoin("wilayah", "users.wilayah_id", "=", "wilayah.id")
-        ->leftJoin("unit_kerja", "wilayah.unitkerja_id", "=", "unit_kerja.id")
-        ->where("medical_checkup.id", $request->id)
-        ->get();
+        $getdcudet = MedicalCheckup::where("id", $request->id)
+        ->first();
 
         return response()->json($getdcudet);
     }

@@ -769,7 +769,7 @@
 
     });
 
-    function ViewDCU(id){
+    function DCUView(id){
 
         $.ajax({
             type: 'POST',
@@ -779,8 +779,10 @@
                 'id': id
                 },
             success: function(data) {
-
                 
+                $('#imgdcu').attr("src",'./assets/img_dcu/'+data.img+'');
+
+                $('#viewdcudetail').modal('show');
 
             }
 
