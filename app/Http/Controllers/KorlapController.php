@@ -22,7 +22,7 @@ class KorlapController extends Controller
 
         $getkorlaps = Users::leftJoin("jabatan", "users.jabatan_id", "=", "jabatan.id")
         ->leftJoin("wilayah", "users.wilayah_id", "=", "wilayah.id")
-        ->leftJoin("unit_kerja", "users.wilayah_id", "=", "wilayah.id")
+        ->leftJoin("unit_kerja", "wilayah.unitkerja_id", "=", "unit_kerja.id")
         ->where('users.id', $user->id)
         ->first();
 
