@@ -107,7 +107,7 @@
                   <div class="alert2 alert-secondary fade show" role="alert">
                     <table width="100%">
                       <tr>
-                        <td><h4><b>{{ $getanswer->name }} - {{ $getanswer->parameter }}</b></h5></td>
+                        <td><h5><b>{{ $getanswer->name }} - {{ $getanswer->parameter }}</b></h5></td>
                       </tr>
                     </table>
                   </div>
