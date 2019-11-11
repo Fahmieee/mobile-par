@@ -18,7 +18,7 @@
                 if(data.length == 0){
 
                     content_data += "<div class='alert alert-default' role='alert'>";
-                    content_data += "Tidak Ada Keluhan untuk Saat ini!</div>";
+                    content_data += "<h6 class='text-white'>Tidak Ada Keluhan untuk Saat ini!</h6></div>";
 
                     $('.muncul_suara').html(content_data);
 

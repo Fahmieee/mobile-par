@@ -730,6 +730,7 @@ pre code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
+  padding-bottom: 15px;
 }
 
 .col {
@@ -8252,7 +8253,7 @@ button.bg-darker:focus {
 
 .shadow,
 .card-profile-image img {
-  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
+  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.3) !important;
 }
 
 .shadow-lg {
@@ -13419,7 +13420,7 @@ button.bg-pink:focus {
 }
 
 .bg-red {
-  background-color: #f5365c !important;
+  background-color: #CC2229 !important;
 }
 
 a.bg-red:hover,

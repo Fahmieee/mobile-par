@@ -68,6 +68,11 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('pretripcheck/koordinat', 'PreTripCheckController@koordinat')->name('KoordinatPTC');
 	Route::post('pretripcheck/kategorisubmited', 'PreTripCheckController@getsubmited')->name('GetKategoriSubmited');
 	Route::post('pretripcheck/kirimptc', 'PreTripCheckController@kirimptc')->name('KirimPretripCheck');
+	Route::get('pretripcheck/{id}', 'PreTripCheckController@detail');
+	Route::get('pretripcheck/detail/{id}', 'PreTripCheckController@lebihdetail');
+	Route::get('pretripcheck/detail/mobil/{id}', 'PreTripCheckController@mobil');
+	Route::post('pretripcheck/ptcanswer', 'PreTripCheckController@ptcanswer')->name('PTCAnswer');
+
 
 	Route::post('clocks/clockin', 'ClocksController@create')->name('ClokinSubmit');
 	Route::post('clocks/validasi', 'ClocksController@validasi')->name('ValidasiClock');

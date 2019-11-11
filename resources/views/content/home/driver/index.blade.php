@@ -186,6 +186,20 @@
                       <div class="progress-bar {{ $bg }}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{ $persen }}%;"></div>
                     </div>
                   </div>
+                  <br>
+                  <div class="progress-wrapper">
+                    <div class="progress-info">
+                      <div class="progress-label">
+                        <span>Batas Perjalanan Dinas</span>
+                      </div>
+                      <div class="progress-percentage">
+                        <span class="text-perdin">0 Kali / 5 Kali (0%)</span>
+                      </div>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar bg-default" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                    </div>
+                  </div>
 
                 </div>
               </div>

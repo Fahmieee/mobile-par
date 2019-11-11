@@ -31,6 +31,82 @@
       background-color: rgba(1, 73, 127, 0.7);
     }
 
+    .eyehide {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .eyehide img {
+      width: 70%;
+      height: auto;
+      align-content: center;
+    }
+
+    .eyehide .btn1 {
+      position: absolute;
+      top: 38%;
+      left: 73%;
+      width: 16%;
+    }
+
+    .eyehide .btn2 {
+      position: absolute;
+      top: 38%;
+      left: 11%;
+      width: 16%;
+    }
+
+    .eyehide .btn3 {
+      position: absolute;
+      top: 60%;
+      left: 71%;
+      width: 16%;
+    }
+
+    .eyehide .btn4 {
+      position: absolute;
+      top: 60%;
+      left: 13%;
+      width: 16%;
+    }
+
+    .eyehide .btnspion1 {
+      position: absolute;
+      top: 30%;
+      left: 80%;
+      width: 16%;
+    }
+
+    .eyehide .btnspion2 {
+      position: absolute;
+      top: 30%;
+      left: 4%;
+      width: 16%;
+    }
+
+    .eyehide .btnwiper1 {
+      position: absolute;
+      top: 20%;
+      left: 43%;
+      width: 16%;
+    }
+
+    .eyehide .btnwiper2 {
+      position: absolute;
+      top: 80%;
+      left: 43%;
+      width: 16%;
+    }
+
+    /*.eyehide{
+      position: absolute;
+      padding-top: 270px;
+      top: 0;
+      right: 0;
+      width: 200px;
+    }*/
+
   </style>
 </head>
 <body>

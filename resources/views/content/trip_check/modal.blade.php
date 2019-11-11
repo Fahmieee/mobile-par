@@ -58,7 +58,7 @@
                     </tr>
                     <tr><td height="20px"></td></tr>
                     <tr>
-                        <td align="center"><h5 class="text-muted" id="text-keterangan"></h5></td>
+                        <td align="center"><h5 class="text-muted" id="text-keterangan">Anda Yakin akan menyelesaikan Proses PTC untuk Hari ini?</h5></td>
                     </tr>
                 </table>
                 

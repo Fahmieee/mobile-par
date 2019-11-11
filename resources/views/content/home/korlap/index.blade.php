@@ -84,6 +84,10 @@
                   <div id="contentlain" class="inilain" style="display: none;">
 
                     <div class="alert2 alert-secondary" role="alert">
+                      <h6>Belum ada Notifikasi Apapun pada Tab ini</h6>
+                    </div>
+
+                    <!-- <div class="alert2 alert-secondary" role="alert">
                       <table width="100%" border="0"> 
                         <tr>
                           <td width="20%" rowspan="3">
@@ -141,13 +145,17 @@
                           <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 85%;"></div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
 
                   </div>
 
                   <div id="contentdoc" class="inidoc" style="display: none;">
 
                     <div class="alert2 alert-secondary" role="alert">
+                      <h6>Saat ini Tidak ada Dokumen yang akan Habis</h6>
+                    </div>
+
+                    <!-- <div class="alert2 alert-secondary" role="alert">
                       <table width="100%" border="0"> 
                         <tr>
                           <td width="20%" rowspan="3">
@@ -185,7 +193,7 @@
                           <td><span class="badge badge-pill badge-danger" style="font-size: 9px;"><i class="fas fa-clock"></i> 22 Hari Lagi</span></td>
                         </tr> 
                       </table>  
-                    </div>
+                    </div> -->
 
                   </div>
 

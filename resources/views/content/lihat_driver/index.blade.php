@@ -14,6 +14,11 @@
             <br>
             <div class="lihatnilai_driver">
               <div class="alert alert-primary" role="alert">
+                <h6 class="text-white">Belum ada Driver yang Dinilai untuk Saat ini</h6>
+              </div>
+
+              <!-- <div class="alert alert-primary" role="alert">
+
                 <table width="100%" border="0"> 
                   <tr>
                     <td width="25%" rowspan="3"><img src="./assets/content/img/theme/team-1-800x800.jpg" width="100%" class="rounded-circle"></td>
@@ -112,7 +117,7 @@
                     </td>
                   </tr>
                 </table>  
-              </div>
+              </div> -->
             </div>
             </div>
           </div>
