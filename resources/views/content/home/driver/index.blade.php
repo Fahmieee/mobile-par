@@ -190,7 +190,7 @@
                   <div class="progress-wrapper">
                     <div class="progress-info">
                       <div class="progress-label">
-                        <span>Batas Perjalanan Dinas</span>
+                        <span>Batas Perdin</span>
                       </div>
                       <div class="progress-percentage">
                         <span class="text-perdin">0 Kali / 5 Kali (0%)</span>

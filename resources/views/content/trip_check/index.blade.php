@@ -100,7 +100,7 @@
             <div class="col-12">
               <div class="card shadow bg-red">
                 <div class="card-body">
-                  <h3 class="text-white">Summary PTC Bermasalah Hari Ini</h3>
+                  <h4 class="text-white">Summary PTC Bermasalah Hari Ini</h4>
                   <hr>
                   <br>
                   @foreach($getanswers as $getanswer)
