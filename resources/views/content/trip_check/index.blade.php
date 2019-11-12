@@ -100,14 +100,14 @@
             <div class="col-12">
               <div class="card shadow bg-red">
                 <div class="card-body">
-                  <h4 class="text-white">Summary PTC Bermasalah Hari Ini</h4>
+                  <h5 class="text-white">Summary PTC Bermasalah Hari Ini</h5>
                   <hr>
                   <br>
                   @foreach($getanswers as $getanswer)
                   <div class="alert2 alert-secondary fade show" role="alert">
                     <table width="100%">
                       <tr>
-                        <td><h5><b>{{ $getanswer->name }} - {{ $getanswer->parameter }}</b></h5></td>
+                        <td><h6><b>{{ $getanswer->name }} - {{ $getanswer->parameter }}</b></h6></td>
                       </tr>
                     </table>
                   </div>
@@ -132,7 +132,7 @@
                   ['pretrip_check.date', '=', $harini],
                   ['check_detail.checktype_id', '=', $type->id],
                   ['pretrip_check.user_id', '=', $user_id],
-              ])
+              ])  
               ->count();
 
               if($ptc == '0'){
@@ -141,11 +141,23 @@
                 $warna = 'bg-red';
               }
 
+              $ptcmobil = DB::table('check_detail')
+              ->where([
+                  ['checktype_id', '=', $type->id],
+                  ['subdetail_id', '=', '0'],
+                  ['mobil', '!=', null],
+              ])
+              ->count();
+
             @endphp
             
             <div class="col-4">
               <div class="card  {{ $warna }} shadow">
-                <a href="/pretripcheck/{{ $type->id }}">
+                @if($ptcmobil == '0')
+                  <a href="/pretripcheck/{{ $type->id }}">
+                @else
+                  <a href="/pretripcheck/langsungmobil/{{ $type->id }}">
+                @endif
 
                   <div class="card-body">
                     <table width="100%" border="0">

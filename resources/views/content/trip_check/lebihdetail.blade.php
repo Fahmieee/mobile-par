@@ -5,7 +5,11 @@
           <!-- Card stats -->
       <div class="row">
         <div class="col">
-          <a href="/pretripcheck/{{ $details->checktype_id }}"><button type="button" id="back" class='btn btn-sm btn-success'>Back</button></a>
+          @if($countdetails == '0')
+            <a href="/pretripcheck/{{ $details->checktype_id }}"><button type="button" id="back" class='btn btn-sm btn-success'>Back</button></a>
+          @else
+            <a href="/pretripcheck/langsungmobil/{{ $details->checktype_id }}"><button type="button" id="back" class='btn btn-sm btn-success'>Back</button></a>
+          @endif
           <div class="ct-page-title">
             <h1 class="ct-title" id="content">PTC {{ $details->name }}</h1>
           </div>
@@ -32,7 +36,7 @@
             @php
               date_default_timezone_set('Asia/Jakarta');
               $harini = date('Y-m-d');
-              
+
               $countdetail = DB::table('check_detail')
               ->where('subdetail_id', $lebihdetail->id)
               ->count();
@@ -67,10 +71,10 @@
                 @else
                     @if($mobil->mobil != null)
                     <div class="card shadow">
-                      <a href="/pretripcheck/detail/mobil/{{ $getdetail->id }}">
+                      <a href="/pretripcheck/detail/mobil/{{ $lebihdetail->id }}">
                     @else 
                     <div class="card shadow">
-                      <a href="/pretripcheck/detail/{{ $getdetail->id }}">
+                      <a href="/pretripcheck/detail/{{ $lebihdetail->id }}">
                     @endif
                 @endif
                   <div class="card-body">

@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::get('pretripcheck/{id}', 'PreTripCheckController@detail');
 	Route::get('pretripcheck/detail/{id}', 'PreTripCheckController@lebihdetail');
 	Route::get('pretripcheck/detail/mobil/{id}', 'PreTripCheckController@mobil');
+	Route::get('pretripcheck/langsungmobil/{id}', 'PreTripCheckController@langsungmobil');
 	Route::post('pretripcheck/ptcanswer', 'PreTripCheckController@ptcanswer')->name('PTCAnswer');
 
 

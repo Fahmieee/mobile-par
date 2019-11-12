@@ -99,6 +99,167 @@
       width: 16%;
     }
 
+    .eyehide .btnban1 {
+      position: absolute;
+      top: 10%;
+      left: 75%;
+      width: 16%;
+    }
+
+    .eyehide .btnban2 {
+      position: absolute;
+      top: 10%;
+      left: 9%;
+      width: 16%;
+    }
+
+    .eyehide .btnban3 {
+      position: absolute;
+      top: 70%;
+      left: 75%;
+      width: 16%;
+    }
+
+    .eyehide .btnban4 {
+      position: absolute;
+      top: 70%;
+      left: 9%;
+      width: 16%;
+    }
+
+    .eyehide .btnban5 {
+      position: absolute;
+      top: 93%;
+      left: 43%;
+      width: 16%;
+    }
+
+    .eyehide .btnlamp1 {
+      position: absolute;
+      top: -3%;
+      left: 58%;
+      width: 16%;
+    }
+
+    .eyehide .btnlamp2 {
+      position: absolute;
+      top: -3%;
+      left: 25%;
+      width: 16%;
+    }
+
+    .eyehide .btnlamp3 {
+      position: absolute;
+      top: 93%;
+      left: 58%;
+      width: 16%;
+    }
+
+    .eyehide .btnlamp4 {
+      position: absolute;
+      top: 93%;
+      left: 25%;
+      width: 16%;
+    }
+
+    .eyehide .btnlamp5 {
+      position: absolute;
+      top: 7%;
+      left: 70%;
+      width: 16%;
+    }
+
+    .eyehide .btnlamp6 {
+      position: absolute;
+      top: 7%;
+      left: 15%;
+      width: 16%;
+    }
+
+    .eyehide .btnlamp7 {
+      position: absolute;
+      top: 81%;
+      left: 70%;
+      width: 16%;
+    }
+
+    .eyehide .btnlamp8 {
+      position: absolute;
+      top: 81%;
+      left: 15%;
+      width: 16%;
+    }
+
+    .eyehide .btnlamp9 {
+      position: absolute;
+      top: 30%;
+      left: 82%;
+      width: 16%;
+    }
+
+    .eyehide .btnlamp10 {
+      position: absolute;
+      top: 30%;
+      left: 2%;
+      width: 16%;
+    }
+
+    .eyehide .btnfender1 {
+      position: absolute;
+      top: 10%;
+      left: 70%;
+      width: 16%;
+    }
+
+    .eyehide .btnfender2{
+      position: absolute;
+      top: 10%;
+      left: 12%;
+      width: 16%;
+    }
+
+    .eyehide .btnfender3 {
+      position: absolute;
+      top: 85%;
+      left: 70%;
+      width: 16%;
+    }
+
+    .eyehide .btnfender4 {
+      position: absolute;
+      top: 85%;
+      left: 12%;
+      width: 16%;
+    }
+
+    .eyehide .btnfender5 {
+      position: absolute;
+      top: 50%;
+      left: 70%;
+      width: 16%;
+    }
+
+    .eyehide .btnfender6 {
+      position: absolute;
+      top: 50%;
+      left: 12%;
+      width: 16%;
+    }
+
+    .eyehide .btnbumper1 {
+      position: absolute;
+      top: -2%;
+      left: 43%;
+      width: 16%;
+    }
+
+    .eyehide .btnbumper2{
+      position: absolute;
+      top: 93%;
+      left: 43%;
+      width: 16%;
+    }
+
     /*.eyehide{
       position: absolute;
       padding-top: 270px;

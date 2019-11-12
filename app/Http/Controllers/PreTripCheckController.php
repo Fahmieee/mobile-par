@@ -98,6 +98,34 @@ class PreTripCheckController extends Controller
 
     }
 
+    public function langsungmobil($id)
+    {
+
+        $lebihdetails = CheckDetail::select("id","name")
+        ->where([
+            ['checktype_id', '=', $id],
+            ['subdetail_id', '=', '0'],
+            ['mobil', '!=', null],
+        ])
+        ->get();
+
+        $details = CheckType::where('id', $id)
+        ->first();
+
+        $user = Auth::user();
+
+        $user_id = $user->id;
+
+        $mobils = CheckDetail::where([
+            ['checktype_id', '=', $id],
+            ['subdetail_id', '=', '0'],
+        ])
+        ->first();
+
+        return view('content.trip_check.'.$mobils->mobil.'', compact('lebihdetails','details','mobils','user_id'));
+
+    }
+
     public function lebihdetail($id)
     {
 
@@ -108,11 +136,18 @@ class PreTripCheckController extends Controller
         $details = CheckDetail::where('id', $id)
         ->first();
 
-        $user = Auth::user();
+        $user = Auth::user();   
 
         $user_id = $user->id;
 
-        return view('content.trip_check.lebihdetail', compact('lebihdetails','details','user_id'));
+        $countdetails = CheckDetail::where([
+            ['subdetail_id', '=', '0'],
+            ['mobil', '!=', null],
+            ['id', '=', $id],
+        ])
+        ->count();
+
+        return view('content.trip_check.lebihdetail', compact('lebihdetails','details','user_id','countdetails'));
 
     }
 
