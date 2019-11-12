@@ -86,7 +86,7 @@
                         <td height="7px"></td>
                       </tr>
                       <tr>
-                        <td align="center"><h5><b>{{ $lebihdetail->name }}</b></h5></td>
+                        <td align="center"><h6><b>{{ $lebihdetail->name }}</b></h6></td>
                       </tr>
                     </table>
                   </div>

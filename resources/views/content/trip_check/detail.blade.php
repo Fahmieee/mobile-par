@@ -33,7 +33,7 @@
             @php
               date_default_timezone_set('Asia/Jakarta');
               $harini = date('Y-m-d');
-              
+
               $countdetail = DB::table('check_detail')
               ->where('subdetail_id', $getdetail->id)
               ->count();
@@ -106,7 +106,7 @@
                         <td height="7px"></td>
                       </tr>
                       <tr>
-                        <td align="center"><h5><b>{{ $getdetail->name }}</b></h5></td>
+                        <td align="center"><h6><b>{{ $getdetail->name }}</b></h6></td>
                       </tr>
                     </table>
                   </div>
