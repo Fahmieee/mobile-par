@@ -26,9 +26,9 @@ class MedicalCheckupController extends Controller
 
         if($validation->passes()) {
 
-            $image = $request->file('file1');
-            $new_name = rand() . '.' . $image->getClientOriginalExtension();
-            $input['imagename'] = rand() . '.' . $image->getClientOriginalExtension();
+            // $image = $request->file('file1');
+            // $new_name = rand() . '.' . $image->getClientOriginalExtension();
+            // $input['imagename'] = rand() . '.' . $image->getClientOriginalExtension();
 
             $darah = $request->darah1.'/'.$request->darah2;
 
@@ -65,7 +65,8 @@ class MedicalCheckupController extends Controller
             $checkup->time = $time;
             $checkup->suhu = $request->suhu;
             $checkup->darah = $darah;
-            $checkup->img = $new_name;
+            $checkup->img = 'testing.jpg';
+            // $checkup->img = $new_name;
             $checkup->hasil = $hasil;
             $checkup->save();
 
