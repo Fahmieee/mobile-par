@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Users;
 use App\Role;
 use Hash;
+use Auth;
 use Validator;
 
 class ProfileController extends Controller
@@ -16,7 +17,15 @@ class ProfileController extends Controller
     	date_default_timezone_set('Asia/Jakarta');
     	$date = date('Y-m-d');
 
-    	return view('content.profile.index', compact('date'));
+        $user = Auth::user();
+
+        $views = Users::select("wilayah.wilayah_name", "unit_kerja.unitkerja_name")
+        ->leftJoin("wilayah", "users.wilayah_id", "=", "wilayah.id")
+        ->leftJoin("unit_kerja", "wilayah.unitkerja_id", "=", "unit_kerja.id")
+        ->where('users.id', $user->id)
+        ->first();
+
+    	return view('content.profile.index', compact('date','views'));
 
     }
 

@@ -29,7 +29,7 @@
               <div class="text-center" id="namalengkap"></div>
 
               <div class="h5 font-weight-300" align="center">
-                <i class="ni location_pin mr-2"></i>Serpong, Tangerang
+                <i class="ni location_pin mr-2"></i>{{ $views->unitkerja_name }} - {{ $views->wilayah_name }}
               </div>
               <br>
             </div>
@@ -54,7 +54,7 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label class="form-control-label" for="input-username">Username</label>
-                      <input type="text" id="username" class="form-control form-control-alternative edited harus" placeholder="Username" disabled>
+                      <input type="text" id="username" class="form-control form-control-alternative harus" placeholder="Username" disabled>
                     </div>
                   </div>
                   <div class="col-lg-6">
