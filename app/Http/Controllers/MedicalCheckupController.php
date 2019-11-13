@@ -78,12 +78,12 @@ class MedicalCheckupController extends Controller
             ->where("id", $users->korlap_id)
             ->first();
 
-            $destinationPath = public_path('assets/img_dcu');
+            // $destinationPath = public_path('assets/img_dcu');
 
-            $img = Image::make($image->getRealPath());
-            $img->resize(50, 50, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save($destinationPath.'/'.$input['imagename']);
+            // $img = Image::make($image->getRealPath());
+            // $img->resize(50, 50, function ($constraint) {
+            //     $constraint->aspectRatio();
+            // })->save($destinationPath.'/'.$input['imagename']);
 
             // $image->move(public_path('assets/img_dcu'), $new_name);
 
