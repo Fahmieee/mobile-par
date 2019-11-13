@@ -81,7 +81,7 @@ class MedicalCheckupController extends Controller
             $destinationPath = public_path('assets/img_dcu');
 
             $img = Image::make($image->getRealPath());
-            $img->resize(100, 100, function ($constraint) {
+            $img->resize(50, 50, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($destinationPath.'/'.$input['imagename']);
 
