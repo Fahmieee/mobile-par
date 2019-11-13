@@ -26,9 +26,9 @@ class MedicalCheckupController extends Controller
 
         if($validation->passes()) {
 
-            // $image = $request->file('file1');
-            // $new_name = rand() . '.' . $image->getClientOriginalExtension();
-            // $input['imagename'] = rand() . '.' . $image->getClientOriginalExtension();
+            $image = $request->file('file1');
+            $new_name = rand() . '.' . $image->getClientOriginalExtension();
+            $input['imagename'] = rand() . '.' . $image->getClientOriginalExtension();
 
             $darah = $request->darah1.'/'.$request->darah2;
 
@@ -65,8 +65,7 @@ class MedicalCheckupController extends Controller
             $checkup->time = $time;
             $checkup->suhu = $request->suhu;
             $checkup->darah = $darah;
-            $checkup->img = 'testing.jpg';
-            // $checkup->img = $new_name;
+            $checkup->img = $new_name;
             $checkup->hasil = $hasil;
             $checkup->save();
 
@@ -79,12 +78,12 @@ class MedicalCheckupController extends Controller
             ->where("id", $users->korlap_id)
             ->first();
 
-            // $destinationPath = public_path('assets/img_dcu');
+            $destinationPath = public_path('assets/img_dcu');
 
-            // $img = Image::make($image->getRealPath());
-            // $img->resize(50, 50, function ($constraint) {
-            //     $constraint->aspectRatio();
-            // })->save($destinationPath.'/'.$input['imagename']);
+            $img = Image::make($image->getRealPath());
+            $img->resize(100, 100, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename']);
 
             // $image->move(public_path('assets/img_dcu'), $new_name);
 
