@@ -9,7 +9,7 @@ use App\Koordinat;
 use App\Clocks;
 use App\Users;
 use App\Drivers;
-// use Image;
+use Image;
 use Validator;
 
 class MedicalCheckupController extends Controller
@@ -28,7 +28,7 @@ class MedicalCheckupController extends Controller
 
             $image = $request->file('file1');
             $new_name = rand() . '.' . $image->getClientOriginalExtension();
-            // $input['imagename'] = rand() . '.' . $image->getClientOriginalExtension();
+            $input['imagename'] = rand() . '.' . $image->getClientOriginalExtension();
 
             $darah = $request->darah1.'/'.$request->darah2;
 
@@ -78,14 +78,14 @@ class MedicalCheckupController extends Controller
             ->where("id", $users->korlap_id)
             ->first();
 
-            // $destinationPath = public_path('assets/img_dcu');
+            $destinationPath = public_path('assets/img_dcu');
 
-            // $img = Image::make($image->getRealPath());
-            // $img->resize(200, 200, function ($constraint) {
-            //     $constraint->aspectRatio();
-            // })->save($destinationPath.'/'.$input['imagename']);
+            $img = Image::make($image->getRealPath());
+            $img->resize(200, 200, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename']);
 
-            $image->move(public_path('assets/img_dcu'), $new_name);
+            // $image->move(public_path('assets/img_dcu'), $new_name);
 
             return response()->json([
                 'message'   => 'success',
