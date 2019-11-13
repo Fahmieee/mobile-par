@@ -700,8 +700,7 @@ class PreTripCheckController extends Controller
         $harini = date('Y-m-d');
 
         $validate = Pretrip_Check::select("pretrip_check.id","pretrip_check_notoke.status","pretrip_check.time","check_answer.level")
-        ->leftJoin("pretrip_check_detail", "pretrip_check.id", "=", "pretrip_check_detail.pretripcheck_id")
-        ->leftJoin("pretrip_check_notoke", "pretrip_check_detail.id", "=", "pretrip_check_notoke.pretripcheckdetail_id")
+        ->leftJoin("pretrip_check_notoke", "pretrip_check.id", "=", "pretrip_check_notoke.pretripcheck_id")
         ->join("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
         ->where([
             ['pretrip_check.user_id', '=', $request->user_id],
