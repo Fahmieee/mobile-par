@@ -15,8 +15,8 @@
             </div>
 
             <div class="modal-form">
-                <form method="post" id="upload_form" enctype="multipart/form-data">
-                {{ csrf_field() }}
+                <!-- <form method="post" id="upload_form" enctype="multipart/form-data">
+                {{ csrf_field() }} -->
                 <div class="modal-body">
                     <table border="0" align="center" width="100%">
                         <tr>
@@ -108,7 +108,7 @@
                     <button type="button" class="btn btn-danger ml-auto"  data-dismiss="modal">Batal</button> 
                 </div>
 
-                </form> 
+                <!-- </form>  -->
             </div>  
         </div>
     </div>

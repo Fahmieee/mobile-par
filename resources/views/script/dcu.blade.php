@@ -31,9 +31,10 @@
 
     });
 
-    $('#upload_form').on('submit', function(event){
+    // $('#upload_form').on('submit', function(event){
+    $('#medical_submit').on('click', function(event){
 
-        event.preventDefault();
+        // event.preventDefault();
         $('.modal-form').attr("style", "display: none;");
         $('#loader').attr("style", "display: block;");
 
@@ -58,16 +59,33 @@
 
         } else {
 
-            $.ajax({
-                url: "{{ route('MedicalStore') }}",
-                method:"POST",
-                data:new FormData(this),
-                dataType:'JSON',
-                contentType: false,
-                cache: false,
-                processData: false,
+            // $.ajax({
+            //     url: "{{ route('MedicalStore') }}",
+            //     method:"POST",
+            //     data:new FormData(this),
+            //     dataType:'JSON',
+            //     contentType: false,
+            //     cache: false,
+            //     processData: false,
 
-                success:function(data) {
+            //     success:function(data) {
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('MedicalStore') }}",
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                    'user_id': $('#created_by').val(),
+                    'suhu': $('#suhu').val(),
+                    'darah1': $('#darah1').val(),
+                    'darah2': $('#darah2').val(),
+                    'hasil': $('#hasil').val(),
+                    'suhuhasil': $('#suhuhasil').val(),
+                    'tekananhasil': $('#tekananhasil').val(),
+                },
+
+                success: function (data) {
+
 
                     if(data.message == "success"){
 

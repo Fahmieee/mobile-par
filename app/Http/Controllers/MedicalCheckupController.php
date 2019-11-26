@@ -20,11 +20,11 @@ class MedicalCheckupController extends Controller
     	$hari = date('Y-m-d');
     	$time = date("H:i:s");
 
-        $validation = Validator::make($request->all(), [
-        'file1' => 'required|image|mimes:jpeg,png,jpg,gif'
-        ]);
+        // $validation = Validator::make($request->all(), [
+        // 'file1' => 'required|image|mimes:jpeg,png,jpg,gif'
+        // ]);
 
-        if($validation->passes()) {
+        // if($validation->passes()) {
 
             // $image = $request->file('file1');
             // $new_name = rand() . '.' . $image->getClientOriginalExtension();
@@ -61,7 +61,7 @@ class MedicalCheckupController extends Controller
 
             $checkup = new MedicalCheckup();
             $checkup->date = $hari;
-            $checkup->user_id = $request->created_add;
+            $checkup->user_id = $request->user_id;
             $checkup->time = $time;
             $checkup->suhu = $request->suhu;
             $checkup->darah = $darah;
@@ -71,7 +71,7 @@ class MedicalCheckupController extends Controller
 
             $users = Users::select("first_name","korlap_id")
             ->join("drivers", "users.id", "=", "drivers.driver_id")
-            ->where("users.id", $request->created_add)
+            ->where("users.id", $request->user_id)
             ->first();
 
             $userdriver = Users::select("fcm_token")
@@ -95,12 +95,12 @@ class MedicalCheckupController extends Controller
                 'fcm' => $userdriver->fcm_token,
             ]);
 
-        } else {
+        // } else {
 
-            return response()->json([                                                                                                                    
-            'message'   => $validation->errors()->all(),
-            ]);
-        }
+        //     return response()->json([                                                                                                                    
+        //     'message'   => $validation->errors()->all(),
+        //     ]);
+        // }
 
     }
 
