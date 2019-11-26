@@ -304,7 +304,7 @@
                         </tr>
                         <tr>
                           <td><span class="badge badge-pill badge-success" style="font-size: 8.5px;"> {{ $ptc->no_police }}</span></td>
-                          <td><span class="badge badge-pill badge-primary" style="font-size: 8.5px;"><i class="fas fa-calendar"></i> {{ date('d M Y', strtotime($tanggal->date)) }}</span></td>
+                          <td><span class="badge badge-pill badge-primary" style="font-size: 8.5px;"><i class="fas fa-calendar"></i> {{ $tanggal ? date('d M Y', strtotime($tanggal->date)) : '-'}}</span></td>
                           <td><span class="badge badge-pill badge-danger" style="font-size: 8.5px;"><i class="fas fa-exclamation-triangle"></i> {{ $ptc->level }}</span></td>
                           <td><span class="badge badge-pill badge-danger" style="font-size: 8.5px;"><i class="fas fa-clock"></i> {{ $high }} Hari</span></td>
                         </tr> 

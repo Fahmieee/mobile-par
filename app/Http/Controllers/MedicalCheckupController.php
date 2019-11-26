@@ -88,8 +88,8 @@ class MedicalCheckupController extends Controller
             // $image->move(public_path('assets/img_dcu'), $new_name);
 
             return response()->json([
-                'message'   => 'success',
-                'dcu_id'   => $checkup->id,
+                'message' => 'success',
+                'dcu_id' => $checkup->id,
                 'hasil' => $hasil,
                 'name' => $users->first_name,
                 'fcm' => $userdriver->fcm_token,
