@@ -260,6 +260,34 @@
       width: 16%;
     }
 
+    .eyehide .btnrem1 {
+      position: absolute;
+      top: 10%;
+      left: 75%;
+      width: 16%;
+    }
+
+    .eyehide .btnrem2 {
+      position: absolute;
+      top: 10%;
+      left: 9%;
+      width: 16%;
+    }
+
+    .eyehide .btnrem3 {
+      position: absolute;
+      top: 70%;
+      left: 75%;
+      width: 16%;
+    }
+
+    .eyehide .btnrem4 {
+      position: absolute;
+      top: 70%;
+      left: 9%;
+      width: 16%;
+    }
+
     /*.eyehide{
       position: absolute;
       padding-top: 270px;

@@ -1,65 +1,8 @@
 @include('layout.contenthead')
   <div class="main-content">
     <!-- Header -->
-    <div class="container-fluid pb-4 pt-4 pt-md-8">
+    <div class="container-fluid pb-2 pt-4 pt-md-8">
           <!-- Card stats -->
-          
-          <div class="row">
-            <div class="col">
-              <div class="card shadow">
-                
-                <div class="card-header bg-blue-par">
-                  <h6 class="text-uppercase text-white ls-1 mb-1">MENU</h6>
-                </div>
-                <div class="card-body bg-blue-par2" id="menu_icons" style="display: block;">
-                  
-                  <table border="0" align="center" width="100%">
-                    <tr>
-                      <td align="center" width="25%">
-                        <div id="kendaraan" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                            <i class="fas fa-car" style="color: #0166b5"></i>
-                        </div>
-                      </td>
-                      <td align="center" width="25%">
-                        <div id="pengemudi" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                            <i class="fas fa-child" style="color: #0166b5"></i>
-                            <input type="hidden" id="selesai" value="0">
-                        </div>
-                      </td>
-                      <td align="center" width="25%">
-                        <div id="keluhan" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                            <i class="fas fa-bullhorn" style="color: #0166b5"></i>
-                        </div>
-                      </td>
-                      <td align="center" width="25%">
-                        <div id="monitoring" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                            <i class="fas fa-paper-plane" style="color: #0166b5"></i>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                       <td height="10px" colspan="7"></td> 
-                    </tr>
-                    <tr>
-                      <td align="center">
-                        <h6 class="text-uppercase text-white ls-1 mb-1">Penilaian Kendaraan</h6>
-                      </td>
-                      <td align="center">
-                        <h6 class="text-uppercase text-white ls-1 mb-1">Penilaian Pengemudi</h6>
-                      </td>
-                      <td align="center">
-                        <h6 class="text-uppercase text-white ls-1 mb-1">Suara User</h6>
-                      </td>
-                      <td align="center">
-                        <h6 class="text-uppercase text-white ls-1 mb-1">Monitoring</h6>
-                      </td>
-                      
-                    </tr>
-                  </table>
-                </div>
-              </div>
-            </div>    
-          </div>
 
           <div class="row">
             <div class="col">
@@ -375,7 +318,7 @@
               </div>
             </div>    
           </div>
-          
+
           <div class="row">
             <div class="col">
               <div class="card shadow">

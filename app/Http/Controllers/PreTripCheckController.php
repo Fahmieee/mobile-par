@@ -42,17 +42,37 @@ class PreTripCheckController extends Controller
         ])
         ->get();
 
-        $getanswer_count = PretripCheckNotOke::select("check_answer.parameter","check_detail.name")
-        ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
-        ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
-        ->join("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
-        ->where([
-            ['pretrip_check.date', '=', $harini],
-            ['pretrip_check.user_id', '=', $user_id]
+        $ptcterakhir = Pretrip_Check::where([
+            ['date', '!=', $harini],
+            ['user_id', '=', $user_id]
         ])
-        ->count();
+        ->orderBy('id', 'desc')
+        ->first();
 
-    	return view('content.trip_check.index', compact('gettypes', 'date','user_id','getanswers','getanswer_count'));
+        if(!$ptcterakhir){
+
+            $getanswerkemarins = Pretrip_Check::where("user_id", $user_id)
+            ->get();
+
+            $tanggal = date('d M Y', strtotime($harini));
+
+        } else {
+
+            $getanswerkemarins = PretripCheckNotOke::select("check_answer.parameter","check_detail.name","pretrip_check_notoke.id")
+            ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+            ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
+            ->join("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
+            ->where([
+                ['pretrip_check.id', '=', $ptcterakhir->id],
+                ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
+                ['pretrip_check_notoke.appr', '=', 'N'],
+            ])
+            ->get();
+
+            $tanggal = date('d M Y', strtotime($ptcterakhir->date));
+        }
+
+    	return view('content.trip_check.index', compact('gettypes', 'date','user_id','getanswers','getanswerkemarins','tanggal'));
 
     }
 
@@ -254,6 +274,7 @@ class PreTripCheckController extends Controller
                 $detail_tripchecknot->status = 'NOT APPROVED';
                 $detail_tripchecknot->days = '1';
                 $detail_tripchecknot->approve_sementara = 'No';
+                $detail_tripchecknot->appr = 'N';
                 $detail_tripchecknot->save();
 
             }
@@ -293,6 +314,7 @@ class PreTripCheckController extends Controller
                     $detail_tripchecknot->status = 'NOT APPROVED';
                     $detail_tripchecknot->approve_sementara = 'No';
                     $detail_tripchecknot->days = '1';
+                    $detail_tripchecknot->appr = 'N';
                     $detail_tripchecknot->save();
 
                 }
@@ -316,8 +338,8 @@ class PreTripCheckController extends Controller
                         $detail_tripchecknot->status = 'NOT APPROVED';
                         $detail_tripchecknot->approve_sementara = 'No';
                         $detail_tripchecknot->days = '1';
+                        $detail_tripchecknot->appr = 'N';
                         $detail_tripchecknot->save();
-
 
                     }
 
@@ -757,11 +779,91 @@ class PreTripCheckController extends Controller
 
         } else {
 
-            $pretrip_check = Pretrip_Check::where(['user_id'=>$request->user_id], ['date'=>$harini])->update(['status'=>'SUBMITED']);
+            $pretrip_check = Pretrip_Check::where([
+                ['user_id', '=', $request->user_id],
+                ['date', '=', $harini],
+            ])
+            ->update(['status'=>'SUBMITED', 'time'=>$time]);
 
         }
 
         return response()->json($pretrip_check);
+
+    }
+
+
+    public function approveptckemarin(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $dates = date('Y-m-d H:i:s');
+
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        $approveptc = PretripCheckNotOke::where(['id'=>$request->ptc_id])->update(['status'=>'APPROVED', 'approved_at'=>$dates, 'approved_by'=>$user_id, 'appr'=>'Y']);
+
+        return response()->json($approveptc);
+    }
+
+    public function tidakapproveptckemarin(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $harini = date('Y-m-d');
+        $time = date("H:i:s");
+
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        $userx = Drivers::where('driver_id', $user_id)
+        ->first();
+
+        $ptchariini = Pretrip_Check::where([
+            ['date', '=', $harini],
+            ['user_id', '=', $user_id],
+        ])
+        ->first();
+
+        $approveptc = PretripCheckNotOke::where(['id'=>$request->ptc_id])->update(['appr'=>'Y']);
+
+        if(!$ptchariini){
+
+            $pretrip_check = new Pretrip_Check();
+            $pretrip_check->user_id= $user_id;
+            $pretrip_check->unit_id= $userx->unit_id;
+            $pretrip_check->date= $harini;
+            $pretrip_check->time= $time;
+            $pretrip_check->status= 'NOT SUBMITED';
+            $pretrip_check->save();
+
+            $ptcsebelumnya = PretripCheckNotOke::where("id", $request->ptc_id)
+            ->first();
+
+            $detail_tripchecknot = new PretripCheckNotOke();
+            $detail_tripchecknot->pretripcheck_id = $pretrip_check->id;
+            $detail_tripchecknot->checkanswer_id = $ptcsebelumnya->checkanswer_id;
+            $detail_tripchecknot->status = 'NOT APPROVED';
+            $detail_tripchecknot->approve_sementara = 'No';
+            $detail_tripchecknot->days = '1';
+            $detail_tripchecknot->appr = 'N';
+            $detail_tripchecknot->save();
+
+        } else {
+
+            $ptcsebelumnya = PretripCheckNotOke::where("id", $request->ptc_id)
+            ->first();
+
+            $detail_tripchecknot = new PretripCheckNotOke();
+            $detail_tripchecknot->pretripcheck_id = $ptchariini->id;
+            $detail_tripchecknot->checkanswer_id = $ptcsebelumnya->checkanswer_id;
+            $detail_tripchecknot->status = 'NOT APPROVED';
+            $detail_tripchecknot->approve_sementara = 'No';
+            $detail_tripchecknot->days = '1';
+            $detail_tripchecknot->appr = 'N';
+            $detail_tripchecknot->save();
+
+        }
+
+        return response()->json($detail_tripchecknot);
 
     }
 

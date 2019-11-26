@@ -287,4 +287,88 @@
         });
 	});
 
+
+	function Sudah(id){
+
+		$('#id').val(id);
+
+		$('#sudah_approve').modal('show');
+	}
+
+	$('#yakin_approve').on('click', function () {
+
+		$('#sudah_approve').modal('hide');
+
+		$.ajax({
+            type: 'POST',
+            url: "{{ route('ApprovePTCKemarin') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'ptc_id': $('#id').val(),
+            },
+            success: function(data) {
+
+        		swal({
+                    title: "Berhasil",
+                    text: "PTC Tersebut SUDAH Berhasil Di Perbaiki",
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                });
+
+            	setTimeout(function(){ window.location.href = 'pretripcheck'; }, 1500);
+
+            }
+
+        });
+
+	});
+
+	function Belum(id){
+
+		$('#id').val(id);
+
+		$('#belum_approve').modal('show');
+	}
+
+	$('#yakin_belum').on('click', function () {
+
+		$('#belum_approve').modal('hide');
+
+		$.ajax({
+            type: 'POST',
+            url: "{{ route('TidakApprovePTCKemarin') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'ptc_id': $('#id').val(),
+            },
+            success: function(data) {
+
+        		swal({
+                    title: "Berhasil",
+                    text: "PTC Tersebut BELUM Di Perbaiki",
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                });
+
+            	setTimeout(function(){ window.location.href = 'pretripcheck'; }, 1500);
+
+            }
+
+        });
+
+	});
+
+	$('.ptckemarin').on('click', function () {
+
+		swal({
+	        title: "Perhatikan!",
+	        text: "Selesaikan PTC Kemarin Terlebih Dahulu!",
+	        icon: "error",
+	        buttons: false,
+	        timer: 2000,
+	    });
+	});
+
 </script>

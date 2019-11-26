@@ -73,6 +73,8 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::get('pretripcheck/detail/mobil/{id}', 'PreTripCheckController@mobil');
 	Route::get('pretripcheck/langsungmobil/{id}', 'PreTripCheckController@langsungmobil');
 	Route::post('pretripcheck/ptcanswer', 'PreTripCheckController@ptcanswer')->name('PTCAnswer');
+	Route::post('pretripcheck/approveptckemarin', 'PreTripCheckController@approveptckemarin')->name('ApprovePTCKemarin');
+	Route::post('pretripcheck/tidakapproveptckemarin', 'PreTripCheckController@tidakapproveptckemarin')->name('TidakApprovePTCKemarin');
 
 
 	Route::post('clocks/clockin', 'ClocksController@create')->name('ClokinSubmit');
@@ -96,6 +98,11 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('getptcforapprove', 'KorlapController@getptcforapprove')->name('GetPTCforApprove');
 	Route::post('approveptcnow', 'KorlapController@approveptcnow')->name('ApprovePTCNow');
 	Route::post('approveptcsementara', 'KorlapController@approveptcsementara')->name('ApprovePTCSementara');
+
+	Route::get('asmen', 'AsmenController@index');
+
+	Route::get('manager', 'ManagerController@index');
+
 	Route::post('getptcmedium', 'KorlapController@getptcmedium')->name('GetPTCMedium');
 	Route::post('getptclow', 'KorlapController@getptclow')->name('GetPTCLow');
 	Route::post('getdcusakit', 'KorlapController@getdcusakit')->name('GetDCUSakit');

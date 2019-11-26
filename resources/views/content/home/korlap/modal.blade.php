@@ -82,7 +82,8 @@
                       <td><h5 id="days"></h5></td>
                     </tr>
                   </table> 
-                  <input type="hidden" id="id">
+                  <input type="hidden" id="user_id">
+                  <input type="hidden" id="checkanswer_id">
                 </div>
 
             </div>

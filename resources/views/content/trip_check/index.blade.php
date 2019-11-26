@@ -23,76 +23,56 @@
                 <td width="8%"></td>
               </tr>
             </table>
-
+          <br>
+          @if($getanswerkemarins->count() >= 1)
+          <div class="row" style="display: block;">
+          @else
           <div class="row" style="display: none;">
+          @endif
             <div class="col-12">
               <div class="card shadow bg-red">
                 <div class="card-body">
-                  <h3 class="text-white">Hasil PTC Kemarin (03 Nov 2019)</h3>
+                  <h5 class="text-white">PTC Masalah Kemarin ({{ $tanggal }})</h5>
                   <hr>
 
-                  <div class="alert2 alert-secondary fade show" role="alert">
-                    <table width="100%" border="0">
-                      <tr>
-                        <td width="25%" rowspan="2">
-                          <div class="icon icon-shape text-white bg-red rounded-circle shadow">
-                            <i class="fas fa-handshake" style="color: #ffffff"></i>
-                        </div>
-                        </td>
-                        <td><h3><b>Spion Kiri</b></h3></td>
-                      </tr>
-                      <tr>
-                        <td><h4>Kaca Spion Rusak atau Retak</h5></td>
-                      </tr>
-                    </table>
-                    <hr>
-                    <table width="100%" border="0">
-                      <tr>
-                        <td><h5>Apakah Permasalahan Mengenai ini Sudah Di Perbaiki Oleh Korlap/Driver Sendiri?</h5></td>
-                      </tr>
-                      <tr>
-                        <td height="10px"></td>
-                      </tr>
-                      <tr>
-                        <td align="center"><button type="button" class="btn btn-success"><i class="fa fa-check"></i> Sudah</button><button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Belum</button></td>
-                      </tr>
-                    </table>
-                  </div>
+                  @foreach($getanswerkemarins as $getanswerkemarin)
 
+                  
                   <div class="alert2 alert-secondary fade show" role="alert">
                     <table width="100%" border="0">
                       <tr>
                         <td width="25%" rowspan="2">
                           <div class="icon icon-shape text-white bg-red rounded-circle shadow">
-                            <i class="fas fa-handshake" style="color: #ffffff"></i>
+                            <i class="fas fa-wrench" style="color: #ffffff"></i>
                         </div>
                         </td>
-                        <td><h3><b>Spion Kiri</b></h3></td>
+                        <td><h5><b>{{ $getanswerkemarin->name }}</b></h5></td>
                       </tr>
                       <tr>
-                        <td><h4>Kaca Spion Rusak atau Retak</h5></td>
+                        <td><h6>{{ $getanswerkemarin->parameter }}</h6></td>
                       </tr>
                     </table>
                     <hr>
                     <table width="100%" border="0">
                       <tr>
-                        <td><h5>Apakah Permasalahan Mengenai ini Sudah Di Perbaiki Oleh Korlap/Driver Sendiri?</h5></td>
+                        <td><h6>Apakah Permasalahan Mengenai ini Sudah Di Perbaiki?</h6></td>
                       </tr>
                       <tr>
                         <td height="10px"></td>
                       </tr>
                       <tr>
-                        <td align="center"><button type="button" class="btn btn-success"><i class="fa fa-check"></i> Sudah</button><button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Belum</button></td>
+                        <td align="center"><button type="button" onclick="Sudah({{ $getanswerkemarin->id }})" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Sudah</button><button type="button" onclick="Belum({{ $getanswerkemarin->id }})" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Belum</button></td>
                       </tr>
                     </table>
                   </div>
+                  @endforeach
 
                 </div>
               </div>
             </div>
           </div>
           <br>
-          @if($getanswer_count >= 1)
+          @if($getanswers->count() >= 1)
           <div class="row" style="display: block;">
           @else
           <div class="row" style="display: none;">
@@ -152,27 +132,39 @@
             @endphp
             
             <div class="col-4">
-              <div class="card  {{ $warna }} shadow">
-                @if($ptcmobil == '0')
-                  <a href="/pretripcheck/{{ $type->id }}">
+              <div class="card {{ $warna }} shadow">
+                @if($getanswerkemarins->count() >= 1)
+                  <div class="ptckemarin">
                 @else
-                  <a href="/pretripcheck/langsungmobil/{{ $type->id }}">
+
+                  @if($ptcmobil == '0')
+                    <a href="/pretripcheck/{{ $type->id }}">
+                  @else
+                    <a href="/pretripcheck/langsungmobil/{{ $type->id }}">
+                  @endif
+
                 @endif
 
-                  <div class="card-body">
-                    <table width="100%" border="0">
-                      <tr>
-                        <td align="center"><i class="fa {{ $type->icons }}" style="font-size: 30px; color: #01497f"></i></td>
-                      </tr>
-                      <tr>
-                        <td height="7px"></td>
-                      </tr>
-                      <tr>
-                        <td align="center"><h6><b>{{ $type->name }}</b></h6></td>
-                      </tr>
-                    </table>
+                    <div class="card-body">
+                      <table width="100%" border="0">
+                        <tr>
+                          <td align="center"><i class="fa {{ $type->icons }}" style="font-size: 30px; color: #01497f"></i></td>
+                        </tr>
+                        <tr>
+                          <td height="7px"></td>
+                        </tr>
+                        <tr>
+                          <td align="center"><h6><b>{{ $type->name }}</b></h6></td>
+                        </tr>
+                      </table>
+                    </div>
+
+                @if($getanswerkemarins->count() >= 1)
                   </div>
-                </a>
+                @else
+                  </a>
+                @endif
+                  
               </div>
             </div>
             @endforeach
@@ -183,7 +175,11 @@
       </div>
 
       <div align="center">
-        <button class="btn btn-success" id="kirim_ptc">Kirim PTC</button>
+        @if($getanswerkemarins->count() >= 1)
+          <button class="btn btn-success ptckemarin">Kirim PTC</button>
+        @else
+          <button class="btn btn-success" id="kirim_ptc">Kirim PTC</button>
+        @endif
       </div>
             
 

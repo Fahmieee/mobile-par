@@ -129,6 +129,50 @@
 
                         }
 
+                    } else if (data.role == 6 && data.status == 'success'){
+
+	                    swal("Sign In Success!", {
+	                        icon: "success",
+	                        buttons: false,
+	                        timer: 2000,
+	                    });
+
+	                    if (data.flag_pass == '0' || data.flag_pass == null){
+
+                        	setTimeout(function(){ window.location.href='ubahpassword'; }, 1500);
+
+                        } else if (data.flag_prof == '0' || data.flag_prof == null){
+
+                        	setTimeout(function(){ window.location.href='profile'; }, 1500);
+
+                        } else {
+
+                        	setTimeout(function(){ window.location.href='asmen'; }, 1500);
+
+                        }
+
+                    } else if (data.role == 7 && data.status == 'success'){
+
+	                    swal("Sign In Success!", {
+	                        icon: "success",
+	                        buttons: false,
+	                        timer: 2000,
+	                    });
+
+	                    if (data.flag_pass == '0' || data.flag_pass == null){
+
+                        	setTimeout(function(){ window.location.href='ubahpassword'; }, 1500);
+
+                        } else if (data.flag_prof == '0' || data.flag_prof == null){
+
+                        	setTimeout(function(){ window.location.href='profile'; }, 1500);
+
+                        } else {
+
+                        	setTimeout(function(){ window.location.href='manager'; }, 1500);
+
+                        }
+
                     } else {
 
                         swal("Username or Password Wrong!", {

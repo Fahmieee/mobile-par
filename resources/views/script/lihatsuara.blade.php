@@ -37,7 +37,7 @@
     	                content_data += "<div class='alert alert-default' role='alert'>";
                     	content_data += "<table width='100%'>"; 
                       	content_data += "<tr>";
-                      	content_data += "<td><strong>"+first+" "+last+"</strong></td>";
+                      	content_data += "<td><strong>"+first+"</strong></td>";
                       	content_data += "<td align='right' rowspan='2' id='button_"+id+"'><button onclick='Lihat("+id+");' class='btn btn-sm btn-primary' type='button'>Lihat</button></td>";
                       	content_data += "</tr>";
                       	content_data += "<tr>";

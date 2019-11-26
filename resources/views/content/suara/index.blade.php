@@ -30,6 +30,7 @@
                             <option value="">-- Pilih Kategori --</option>
                             <option value="Driver">Driver</option>
                             <option value="kendaraan">Kendaraan</option>
+                            <option value="callcenter">Call Center</option>
                         </select>
                       </div>
                     </div>

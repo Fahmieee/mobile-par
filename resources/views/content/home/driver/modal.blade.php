@@ -66,6 +66,14 @@
                       </div>
                     </div>
                 </div>
+                <div class="row" id="upload" style="display: none;">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label">Upload Persetujuan Perjalanan Dinas User</label>
+                        <input type="file" class="form-control">
+                      </div>
+                    </div>
+                </div>
             </div>
             
             <div class="modal-footer">

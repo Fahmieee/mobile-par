@@ -12,6 +12,7 @@ use App\Lembur;
 use App\DocDriver;
 use App\DocUnit;
 use App\Trainings;
+use App\Clocks;
 use Auth;
 
 class DriverController extends Controller
@@ -66,9 +67,15 @@ class DriverController extends Controller
         $getkorlaps = Users::where('id', $get->korlap_id)
         ->first();
 
+        $getperdin = Clocks::where([
+                ['user_id', '=', $user->id],
+                ['perdin', '=', 'yes'],
+            ])
+        ->get();
+
         $gettrainings = Trainings::all();
 
-    	return view('content.home.driver.index', compact('date','getdrivers','getusers','getunits','getkorlaps','getsim','getmcu','getasuransi','getkeur','gettrainings'));
+    	return view('content.home.driver.index', compact('date','getdrivers','getusers','getunits','getkorlaps','getsim','getmcu','getasuransi','getkeur','gettrainings','getperdin'));
 
     }
 

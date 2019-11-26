@@ -26,14 +26,92 @@ class KorlapController extends Controller
         ->where('users.id', $user->id)
         ->first();
 
-    	return view('content.home.korlap.index', compact('date','getkorlaps'));
+        $getptchighs = PretripCheckNotOke::Select('users.first_name','check_answer.parameter','check_answer.level','check_detail.name','units.no_police','pretrip_check_notoke.approve_sementara', 'pretrip_check_notoke.checkanswer_id','pretrip_check.user_id')
+        ->leftJoin("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
+        ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+        ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
+        ->leftJoin("check_types", "check_detail.checktype_id", "=", "check_types.id")
+        ->leftJoin("drivers", "pretrip_check.user_id", "=", "drivers.driver_id")
+        ->leftJoin("units", "pretrip_check.unit_id", "=", "units.id")
+         ->leftJoin("users", "pretrip_check.user_id", "=", "users.id")
+        ->where([
+                ['drivers.korlap_id', '=', $user->id],
+                ['level', '=', 'HIGH'],
+                ['pretrip_check.status', '=', 'SUBMITED'],
+                ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
+                ['check_detail.approve_role_id', '=', '5'],
+            ])
+        ->orWhere('pretrip_check_notoke.status','APPROVED SEMENTARA')
+        ->orderBy('pretrip_check.id', 'desc')
+        ->groupBy('users.first_name','check_answer.parameter','check_answer.level','check_detail.name','units.no_police','pretrip_check_notoke.approve_sementara', 'pretrip_check_notoke.checkanswer_id', 'pretrip_check.user_id')
+        ->get();
+
+        $getptcmediums = PretripCheckNotOke::Select('users.first_name','check_answer.parameter','check_answer.level','check_detail.name','units.no_police','pretrip_check_notoke.approve_sementara', 'pretrip_check_notoke.checkanswer_id','pretrip_check.user_id')
+        ->leftJoin("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
+        ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+        ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
+        ->leftJoin("check_types", "check_detail.checktype_id", "=", "check_types.id")
+        ->leftJoin("drivers", "pretrip_check.user_id", "=", "drivers.driver_id")
+        ->leftJoin("units", "pretrip_check.unit_id", "=", "units.id")
+         ->leftJoin("users", "pretrip_check.user_id", "=", "users.id")
+        ->where([
+                ['drivers.korlap_id', '=', $user->id],
+                ['level', '=', 'MEDIUM'],
+                ['pretrip_check.status', '=', 'SUBMITED'],
+                ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
+                ['check_detail.approve_role_id', '=', '5'],
+            ])
+        ->orWhere('pretrip_check_notoke.status','APPROVED SEMENTARA')
+        ->orderBy('pretrip_check.id', 'desc')
+        ->groupBy('users.first_name','check_answer.parameter','check_answer.level','check_detail.name','units.no_police','pretrip_check_notoke.approve_sementara', 'pretrip_check_notoke.checkanswer_id', 'pretrip_check.user_id')
+        ->get();
+
+        $getptclows = PretripCheckNotOke::Select('users.first_name','check_answer.parameter','check_answer.level','check_detail.name','units.no_police','pretrip_check_notoke.approve_sementara', 'pretrip_check_notoke.checkanswer_id','pretrip_check.user_id')
+        ->leftJoin("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
+        ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+        ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
+        ->leftJoin("check_types", "check_detail.checktype_id", "=", "check_types.id")
+        ->leftJoin("drivers", "pretrip_check.user_id", "=", "drivers.driver_id")
+        ->leftJoin("units", "pretrip_check.unit_id", "=", "units.id")
+         ->leftJoin("users", "pretrip_check.user_id", "=", "users.id")
+        ->where([
+                ['drivers.korlap_id', '=', $user->id],
+                ['level', '=', 'LOW'],
+                ['pretrip_check.status', '=', 'SUBMITED'],
+                ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
+                ['check_detail.approve_role_id', '=', '5'],
+            ])
+        ->orWhere('pretrip_check_notoke.status','APPROVED SEMENTARA')
+        ->orderBy('pretrip_check.id', 'desc')
+        ->groupBy('users.first_name','check_answer.parameter','check_answer.level','check_detail.name','units.no_police','pretrip_check_notoke.approve_sementara', 'pretrip_check_notoke.checkanswer_id', 'pretrip_check.user_id')
+        ->get();
+
+    	return view('content.home.korlap.index', compact('date','getkorlaps','getptchighs','getptcmediums','getptclows'));
 
     }
 
     public function getptchigh(Request $request)
     {
            
-        $getptc = PretripCheckNotOke::Select('users.first_name','users.last_name','check_detail.name as detail_name','check_answer.parameter','check_answer.level','check_types.name as type_name', 'pretrip_check.date','pretrip_check_notoke.id','units.no_police','pretrip_check_notoke.approve_sementara','pretrip_check_notoke.days')
+        // $getptc = PretripCheckNotOke::Select('users.first_name','users.last_name','check_detail.name as detail_name','check_answer.parameter','check_answer.level','check_types.name as type_name', 'pretrip_check.date','pretrip_check_notoke.id','units.no_police','pretrip_check_notoke.approve_sementara','pretrip_check_notoke.days')
+        // ->leftJoin("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
+        // ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+        // ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
+        // ->leftJoin("check_types", "check_detail.checktype_id", "=", "check_types.id")
+        // ->leftJoin("drivers", "pretrip_check.user_id", "=", "drivers.driver_id")
+        // ->leftJoin("units", "pretrip_check.unit_id", "=", "units.id")
+        //  ->leftJoin("users", "pretrip_check.user_id", "=", "users.id")
+        // ->where([
+        //         ['drivers.korlap_id', '=', $request->user_id],
+        //         ['level', '=', 'HIGH'],
+        //         ['pretrip_check.status', '=', 'SUBMITED'],
+        //         ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
+        //     ])
+        // ->orWhere('pretrip_check_notoke.status','APPROVED SEMENTARA')
+        // ->orderBy('pretrip_check.id', 'desc')
+        // ->get();
+
+        $getptc = PretripCheckNotOke::Select('users.first_name','users.last_name','check_answer.parameter','check_answer.level','check_detail.name','units.no_police','pretrip_check_notoke.approve_sementara','pretrip_check_notoke.days')
         ->leftJoin("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
         ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
         ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
@@ -49,6 +127,7 @@ class KorlapController extends Controller
             ])
         ->orWhere('pretrip_check_notoke.status','APPROVED SEMENTARA')
         ->orderBy('pretrip_check.id', 'desc')
+        ->groupBy('users.first_name','users.last_name','check_answer.parameter','check_answer.level','check_detail.name','units.no_police','pretrip_check_notoke.approve_sementara','pretrip_check_notoke.days')
         ->get();
 
         return response()->json($getptc);
@@ -108,7 +187,7 @@ class KorlapController extends Controller
         
         date_default_timezone_set('Asia/Jakarta');
            
-        $getapproved = PretripCheckNotOke::Select('users.first_name','users.last_name','check_detail.name as detail_name','check_answer.parameter','check_answer.level','check_types.name as type_name', 'pretrip_check.date','pretrip_check_notoke.id','units.no_police','unit_kerja.unitkerja_name', 'wilayah.wilayah_name','pretrip_check_notoke.approve_sementara','pretrip_check_notoke.days')
+        $getapproved = PretripCheckNotOke::Select('users.first_name','users.last_name','check_detail.name as detail_name','check_answer.parameter','check_answer.level','check_types.name as type_name', 'pretrip_check.date','pretrip_check_notoke.id','units.no_police','unit_kerja.unitkerja_name', 'wilayah.wilayah_name','pretrip_check_notoke.approve_sementara','pretrip_check_notoke.days','pretrip_check_notoke.checkanswer_id','pretrip_check.user_id')
         ->leftJoin("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
         ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
         ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
@@ -117,7 +196,10 @@ class KorlapController extends Controller
         ->leftJoin("users", "pretrip_check.user_id", "=", "users.id")
         ->leftJoin("wilayah", "users.wilayah_id", "=", "wilayah.id")
         ->leftJoin("unit_kerja", "wilayah.unitkerja_id", "=", "unit_kerja.id")
-        ->where("pretrip_check_notoke.id", $request->id)
+        ->where([
+                ['pretrip_check.user_id', '=', $request->user_id],
+                ['pretrip_check_notoke.checkanswer_id', '=', $request->checkanswer_id],
+            ])
         ->first();
 
         return response()->json($getapproved);
@@ -129,8 +211,16 @@ class KorlapController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         $create = date('Y-m-d H:i:s');
 
-        $approvenow = PretripCheckNotOke::where(['id'=>$request->id])
-        ->update(['status'=>'APPROVED', 'approved_by'=>$request->user_id, 'approved_at'=>$create]);
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        $approvenow = PretripCheckNotOke::
+        leftJoin("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
+        ->where([
+                ['pretrip_check.user_id', '=', $request->driver_id],
+                ['pretrip_check_notoke.checkanswer_id', '=', $request->checkanswer_id],
+            ])
+        ->update(['pretrip_check_notoke.status'=>'APPROVED', 'approved_by'=>$user_id, 'approved_at'=>$create]);
 
         return response()->json($approvenow);
 

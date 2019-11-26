@@ -71,43 +71,53 @@
 	$('#types').on('change', function () {
 
 		var type = $(this).val();
+		var content_datax="";
 
-		$.ajax({
-            type: 'POST',
-            url: "{{ route('ChangeTypes') }}",
-            data: {
-                '_token': $('input[name=_token]').val(),
-                'type': type
-                },
-            success: function(data) {
+		if(type == 'callcenter'){
 
-            	var content_datax="";
-	            var no = -1;
+			content_datax += "<option value='Call Center'>Call Center</option>";
 
-	            if(data == '-'){
+			$('#jenis').html(content_datax);
 
-	            	content_datax += "<option>-</option>";
+		} else {
 
-	            } else {
+			$.ajax({
+	            type: 'POST',
+	            url: "{{ route('ChangeTypes') }}",
+	            data: {
+	                '_token': $('input[name=_token]').val(),
+	                'type': type
+	                },
+	            success: function(data) {
 
-	            	$.each(data, function() {
+	            	var content_datax="";
+		            var no = -1;
 
-		                no++;
-		                var type = data[no]['type'];
-		                var id = data[no]['id'];
+		            if(data == '-'){
 
-		                content_datax += "<option value='"+type+"'>"+type+"</option>";
+		            	content_datax += "<option>-</option>";
 
-		            });
+		            } else {
+
+		            	$.each(data, function() {
+
+			                no++;
+			                var types = data[no]['type'];
+			                var id = data[no]['id'];
+
+			                content_datax += "<option value='"+types+"'>"+types+"</option>";
+
+			            });
+
+		            }
+
+		            $('#jenis').html(content_datax);
+
 
 	            }
 
-	            $('#jenis').html(content_datax);
-
-
-            }
-
-        });
+	        });
+		}
 
 	});
 

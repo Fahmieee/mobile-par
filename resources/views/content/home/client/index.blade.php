@@ -1,7 +1,7 @@
 @include('layout.contenthead')
   <div class="main-content">
     <!-- Header -->
-    <div class="container-fluid pb-4 pt-5 pt-md-8">
+    <div class="container-fluid pb-4 pt-4 pt-md-8">
           <!-- Card stats -->
           <div class="row">
             <div class="col">

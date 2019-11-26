@@ -1,24 +1,7 @@
 @include('layout.contenthead')
   <div class="main-content">
     <!-- Header -->
-    <div class="container-fluid pb-4 pt-5 pt-md-8">
-         
-          <!-- <div class="alert2 alert-danger fade show" role="alert">
-            <table width="100%">
-              <tr>
-                <td align="left"><span class="alert-inner--text"><h6 class="text-white"> Asuransi Anda akan segera Berakhir!</h6></span></td>
-                <td align="right"><i class="fa fa-times"></i></td>
-              </tr>       
-            </table>
-          </div>
-          <div class="alert2 alert-danger fade show" role="alert">
-            <table width="100%">
-              <tr>
-                <td align="left"><span class="alert-inner--text"><h6 class="text-white"> KEUR Anda akan segera Berakhir!</h6></span></td>
-                <td align="right"><i class="fa fa-times"></i></td>
-              </tr>       
-            </table>
-          </div> -->
+    <div class="container-fluid pb-2 pt-4 pt-md-8">
           <div class="row" id="approve_driver" style="display: none;">
             <div class="col">
               <div class="card shadow">
@@ -125,8 +108,6 @@
               </div>
             </div>    
           </div>
-          <br>
-
           
           <!-- Card stats -->
           <div class="row">
@@ -192,20 +173,34 @@
                       <div class="progress-label">
                         <span>Batas Perdin</span>
                       </div>
+                      @php
+                        $perdins = $getperdin->count();
+                        if($perdins >= '1'){
+                          $hasil = ($perdins/5)*100;
+                        } else {
+                          $hasil = '0';
+                        }
+
+                        if($hasil >= 80){
+                          $alert = 'danger';
+                        } else {
+                          $alert = 'success';
+                        }
+
+                      @endphp
                       <div class="progress-percentage">
-                        <span class="text-perdin">0 Kali / 5 Kali (0%)</span>
+                        <span class="text-perdin">{{ $perdins }} Kali / 5 Kali ({{ $hasil }}%)</span>
                       </div>
                     </div>
                     <div class="progress">
-                      <div class="progress-bar bg-default" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                      <div class="progress-bar bg-{{ $alert }}" role="progressbar" aria-valuenow="{{ $hasil }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $hasil }}%;"></div>
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>    
           </div>
-          <br>
+          
           <div class="row" id="client" style="display: block;">
             <div class="col">
               <div class="card shadow">
@@ -261,7 +256,6 @@
             </div>    
           </div>
 
-          <br>
 
           <div class="row">
             <div class="col">
@@ -348,7 +342,6 @@
             </div>    
           </div>
 
-          <br>
           
           <div class="row">
             <div class="col">
@@ -404,8 +397,6 @@
               </div>
             </div>    
           </div>
-
-          <br>
 
           <div class="row">
             <div class="col">
