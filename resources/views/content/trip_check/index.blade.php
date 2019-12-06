@@ -61,7 +61,20 @@
                         <td height="10px"></td>
                       </tr>
                       <tr>
-                        <td align="center"><button type="button" onclick="Sudah({{ $getanswerkemarin->id }})" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Sudah</button><button type="button" onclick="Belum({{ $getanswerkemarin->id }})" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Belum</button></td>
+                        <td align="center"><button type="button" onclick="Sudah({{ $getanswerkemarin->id }})" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Sudah</button><button type="button" onclick="Belum({{ $getanswerkemarin->id }})" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Belum</button>
+                        @php
+                          $detailss = DB::table('check_answer')
+                          ->where([
+                              ['checkdetail_id', '=', $getanswerkemarin->checkdetail_id],
+                              ['kategori', '=', 'WAJIB'],
+                          ]) 
+                          ->count();
+                        @endphp
+
+                        @if($detailss > 1)
+                          <button type="button" onclick="Update({{ $getanswerkemarin->id }}, {{ $getanswerkemarin->answer_id }})" class="btn btn-sm btn-primary"><i class="fa fa-bolt"></i> Update</button>
+                        @endif
+                        </td>
                       </tr>
                     </table>
                   </div>

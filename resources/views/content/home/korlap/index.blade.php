@@ -218,6 +218,7 @@
                         ['pretrip_check.user_id', '=', $ptc->user_id],
                         ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
                     ])
+                    ->orWhere('pretrip_check_notoke.status', 'UPDATED')
                     ->count();
 
                     $tanggal = DB::table('pretrip_check_notoke')
@@ -275,6 +276,7 @@
                         ['pretrip_check.user_id', '=', $ptc->user_id],
                         ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
                     ])
+                    ->orWhere('pretrip_check_notoke.status', 'UPDATED')
                     ->count();
 
                     $tanggal = DB::table('pretrip_check_notoke')
@@ -341,6 +343,7 @@
                         ['pretrip_check.user_id', '=', $ptc->user_id],
                         ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
                     ])
+                    ->orWhere('pretrip_check_notoke.status', 'UPDATED')
                     ->orderBy('pretrip_check.id', 'desc')
                     ->first();
 

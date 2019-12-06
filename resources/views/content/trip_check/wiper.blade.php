@@ -37,7 +37,7 @@
                         if(!$ptc){
                           $warna = 'check_success2';
                         } else {
-                          $warna = 'check_danger2';
+                          $warna = 'check_danger3';
                         }
 
                         @endphp

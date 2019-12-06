@@ -30,6 +30,60 @@
 	    });
 	});
 
+	function Update(id,answers){
+
+		$.ajax({
+	        url: "{{ route('UpdateAnswer') }}",
+	        type: "POST",
+	        data: {
+                '_token': $('input[name=_token]').val(),
+                'id': id
+            },
+	        success:function(data) {
+
+	        	var content_dataw="";
+				var no = -1;
+
+				content_dataw += "<input type='hidden' id='val' value='"+answers+"'>";
+
+				$.each(data, function() {
+
+	                no++;
+	                var parameter = data[no]['parameter'];
+	                var answer_id = data[no]['id'];
+	                var value = data[no]['value'];
+	                var clr = '';
+	                var txt = '';
+
+	                if (answers == answer_id){
+
+	                	clr = 'success';
+	                	txt = 'check_success';
+
+	                } else {
+	                	clr = 'default';
+	                	txt = 'uncheck';
+	                }
+
+
+	                content_dataw += "<hr><div class='alert alerts_"+id+" alert-"+clr+"' id='jawaban_"+answer_id+"' onclick='PilihAnswer("+answer_id+","+id+")' role='alert' align='center'>";
+	                content_dataw += "<table width='100%'>";
+	                content_dataw += "<tr>";
+	                content_dataw += "<td align='left'><h5 class='text-white'>"+parameter+"</h5></td>";
+	                content_dataw += "<td align='right'><img width='35px' class='icons_"+id+"' id='icon_"+answer_id+"' src='/assets/content/img/theme/"+txt+".png'><input type='hidden' id='ids' value='"+id+"'></td>";
+	                content_dataw += "</tr>";
+	                content_dataw += "</table>";
+	                content_dataw += "</div>";
+
+	            });
+
+	            $('#detailupdates').html(content_dataw);
+	        }
+	    });
+
+	    $('#update_answer').modal('show');
+
+	}
 
 
 	function GetAnswer(id) {
@@ -100,85 +154,11 @@
 	    });
 
 
-		// $.ajax({
-	 //        url: "{{ route('GetPreTripCheck') }}",
-	 //        type: "POST",
-	 //        data: {
-  //               '_token': $('input[name=_token]').val(),
-  //               'checktype_id': id
-  //           },
-	 //        success:function(data) {
-
-	 //        	var content_datax="";
-		// 		var no = -1;
-
-		// 		var type = data[0]['type_name'];
-
-		// 		$('.modal-title').html(type);
-
-	 //            $.each(data, function() {
-
-	 //                no++;
-	 //                var name = data[no]['name'];
-	 //                var detail_id = data[no]['id'];
-	 //                var type_name = data[no]['type_name'];
-
-
-	 //                content_datax += "<div class='alert2 alertdetail_"+detail_id+" alert-primary' onclick='GetAnswer("+detail_id+")' role='alert'>";
-  //                   content_datax += "<table width='100%'>";
-  //                   content_datax += "<tr>";
-  //                   content_datax += "<td width='10%'><i class='fa fa-car' style='color: #ffffff'></i></td>";
-  //                   content_datax += "<td align='left'><h5 class='text-white'>"+name+"</h5></td>";
-  //                   content_datax += "</tr></table>";
-  //                   content_datax += "<input type='hidden' class='answered' id='value_"+detail_id+"' value='0'><div id=answered_"+detail_id+"></div>";
-  //                   content_datax += "</div>";
-
-	 //            });
-
-	 //           $('.details_'+id+'').html(content_datax); 
-
-	 //        }
-	 //    });
+		//
 
 		$('#content-modals').modal('show');
 
 	}
-
-	// function GetAnswer2(id) {
-
-	// 	$.ajax({
-	//         url: "{{ route('GetPreTripCheckAnswer') }}",
-	//         type: "POST",
-	//         data: {
- //                '_token': $('input[name=_token]').val(),
- //                'checkdetail_id': id
- //            },
-	//         success:function(data) {
-
-	//         	var content_dataw="";
-	// 			var no = -1;
-
-	//             $.each(data, function() {
-
-	//                 no++;
-	//                 var parameter = data[no]['parameter'];
-	//                 var answer_id = data[no]['id'];
-
-	//                 content_dataw += "<hr><div class='alert2 alerts_"+id+" alert-secondary' id='jawaban_"+answer_id+"' onclick='PilihAnswer("+answer_id+","+id+")' role='alert' align='center'>";
-	//                 content_dataw += "<h5>"+parameter+"</h5>";
-	//                 content_dataw += "</div>";
-
-	//             });
-
-	//             $('#answered_'+id).html(content_dataw);
-
-	//         }
-
-	//     });
-
-	//     $('.alertdetail_'+id).attr('onclick','');
-
-	// }
 
 	function PilihAnswer(answer_id,id) {
 
@@ -234,18 +214,14 @@
 	                if(data != '1'){
 
 	                	$('#detail_'+id).attr('class','card bg-danger shadow');
-	                	$('#detilicon_'+id).attr('src','/assets/content/img/theme/check_danger2.png');
+	                	$('#detilicon_'+id).attr('src','/assets/content/img/theme/check_danger3.png');
 
 	                } else {
 
 	                	$('#detail_'+id).attr('class','card shadow');
-	                	$('#detilicon_'+id).attr('src','/assets/content/img/theme/check_success2.png');
+	                	$('#detilicon_'+id).attr('src','/assets/content/img/theme/check_success3.png');
 
 	                }
-
-	             //    $('#detail_'+id).attr('class','card-body bg-success');
-
-		            // setTimeout(function(){ location.reload(); }, 1500);
 
 	            }
 
@@ -253,6 +229,35 @@
 	    }
 
 	}
+
+	$('#yakin_update').on('click', function () {
+
+		$.ajax({
+            type: 'POST',
+            url: "{{ route('SubmitUpdates') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'answers_now': $('#val').val(),
+                'ids': $('#ids').val(),
+                },
+
+            success: function(data) {
+
+            	swal({
+                    title: "Berhasil",
+                    text: "PTC Berhasil Di Update",
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                });
+
+            	setTimeout(function(){ window.location.href = 'pretripcheck'; }, 1500);
+
+            }
+
+        });
+
+	});
 
 	$('#kirim_ptc').on('click', function () {
 

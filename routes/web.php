@@ -75,7 +75,8 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('pretripcheck/ptcanswer', 'PreTripCheckController@ptcanswer')->name('PTCAnswer');
 	Route::post('pretripcheck/approveptckemarin', 'PreTripCheckController@approveptckemarin')->name('ApprovePTCKemarin');
 	Route::post('pretripcheck/tidakapproveptckemarin', 'PreTripCheckController@tidakapproveptckemarin')->name('TidakApprovePTCKemarin');
-
+	Route::post('pretripcheck/updateanswers', 'PreTripCheckController@updateanswer')->name('UpdateAnswer');
+	Route::post('pretripcheck/submitupdates', 'PreTripCheckController@submitupdates')->name('SubmitUpdates');
 
 	Route::post('clocks/clockin', 'ClocksController@create')->name('ClokinSubmit');
 	Route::post('clocks/validasi', 'ClocksController@validasi')->name('ValidasiClock');

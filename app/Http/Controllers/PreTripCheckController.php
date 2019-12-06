@@ -58,7 +58,7 @@ class PreTripCheckController extends Controller
 
         } else {
 
-            $getanswerkemarins = PretripCheckNotOke::select("check_answer.parameter","check_detail.name","pretrip_check_notoke.id")
+            $getanswerkemarins = PretripCheckNotOke::select("check_answer.parameter","check_detail.name","pretrip_check_notoke.id","check_answer.kategori","check_answer.id as answer_id", "check_answer.checkdetail_id")
             ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
             ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
             ->join("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
@@ -860,6 +860,117 @@ class PreTripCheckController extends Controller
             $detail_tripchecknot->days = '1';
             $detail_tripchecknot->appr = 'N';
             $detail_tripchecknot->save();
+
+        }
+
+        return response()->json($detail_tripchecknot);
+
+    }
+
+    public function updateanswer(Request $request)
+    {
+
+        $updates = PretripCheckNotOke::leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+        ->where('pretrip_check_notoke.id', $request->id)
+        ->first();
+
+        $answerss = CheckAnswer::where([
+            ['checkdetail_id', '=', $updates->checkdetail_id],
+            ['kategori', '=', 'WAJIB']
+        ])
+        ->get();
+
+        return response()->json($answerss);
+    }   
+
+    public function submitupdates(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $harini = date('Y-m-d');
+        $time = date("H:i:s");
+
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        $userx = Drivers::where('driver_id', $user_id)
+        ->first();
+
+        $cekptc = PretripCheckNotOke::where('id', $request->ids)
+        ->first();
+
+        $ptchariini = Pretrip_Check::where([
+            ['date', '=', $harini],
+            ['user_id', '=', $user_id],
+        ])
+        ->first();
+
+        if(!$ptchariini){
+
+            $pretrip_check = new Pretrip_Check();
+            $pretrip_check->user_id= $user_id;
+            $pretrip_check->unit_id= $userx->unit_id;
+            $pretrip_check->date= $harini;
+            $pretrip_check->time= $time;
+            $pretrip_check->status= 'NOT SUBMITED';
+            $pretrip_check->save();
+
+            if($cekptc->checkanswer_id == $request->answers_now){
+
+                $approveptc = PretripCheckNotOke::where(['id'=>$request->ids])->update(['appr'=>'Y']);
+
+                $detail_tripchecknot = new PretripCheckNotOke();
+                $detail_tripchecknot->pretripcheck_id = $pretrip_check->id;
+                $detail_tripchecknot->checkanswer_id = $request->answers_now;
+                $detail_tripchecknot->status = 'NOT APPROVED';
+                $detail_tripchecknot->approve_sementara = 'No';
+                $detail_tripchecknot->days = '1';
+                $detail_tripchecknot->appr = 'N';
+                $detail_tripchecknot->save();
+
+            } else {
+
+                $approveptc = PretripCheckNotOke::where(['id'=>$request->ids])->update(['appr'=>'Y', 'status' => 'UPDATED']);
+
+                $detail_tripchecknot = new PretripCheckNotOke();
+                $detail_tripchecknot->pretripcheck_id = $pretrip_check->id;
+                $detail_tripchecknot->checkanswer_id = $request->answers_now;
+                $detail_tripchecknot->status = 'NOT APPROVED';
+                $detail_tripchecknot->approve_sementara = 'No';
+                $detail_tripchecknot->days = '1';
+                $detail_tripchecknot->appr = 'N';
+                $detail_tripchecknot->save();
+
+            }
+
+        } else {
+
+            if($cekptc->checkanswer_id == $request->answers_now){
+
+                $approveptc = PretripCheckNotOke::where(['id'=>$request->ids])->update(['appr'=>'Y']);
+
+                $detail_tripchecknot = new PretripCheckNotOke();
+                $detail_tripchecknot->pretripcheck_id = $ptchariini->id;
+                $detail_tripchecknot->checkanswer_id = $request->answers_now;
+                $detail_tripchecknot->status = 'NOT APPROVED';
+                $detail_tripchecknot->approve_sementara = 'No';
+                $detail_tripchecknot->days = '1';
+                $detail_tripchecknot->appr = 'N';
+                $detail_tripchecknot->save();
+
+            } else {
+
+                $approveptc = PretripCheckNotOke::where(['id'=>$request->ids])->update(['appr'=>'Y', 'status' => 'UPDATED', 'checkanswer_id'=>$request->answers_now]);
+
+                $detail_tripchecknot = new PretripCheckNotOke();
+                $detail_tripchecknot->pretripcheck_id = $ptchariini->id;
+                $detail_tripchecknot->checkanswer_id = $request->answers_now;
+                $detail_tripchecknot->status = 'NOT APPROVED';
+                $detail_tripchecknot->approve_sementara = 'No';
+                $detail_tripchecknot->days = '1';
+                $detail_tripchecknot->appr = 'N';
+                $detail_tripchecknot->save();
+
+            }
 
         }
 
