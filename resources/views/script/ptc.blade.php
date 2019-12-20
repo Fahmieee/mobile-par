@@ -2,7 +2,6 @@
 	
 	$(function() {
 
-
 		$.ajax({
 	        url: "{{ route('GetKategori') }}",
 	        type: "GET",

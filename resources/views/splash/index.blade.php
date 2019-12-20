@@ -10,8 +10,11 @@
                 <div id="loader" style="display: none;" align="center">
                     <img src="assets/login/images/balls.gif" width="100px" align="center">
                 </div>
-                    <span class="login100-form-title p-t-20 p-b-45">                 
-                    </span>
+                    <div class="textcredit">
+                                    
+                        Developed By : Bussiness Development and Support
+
+                    </div>
             </div>
         </div>
     </div>
