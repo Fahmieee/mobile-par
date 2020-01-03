@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 Route::get('/login', 'LoginController@showLoginForm')->name('login');
 
+Route::get('/import', 'ImportController@index');
 
 Route::get('login/logout', array(
     'as' => 'logout-user',
