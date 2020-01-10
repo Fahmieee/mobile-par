@@ -292,6 +292,10 @@
                             var hasildarah = 'Hypertensive Crisis!';
                             var bedge = 'danger3';
 
+                        } else {
+
+                            var hasildarah = 'Normal!';
+                            var bedge = 'danger3';
                         }
 
                         var wilayah = data[no]['wilayah_name'];
@@ -299,7 +303,7 @@
                         var id = data[no]['id'];
                         
 
-                        content_data += "<div class='alert2 alert-secondary' onclick='DCUView("+id+")' role='alert'>";
+                        content_data += "<div class='alert2 alert-secondary' role='alert'>";
                         content_data += "<table width='100%' border='0'>"; 
                         content_data += "<tr>";
                         content_data += "<td width='23%' rowspan='4'>";
