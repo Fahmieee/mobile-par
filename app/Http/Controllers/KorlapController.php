@@ -26,7 +26,7 @@ class KorlapController extends Controller
         ->where('users.id', $user->id)
         ->first();
 
-        $getptchighs = PretripCheckNotOke::Select('users.first_name','check_answer.parameter','check_answer.level','check_detail.name','units.no_police','pretrip_check_notoke.approve_sementara', 'pretrip_check_notoke.checkanswer_id','pretrip_check.user_id')
+        $getptchighs = PretripCheckNotOke::Select('users.first_name','check_answer.parameter','check_answer.level','check_detail.name','units.no_police','pretrip_check_notoke.approve_sementara', 'pretrip_check_notoke.checkanswer_id','pretrip_check.user_id','check_detail.approve_role_id')
         ->leftJoin("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
         ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
         ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
@@ -39,11 +39,11 @@ class KorlapController extends Controller
                 ['level', '=', 'HIGH'],
                 ['pretrip_check.status', '=', 'SUBMITED'],
                 ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
-                ['check_detail.approve_role_id', '=', '5'],
+                
             ])
         ->orWhere('pretrip_check_notoke.status','APPROVED SEMENTARA')
         ->orderBy('pretrip_check.id', 'desc')
-        ->groupBy('users.first_name','check_answer.parameter','check_answer.level','check_detail.name','units.no_police','pretrip_check_notoke.approve_sementara', 'pretrip_check_notoke.checkanswer_id', 'pretrip_check.user_id')
+        ->groupBy('users.first_name','check_answer.parameter','check_answer.level','check_detail.name','units.no_police','pretrip_check_notoke.approve_sementara', 'pretrip_check_notoke.checkanswer_id', 'pretrip_check.user_id','check_detail.approve_role_id')
         ->get();
 
         $getptcmediums = PretripCheckNotOke::Select('users.first_name','check_answer.parameter','check_answer.level','check_detail.name','units.no_police','pretrip_check_notoke.approve_sementara', 'pretrip_check_notoke.checkanswer_id','pretrip_check.user_id')

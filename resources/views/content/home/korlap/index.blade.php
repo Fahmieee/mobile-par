@@ -231,9 +231,22 @@
                     ->orderBy('pretrip_check.id', 'desc')
                     ->first();
 
+                    if($ptc->approve_role_id == '5'){
+                      $displays = none;
+                      $btns = 'Approve';
+                    } else if($ptc->approve_role_id == '6'){
+                      $proses = 'Proses Approve Dilakukan Oleh ASMEN';
+                      $displays = 'block';
+                      $btns = 'Approve2';
+                    } else {
+                      $proses = 'Proses Approve Dilakukan Oleh MANAGER';
+                      $displays = 'block';
+                      $btns = 'Approve2';
+                    }
+
                     @endphp
 
-                    <div class="alert2 alert-secondary" role="alert" onclick="Approve({{ $ptc->user_id }}, {{ $ptc->checkanswer_id }})">
+                    <div class="alert2 alert-secondary" role="alert" onclick="{{ $btns }}({{ $ptc->user_id }}, {{ $ptc->checkanswer_id }})">
                       <table width="100%" border="0"> 
                         <tr>
                           <td width="20%" rowspan="2" align="center">
@@ -252,7 +265,15 @@
                           <td><span class="badge badge-pill badge-danger" style="font-size: 8.5px;"><i class="fas fa-exclamation-triangle"></i> {{ $ptc->level }}</span></td>
                           <td><span class="badge badge-pill badge-danger" style="font-size: 8.5px;"><i class="fas fa-clock"></i> {{ $high }} Hari</span></td>
                         </tr> 
-                      </table>  
+                      </table>
+                      <div style="display: {{ $displays }};">
+                        <hr>
+                        <table width="100%">
+                          <tr>
+                            <td align="center"><h6>{{ $proses }}</h6></td>
+                          </tr>
+                        </table>
+                      </div>
                     </div>
                     @endforeach
                     @endif

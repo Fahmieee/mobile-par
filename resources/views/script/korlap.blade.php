@@ -1,5 +1,16 @@
 <script type="text/javascript">
 
+    function Approve2(user,answer){
+
+        swal({
+            text: "Anda tidak Berhak Melakukan Approve!",
+            icon: "error",
+            buttons: false,
+            timer: 2000,
+        });
+
+    }
+
     function Approve(user,answer){
 
         $.ajax({
