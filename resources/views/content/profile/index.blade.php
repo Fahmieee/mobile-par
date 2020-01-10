@@ -23,7 +23,7 @@
             </div>
             <div class="card-header border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div align="center" id="tombol_ganti">
-                <button id="ganti" class="btn btn-sm btn-primary">Ganti Photo</button>
+                <!-- <button id="ganti" class="btn btn-sm btn-primary">Ganti Photo</button> -->
               </div>
               <br>
               <div class="text-center" id="namalengkap"></div>

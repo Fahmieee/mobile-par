@@ -165,7 +165,7 @@
 
         } else {
 
-          $('#photo_users').attr('src',"{{ asset('assets/profile_photo/"+photo+"') }}");
+          $('#photo_users').attr('src',"/assets/profile_photo/"+photo+"");
 
         }
 
