@@ -54,7 +54,7 @@ class ManagerController extends Controller
         ->leftJoin("units", "pretrip_check.unit_id", "=", "units.id")
          ->leftJoin("users", "pretrip_check.user_id", "=", "users.id")
         ->where([
-                ['drivers.asmen_id', '=', $user->id],
+                ['drivers.manager_id', '=', $user->id],
                 ['level', '=', 'MEDIUM'],
                 ['pretrip_check.status', '=', 'SUBMITED'],
                 ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
@@ -74,7 +74,7 @@ class ManagerController extends Controller
         ->leftJoin("units", "pretrip_check.unit_id", "=", "units.id")
          ->leftJoin("users", "pretrip_check.user_id", "=", "users.id")
         ->where([
-                ['drivers.asmen_id', '=', $user->id],
+                ['drivers.manager_id', '=', $user->id],
                 ['level', '=', 'LOW'],
                 ['pretrip_check.status', '=', 'SUBMITED'],
                 ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
