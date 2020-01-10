@@ -232,7 +232,7 @@
                     ->first();
 
                     if($ptc->approve_role_id == '5'){
-                      $displays = none;
+                      $displays = 'none';
                       $btns = 'Approve';
                     } else if($ptc->approve_role_id == '6'){
                       $proses = 'Proses Approve Dilakukan Oleh ASMEN';
