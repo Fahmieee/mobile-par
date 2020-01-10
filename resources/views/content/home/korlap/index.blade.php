@@ -234,6 +234,7 @@
                     if($ptc->approve_role_id == '5'){
                       $displays = 'none';
                       $btns = 'Approve';
+                      $proses = '';
                     } else if($ptc->approve_role_id == '6'){
                       $proses = 'Proses Approve Dilakukan Oleh ASMEN';
                       $displays = 'block';
