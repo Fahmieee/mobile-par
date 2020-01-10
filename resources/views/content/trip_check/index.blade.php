@@ -71,7 +71,7 @@
                           ->count();
                         @endphp
 
-                        @if($detailss > 2)
+                        @if($detailss >= 2)
                           <button type="button" onclick="Update({{ $getanswerkemarin->id }}, {{ $getanswerkemarin->answer_id }})" class="btn btn-sm btn-primary"><i class="fa fa-bolt"></i> Update</button>
                         @endif
                         </td>
