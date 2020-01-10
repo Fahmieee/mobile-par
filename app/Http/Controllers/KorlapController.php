@@ -220,7 +220,7 @@ class KorlapController extends Controller
                 ['pretrip_check.user_id', '=', $request->driver_id],
                 ['pretrip_check_notoke.checkanswer_id', '=', $request->checkanswer_id],
             ])
-        ->update(['pretrip_check_notoke.status'=>'APPROVED', 'approved_by'=>$user_id, 'approved_at'=>$create]);
+        ->update(['pretrip_check_notoke.status'=>'APPROVED','pretrip_check_notoke.appr'=>'Y', 'approved_by'=>$user_id, 'approved_at'=>$create]);
 
         return response()->json($approvenow);
 

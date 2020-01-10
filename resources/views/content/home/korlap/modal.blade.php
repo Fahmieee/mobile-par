@@ -67,7 +67,7 @@
                     </tr>
                   </table> 
                   <hr>
-                  <table width="100%" border="0"> 
+                  <!-- <table width="100%" border="0"> 
                     <tr>
                       <td width="35%"><h5><b>Tanggal</b></h5></td>
                       <td width="5%"><h5><b>:</b></h5></td>
@@ -81,18 +81,23 @@
                       <td width="5%"><h5><b>:</b></h5></td>
                       <td><h5 id="days"></h5></td>
                     </tr>
-                  </table> 
+                  </table>  -->
                   <input type="hidden" id="user_id">
                   <input type="hidden" id="checkanswer_id">
                 </div>
 
             </div>
             
-            <div class="modal-footer">
-                <button type="button" id="approve_now" class="btn btn-success">Approve</button>
-                <div id="btnsementara" style="display: block;">
+            <div class="modal-footer" align="center">
+              <table width="100%">
+                <tr>
+                  <td align="center"><button type="button" id="approve_now" class="btn btn-success">Approve</button></td>
+                </tr>
+              </table>
+                <!-- <button type="button" id="approve_now" class="btn btn-success">Approve</button> -->
+                <!-- <div id="btnsementara" style="display: block;">
                 <button type="button" id="approve_sementara" class="btn btn-warning">Approve Sementara</button>
-                </div>
+                </div> -->
 
             </div>
             
