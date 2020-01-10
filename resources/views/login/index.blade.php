@@ -42,11 +42,11 @@
 		                            Masuk
 		                        </button>
 		                    </div>
-		                    <div class="container-login100-form-btn p-t-10" id="buttonsx">
+		                    <!-- <div class="container-login100-form-btn p-t-10" id="buttonsx">
 		                        <button class="kembali100-form-btn" id="login-register">
 		                            Daftar
 		                        </button>
-		                    </div>
+		                    </div> -->
 	                </div>
 
                     <!-- {{-- ========== REGISTER =========== --}} -->
