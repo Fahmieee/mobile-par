@@ -24,11 +24,11 @@
               </tr>
             </table>
           <br>
-          @if($getanswerkemarins->count() >= 1)
+          <!-- @if($getanswerkemarins->count() >= 1)
           <div class="row" style="display: block;">
-          @else
+          @else -->
           <div class="row" style="display: none;">
-          @endif
+          <!-- @endif -->
             <div class="col-12">
               <div class="card shadow bg-red">
                 <div class="card-body">
@@ -188,11 +188,11 @@
       </div>
 
       <div align="center">
-        @if($getanswerkemarins->count() >= 1)
+        <!-- @if($getanswerkemarins->count() >= 1)
           <button class="btn btn-success ptckemarin">Kirim PTC</button>
-        @else
+        @else -->
           <button class="btn btn-success" id="kirim_ptc">Kirim PTC</button>
-        @endif
+        <!-- @endif -->
       </div>
             
 
