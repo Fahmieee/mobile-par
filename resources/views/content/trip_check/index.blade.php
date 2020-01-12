@@ -23,8 +23,64 @@
                 <td width="8%"></td>
               </tr>
             </table>
-          
-          
+          <br>
+          @if($getanswerkemarins != '0')
+          <div class="row">
+            <div class="col-12">
+              <div class="card shadow bg-red">
+                <div class="card-body">
+                  <h5 class="text-white">PTC Masalah Kemarin ({{ $tanggal }})</h5>
+                  <hr>
+
+                  @foreach($getanswerkemarins as $getanswerkemarin)
+                  <div class="alert2 alert-secondary fade show" role="alert">
+                    <table width="100%" border="0">
+                      <tr>
+                        <td width="25%" rowspan="2">
+                          <div class="icon icon-shape text-white bg-red rounded-circle shadow">
+                            <i class="fas fa-wrench" style="color: #ffffff"></i>
+                        </div>
+                        </td>
+                        <td><h5><b>{{ $getanswerkemarin->name }}</b></h5></td>
+                      </tr>
+                      <tr>
+                        <td><h6>{{ $getanswerkemarin->parameter }}</h6></td>
+                      </tr>
+                    </table>
+                    <hr>
+                    <table width="100%" border="0">
+                      <tr>
+                        <td><h6>Apakah Permasalahan Mengenai ini Sudah Di Perbaiki?</h6></td>
+                      </tr>
+                      <tr>
+                        <td height="10px"></td>
+                      </tr>
+                      <tr>
+                        <td align="center"><button type="button" onclick="Sudah({{ $getanswerkemarin->id }})" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Sudah</button><button type="button" onclick="Belum({{ $getanswerkemarin->id }})" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Belum</button>
+                        @php
+                          $detailss = DB::table('check_answer')
+                          ->where([
+                              ['checkdetail_id', '=', $getanswerkemarin->checkdetail_id],
+                              ['kategori', '=', 'WAJIB'],
+                          ]) 
+                          ->count();
+                        @endphp
+
+                        @if($detailss >= 2)
+                          <button type="button" onclick="Update({{ $getanswerkemarin->id }}, {{ $getanswerkemarin->answer_id }})" class="btn btn-sm btn-primary"><i class="fa fa-bolt"></i> Update</button>
+                        @endif
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  @endforeach
+
+                </div>
+              </div>
+            </div>
+          </div>
+          @endif
+
           <br>
           @if($getanswers->count() >= 1)
           <div class="row" style="display: block;">
@@ -87,7 +143,7 @@
             
             <div class="col-4">
               <div class="card {{ $warna }} shadow">
-                @if($getanswerkemarins->count() >= 1)
+                @if($getanswerkemarins != '0')
                   <div class="ptckemarin">
                 @else
 
@@ -113,7 +169,7 @@
                       </table>
                     </div>
 
-                @if($getanswerkemarins->count() >= 1)
+                @if($getanswerkemarins != '0')
                   </div>
                 @else
                   </a>
@@ -129,9 +185,11 @@
       </div>
 
       <div align="center">
-        
+        @if($getanswerkemarins != '0')
+          <button class="btn btn-success ptckemarin">Kirim PTC</button>
+        @else
           <button class="btn btn-success" id="kirim_ptc">Kirim PTC</button>
-        
+        @endif
       </div>
             
 

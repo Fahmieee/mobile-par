@@ -42,18 +42,19 @@ class PreTripCheckController extends Controller
         ])
         ->get();
 
-        $ptcterakhir = Pretrip_Check::where([
-            ['date', '!=', $harini],
-            ['user_id', '=', $user_id]
+        $ptcterakhir = Pretrip_Check::select("pretrip_check.id")
+        ->join("pretrip_check_notoke", "pretrip_check.id", "=", "pretrip_check_notoke.pretripcheck_id")
+        ->where([
+            ['pretrip_check.date', '!=', $harini],
+            ['pretrip_check.user_id', '=', $user_id],
+            ['pretrip_check_notoke.appr', '=', 'N'],
         ])
-        ->orderBy('id', 'desc')
+        ->orderBy('pretrip_check.id', 'desc')
         ->first();
 
         if(!$ptcterakhir){
 
-            $getanswerkemarins = Pretrip_Check::where("user_id", $user_id)
-            ->get();
-
+            $getanswerkemarins = '0';
             $tanggal = date('d M Y', strtotime($harini));
 
         } else {
@@ -800,7 +801,12 @@ class PreTripCheckController extends Controller
         $user = Auth::user();
         $user_id = $user->id;
 
-        $approveptc = PretripCheckNotOke::where(['id'=>$request->ptc_id])->update(['status'=>'APPROVED', 'approved_at'=>$dates, 'approved_by'=>$user_id, 'appr'=>'Y']);
+        $ptc = PretripCheckNotOke::select('pretrip_check.user_id','pretrip_check.unit_id','pretrip_check_notoke.checkanswer_id')
+        ->leftJoin("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")
+        ->where("pretrip_check_notoke.id", $request->ptc_id)
+        ->first();
+
+        $approveptc = PretripCheckNotOke::leftJoin("pretrip_check", "pretrip_check_notoke.pretripcheck_id", "=", "pretrip_check.id")->where(['pretrip_check.user_id'=>$ptc->user_id, 'pretrip_check.unit_id'=>$ptc->unit_id, 'pretrip_check_notoke.checkanswer_id'=>$ptc->checkanswer_id])->update(['pretrip_check_notoke.status'=>'APPROVED', 'pretrip_check_notoke.approved_at'=>$dates, 'pretrip_check_notoke.approved_by'=>$user_id, 'pretrip_check_notoke.appr'=>'Y']);
 
         return response()->json($approveptc);
     }
