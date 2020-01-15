@@ -20,21 +20,11 @@ class ImportController extends Controller
 
     	$rows = [
 
-	        ['Driver Testing','driver5','080989999','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2451 XXX','2020-07-30','2022-02-28','2020-06-21','A','2021-03-13','User Testing','AST. DEALEAR SHIP & GENERAL ADM','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','2.4 G'],
-			['Driver Testing','driver6','080989999','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2614 XXX','2021-07-30','2022-02-28','2020-06-23','A','2020-10-14','User Testing','','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','2.4 G'],
-			['Driver Testing','driver7','080989999','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2449 XXX','2020-07-30','2022-02-28','2020-06-23','A','2019-03-31','User Testing','','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','2.4 G'],
-			['Driver Testing','driver8','080989999','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2641 XXX','2021-07-30','2022-02-28','2020-06-23','A','2022-03-06','User Testing','','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','2.4 G'],
-			['Driver Testing','driver9','080989999','Isuzu','5400 cc','Panther Pick Up TBR','Turbo','2018','B 9643 XXX','2019-08-27','2020-02-28','2020-06-22','A','2022-03-06','User Testing','GA','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','54 TURBO'],
-			['Driver Testing','driver10','080989999','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2649 XXX','2021-07-30','2022-02-28','2020-06-23','A','2022-03-06','User Testing','','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','2.4 G'],
-			['Driver Testing','driver11','080989999','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2512 XXX','2019-08-27','2022-02-28','2020-07-23','A','2022-03-06','User Testing','','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','2.0 G'],
-			['Driver Testing','driver12','080989999','Toyota','1800 cc','New Corolla Altis','AT','2018','B 1175 XXX','2021-07-30','2022-02-28','2020-07-30','A','2022-03-06','User Testing','MGR. ASET OPS','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','1.8  V'],
-			['Driver Testing','driver13','080989999','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2633 XXX','2021-07-30','2022-02-28','2020-06-23','A','2022-03-06','User Testing','','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','2.4 G'],
-			['Driver Testing','driver14','080989999','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2596 XXX','2021-07-30','2022-02-28','2020-06-23','A','2022-03-06','User Testing','','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','2.4 G'],
-			['Driver Testing','driver15','080989999','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2448 XXX','2020-07-30','2022-02-28','2020-06-21','A','2022-03-06','User Testing','','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','2.4 G'],
-			['Driver Testing','driver16','080989999','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2462 XXX','2020-07-30','2022-02-28','2020-06-21','A','2022-03-06','User Testing','','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','2.4 G'],
-			['Driver Testing','driver17','080989999','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2675 XXX','2021-07-30','2022-02-28','2020-06-23','A','2022-03-06','User Testing','','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','2.0 G'],
-			['Driver Testing','driver18','080989999','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2638 XXX','2021-07-30','2022-02-28','2020-06-23','A','2022-03-06','User Testing','','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','2.0 G'],
-			['Driver Testing','driver19','080989999','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2656 XXX','2019-08-27','2022-02-28','2020-07-05','A','2022-03-06','User Testing','','ANDRIANTO','korlap','andrianto@prima-armada-raya.com','2.0 G'],
+	        ['Siswantoro','020871','081295861984','Toyota','Kijang Innova','2019','B 2818 SIQ','2024-11-01','2024-11-05','023256','Pool Alokasi (Petrothemical)'],
+			['M. Afif Fauzi','020524','081284665596','Toyota','Kijang Innova','2019','B 2812 SIQ','2024-11-01','2022-06-26','023256','POOL'],
+			['Jamaludin S.','020159','081298999967','Mitsubishi','Col Dis FE84G BC','2017','B 7065 SJA','2023-06-07','2020-11-21','023256','POOL'],
+			['Suryana Subrata','020158','082125654666','Mitsubishi','Col Dis FE84G BC','2017','B 7992 SDA','2023-06-25','2020-07-02','023256','POOL'],
+			['Novico Indrianata','021812','087880806779','Toyota','Fortuner','2017','B 1127 SJT','2022-08-10','2024-01-24','023256','VP PROJECT HSSE'],
 		];
 
 		foreach ($rows as $data) {
@@ -43,23 +33,23 @@ class ImportController extends Controller
 			$nik = $data[1];
 			$notlp = $data[2];
 			$merk = $data[3];
-			$mes = $data[4];
-			$model = $data[5];
-			$transmisi = $data[6];
-			$tahun = $data[7];
-			$noplat = $data[8];
-			$masaasuransi = $data[9];
-			$masakeur = $data[10];
-			$masastnk = $data[11];
-			$jenissim = $data[12];
-			$masasim = $data[13];
-			$namauser = $data[14];
-			$jabatan = $data[15];
+			$mes = '2400 cc';
+			$model = $data[4];
+			$transmisi = 'MT';
+			$tahun = $data[5];
+			$noplat = $data[6];
+			$masaasuransi = '';
+			$masakeur = '';
+			$masastnk = $data[7];
+			$jenissim = '';
+			$masasim = $data[8];
+			$namauser = '';
+			$jabatan = $data[10];
 
-			$korlap = $data[16];
-			$nikkorlap = $data[17];
-			$email = $data[18];
-			$varian = $data[19];
+			$korlap = '';
+			$nikkorlap = $data[9];
+			$email = '';
+			$varian = '';
 
 			$noplatspasi = str_replace(' ', '', $noplat);
 
@@ -107,7 +97,7 @@ class ImportController extends Controller
 		        $userclient = new Users();
 		        $userclient->jabatan_id = $jabs->id;
 		        $userclient->company_id = '2';
-		        $userclient->wilayah_id = '21';
+		        $userclient->wilayah_id = '42';
 		        $userclient->username = $noplatspasi;
 		        $userclient->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
 		        $userclient->first_name = $namauser;
@@ -129,7 +119,7 @@ class ImportController extends Controller
 			    $userdrivers = new Users();
 		        $userdrivers->jabatan_id = '1';
 		        $userdrivers->company_id = '1';
-		        $userdrivers->wilayah_id = '21';
+		        $userdrivers->wilayah_id = '42';
 		        $userdrivers->username = $nik;
 		        $userdrivers->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
 		        $userdrivers->first_name = $nama;
@@ -155,7 +145,7 @@ class ImportController extends Controller
 				$userkorlaps = new Users();
 		        $userkorlaps->jabatan_id = '2';
 		        $userkorlaps->company_id = '1';
-		        $userkorlaps->wilayah_id = '21';
+		        $userkorlaps->wilayah_id = '42';
 		        $userkorlaps->username = $nikkorlap;
 		        $userkorlaps->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
 		        $userkorlaps->first_name = $korlap;
