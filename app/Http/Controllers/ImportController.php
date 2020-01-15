@@ -20,46 +20,56 @@ class ImportController extends Controller
 
     	$rows = [
 
-	        ['Winarno','021748','085888355494','Fortuner','2017','B 1374 SJS','2022-05-23','A','2024-04-03','T. P. Pasaribu','VP HSE Pemasaran','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Noval Setya Pramana','020797','087776060932','Fortuner','2017','B 1679 SJT','2022-10-02','A','2023-08-21','Annisrul Waqie','VP QSKM','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Handoko Budi Prasetyo','020778','087775838164','Fortuner','2019','B 1260 SAQ','2024-11-08','A','2023-09-15','Yanuar','SVP Bussiness Operation','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Roland Karim','020823','082124243131','Fortuner','2017','B 1699 SJT','2022-10-02','A','2021-07-10','Ega Legowo','VP Riset Teknologi Center','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Bahtiar Rifai','021086','085697551491','Camry','2019','B 1230 SAQ','2024-10-25','A','2021-06-05','Ivan Airlangga','SVP Bussines Dev. & Excelent','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Aam Aben','021097','087888028480','Fortuner','2019','B 2916 SJA','2024-10-19','A','2021-12-22','Noor Muhammad Zein','VP Asset Management','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Riyanto 2','021291','081212600761','Camry','2019','B 1297 SAQ','2024-11-15','A','2022-05-18','Hendra Jaya','SVP Staf Ahli Dirut','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Jasmin','021293','085890519259','Camry','2017','B 1820 SAN','2022-05-02','A','2023-10-10','Afandi','SVP CBO','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Wisnu Adriansyah','021342','087788003139','Fortuner','2017','B 1603 SJT','2022-09-23','A','2020-09-10','Taswin','VP Organization & Man Power Planning','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Sapii','021525','085210756267','Fortuner','2017','B 1120 SJT','2022-08-10','A','2020-07-05','Kade Ambara Jaya','VP Project Tuban','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Saefudin','021529','081296763930','Fortuner','2019','B 2926 SJA','2024-10-19','A','2021-09-09','Achmad Syaihu Rais','VP Jawa Balinus','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Kodirin','021530','081807999815','Fortuner','2017','B 1130 SJT','2022-08-10','A','2024-10-02','Syamsul Bahri','VP PCMS','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Trima Jeti','021799','081808982885','Fortuner','2017','B 1687 SJT','2022-10-02','A','2024-02-03','Dhani Prasetyawan','VP PPC','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Budi Dharmawan','021801','085713100071','Fortuner','2017','B 1947 SJT','2022-10-27','A','2022-03-26','Irzan Noor Rizki','VP HR MS','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Ronny S','020009','081287916979','Voxy','2019','B 2659 SIQ','2024-10-24','A','2021-02-06','','Pool','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Markusen','021904','085775351885','Camry','2017','B 1204 SAO','2022-08-25','B-I','2024-05-09','Ekariza','VP Portofolio','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['M Zaenuri','022237','082141634869','Fortuner','2017','B 1669 SJT','2022-10-02','A','2024-12-22','Irwan Priyasa','VP Legal Mega Proyek','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Nur Rachman','022271','087875908030','Fortuner','2017','B 1413 SJT','2022-09-07','A','2022-10-10','Syafii Triyono','VP Mega Proyek 2','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Melania Wulandria','022413','081210176138','Fortuner','2017','B 1698 SJT','2022-10-02','A','2021-09-14','Arief Wahidin S','VP Eksplorasi','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Zainal Fauzi','022414','08111666458','Fortuner','2019','B 2901 SJA','2024-10-17','A','2024-10-24','Charles P Siallagan','VP D&P','Toyota','Rahmat Hidayat','023256','081318692453','rahmat.hidayat@prima-armada-raya.com'],
-			['Jonh Seven Alpacrison S','022425','081376996336','Fortuner','2019','B 2884 SJA','2024-10-19','B-II Umum','2021-07-15','Lindung Nainggolan','VP Complience','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Sutrisno','022426','087839091242','Camry','2017','B 1209 SAO','2022-08-25','B-I Umum','2020-07-14','Dadi Sugiana','VP Acess & Facility','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Tugiman','022460','081932920777','Camry','2016','B 1458 SAN','2021-11-26','A','2021-07-30','Suwahyanto','SVP Mega Proyek','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Wisnu Barata','021836','087784621029','Fortuner','2017','B 1704 SJT','2022-10-02','A','2022-12-05','Manson Sihotang','VP CPS','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Mustofa Haris','020160','081311220943','Serena','2017','B 2051 SZK','2022-11-10','A','2021-07-21','','POOL','Nissan','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Kartono Wijaya','020034','081311662803','Innova','2017','B 2157 SZJ','2022-10-30','A','2023-07-23','','POOL','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Imam Dian Segara','020147','087888067141','Innova','2017','B 2491 SZJ','2022-11-02','A','2023-02-18','','POOL','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Riko Syaputra','020648','081370181227','Innova','2018','B 2445 SYB','2023-06-21','A','2024-11-02','','POOL','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Kamsari','020663','087880442378','Innova','2019','B 2169 SIR','2024-11-01','A','2021-02-06','','POOL','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Mulya jaya','020664','085779940049','Serena','2017','B 2059 SZK','2022-11-10','A','2021-01-12','','POOL','Nissan','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Yusuf Ramli','020676','081546202826','Innova','2019','B 2440 SIR','2024-11-07','A','2023-04-04','','POOL','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Khairul Rizki Ritonga','020733','085714081558','Innova','2018','B 2447 SYB','2023-06-21','A','2020-12-09','','POOL','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Asep Nana Soviandi','020761','08567574016','Innova','2017','B 2119 SZJ','2022-10-30','A','2022-09-16','','POOL','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Heryanto','020796','081293606140','Innova','2016','B 2915 SOI','2021-12-20','A','2024-03-23','','Pool Alokasi (Petrothemical)','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Said','020825','085782878111','Innova','2016','B 2671 SOD','2021-10-26','A','2021-12-28','','POOL','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Mastara Asmara','020827','085763861021','Innova','2016','B 2674 SOD','2021-10-26','A','2020-03-14','','POOL','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Aris Pujianto','020828','081280864117','Innova','2017','B 2156 SZJ','2022-10-30','A','2020-06-06','','POOL','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Faldi Andriansya','021885','085886112336','Innova','2019','B 2441 SIR','2024-11-05','A','2021-06-06','','POOL','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Rajab S Djaha','021886','085257980663','Innova','2016','B 2303 SOF','2021-11-09','A','2021-05-05','','POOL','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
-			['Yaumar Ilif','022424','089603107006','Innova','2018','B 2429 SYB','2023-06-21','A','2022-11-06','','POOL','Toyota','Hadi Prayitno','020834','082299035665','hadiprayitno0011@gmail.com'],
+	        ['Saidun Naiusaf','020582','081519906082','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2451 SYB','2020-07-30','','2020-06-21','A','2021-03-13','IMA ARIFARMA','AST. DEALEAR SHIP & GENERAL ADM','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.4 G'],
+			['Dedi Chandra S.','020570','081283608696','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2614 SYB','2021-07-30','','2020-06-23','A','2020-10-14','','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.4 G'],
+			['Iman Kurniawan','020290','087781658627','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2449 SYB','2020-07-30','','2020-06-23','A','2019-03-31','','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.4 G'],
+			['Budianto','020532','08170843245','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2641 SYB','2021-07-30','','2020-06-23','A','2022-03-06','','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.4 G'],
+			['Moch Firmansyah','020565','081322091156','Isuzu','5400 cc','Panther Pick Up TBR','Turbo','2018','B 9643 SAI','2019-08-27','2020-02-29','2020-06-22','A','','RENI RIKA WATI','GA','ANDRIANTO','20281','andrianto@prima-armada-raya.com','54 TURBO'],
+			['Saepuloh Suryadin','020575','081317346687','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2649 SYB','2021-07-30','','2020-06-23','A','','OPS','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.4 G'],
+			['Basidi','021764','081381111371','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2512 SYE','2019-08-27','','2020-07-23','A','','PUSPA','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Suyatno','020545','087888583760','Toyota','1800 cc','New Corolla Altis','AT','2018','B 1175 SAP','2021-07-30','','2020-07-30','A','','FENITA FEBRIYANTI','MGR. ASET OPS','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Muryanto','020768','085925350780','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2633 SYB','2021-07-30','','2020-06-23','A','','0PS','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.4 G'],
+			['Bagus Sujatmiko','020701','081286795211','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2596 SYB','2021-07-30','','2020-06-23','A','','','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.4 G'],
+			['Novie Alfian Palar','020557','082113642866','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2448 SYB','2020-07-30','','2020-06-21','A','','PUSPA','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.4 G'],
+			['Mulyadi','020544','082114723300','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2462 SYB','2020-07-30','','2020-06-21','A','','SAEFUL ARIF BUDIMAN','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.4 G'],
+			['Azrul Naimuddin','021776','081322495587','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2675 SYB','2021-07-30','','2020-06-23','A','','PUSPA','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Djuhadicha','021768','0812381652132','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2638 SYB','2021-07-30','','2020-06-23','A','','OPS','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Heri Wahyu Sugiarto','021865','081288811322','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2656 SYC','2019-08-27','','2020-07-05','A','','OPS','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Deden','020627','081281872479','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2963 SYC','2020-07-30','','2020-07-06','A','','FADIL ANDAS','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Armyn','021752','085776229692','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2508 SYE','2020-08-27','','2020-07-23','A','','WAWAN HERMAWAN','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Irwan Galih Rahman','020577','081382226792','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2639 SYB','2021-07-30','','2020-06-23','A','','OPS','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Tommy Ardhanny','020288','082324124569','Isuzu','5400 cc','Panther Pick Up TBR','Turbo','2018','B 9681 SAI','2020-08-27','2020-01-30','2020-07-07','A','','OPS','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','54 TURBO'],
+			['Wahyu Hidayat','020547','083834155577','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2592 SYB','2021-07-30','','2020-06-23','A','','HARI PURNOMO','OH','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.4 G'],
+			['Sarji','020569','085281669164','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2969 SYC','2020-07-30','','2020-07-06','A','','OPS','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Sugiyatno','020541','081808470647','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2170 SYF','2020-08-27','','2020-08-01','A','','OPS','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Muhammad Ali','020593','081287788120','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2637 SYB','2018-08-01','','2020-06-23','B','','HENDRA ARIF','AST. MANAGER CHANEL SUPORT','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Ali Hasan ','021770','082259989865','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2940 SYC','2019-07-30','','2020-07-06','A','','RISNA','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Suman Riadi','020592','087884095002','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2612 SYB','2018-08-01','','2020-06-23','A','','OPS','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.4 G'],
+			['Anang S.','021766','08136030685','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2972 SYC','2020-07-30','','2020-07-06','A','','PUSPA','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Fernando','022841','081291315282','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2939 SYC','2020-07-30','','2020-07-06','A','','PUSPA','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Moh Novianto','020596','082111869657','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2892 SYC','2019-07-30','','2020-07-06','A','','PUSPA','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Oki Setiadji','021777','081317158485','Toyota','2400 cc','Kijang Innova (Reborn)','MT','2018','B 2444 SYB','2020-07-30','','2020-06-21','A','','PUSPA','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.4 G'],
+			['Basidi','021764','081381111371','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2512 SYE','2019-08-27','','2020-07-23','A','','PUSPA','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Husni Firdaus','020578','082244580478','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1193 SAO','2021-01-04','','2020-08-18','A','','','MGR','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Suwanto','020590','082111963040','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1190 SAO','2021-01-04','','2020-08-18','A','','F ADITYA DIPO ALAM','MGR. REGAL COUNSEL & COMPLIACE JBB','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Ikrom','021765','081314066745','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1182 SAO','2021-01-04','','2020-08-18','A','','DWI MUHAMAD ABDU','MGR. SND','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Darminto','021781','081282334276','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1178 SAO','2021-01-04','','2020-08-18','A','','NURHADIA','MGR RITEL','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Suroto','021783','081776995413','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2017','B 2882 SZC','2021-01-04','','2020-08-11','A','','PUSPA','ASMENT GA','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Prasetya K. Sena','022485','081382354292','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1192 SAO','2021-01-04','','2020-08-18','A','','','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Achmad Fauzi R.','022228','087880706951','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1189 SAO','2021-01-04','','2020-08-18','A','','','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Suparmin','021774','081316156322','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1186 SAO','2021-01-04','','2020-08-18','A','','SAMSUL ARIFIN','MGR. ASE','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Wiliam','020571','081310994520','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1179 SAO','2021-01-04','','2020-08-18','A','','IWAN YUDHA WIBAWA','MGR. CORPORATE SALES 3','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Tanari','021779','08778190074','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1175 SAO','2021-01-04','','2020-08-18','A','','M DJULLAWAN','MGR. IT','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Indrajid','020619','087886777354','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2896 SYC','2020-07-30','','2020-07-06','A','','PUSPA','ASMENT GA','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Febriansyah','022383','087781767238','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2599 SYB','2021-07-30','','2020-08-11','A','','PUSPA','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Afri Sugiarto','022384','081291944093','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2600 SYB','2021-07-30','','2020-06-23','A','','PUSPA','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Sarji','020569','085281669164','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2969 SYC','2020-07-30','','2020-07-06','A','','PUSPA','ASMENT GA','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Budiyanto','020885','0817825009','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1174 SAO','2021-01-04','','2020-08-18','A','','JUNIOR SINAGA','MGR. RELL & PROJECK DEF 3','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Karsono','020708','08816142782','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1183 SAO','2021-01-04','','2020-08-18','A','','','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Wahmad','021778','087888404466','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1181 SAO','2021-01-04','','2020-08-18','A','','','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Raynaldo Ferdinand','023288','081293596125','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1203 SAO','2021-01-04','','2020-08-23','A','','','','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
+			['Herdiansyah','020562','081287900666','Toyota','2000 cc','Kijang Innova (Reborn)','MT','2018','B 2632 SYB','2021-07-30','','2020-06-23','A','','PUSPA','ASMENT GA','ANDRIANTO','20281','andrianto@prima-armada-raya.com','2.0 G'],
+			['Agus Setiadi','020696','0822703377','Toyota','1800 cc','New Corolla Altis','AT','2017','B 1184 SAO','2021-01-04','','2020-08-18','A','','OOS KOSASIH','SAM INDUSTRI 3','ANDRIANTO','20281','andrianto@prima-armada-raya.com','1.8  V'],
 		];
 
 		foreach ($rows as $data) {
@@ -67,20 +77,24 @@ class ImportController extends Controller
 			$nama = $data[0];
 			$nik = $data[1];
 			$notlp = $data[2];
-			$model = $data[3];
-			$tahun = $data[4];
-			$noplat = $data[5];
-			$masastnk = $data[6];
-			$jenissim = $data[7];
-			$masasim = $data[8];
-			$namauser = $data[9];
-			$jabatan = $data[10];
-			$merk = $data[11];
+			$merk = $data[3];
+			$mes = $data[4];
+			$model = $data[5];
+			$transmisi = $data[6];
+			$tahun = $data[7];
+			$noplat = $data[8];
+			$masaasuransi = $data[9];
+			$masakeur = $data[10];
+			$masastnk = $data[11];
+			$jenissim = $data[12];
+			$masasim = $data[13];
+			$namauser = $data[14];
+			$jabatan = $data[15];
 
-			$korlap = $data[12];
-			$nikkorlap = $data[13];
-			$nokorlap = $data[14];
-			$email = $data[15];
+			$korlap = $data[16];
+			$nikkorlap = $data[17];
+			$email = $data[18];
+			$varian = $data[19];
 
 			$noplatspasi = str_replace(' ', '', $noplat);
 
@@ -103,14 +117,18 @@ class ImportController extends Controller
 				$units = new Units();
 		        $units->merk = $merk;
 		        $units->model = $model;
-		        $units->varian = 'TRD';
+		        $units->varian = $varian;
 		        $units->years = $tahun;
-		        $units->mes = '2700 cc';
-		        $units->transmition = 'A/T';
+		        $units->mes = $mes;
+		        $units->transmition = $transmisi;
 		        $units->no_police = $noplat;
 		        $units->mileage = '0';
 		        $units->save();
 
+		    } else {
+
+		    	$clocks = Units::where(['no_police'=>$noplat])
+                ->update(['merk'=>$merk, 'model'=>$model, 'varian'=>$varian, 'years'=> $tahun, 'mes'=> $mes, 'transmition'=> $transmisi]);
 		    }
 
 		    $jabs = Jabatan::where("jabatan_name",$jabatan)
@@ -124,7 +142,7 @@ class ImportController extends Controller
 		        $userclient = new Users();
 		        $userclient->jabatan_id = $jabs->id;
 		        $userclient->company_id = '2';
-		        $userclient->wilayah_id = '42';
+		        $userclient->wilayah_id = '21';
 		        $userclient->username = $noplatspasi;
 		        $userclient->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
 		        $userclient->first_name = $namauser;
@@ -146,7 +164,7 @@ class ImportController extends Controller
 			    $userdrivers = new Users();
 		        $userdrivers->jabatan_id = '1';
 		        $userdrivers->company_id = '1';
-		        $userdrivers->wilayah_id = '42';
+		        $userdrivers->wilayah_id = '21';
 		        $userdrivers->username = $nik;
 		        $userdrivers->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
 		        $userdrivers->first_name = $nama;
@@ -172,11 +190,11 @@ class ImportController extends Controller
 				$userkorlaps = new Users();
 		        $userkorlaps->jabatan_id = '2';
 		        $userkorlaps->company_id = '1';
-		        $userkorlaps->wilayah_id = '42';
+		        $userkorlaps->wilayah_id = '21';
 		        $userkorlaps->username = $nikkorlap;
 		        $userkorlaps->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
 		        $userkorlaps->first_name = $korlap;
-		        $userkorlaps->phone = $nokorlap;
+		        $userkorlaps->phone = '021';
 		        $userkorlaps->email = $email;
 		        $userkorlaps->nik = $nikkorlap;
 		        $userkorlaps->flag_pass = '0';
@@ -202,32 +220,103 @@ class ImportController extends Controller
 			$client = Users::where("username",$noplatspasi)
 			->first();
 
-			$drive = new Drivers();
-	        $drive->driver_id = $drivers->id;
-	        $drive->unit_id = $unitss->id;
-	        $drive->korlap_id = $korlaps->id;
-	        $drive->user_id = $client->id;
-	        $drive->asmen_id = '90';
-	        $drive->manager_id = '91';
-	        $drive->save();
+			$adadriverss = Drivers::where("driver_id",$drivers->id)
+			->first();
 
-	        if($masasim){
+			if(!$adadriverss){
 
-	        	$masa = new DocDriver();
-		        $masa->user_id = $drivers->id;
-		        $masa->document_id = '1';
-		        $masa->exp_date = $masasim;
-		        $masa->save();
+				$drive = new Drivers();
+		        $drive->driver_id = $drivers->id;
+		        $drive->unit_id = $unitss->id;
+		        $drive->korlap_id = $korlaps->id;
+		        $drive->user_id = $client->id;
+		        $drive->asmen_id = '90';
+		        $drive->manager_id = '91';
+		        $drive->save();
+
+			} else {
+
+				$driverz = Drivers::where(['id'=>$adadriverss->id])
+                ->update(['driver_id'=>$drivers->id, 'unit_id'=>$unitss->id, 'korlap_id'=>$korlaps->id, 'user_id'=> $client->id]);
+
+			}
+
+			
+	        if($masasim != ''){
+
+	        	$adadocsim = DocDriver::where([
+	                ['user_id', '=', $drivers->id],
+	                ['document_id', '=', '1'],
+	            ])
+				->first();
+
+				if(!$adadocsim){
+
+					$masa = new DocDriver();
+			        $masa->user_id = $drivers->id;
+			        $masa->document_id = '1';
+			        $masa->exp_date = $masasim;
+			        $masa->save();
+
+				}
 
 	        }
 
-	        if($masastnk){
+	        if($masastnk != ''){
 
-	        	$masas = new DocUnit();
-		        $masas->unit_id = $unitss->id;
-		        $masas->document_id = '5';
-		        $masas->exp_date = $masastnk;
-		        $masas->save();
+	        	$adadocstnk = DocUnit::where([
+	                ['unit_id', '=', $unitss->id],
+	                ['document_id', '=', '5'],
+	            ])
+				->first();
+
+				if(!$adadocstnk){
+
+					$masas = new DocUnit();
+			        $masas->unit_id = $unitss->id;
+			        $masas->document_id = '5';
+			        $masas->exp_date = $masastnk;
+			        $masas->save();
+
+				}
+	        }
+
+	        if($masaasuransi != ''){
+
+	        	$adadocasuransi = DocUnit::where([
+	                ['unit_id', '=', $unitss->id],
+	                ['document_id', '=', '3'],
+	            ])
+				->first();
+
+				if(!$adadocasuransi){
+
+					$masas = new DocUnit();
+			        $masas->unit_id = $unitss->id;
+			        $masas->document_id = '3';
+			        $masas->exp_date = $masaasuransi;
+			        $masas->save();
+
+				}
+	        }
+
+	        if($masakeur != ''){
+
+	        	$adadockeur = DocUnit::where([
+	                ['unit_id', '=', $unitss->id],
+	                ['document_id', '=', '4'],
+	            ])
+				->first();
+
+				if(!$adadockeur){
+
+		        	$masas = new DocUnit();
+			        $masas->unit_id = $unitss->id;
+			        $masas->document_id = '4';
+			        $masas->exp_date = $masakeur;
+			        $masas->save();
+
+			    }
 
 	        }
 
