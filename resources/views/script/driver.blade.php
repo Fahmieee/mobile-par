@@ -46,8 +46,8 @@
                             menits = time.substring(2,3);
                         }
 
-                        totalmenit += menits;
-                        totaljam += jams;
+                        totalmenit += parseInt(menits);
+                        totaljam += parseInt(jams);
 
                     });
 
