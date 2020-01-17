@@ -54,11 +54,11 @@
                     var minutes = totalmenit / 60;
                     if (minutes >= 1){
 
-                        var TotalSemua = totaljam + minutes;
+                        var TotalSemua = (totaljam + minutes).toFixed(0);
 
                     } else {
 
-                        var TotalSemua = totaljam;
+                        var TotalSemua = totaljam.toFixed(0);
                     }
 
                     var percent = Math.floor((TotalSemua / 40) * 100);
