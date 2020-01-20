@@ -20,11 +20,12 @@ class ImportController extends Controller
 
     	$rows = [
 
-	        ['Siswantoro','020871','081295861984','Toyota','Kijang Innova','2019','B 2818 SIQ','2024-11-01','2024-11-05','023256','Pool Alokasi (Petrothemical)'],
-			['M. Afif Fauzi','020524','081284665596','Toyota','Kijang Innova','2019','B 2812 SIQ','2024-11-01','2022-06-26','023256','POOL'],
-			['Jamaludin S.','020159','081298999967','Mitsubishi','Col Dis FE84G BC','2017','B 7065 SJA','2023-06-07','2020-11-21','023256','POOL'],
-			['Suryana Subrata','020158','082125654666','Mitsubishi','Col Dis FE84G BC','2017','B 7992 SDA','2023-06-25','2020-07-02','023256','POOL'],
-			['Novico Indrianata','021812','087880806779','Toyota','Fortuner','2017','B 1127 SJT','2022-08-10','2024-01-24','023256','VP PROJECT HSSE'],
+	        ['Supianto ','020555','081213089659','Toyota','Kijang Innova (Reborn)','2.0 G','M/T','2018','B 2385 SYC','2020-07-30','2020-07-02','PAK PROBO','SAM BANTEN'],
+			['Bambang Suharto','021772','085219603024','Toyota','Kijang Innova (Reborn)','2.0 G','M/T','2018','B 2648 SYB','2021-07-30','2020-06-23','PUSPA','POOL OPS '],
+			['Samsul Arifin','021784','08129643353','Toyota','Kijang Innova (Reborn)','2.0 G','M/T','2018','B 2812 SYC','2020-07-30','2020-07-06','PUSPA ','POOL OPS '],
+			['Moch Boradji','020721','085310923468','Toyota','Kijang Innova (Reborn)','2.0 G','M/T','2018','B 2971 SYC','2020-07-30','2020-07-06','','MEDICAL'],
+			['Dikky Natalius','023506','085846202851','Toyota','Kijang Innova (Reborn)','2.0 G','M/T','2018','B 2968 SYC','2020-07-30','2020-07-06','RINNA MAULINDA','ASMENT, FUNGSI AVIASIH'],
+			['Asep Saeful Arifin','022096','081318563144','Toyota','Kijang Innova (Reborn)','2.0 G','M/T','2019','B 2977 SIR','2020-07-30','2020-07-07','',''],
 		];
 
 		foreach ($rows as $data) {
@@ -33,23 +34,23 @@ class ImportController extends Controller
 			$nik = $data[1];
 			$notlp = $data[2];
 			$merk = $data[3];
-			$mes = '2400 cc';
+			$mes = '2000 cc';
 			$model = $data[4];
-			$transmisi = 'MT';
-			$tahun = $data[5];
-			$noplat = $data[6];
-			$masaasuransi = '';
+			$transmisi = $data[6];
+			$tahun = $data[7];
+			$noplat = $data[8];
+			$masaasuransi = $data[9];
 			$masakeur = '';
-			$masastnk = $data[7];
+			$masastnk = $data[10];
 			$jenissim = '';
-			$masasim = $data[8];
-			$namauser = '';
-			$jabatan = $data[10];
+			$masasim = '';
+			$namauser = $data[11];
+			$jabatan = $data[12];
 
 			$korlap = '';
-			$nikkorlap = $data[9];
+			$nikkorlap = '020281';
 			$email = '';
-			$varian = '';
+			$varian = $data[5];
 
 			$noplatspasi = str_replace(' ', '', $noplat);
 
@@ -97,7 +98,7 @@ class ImportController extends Controller
 		        $userclient = new Users();
 		        $userclient->jabatan_id = $jabs->id;
 		        $userclient->company_id = '2';
-		        $userclient->wilayah_id = '42';
+		        $userclient->wilayah_id = '21';
 		        $userclient->username = $noplatspasi;
 		        $userclient->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
 		        $userclient->first_name = $namauser;
@@ -119,7 +120,7 @@ class ImportController extends Controller
 			    $userdrivers = new Users();
 		        $userdrivers->jabatan_id = '1';
 		        $userdrivers->company_id = '1';
-		        $userdrivers->wilayah_id = '42';
+		        $userdrivers->wilayah_id = '21';
 		        $userdrivers->username = $nik;
 		        $userdrivers->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
 		        $userdrivers->first_name = $nama;
@@ -145,7 +146,7 @@ class ImportController extends Controller
 				$userkorlaps = new Users();
 		        $userkorlaps->jabatan_id = '2';
 		        $userkorlaps->company_id = '1';
-		        $userkorlaps->wilayah_id = '42';
+		        $userkorlaps->wilayah_id = '21';
 		        $userkorlaps->username = $nikkorlap;
 		        $userkorlaps->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
 		        $userkorlaps->first_name = $korlap;
