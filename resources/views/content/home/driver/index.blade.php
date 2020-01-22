@@ -1,6 +1,7 @@
 @include('layout.contenthead')
   <div class="main-content">
     <!-- Header -->
+    <div class="loading" style="display: none;">Loading&#8230;</div>
     <div class="container-fluid pb-2 pt-4 pt-md-8">
           <div class="row" id="approve_driver" style="display: none;">
             <div class="col">

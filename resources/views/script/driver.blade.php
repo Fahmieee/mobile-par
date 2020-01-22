@@ -342,6 +342,9 @@
 
 	$('#clockin_submit').on('click', function () {
 
+        $('.loading').attr('style','display: block');
+        $('#modal_clockin').modal('hide');
+
 		var empty = false;
         $('.form_clockin').each(function() {
             if ($(this).val() == '') {
@@ -357,6 +360,9 @@
                 buttons: false,
                 timer: 2000,
             });
+
+            $('.loading').attr('style','display: none');
+            $('#modal_clockin').modal('show');
 
         } else {
 
@@ -392,8 +398,6 @@
                                     buttons: false,
                                     timer: 2000,
                                 });
-
-                                $('#modal_clockin').modal('hide');
 
                                 setTimeout(function(){ window.location.href = 'driver'; }, 1500);
 

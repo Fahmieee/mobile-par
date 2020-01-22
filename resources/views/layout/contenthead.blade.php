@@ -14,6 +14,8 @@
   <!-- Icons -->
   <link href="{{ asset('assets/content/js/plugins/nucleo/css/nucleo.css') }}" rel="stylesheet" />
   <link href="{{ asset('assets/content/js/plugins/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet" />
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/content/css/loading.css') }}">
   <!-- CSS Files -->
   <link href="{{ asset('assets/content/css/argon-dashboard.css?v=1.1.0') }}" rel="stylesheet" />
 
