@@ -67,16 +67,16 @@
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <label class="form-control-label" for="input-first-name">Nama Depan</label>
-                      <input type="text" id="first-name" class="form-control form-control-alternative edited harus" placeholder="Nama Depan" disabled>
+                      <label class="form-control-label" for="input-first-name">Nama Driver</label>
+                      <input type="text" id="first-name" class="form-control form-control-alternative" placeholder="Nama Depan" disabled>
                     </div>
                   </div>
-                  <div class="col-lg-6">
+                  <!-- <div class="col-lg-6">
                     <div class="form-group">
                       <label class="form-control-label" for="input-last-name">Nama Belakang</label>
-                      <input type="text" id="last-name" class="form-control form-control-alternative edited" placeholder="Nama Belakang" disabled>
+                      <input type="text" id="last-name" class="form-control form-control-alternative" placeholder="Nama Belakang" disabled>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 
               </div>

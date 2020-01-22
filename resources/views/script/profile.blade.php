@@ -95,8 +95,6 @@
 	                '_token': $('input[name=_token]').val(),
 	                'username': $('#username').val(),
 	                'email': $('#email').val(),
-	                'first_name': $('#first-name').val(),
-	                'last_name': $('#last-name').val(),
 	                'alamat': $('#alamat').val(),
 	                'no_hp': $('#no_hp').val(),
 	                'user_id': $('#created_by').val()

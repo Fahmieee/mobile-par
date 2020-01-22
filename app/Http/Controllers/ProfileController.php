@@ -48,8 +48,6 @@ class ProfileController extends Controller
     	$profile = Users::findOrFail($request->user_id);
         $profile->username = $request->username;
         $profile->email = $request->email;
-        $profile->first_name = $request->first_name;
-        $profile->last_name = $request->last_name;
         $profile->address = $request->alamat;
         $profile->phone = $request->no_hp;
         $profile->flag_prof = '1';
