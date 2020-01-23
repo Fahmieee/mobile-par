@@ -68,10 +68,23 @@
                 </div>
                 <div class="row" id="upload" style="display: none;">
                     <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="form-control-label">Upload Persetujuan Perjalanan Dinas User</label>
-                        <input type="file" class="form-control">
-                      </div>
+                        <table border="0" align="center" width="100%">
+                            <tr>
+                                <td colspan="4"><h5>Upload Persetujuan Perjalanan Dinas User</h5></td>
+                            </tr>
+                            <tr>
+                                <td align="center" width="25%">
+                                   <!--  <div onclick="$('#uploadpost').click();" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                                        <i class="fas fa-camera" style="color: #0166b5"></i>
+                                    </div> -->
+                                    <div onclick="$('#uploadpost').click();" id="clockinupload" class="alert2 alert-primary" role="alert">
+                                        <i class="fas fa-camera"></i>
+                                    </div>
+                                     <input id="uploadpost" name="file" type="file" style="display:none;"/>
+                                </td>
+                            </tr>
+                        </table>
+                      
                     </div>
                 </div>
             </div>

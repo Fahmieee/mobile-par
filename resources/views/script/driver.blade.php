@@ -626,6 +626,31 @@
         $('#upload').attr("style","display: block;");
 
     });
+
+    function LaodingBro(){
+
+        var content_data = '';
+
+        $('#clockinupload').attr('class', 'alert alert2 alert-success');
+
+        content_data += "<table width='100%'>";
+        content_data += "<tr>";
+        content_data += "<td align='left'><i class='fa fa-check'></i></td>";
+        content_data += "<td><h5 class='text-white'>Foto Anda Berhasil Di Upload</h5></td>";
+        content_data += "</tr>";
+        content_data += "<table>";
+
+        $('#clockinupload').html(content_data);
+        
+    }
+
+    $("#uploadpost").on("change", function() {
+
+        $('#clockinupload').html('<div align="center"><img width="100%" src="/assets/content/img/theme/loadingnew.gif"></div>');
+
+        
+        setTimeout(LaodingBro, 3000);
+    });
     
 
 </script>

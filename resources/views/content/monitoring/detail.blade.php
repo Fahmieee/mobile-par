@@ -54,17 +54,13 @@
                 $alert = 'success';
                 $times = $mcu->time;
 
-                if ($mcu->hasil == '1'){
+                if ($mcu->hasil == '3'){
 
-                  $hasil = 'Sehat';
-
-                } else if ($mcu->hasil == '2'){
-
-                  $hasil = 'Hati-Hati';
+                  $hasil = 'UNFIT';
 
                 } else {
 
-                  $hasil = 'Sakit';
+                  $hasil = 'FIT';
 
                 }
               }
@@ -87,7 +83,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <h5 class="text-white"><i class="fa fa-heart"></i> {{ $hasil }}</h5>
+                    <h6 class="text-white"><i class="fa fa-heart"></i> {{ $hasil }}</h6>
                   </td>
                 </tr>
                 <tr>

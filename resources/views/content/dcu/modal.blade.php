@@ -55,52 +55,102 @@
                             <td colspan="4"><h5>Masukan Foto DCU :</h5></td>
                         </tr>
                         <tr>
-                            <td><input type="file" id="file1" name="file1" class="form-control medical"></td>
+                            <td align="center" width="25%">
+                               <!--  <div onclick="$('#uploadpost').click();" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                                    <i class="fas fa-camera" style="color: #0166b5"></i>
+                                </div> -->
+                                <div onclick="$('#uploadpost').click();" id="dcuupload" class="alert2 alert-primary" role="alert">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                                 <input id="uploadpost" name="file" type="file" style="display:none;"/>
+                                 <input id="files" type="hidden" class="medical">
+                            </td>
                         </tr>
                     </table>
                     <br>
+                    <hr>
                     <div class="row">
                         <div class="col-md-12">
-                          <div class="form-group">
-                            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-                              <input class="custom-control-input" id="customCheck9" type="checkbox">
-                              <label class="custom-control-label" for="customCheck9"><h5>Apakah Anda Sudah Cukup Tidur?</h5></label>
+                              <h5 style="padding-bottom: 12px;">Apakah Anda Sudah Cukup Tidur?</h5>
                               <input type="hidden" id="hasil" name="hasil">
                               <input type="hidden" id="suhuhasil" name="suhuhasil">
                               <input type="hidden" id="tekananhasil" name="tekananhasil">
-                            </div>
-                          </div>
-                        </div>
+                              <table width="100%">
+                                <tr>
+                                    <td width="50%">
+                                        <div class="alert2 alert-default" id="tidak1" role="alert">
+                                            <h5 class="text-white">Tidak</h5>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td width="50%">
+                                        <div class="alert2 alert-success" id="ya1" role="alert">
+                                            <h5 class="text-white">Ya</h5>
+                                        </div>
+                                    </td>
+                                </tr>
+                              </table>
+                              <hr>
 
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-                              <input class="custom-control-input" id="customCheck11" type="checkbox">
-                              <label class="custom-control-label" for="customCheck11"><h5>Apakah Anda Tidak Mengkonsumi Minuman Beralkohol?</h5></label>
-                            </div>
-                          </div>
-                        </div>
+                              <h5 style="padding-bottom: 12px;">Apakah Anda Tidak Mengkonsumi Minuman?</h5>
+                              <table width="100%">
+                                <tr>
+                                    <td width="50%">
+                                        <div class="alert2 alert-default" id="tidak2" role="alert">
+                                            <h5 class="text-white">Tidak</h5>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td width="50%">
+                                        <div class="alert2 alert-success" id="ya2" role="alert">
+                                            <h5 class="text-white">Ya</h5>
+                                        </div>
+                                    </td>
+                                </tr>
+                              </table>
+                              <hr>
 
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-                              <input class="custom-control-input" id="customCheck7" type="checkbox">
-                              <label class="custom-control-label" for="customCheck7"><h5>Apakah Anda Tidak Mengkonsumi Obat-Obat Terlarang?</h5></label>
-                            </div>
-                          </div>
-                        </div>
+                              <h5 style="padding-bottom: 12px;">Apakah Anda Tidak Mengkonsumi Obat-Obat Terlarang?</h5>
+                              <table width="100%">
+                                <tr>
+                                    <td width="50%">
+                                        <div class="alert2 alert-default" id="tidak3" role="alert">
+                                            <h5 class="text-white">Tidak</h5>
+                                            
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td width="50%">
+                                        <div class="alert2 alert-success" id="ya3" role="alert">
+                                            <h5 class="text-white">Ya</h5>
+                                        </div>
+                                    </td>
+                                </tr>
+                              </table>
+                              <hr>
 
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-                              <input class="custom-control-input" id="customCheck8" type="checkbox">
-                              <label class="custom-control-label" for="customCheck8"><h5>Apakah Anda Tidak Mengkonsumi Obat yang Menyebabkan Ngantuk?</h5></label>
-                            </div>
-                          </div>
+                              <h5 style="padding-bottom: 12px;">Apakah Anda Tidak Mengkonsumi Obat yang Menyebabkan Ngantuk?</h5>
+                              <table width="100%">
+                                <tr>
+                                    <td width="50%">
+                                        <div class="alert2 alert-default" id="tidak4" role="alert">
+                                            <h5 class="text-white">Tidak</h5>
+                                            
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td width="50%">
+                                        <div class="alert2 alert-success" id="ya4" role="alert">
+                                            <h5 class="text-white">Ya</h5>
+                                        </div>
+                                    </td>
+                                </tr>
+                              </table>
+                              <hr>
                         </div>
                     </div>
 
-                    <h6><i>Ceklis Jika Pernyataan Diatas Menyatakan Kondisi Anda!</i></h6>
+                    <h6><i>Pilih Ya atau Tidak untuk mengisi, Pernyataan Diatas Menyatakan Kondisi Anda!</i></h6>
                 </div>
                 
                 <div class="modal-footer">

@@ -357,9 +357,9 @@
                 <div class="card-body-par" id="menu" style="display: block;">
                   <table align="center" width="100%">
                     <tr height ="10px">
-                      <td width="22px" rowspan="6"></td>
+                      <td width="22px" rowspan="7"></td>
                       <td colspan="4"></td>
-                      <td rowspan="7" align="right" >
+                      <td rowspan="8" align="right" >
                         <img src="./assets/content/img/theme/cars.png" width="100%">
                       </td>
                     </tr>
@@ -371,7 +371,7 @@
                     <tr>
                       <td width="25%"><h6>Model</h6></td>
                       <td><h6>:</h6></td>
-                      <td width="30%"><h6>{{ $getunits->model }} {{ $getunits->varian }}</h6></td>  
+                      <td width="30%"><h6>{{ $getunits->model }}</h6></td>  
                     </tr>
                     <tr>
                       <td><h6>Tahun</h6></td>
@@ -387,6 +387,11 @@
                       <td><h6>Masa KEUR</h6></td>
                       <td><h6>:</h6></td>
                       <td><h6>{{ $getkeur ? date('d M Y', strtotime($getkeur->exp_date)) : '-' }}</h6></td>  
+                    </tr>
+                    <tr>
+                      <td><h6>Uji Emisi</h6></td>
+                      <td><h6>:</h6></td>
+                      <td><h6>-</h6></td>  
                     </tr>
 
                     <tr height="10px">

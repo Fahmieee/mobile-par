@@ -76,7 +76,7 @@
             </table>
             <table width="100%">
               <tr>
-                <td><h5 class="text-white">SEHAT : {{ $sehat }} | HATI-HATI : {{ $hatihati }} | SAKIT : {{ $sakit }} </h5></td>
+                <td><h5 class="text-white">FIT : {{ $sehat + $hatihati }} | UNFIT : {{ $sakit }} </h5></td>
               </tr>
             </table>
           </div>

@@ -304,8 +304,6 @@
             $('#tekananhasil').val(4);
         }
 
-        
-
     });
 
     $('#back').on('click', function () {
@@ -314,4 +312,70 @@
 
     });
 
+    $('#tidak1').on('click', function () {
+        $('#tidak1').attr("class","alert2 alert-danger");
+        $('#ya1').attr("class","alert2 alert-default");
+    });
+
+    $('#ya1').on('click', function () {
+        $('#tidak1').attr("class","alert2 alert-default");
+        $('#ya1').attr("class","alert2 alert-success");
+    });
+
+    $('#tidak2').on('click', function () {
+        $('#tidak2').attr("class","alert2 alert-danger");
+        $('#ya2').attr("class","alert2 alert-default");
+    });
+
+    $('#ya2').on('click', function () {
+        $('#tidak2').attr("class","alert2 alert-default");
+        $('#ya2').attr("class","alert2 alert-success");
+    });
+
+    $('#tidak3').on('click', function () {
+        $('#tidak3').attr("class","alert2 alert-danger");
+        $('#ya3').attr("class","alert2 alert-default");
+    });
+
+    $('#ya3').on('click', function () {
+        $('#tidak3').attr("class","alert2 alert-default");
+        $('#ya3').attr("class","alert2 alert-success");
+    });
+
+    $('#tidak4').on('click', function () {
+        $('#tidak4').attr("class","alert2 alert-danger");
+        $('#ya4').attr("class","alert2 alert-default");
+    });
+
+    $('#ya4').on('click', function () {
+        $('#tidak4').attr("class","alert2 alert-default");
+        $('#ya4').attr("class","alert2 alert-success");
+    });
+
+    function LaodingBro(){
+
+        var content_data = '';
+
+        $('#dcuupload').attr('class', 'alert alert2 alert-success');
+
+        content_data += "<table width='100%'>";
+        content_data += "<tr>";
+        content_data += "<td align='left'><i class='fa fa-check'></i></td>";
+        content_data += "<td><h5 class='text-white'>Foto Anda Berhasil Di Upload</h5></td>";
+        content_data += "</tr>";
+        content_data += "<table>";
+
+        $('#dcuupload').html(content_data);
+        
+    }
+
+    $("#uploadpost").on("change", function() {
+
+        $('#dcuupload').html('<div align="center"><img width="100%" src="/assets/content/img/theme/loadingnew.gif"></div>');
+
+        $('#files').val('1');
+
+        
+        setTimeout(LaodingBro, 3000);
+    });
 </script>
