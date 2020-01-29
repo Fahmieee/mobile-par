@@ -31,23 +31,15 @@ Route::post('logins/store', 'LoginController@store')->name('StoreUsers');
 
 Route::post('logins/activity', 'LoginController@activity')->name('ActivityLogin');
 
-
 Route::get('/', function () {
     return view('splash.index');
 });
 
-Route::get('/coba', 'LoginController@Coba');
+Route::get('driver/unitdrivers', 'DriverController@unitdrivers')->name('unitdrivers');
 
 Route::group(['middleware' => 'auth:user'], function(){
 
-	Route::get('/intro', function () {
-	    return view('intro.index');
-	});
-
-	Route::get('/home', function () {
-	    return view('content.home.index');
-	});
-
+	Route::get('/home', 'HomeController@index');
 
 	Route::get('/detailmonitoring', function () {
 	    return view('content.monitoring.detail');
@@ -59,6 +51,8 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('driver/terimapair', 'DriverController@terimapair')->name('TerimaPair');
 	Route::post('driver/tolakpair', 'DriverController@tolakpair')->name('TolakPair');
 	Route::post('driver/getlembur', 'DriverController@getlembur')->name('GetLembur');
+	Route::post('driver/tambahmobil', 'DriverController@tambahmobil')->name('tambahmobil');
+	Route::post('driver/updatemobil', 'DriverController@updatemobil')->name('updatemobil');
 
 	Route::get('pretripcheck', 'PreTripCheckController@index');
 	Route::post('pretripcheck/get', 'PreTripCheckController@GetData')->name('GetPreTripCheck');

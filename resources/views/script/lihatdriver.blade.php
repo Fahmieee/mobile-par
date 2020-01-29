@@ -25,7 +25,7 @@ $(function() {
 	
 $('#back').on('click', function () {
 
-	setTimeout(function(){ window.location.href = 'korlap'; }, 10);
+	setTimeout(function(){ window.location.href = 'home'; }, 10);
 
 });
 

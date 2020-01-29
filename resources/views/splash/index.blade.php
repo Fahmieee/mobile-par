@@ -27,7 +27,7 @@
 
 		setTimeout(Loading, 4000);
 
-        setTimeout(function(){ window.location.href = 'logins'; }, 8000);
+        setTimeout(function(){ window.location.href = 'home'; }, 8000);
 
 	});
 

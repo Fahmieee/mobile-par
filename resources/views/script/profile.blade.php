@@ -133,36 +133,7 @@
 
 	$('#kembali').on('click', function () {
 
-		$.ajax({
-            type: 'POST',
-            url: "{{ route('RoleProfile') }}",
-            data: {
-                '_token': $('input[name=_token]').val(),
-                'user_id': $('#created_by').val()
-            },
-
-            success: function (data) {
-
-            	var role = '';
-                if(data.sebagai == 2){
-                	role = 'driver';
-                } else if(data.sebagai == 5){
-                	role = 'korlap';
-                } else if(data.sebagai == 3){
-                	role = 'client';
-                } else if(data.sebagai == 6){
-                    role = 'asmen';
-                } else if(data.sebagai == 7){
-                    role = 'manager';
-                } else {
-
-                }
-
-	            setTimeout(function(){ window.location.href = role; }, 10);
-
-            }
-
-        });
+		setTimeout(function(){ window.location.href = 'home'; }, 10);
 
 	});
 

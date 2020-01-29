@@ -8,7 +8,7 @@
   <meta name="theme_color" content="#ffffff">   
   <title>PAR | Prima Armada Raya</title>
   <!-- Favicon -->
-  <link href="{{ asset('icons/72x72.png') }}" rel="icon" type="image/png">
+  <link href="{{ asset('assets/icons/72x72.png') }}" rel="icon" type="image/png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
@@ -336,7 +336,7 @@
               <span>Ubah Password</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="login/logout" class="dropdown-item">
+            <a href="/login/logout" class="dropdown-item">
               <i class="ni ni-user-run"></i>
               <span>Keluar</span>
             </a>

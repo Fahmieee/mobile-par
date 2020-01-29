@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Users;
 use App\Drivers;
+use App\UnitDrivers;
 use App\Units;
 use App\Pairing;
 use App\Lembur;
@@ -13,6 +14,7 @@ use App\DocDriver;
 use App\DocUnit;
 use App\Trainings;
 use App\Clocks;
+use App\Pretrip_Check;
 use Auth;
 
 class DriverController extends Controller
@@ -128,5 +130,86 @@ class DriverController extends Controller
         return response()->json($getlembur);
     }
 
+    public function tambahmobil(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+
+        $user = Auth::user();
+
+        $adaunit = Units::where('no_police',$request->nopol)
+        ->first();
+
+        if(!$adaunit){
+
+            $savecar = new Units();
+            $savecar->pemilik = 'user';
+            $savecar->merk = $request->merk;
+            $savecar->model = $request->model;
+            $savecar->years = $request->tahun;
+            $savecar->transmition = $request->transmisi;
+            $savecar->no_police = $request->nopol;
+            $savecar->save();
+
+            $saveunitcar = new UnitDrivers();
+            $saveunitcar->unit_id = $savecar->id;
+            $saveunitcar->user_id = $user->id;
+            $saveunitcar->save();
+
+            $data = '1';
+
+        } else {
+
+            $data = '2';
+
+        }
+
+        return response()->json($data);
+    }
+
+    public function updatemobil(Request $request)
+    {
+
+        date_default_timezone_set('Asia/Jakarta');
+        $hariini = date('Y-m-d');
+
+        $user = Auth::user();
+
+        $sudahptc = Pretrip_Check::where([
+            ['user_id', '=', $user->id],
+            ['date', '=', $hariini],
+        ])
+        ->first();
+
+        if(!$sudahptc){
+
+            $updatess = Drivers::where(['driver_id'=>$user->id])
+            ->update(['unit_id'=>$request->unit_id]);
+
+            $data = 'yes';
+
+        } else {
+
+            $data = 'no';
+
+        }
+
+        return response()->json($data);
+
+    }
+
+    public function unitdrivers(Request $request)
+    {
+        $drivers = Drivers::all();
+
+        foreach ($drivers as $driver ) {
+
+            $unitdrive = new UnitDrivers();
+            $unitdrive->unit_id = $driver->unit_id;
+            $unitdrive->user_id = $driver->driver_id;
+            $unitdrive->save();
+            
+        }
+
+    }
 
 }

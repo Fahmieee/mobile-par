@@ -63,7 +63,7 @@
                 cache: false,
                 success: function (data)
                 {
-                	if (data.role == 2 && data.status == 'success'){
+                	if (data.status == 'success'){
 
                         swal("Sign In Success!", {
                             icon: "success",
@@ -81,97 +81,97 @@
 
                         } else {
 
-                        	setTimeout(function(){ window.location.href='driver'; }, 1500);
+                        	setTimeout(function(){ window.location.href='home'; }, 1500);
 
                         }    
 
-                    } else if (data.role == 3 && data.status == 'success'){
+                    // } else if (data.role == 3 && data.status == 'success'){
 
-                        swal("Sign In Success!", {
-                            icon: "success",
-                            buttons: false,
-                            timer: 2000,
-                        });
+                    //     swal("Sign In Success!", {
+                    //         icon: "success",
+                    //         buttons: false,
+                    //         timer: 2000,
+                    //     });
 
-                        if (data.flag_pass == '0' || data.flag_pass == null){
+                    //     if (data.flag_pass == '0' || data.flag_pass == null){
 
-                        	setTimeout(function(){ window.location.href='ubahpassword'; }, 1500);
+                    //     	setTimeout(function(){ window.location.href='ubahpassword'; }, 1500);
 
-                        } else if (data.flag_prof == '0' || data.flag_prof == null){
+                    //     } else if (data.flag_prof == '0' || data.flag_prof == null){
 
-                        	setTimeout(function(){ window.location.href='profile'; }, 1500);
+                    //     	setTimeout(function(){ window.location.href='profile'; }, 1500);
 
-                        } else {
+                    //     } else {
 
-                        	setTimeout(function(){ window.location.href='client'; }, 1500);
+                    //     	setTimeout(function(){ window.location.href='client'; }, 1500);
 
-                        } 
+                    //     } 
 
-                    } else if (data.role == 5 && data.status == 'success'){
+                    // } else if (data.role == 5 && data.status == 'success'){
 
-	                    swal("Sign In Success!", {
-	                        icon: "success",
-	                        buttons: false,
-	                        timer: 2000,
-	                    });
+	                   //  swal("Sign In Success!", {
+	                   //      icon: "success",
+	                   //      buttons: false,
+	                   //      timer: 2000,
+	                   //  });
 
-	                    if (data.flag_pass == '0' || data.flag_pass == null){
+	                   //  if (data.flag_pass == '0' || data.flag_pass == null){
 
-                        	setTimeout(function(){ window.location.href='ubahpassword'; }, 1500);
+                    //     	setTimeout(function(){ window.location.href='ubahpassword'; }, 1500);
 
-                        } else if (data.flag_prof == '0' || data.flag_prof == null){
+                    //     } else if (data.flag_prof == '0' || data.flag_prof == null){
 
-                        	setTimeout(function(){ window.location.href='profile'; }, 1500);
+                    //     	setTimeout(function(){ window.location.href='profile'; }, 1500);
 
-                        } else {
+                    //     } else {
 
-                        	setTimeout(function(){ window.location.href='korlap'; }, 1500);
+                    //     	setTimeout(function(){ window.location.href='korlap'; }, 1500);
 
-                        }
+                    //     }
 
-                    } else if (data.role == 6 && data.status == 'success'){
+                    // } else if (data.role == 6 && data.status == 'success'){
 
-	                    swal("Sign In Success!", {
-	                        icon: "success",
-	                        buttons: false,
-	                        timer: 2000,
-	                    });
+	                   //  swal("Sign In Success!", {
+	                   //      icon: "success",
+	                   //      buttons: false,
+	                   //      timer: 2000,
+	                   //  });
 
-	                    if (data.flag_pass == '0' || data.flag_pass == null){
+	                   //  if (data.flag_pass == '0' || data.flag_pass == null){
 
-                        	setTimeout(function(){ window.location.href='ubahpassword'; }, 1500);
+                    //     	setTimeout(function(){ window.location.href='ubahpassword'; }, 1500);
 
-                        } else if (data.flag_prof == '0' || data.flag_prof == null){
+                    //     } else if (data.flag_prof == '0' || data.flag_prof == null){
 
-                        	setTimeout(function(){ window.location.href='profile'; }, 1500);
+                    //     	setTimeout(function(){ window.location.href='profile'; }, 1500);
 
-                        } else {
+                    //     } else {
 
-                        	setTimeout(function(){ window.location.href='asmen'; }, 1500);
+                    //     	setTimeout(function(){ window.location.href='asmen'; }, 1500);
 
-                        }
+                    //     }
 
-                    } else if (data.role == 7 && data.status == 'success'){
+                    // } else if (data.role == 7 && data.status == 'success'){
 
-	                    swal("Sign In Success!", {
-	                        icon: "success",
-	                        buttons: false,
-	                        timer: 2000,
-	                    });
+	                   //  swal("Sign In Success!", {
+	                   //      icon: "success",
+	                   //      buttons: false,
+	                   //      timer: 2000,
+	                   //  });
 
-	                    if (data.flag_pass == '0' || data.flag_pass == null){
+	                   //  if (data.flag_pass == '0' || data.flag_pass == null){
 
-                        	setTimeout(function(){ window.location.href='ubahpassword'; }, 1500);
+                    //     	setTimeout(function(){ window.location.href='ubahpassword'; }, 1500);
 
-                        } else if (data.flag_prof == '0' || data.flag_prof == null){
+                    //     } else if (data.flag_prof == '0' || data.flag_prof == null){
 
-                        	setTimeout(function(){ window.location.href='profile'; }, 1500);
+                    //     	setTimeout(function(){ window.location.href='profile'; }, 1500);
 
-                        } else {
+                    //     } else {
 
-                        	setTimeout(function(){ window.location.href='manager'; }, 1500);
+                    //     	setTimeout(function(){ window.location.href='manager'; }, 1500);
 
-                        }
+                    //     }
 
                     } else {
 

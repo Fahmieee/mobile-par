@@ -2,7 +2,7 @@
 
 	$('#back').on('click', function () {
 
-		setTimeout(function(){ window.location.href = 'client'; }, 10);
+		setTimeout(function(){ window.location.href = 'home'; }, 10);
 
 	});
 
@@ -14,7 +14,7 @@
 
 	$('#batal_yakin').on('click', function () {
 
-		setTimeout(function(){ window.location.href = 'client'; }, 10);
+		setTimeout(function(){ window.location.href = 'home'; }, 10);
 
 	});
 
@@ -59,7 +59,7 @@
 	                    buttons: false,
 	                    timer: 2000,
 	                });
-	                setTimeout(function(){ window.location.href='client'; }, 1500);
+	                setTimeout(function(){ window.location.href='home'; }, 1500);
 	            }
 
 	        });

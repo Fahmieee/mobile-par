@@ -1,6 +1,6 @@
 @include('layout.contenthead')
   <div class="main-content">   
-    <div class="container-fluid pb-4 pt-5 pt-md-8">
+    <div class="container-fluid pb-4 pt-3 pt-md-8">
       <div class="row">
         <div class="col">
           <button type="button" id="back" class='btn btn-sm btn-success'>Back</button>

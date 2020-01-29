@@ -166,7 +166,7 @@
                                     timer: 2000,
                                 });
 
-                                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+                                setTimeout(function(){ window.location.href = 'home'; }, 1500);
 
                             }
 
@@ -308,7 +308,7 @@
 
     $('#back').on('click', function () {
 
-        setTimeout(function(){ window.location.href = 'driver'; }, 10);
+        setTimeout(function(){ window.location.href = 'home'; }, 10);
 
     });
 

@@ -2,60 +2,60 @@
 
     </div>
   </div>
-  <div class="modal fade" id="modal-darurat" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-        <div class="modal-content">
-            
-            <div class="modal-header">
-                <h3 class="modal-title" id="modal-title-default">DARURAT</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            
-            <div class="modal-body" align="center">
-
-              <div class="alert alert-danger" role="alert">
-                  <table border="0" align="center" width="100%">
-                    <tr>
-                        <td align="center">
-                            <h5 class="text-white">Nomor Customer Services</h5>
-                        </td>
-                    </tr>
-                  </table>
-                <hr>
-
-                <table border="0" align="center" width="100%">
-                    <tr>
-                        <td align="center">
-                            <a href="tel:1500751"><h1 class="text-white">1500751</h1></a>
-                        </td>
-                    </tr>
-                  </table>
-              </div>
-            <div class="alert alert-danger" role="alert">
-                  <table border="0" align="center" width="100%">
-                    <tr>
-                        <td align="center">
-                            <h5 class="text-white">Nomor Unit Kerja</h5>
-                        </td>
-                    </tr>
-                  </table>
-                <hr>
-
-                <table border="0" align="center" width="100%">
-                    <tr>
-                        <td align="center">
-                            <h1 class="text-white">08123366781</h1>
-                        </td>
-                    </tr>
-                  </table>
-              </div>
-            </div>
+<div class="modal fade" id="modal-darurat" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+  <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+      <div class="modal-content">
           
-            
-        </div>
-    </div>
+          <div class="modal-header">
+              <h3 class="modal-title" id="modal-title-default">DARURAT</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+              </button>
+          </div>
+          
+          <div class="modal-body" align="center">
+
+            <div class="alert alert-danger" role="alert">
+                <table border="0" align="center" width="100%">
+                  <tr>
+                      <td align="center">
+                          <h5 class="text-white">Nomor Customer Services</h5>
+                      </td>
+                  </tr>
+                </table>
+              <hr>
+
+              <table border="0" align="center" width="100%">
+                  <tr>
+                      <td align="center">
+                          <a href="tel:1500751"><h1 class="text-white">1500751</h1></a>
+                      </td>
+                  </tr>
+                </table>
+            </div>
+          <div class="alert alert-danger" role="alert">
+                <table border="0" align="center" width="100%">
+                  <tr>
+                      <td align="center">
+                          <h5 class="text-white">Nomor Unit Kerja</h5>
+                      </td>
+                  </tr>
+                </table>
+              <hr>
+
+              <table border="0" align="center" width="100%">
+                  <tr>
+                      <td align="center">
+                          <h1 class="text-white">08123366781</h1>
+                      </td>
+                  </tr>
+                </table>
+            </div>
+          </div>
+        
+          
+      </div>
+  </div>
 </div>
   <!--   Core   -->
   <script src="{{ asset('assets/content/js/plugins/jquery/dist/jquery.min.js') }}"></script>
@@ -157,7 +157,7 @@
 
         var photo = data.photo;
 
-        $('#namaatas').html(data.first_name+' '+data.last_name);
+        $('#namaatas').html(data.first_name);
 
         if (photo == null){
 

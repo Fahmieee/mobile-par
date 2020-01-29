@@ -65,13 +65,6 @@ class LoginController extends Controller
         return view('login.index', compact('branch'));
     }
 
-    public function Coba()
-    {
-
-        $password = Hash::make('123');
-        return($password);
-
-    }
 
     public function store(Request $request)
     {

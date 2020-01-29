@@ -399,7 +399,7 @@
                                     timer: 2000,
                                 });
 
-                                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+                                setTimeout(function(){ window.location.href = 'home'; }, 1500);
 
                             }
 
@@ -497,7 +497,7 @@
                                         timer: 2000,
                                     });
 
-                                    setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+                                    setTimeout(function(){ window.location.href = 'home'; }, 1500);
                                 }
                             });   
                        });
@@ -554,7 +554,7 @@
                     timer: 2000,
                 });
 
-                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+                setTimeout(function(){ window.location.href = 'home'; }, 1500);
 
             }
 
@@ -582,7 +582,7 @@
                     timer: 2000,
                 });
 
-                setTimeout(function(){ window.location.href = 'driver'; }, 1500);
+                setTimeout(function(){ window.location.href = 'home'; }, 1500);
 
             }
 
@@ -597,7 +597,7 @@
 
     $('#back').on('click', function () {
 
-        setTimeout(function(){ window.location.href = 'driver'; }, 10);
+        setTimeout(function(){ window.location.href = 'home'; }, 10);
 
     });
 
@@ -651,6 +651,146 @@
         
         setTimeout(LaodingBro, 3000);
     });
+
+    $('#ganti').on('click', function () {
+
+        $('#ganti_mobil').modal('show');
+
+    });
     
+    $('#tambah_mobil').on('click', function () {
+
+        $('#nambah_mobil').modal('show');
+
+    });
+
+    $('#simpan_mobil').on('click', function () {
+
+        var empty = false;
+        $('input.tambahmobs, select.tambahmobs').each(function() {
+            if ($(this).val() == '') {
+                empty = true;
+            }
+        });
+        if (empty) {
+
+            swal({
+                title: "Warning!!",
+                text: "Harap isi Isian yang Tersedia!",
+                icon: "error",
+                buttons: false,
+                timer: 2000,
+            });
+
+        } else {
+
+            $('#nambah_mobil').modal('hide');
+            $('#ganti_mobil').modal('hide');
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('tambahmobil') }}",
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                    'merk': $('#merk').val(),
+                    'model': $('#model').val(),
+                    'nopol': $('#nopol').val(),
+                    'tahun': $('#tahun').val(),
+                    'transmisi': $('#transmisi').val(),
+                   },
+                success: function(data) {
+
+                    if(data == '1'){
+
+                        swal({
+                            title: "Berhasil!",
+                            text: "Mobil Berhasil Disimpan",
+                            icon: "success",
+                            buttons: false,
+                            timer: 2000,
+                        });
+
+                        setTimeout(function(){ window.location.reload() }, 1500);
+
+                    } else {
+
+                        swal({
+                            title: "Gagal!",
+                            text: "Data Sudah Ada Didalam Sistem",
+                            icon: "error",
+                            buttons: false,
+                            timer: 2000,
+                        });
+
+                    }
+
+                    
+                }
+
+            });
+        }
+
+    });
+
+    function PilihMobil(id){
+
+        $('.mobilnya').attr("class","alert2 alert-secondary mobilnya");
+        $('#mobil_'+id).attr("class","alert2 alert-success mobilnya");
+
+        $('#unit_id').val(id);
+
+    }
+
+    $('#memilih').on('click', function () {
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('updatemobil') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'unit_id': $('#unit_id').val(),
+               },
+            success: function(data) {
+
+                if(data == 'yes'){
+
+                    swal({
+                        title: "Berhasil!",
+                        text: "Mobil Berhasil Diganti",
+                        icon: "success",
+                        buttons: false,
+                        timer: 2000,
+                    });
+
+                    setTimeout(function(){ window.location.reload() }, 1500);
+                
+                } else {
+
+                    swal({
+                        title: "Gagal!",
+                        text: "Ganti Sebelum PTC atau Clockin",
+                        icon: "error",
+                        buttons: false,
+                        timer: 2000,
+                    });
+
+                }
+ 
+
+            }
+
+        });
+    });
+
+    $('#nopretripcheck').on('click', function () {
+
+        swal({
+            title: "Tidak Perlu PTC!",
+            text: "Anda Menggunakan Mobil Users!",
+            icon: "error",
+            buttons: false,
+            timer: 2000,
+        });
+    });
 
 </script>

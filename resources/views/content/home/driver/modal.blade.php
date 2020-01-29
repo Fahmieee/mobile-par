@@ -350,3 +350,161 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="ganti_mobil" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content bg-blue-par2">
+            
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-default" style="color: #ffffff;">Pilih Mobil Anda</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            
+            <div class="modal-body" align="center">
+                <table width="100%"> 
+                      <tr>
+                        <td align="left">
+                            <button id="tambah_mobil" class="btn btn-sm btn-secondary"><i class="fa fa-plus"></i>  Tambah Mobil</button>
+                        </td>
+                    </tr>
+                </table>
+                <hr>
+                @foreach($getunitdrives as $getunitdrive)
+
+                @php
+                if($get->unit_id == $getunitdrive->id){
+                    $label = 'success';
+                }else{
+                    $label = 'secondary';
+                }
+
+                @endphp
+                <div class="alert2 alert-{{ $label }} mobilnya" id="mobil_{{ $getunitdrive->id }}" role="alert" onclick="PilihMobil({{ $getunitdrive->id }});">
+                    <table width="100%"> 
+                      <tr>
+                        <td width="20%" rowspan="3" align="center">
+                          <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                            <i class="fas fa-car" style="color: #ffffff"></i>
+                          </div>
+                        </td>
+                        <td width="4%" rowspan="3"> </td>
+                        <td colspan="3"><h5><b>{{ $getunitdrive->no_police }}</b></h5></td>
+                      </tr>
+                      <tr>
+                        <td colspan="3"><h6>{{ $getunitdrive->merk }} {{ $getunitdrive->model }} </h6></td>
+                      </tr>
+                      <tr>
+                        <td><span class="badge badge-pill badge-success" style="font-size: 8.5px;"> <i class="fas fa-clock"></i>  {{ $getunitdrive->years }}</span></td>
+                        <td><span class="badge badge-pill badge-primary" style="font-size: 8.5px;"><i class="fas fa-calendar"></i>  {{ $getunitdrive->transmition }}</span></td>
+                        <td><span class="badge badge-pill badge-warning" style="font-size: 8.5px;"><i class="fas fa-car"></i> Mobil {{ $getunitdrive->pemilik }}</span></td>
+                      </tr> 
+                    </table>
+                </div>
+                @endforeach
+
+                <input type="hidden" id="unit_id" value="{{ $get->unit_id }}">
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" id="memilih" class="btn btn-success">Pilih Mobil</button>
+                <button type="button" class="btn btn-danger ml-auto"  data-dismiss="modal">Close</button> 
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="nambah_mobil" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-default">Tambah Mobil</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label">Jenis Mobil</label>
+                        <input type="text" value="Mobil Pribadi User" class="form-control" disabled>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label">Nomor Polisi (No Plat)</label>
+                        <input type="text" id="nopol" class="form-control tambahmobs" placeholder="Contoh : B 0000 BBB">
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label">Merk Mobil</label>
+                        <select class="form-control tambahmobs" id="merk">
+                            <option value="">Pilih Merk</option>
+                            <option>Honda</option>
+                            <option>Toyota</option>
+                            <option>Suzuki</option>
+                            <option>Daihatsu</option>
+                            <option>Mitsubishi</option>
+                            <option>Nissan</option>
+                            <option>KIA</option>
+                            <option>BMW</option>
+                            <option>Datsun</option>
+                            <option>Isuzu</option>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label">Model Mobil</label>
+                        <input type="text" id="model" class="form-control tambahmobs" placeholder="Contoh : Kijang Innova">
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label">Tahun</label>
+                        <input type="text" id="tahun" class="form-control" placeholder="Contoh : 2019">
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label">Transmisi</label>
+                        <select class="form-control tambahmobs" id="transmisi">
+                            <option value="">Pilih Transmisi</option>
+                            <option>AT</option>
+                            <option>MT</option>
+                        </select>
+                      </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" id="simpan_mobil" class="btn btn-primary">Simpan</button>
+                <button type="button" class="btn btn-danger ml-auto" data-dismiss="modal">Cancel</button> 
+            </div>
+            
+        </div>
+    </div>
+</div>

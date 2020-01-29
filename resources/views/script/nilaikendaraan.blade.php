@@ -394,7 +394,7 @@
 
 	$('#kembali').on('click', function () {
 
-		setTimeout(function(){ window.location.href = 'client'; }, 10);
+		setTimeout(function(){ window.location.href = 'home'; }, 10);
 
 	});
 

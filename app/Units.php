@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Units extends Model
 {
     protected $table = 'units';
-    protected $fillable = ['type_unit','merk'];
+    protected $fillable = ['type_unit','merk','pemilik'];
     protected $primaryKey = 'id';
 }
