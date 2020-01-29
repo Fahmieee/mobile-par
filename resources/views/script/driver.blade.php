@@ -216,7 +216,7 @@
 
             success: function (data) {
 
-            	if (data.length >= 1){
+            	if (data == 1){
                     swal({
                         text: "Anda Sudah Melakukan Pre-Trip Check!",
                         icon: "error",
