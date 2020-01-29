@@ -139,7 +139,7 @@
 
         $.ajax({
             type: 'POST',
-            url: "{{ route('ValidasiPretripCheck') }}",
+            url: "{{ route('ValidasiPretripCheck2') }}",
             data: {
                 '_token': $('input[name=_token]').val(),
                 'user_id': $('#created_by').val()
@@ -166,8 +166,6 @@
             		$('#foricons').attr('style', 'display: none;');
 
             	}
-
-
             }
 
         });
@@ -250,7 +248,7 @@
 
             success: function (data) {
 
-            	if (data.length == 0){
+            	if (data == 0){
                     swal({
                         text: "Lakukan Pre-Trip Check Terlebih Dahulu!",
                         icon: "error",

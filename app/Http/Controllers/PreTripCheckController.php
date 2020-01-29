@@ -648,42 +648,10 @@ class PreTripCheckController extends Controller
 
     }
 
-
-    // public function submitnotoke(Request $request) {
-
-    //     date_default_timezone_set('Asia/Jakarta');
-    //     $harini = date('Y-m-d');
-    //     $time = date("H:i:s");
-
-    //     $pretrip_check = new Pretrip_Check();
-    //     $pretrip_check->user_id= $request->user_id;
-    //     $pretrip_check->date= $harini;
-    //     $pretrip_check->time= $time;
-    //     $pretrip_check->save();
-
-    //     $count = count($request->check_id);
-
-    //     if ($count <= 1){
-
-    //     } else {
-
-    //         for($i=0; $i < $count; $i++){
-
-    //             $detail_tripcheck = new PretripCheckNotOke();
-    //             $detail_tripcheck->pretripcheck_id = $pretrip_check->id;
-    //             $detail_tripcheck->checkdetail_id = $request->check_id[$i];
-    //             $detail_tripcheck->status = 'NOT APPROVED';
-    //             $detail_tripcheck->save();
-
-    //         }
-    //     }
-
-    // }
-
-    public function Validasi(Request $request) {
+    public function Validasi2(Request $request) {
 
         date_default_timezone_set('Asia/Jakarta');
-    	$harini = date('Y-m-d');
+        $harini = date('Y-m-d');
         $kemarin = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
 
         $validatekemarin = Clocks::where([
@@ -714,6 +682,79 @@ class PreTripCheckController extends Controller
         }
 
         return response()->json($validate);
+
+    }
+
+
+    public function Validasi(Request $request) {
+
+        date_default_timezone_set('Asia/Jakarta');
+    	$harini = date('Y-m-d');
+        $kemarin = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
+
+        $drivers = Drivers::leftJoin("units", "drivers.unit_id", "=", "units.id")
+        ->where([
+            ['drivers.driver_id', '=', $request->user_id],
+            ['units.pemilik', '=', 'PAR'],
+        ])
+        ->first();
+
+        $validatekemarin = Clocks::where([
+            ['user_id', '=', $request->user_id],
+            ['clockin_date', '=', $kemarin],
+            ['clockout_time', '=', null],
+        ])
+        ->first();
+
+        if(!$drivers){
+
+            $data = '1';
+
+        } else {
+
+            if (!$validatekemarin){
+
+                $validate = Pretrip_Check::where([
+                    ['user_id', '=', $request->user_id],
+                    ['date', '=', $harini],
+                    ['status', '=', 'SUBMITED'],
+                ])
+                ->count();
+
+                if($validate == '0'){
+
+                    $data = '0';
+
+                } else {
+
+                    $data = '1';
+
+                }
+
+            } else {
+
+                $validate = Pretrip_Check::where([
+                    ['user_id', '=', $request->user_id],
+                    ['date', '=', $kemarin],
+                    ['status', '=', 'SUBMITED'],
+                ])
+                ->count();
+
+                if($validate == '0'){
+
+                    $data = '0';
+
+                } else {
+
+                    $data = '1';
+
+                }
+
+            }
+
+        }
+
+        return response()->json($data);
 
     }
 

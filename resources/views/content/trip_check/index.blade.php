@@ -9,7 +9,6 @@
           <div class="ct-page-title">
             <h1 class="ct-title" id="content">Pre Trip Checks</h1>
           </div>
-          <br>
           <table width="100%">
               <tr><h4 class="ct-title" id="content"><b>Keterangan :</b></h4></td>
               </tr>

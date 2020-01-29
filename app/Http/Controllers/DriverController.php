@@ -148,6 +148,7 @@ class DriverController extends Controller
             $savecar->years = $request->tahun;
             $savecar->transmition = $request->transmisi;
             $savecar->no_police = $request->nopol;
+            $savecar->mileage = '0';
             $savecar->save();
 
             $saveunitcar = new UnitDrivers();
@@ -180,12 +181,26 @@ class DriverController extends Controller
         ])
         ->first();
 
+        $sudahclocks = Clocks::where([
+            ['user_id', '=', $user->id],
+            ['clockin_date', '=', $hariini],
+        ])
+        ->first();
+
         if(!$sudahptc){
 
-            $updatess = Drivers::where(['driver_id'=>$user->id])
-            ->update(['unit_id'=>$request->unit_id]);
+            if(!$sudahclocks){
 
-            $data = 'yes';
+                $updatess = Drivers::where(['driver_id'=>$user->id])
+                ->update(['unit_id'=>$request->unit_id]);
+
+                $data = 'yes';
+
+            } else {
+
+                $data = 'no';
+
+            }
 
         } else {
 
