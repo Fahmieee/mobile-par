@@ -143,6 +143,7 @@ class DriverController extends Controller
 
             $savecar = new Units();
             $savecar->pemilik = 'user';
+            $savecar->wilayah_id = $user->wilayah_id;
             $savecar->merk = $request->merk;
             $savecar->model = $request->model;
             $savecar->years = $request->tahun;
@@ -214,14 +215,26 @@ class DriverController extends Controller
 
     public function unitdrivers(Request $request)
     {
-        $drivers = Drivers::all();
+        $units = Units::all();
 
-        foreach ($drivers as $driver ) {
+        foreach ($units as $unit ) {
 
-            $unitdrive = new UnitDrivers();
-            $unitdrive->unit_id = $driver->unit_id;
-            $unitdrive->user_id = $driver->driver_id;
-            $unitdrive->save();
+            if($unit->pemilik != 'user'){
+
+                $drivers = Drivers::select("users.wilayah_id")
+                ->leftJoin("users", "drivers.driver_id", "=", "users.id")
+                ->where("drivers.unit_id", $unit->id)
+                ->first();
+
+                $updatess = Units::where(['id'=>$unit->id])
+                ->update(['wilayah_id'=>$drivers->wilayah_id]);
+
+            } else {
+
+                $updatess = Units::where(['id'=>$unit->id])
+                ->update(['wilayah_id'=>'0']);
+
+            }
             
         }
 
