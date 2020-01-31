@@ -123,7 +123,7 @@
 
                     }
 
-		            setTimeout(function(){ window.location.href = role; }, 1500);
+		            setTimeout(function(){ window.location.href = '/home'; }, 1500);
 
 	            }
 
@@ -133,7 +133,7 @@
 
 	$('#kembali').on('click', function () {
 
-		setTimeout(function(){ window.location.href = 'home'; }, 10);
+		setTimeout(function(){ window.location.href = '/home'; }, 10);
 
 	});
 
