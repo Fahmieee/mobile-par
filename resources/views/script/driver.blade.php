@@ -98,12 +98,19 @@
 
             		$('#foricons').attr('style', 'display: block;');
 
-            		var contents = '<div id="clockout" onclick="ClockOut()" class="icon icon-shape bg-white text-white rounded-circle shadow">'+
-                            '<i class="fas fa-lock" style="color: #0166b5"></i>'+
-                            '<input type="hidden" value="0" id="selesai">' +
-                        '</div>';
+                    if(data.type_driver != 2){
+                		var contents = '<div id="clockout" onclick="ClockOut()" class="icon icon-shape bg-white text-white rounded-circle shadow">'+
+                                '<i class="fas fa-calendar" style="color: #0166b5"></i>'+
+                                '<input type="hidden" value="0" id="selesai">' +
+                            '</div>';
+                    } else {
+                        var contents = '<div onclick="ClockOutPool()" class="icon icon-shape bg-white text-white rounded-circle shadow">'+
+                                '<i class="fas fa-calendar" style="color: #0166b5"></i>'+
+                                '<input type="hidden" value="0" id="selesai">' +
+                            '</div>';
+                    }
                     
-            		$('#clock_icon').html(contents);
+            		$('.clock_icon').html(contents);
 
                 	$('#clock_desc').html('<h6 class="text-uppercase text-white ls-1 mb-1">Clock Out</h6>');
 
@@ -111,11 +118,15 @@
 
                 	$('#word_clock').html('<h6 class="text-white text-uppercase">'+data.time+'</h6>');
 
-                	$('#icon_km').html('<i class="fas fa-road" style="color: #ffffff"></i>');
+                    if(data.type_driver != 2){
 
-                	$('#word_km').html('<h6 class="text-white text-uppercase">'+data.km+'</h6>');
+                        $('#icon_km').html('<i class="fas fa-road" style="color: #ffffff"></i>');
 
-                	$('#km_awal').val(data.km);
+                        $('#word_km').html('<h6 class="text-white text-uppercase">'+data.km+'</h6>');
+
+                        $('#km_awal').val(data.km);
+
+                    }
 
                 } else if (data.status == 'sudahclock_in'){
 
@@ -124,7 +135,7 @@
                             '<input type="hidden" value="1" id="selesai">' +
                         '</div>';
                     
-            		$('#clock_icon').html(contents);
+            		$('.clock_icon').html(contents);
 
             		var contentc = '<h6 class="text-uppercase text-white ls-1 mb-1">Clock In</h6>';
 
@@ -417,6 +428,71 @@
         $('#nopol_clockout').val(nopols);
 
 	}
+
+    function ClockOutPool(){
+
+        $('#clockoutpool').modal('show');
+
+    }
+
+    $('#yakin_clockout').on('click', function () {
+
+        $('#clockoutpool').modal('hide');
+        $('.loading').attr('style','display: block');
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('clockoutpools') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                },
+            success: function(data) {
+
+                if(data.notif == '0'){
+
+                    swal({
+                        title: "Error!",
+                        text: "Lakukan Drive Out Terlebih Dahulu!",
+                        icon: "success",
+                        buttons: false,
+                        timer: 2000,
+                    });
+
+                } else {
+
+                    navigator.geolocation.getCurrentPosition(function (position) {  
+
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{ route('KoordinatClockin') }}",
+                            data: {
+                                '_token': $('input[name=_token]').val(),
+                                'clockin_id': data.clockout_id,
+                                'type': 'clockout',
+                                'long': position.coords.latitude,
+                                'lat': position.coords.longitude
+                                },
+                            success: function(data) {
+
+                                swal({
+                                    title: "Berhasil",
+                                    text: "Clock Out Anda Berhasil!",
+                                    icon: "success",
+                                    buttons: false,
+                                    timer: 2000,
+                                });
+
+                                setTimeout(function(){ window.location.href = 'home'; }, 1500);
+                            }
+                        });   
+                    });
+                }
+
+            }
+
+        });
+
+    });
 
 	function ClockIn(){
 
@@ -789,6 +865,61 @@
             buttons: false,
             timer: 2000,
         });
+    });
+
+    function ClockinPool(){
+
+        $('#clockinpool').modal('show');
+    }
+
+
+    $('#yakin_clockin').on('click', function () {
+
+        $('#clockinpool').modal('hide');
+        $('.loading').attr('style','display: block');
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('clockinpools') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                },
+            success: function(data) {
+
+                navigator.geolocation.getCurrentPosition(function (position) {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('KoordinatClockin') }}",
+                        data: {
+                            '_token': $('input[name=_token]').val(),
+                            'clockin_id': data.clockin_id,
+                            'type': 'clockin',
+                            'long': position.coords.latitude,
+                            'lat': position.coords.longitude
+                            },
+                        success: function(data) {
+
+                            swal({
+                                title: "Berhasil",
+                                text: "Clock In Anda Berhasil!",
+                                icon: "success",
+                                buttons: false,
+                                timer: 2000,
+                            });
+
+                            setTimeout(function(){ window.location.href = 'home'; }, 1500);
+
+                        }
+
+                    });
+                });
+
+            }
+
+        });
+
+
     });
 
 </script>

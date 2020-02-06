@@ -10,6 +10,8 @@ use App\Koordinat;
 use App\Units;
 use App\JamKerja;
 use App\Lembur;
+use App\Users;
+use Auth;
 
 class ClocksController extends Controller
 {
@@ -58,6 +60,11 @@ class ClocksController extends Controller
         date_default_timezone_set('Asia/Jakarta');
     	$harini = date('Y-m-d');
         $kemarin = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
+
+        $user = Auth::user();
+
+        $users = Users::where("id", $user->id)
+        ->first();
 
         $validatekemarin = Clocks::where([
             ['user_id', '=', $request->user_id],
@@ -116,7 +123,8 @@ class ClocksController extends Controller
         $validate = array(    
             'status' => $status, 
             'time' => $time,
-            'km' => $kilometers
+            'km' => $kilometers,
+            'type_driver' => $users->driver_type
         );
 
         return response()->json($validate);
@@ -283,5 +291,63 @@ class ClocksController extends Controller
 
     }
 
+    public function storepool(Request $request)
+    {   
+        date_default_timezone_set('Asia/Jakarta');
+        $hari = date('Y-m-d');
+        $time = date("H:i:s");
 
+        $user = Auth::user();
+
+        $clock = new Clocks();
+        $clock->clockin_date = $hari;
+        $clock->user_id = $user->id;
+        $clock->clockin_time = $time;
+        $clock->perdin = 'No';
+        $clock->clockin_status = 'NOT APPROVED';
+        $clock->save();
+
+        $ClockId = array(    
+            'clockin_id' => $clock->id  
+        );
+
+        return response()->json($ClockId);
+    }
+
+    public function storeclockout(Request $request)
+    {   
+        date_default_timezone_set('Asia/Jakarta');
+        $hari = date('Y-m-d');
+        $time = date("H:i:s");
+
+        $user = Auth::user();
+
+        $clockterakhir = Clocks::where("user_id", $user->id)
+        ->orderBy("id", "desc")
+        ->limit(1)
+        ->first();
+
+        $drivers = Drivers::where("driver_id",$user->id)
+        ->first();
+
+        if($drivers->unit_id == null){
+
+            $clocks = Clocks::where(['id'=>$clockterakhir->id])
+            ->update(['clockout_date'=>$hari, 'clockout_time'=>$time, 'clockout_status'=> 'NOT APPROVED']);
+
+            $notif = '1';
+
+        } else {
+
+            $notif = '0';
+
+        }
+
+        $ClockId = array(    
+            'clockout_id' => $clockterakhir->id,
+            'notif' => $notif   
+        );
+
+        return response()->json($ClockId);
+    }
 }

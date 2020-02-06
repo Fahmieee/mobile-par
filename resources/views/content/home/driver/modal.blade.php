@@ -1,3 +1,4 @@
+@if($getdrivers->driver_type == '1'))
 <div class="modal fade" id="modal_clockin" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
         <div class="modal-content">
@@ -18,20 +19,6 @@
                       </div>
                     </div>
                 </div>
-
-                <!-- <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-                          <input class="custom-control-input" id="customCheck6" type="checkbox">
-                          <label class="custom-control-label" for="customCheck6">Pakai Mobil GS?</label>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                <div id="mobil">
-                    <input class="custom-control-input form_clockin" value="0" id="unitgs" type="checkbox">
-                </div> -->
                 <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
@@ -148,7 +135,7 @@
         </div>
     </div>
 </div>
-
+@endif
 <div class="modal fade" id="notif_notoke" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
     <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
         <div class="modal-content bg-gradient-danger">
@@ -503,6 +490,147 @@
             <div class="modal-footer">
                 <button type="button" id="simpan_mobil" class="btn btn-primary">Simpan</button>
                 <button type="button" class="btn btn-danger ml-auto" data-dismiss="modal">Cancel</button> 
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="clockinpool" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-default">Konfirmasi Clockin</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            
+            <div class="modal-body" align="center">
+                <table border="0" align="center" width="100%">
+                    <tr>
+                        <td align="center"><img src="./assets/content/img/theme/info.png"></td>
+                    </tr>
+                    <tr><td><input type="hidden" id="id"></td></tr>
+                    <tr>
+                        <td align="center"><h5 class="text-muted">Anda Yakin akan melakukan Clockin Pada Saat ini?</h5></td>
+                    </tr>
+                </table>
+                
+
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" id="yakin_clockin" class="btn btn-primary">Yakin</button>
+                <button type="button" class="btn btn-danger ml-auto"  data-dismiss="modal">Tidak</button> 
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="clockoutpool" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-default">Konfirmasi Clock Out</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            
+            <div class="modal-body" align="center">
+                <table border="0" align="center" width="100%">
+                    <tr>
+                        <td align="center"><img src="./assets/content/img/theme/info.png"></td>
+                    </tr>
+                    <tr><td><input type="hidden" id="id"></td></tr>
+                    <tr>
+                        <td align="center"><h5 class="text-muted">Anda Yakin akan melakukan Clock Out Pada Saat ini?</h5></td>
+                    </tr>
+                </table>
+                
+
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" id="yakin_clockout" class="btn btn-primary">Yakin</button>
+                <button type="button" class="btn btn-danger ml-auto"  data-dismiss="modal">Tidak</button> 
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="pilih_mobil" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content bg-blue-par2">
+            
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-default" style="color: #ffffff;">Pilih Mobil Anda</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            
+            <div class="modal-body" align="center">
+                <table class="table align-items-center datatables" border="0">
+                  <thead class="thead-light">
+                    <tr>
+                        <th scope="col" style="display: none;">
+                            Nama
+                        </th>
+                        <th scope="col">
+                            Nama
+                        </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                  </tbody>
+                </table>
+                <hr>
+                @foreach($getunitdrives as $getunitdrive)
+
+                @php
+                if($get->unit_id == $getunitdrive->id){
+                    $label = 'success';
+                }else{
+                    $label = 'secondary';
+                }
+
+                @endphp
+                <div class="alert2 alert-{{ $label }} mobilnya" id="mobil_{{ $getunitdrive->id }}" role="alert" onclick="PilihMobil({{ $getunitdrive->id }});">
+                    <table width="100%"> 
+                      <tr>
+                        <td width="20%" rowspan="3" align="center">
+                          <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
+                            <i class="fas fa-car" style="color: #ffffff"></i>
+                          </div>
+                        </td>
+                        <td width="4%" rowspan="3"> </td>
+                        <td colspan="3"><h5><b>{{ $getunitdrive->no_police }}</b></h5></td>
+                      </tr>
+                      <tr>
+                        <td colspan="3"><h6>{{ $getunitdrive->merk }} {{ $getunitdrive->model }} </h6></td>
+                      </tr>
+                      <tr>
+                        <td><span class="badge badge-pill badge-success" style="font-size: 8.5px;"> <i class="fas fa-clock"></i>  {{ $getunitdrive->years }}</span></td>
+                        <td><span class="badge badge-pill badge-primary" style="font-size: 8.5px;"><i class="fas fa-calendar"></i>  {{ $getunitdrive->transmition }}</span></td>
+                        <td><span class="badge badge-pill badge-warning" style="font-size: 8.5px;"><i class="fas fa-car"></i> Mobil {{ $getunitdrive->pemilik }}</span></td>
+                      </tr> 
+                    </table>
+                </div>
+                @endforeach
+
+                <input type="hidden" id="unit_id" value="{{ $get->unit_id }}">
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" id="memilih" class="btn btn-success">Pilih Mobil</button>
+                <button type="button" class="btn btn-danger ml-auto"  data-dismiss="modal">Close</button> 
             </div>
             
         </div>

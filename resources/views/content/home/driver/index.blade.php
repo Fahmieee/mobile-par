@@ -4,94 +4,275 @@
       <div class="card-header bg-blue-par">
         <h5 class="text-uppercase text-white">MENU</h5>
       </div>
-      <div class="card-body bg-blue-par2" id="menu_icons">
-        <table border="0" align="center" id="foricons" width="100%" style="display: none;">
-          <tr>
-            <td width="5%" id="icon_check">
-            </td>
-            <td width="20%" style="padding-top: 10px" id="word_check">
-            </td>
-            <td width="5%" id="icon_medic">
-            </td>
-            <td width="20%" style="padding-top: 10px" id="word_medic">
-            </td>
-            <td  width="5%"id="icon_clock">
-            </td>
-            <td width="20%" style="padding-top: 10px" id="word_clock">
-            </td>
-            <td width="5%" id="icon_km">
-            </td>
-            <td width="20%" style="padding-top: 10px" id="word_km">
-            </td>
-          </tr>
-          <tr height="20px">
-            <td colspan="3"></td>
-          </tr>
-        </table>
 
-        @php
-          if($getunits->pemilik == 'PAR'){
+      @if($getdrivers->driver_type == '1')
 
-            $ids = 'pretripcheck';
-            $bg = 'bg-white';
-            $iconcolor = '#0166b5';
-            $textcolor = '#ffffff';
+        <div class="card-body bg-blue-par2" id="menu_icons">
+          <table border="0" align="center" id="foricons" width="100%" style="display: none;">
+            <tr>
+              <td width="5%" id="icon_check">
+              </td>
+              <td width="20%" style="padding-top: 10px" id="word_check">
+              </td>
+              <td width="5%" id="icon_medic">
+              </td>
+              <td width="20%" style="padding-top: 10px" id="word_medic">
+              </td>
+              <td  width="5%"id="icon_clock">
+              </td>
+              <td width="20%" style="padding-top: 10px" id="word_clock">
+              </td>
+              <td width="5%" id="icon_km">
+              </td>
+              <td width="20%" style="padding-top: 10px" id="word_km">
+              </td>
+            </tr>
+            <tr height="20px">
+              <td colspan="3"></td>
+            </tr>
+          </table>
 
-          } else {
+          @php
+            if($getunits->pemilik == 'PAR'){
 
-            $ids = 'nopretripcheck';
-            $bg = '';
-            $iconcolor = '#3384c3';
-            $textcolor = '#3384c3';
+              $ids = 'pretripcheck';
+              $bg = 'bg-white';
+              $iconcolor = '#0166b5';
+              $textcolor = '#ffffff';
 
-          }
+            } else {
 
-        @endphp
+              $ids = 'nopretripcheck';
+              $bg = '';
+              $iconcolor = '#3384c3';
+              $textcolor = '#3384c3';
 
-        <table border="0" align="center" width="100%">
-          <tr>
-            <td align="center" width="25%">
-              <div id="{{ $ids }}" class="icon icon-shape {{ $bg }} text-white rounded-circle shadow">
-                  <i class="fas fa-check-circle" style="color: {{ $iconcolor }};"></i>
-              </div>
-            </td>
-            <td align="center" width="25%">
-              <div id="medical" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                  <i class="fas fa-medkit" style="color: #0166b5"></i>
-              </div>
-            </td>
-            <td align="center" width="25%" id="clock_icon">
-              <div id="clockin" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                  <i class="fas fa-car" style="color: #0166b5"></i>
-                  <input type="hidden" id="selesai" value="0">
-              </div>
-            </td>
-            <td align="center" width="25%">
-              <div id="history" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                  <i class="fas fa-history" style="color: #0166b5"></i>
-              </div>
+            }
+
+          @endphp
+
+          <table border="0" align="center" width="100%">
+            <tr>
+              <td align="center" width="25%">
+                <div id="{{ $ids }}" class="icon icon-shape {{ $bg }} text-white rounded-circle shadow">
+                    <i class="fas fa-check-circle" style="color: {{ $iconcolor }};"></i>
+                </div>
+              </td>
+              <td align="center" width="25%">
+                <div id="medical" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                    <i class="fas fa-medkit" style="color: #0166b5"></i>
+                </div>
+              </td>
+              <td align="center" width="25%" class="clock_icon">
+                <div id="clockin" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                    <i class="fas fa-clock" style="color: #0166b5"></i>
+                    <input type="hidden" class="selesai" value="0">
+                </div>
+              </td>
+              <td align="center" width="25%">
+                <div id="history" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                    <i class="fas fa-history" style="color: #0166b5"></i>
+                </div>
+                
+              </td>
+            </tr>
+            <tr>
+               <td height="10px" colspan="7"></td> 
+            </tr>
+            <tr>
+              <td align="center">
+                <h6 class="text-uppercase ls-1 mb-1" style="color: {{ $textcolor }};">Pre-Trip Check</h6>
+              </td>
+              <td align="center">
+                <h6 class="text-uppercase text-white ls-1 mb-1">Daily Check Up</h6>
+              </td>
+              <td align="center" id="clock_desc">
+                <h6 class="text-uppercase text-white ls-1 mb-1">Clock In</h6>
+              </td>
+              <td align="center">
+                <h6 class="text-uppercase text-white ls-1 mb-1">Riwayat</h6>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+      @else 
+
+        <div class="card-body bg-blue-par2" id="menu_icons">
+          <table border="0" align="center" id="foricons" width="100%" style="display: none;">
+            <tr>
+              <td width="5%" id="icon_check">
+              </td>
+              <td width="20%" style="padding-top: 10px" id="word_check">
+              </td>
+              <td width="5%" id="icon_medic">
+              </td>
+              <td width="20%" style="padding-top: 10px" id="word_medic">
+              </td>
+              <td  width="5%"id="icon_clock">
+              </td>
+              <td width="20%" style="padding-top: 10px" id="word_clock">
+              </td>
+              <td width="5%" id="icon_km">
+              </td>
+              <td width="20%" style="padding-top: 10px" id="word_km">
+              </td>
+            </tr>
+            <tr height="20px">
+              <td colspan="3"></td>
+            </tr>
+          </table>
+
+          @php
+            if(!$cekclockin){
+
+              $bgpilih = '';
+              $iconcolorpilih = '#3384c3';
+              $textcolorpilih = '#3384c3';
+
+              $bgdrive = '';
+              $iconcolordrive = '#3384c3';
+              $textcolordrive = '#3384c3'; 
+
+              $bgptc = '';
+              $iconcolorptc = '#3384c3';
+              $textcolorptc = '#3384c3'; 
+
+            } else {
+
+              if($cekclockin->clockout_time != null){
+
+                $bgpilih = '';
+                $iconcolorpilih = '#3384c3';
+                $textcolorpilih = '#3384c3';
+
+                $bgdrive = '';
+                $iconcolordrive = '#3384c3';
+                $textcolordrive = '#3384c3'; 
+
+                $bgptc = '';
+                $iconcolorptc = '#3384c3';
+                $textcolorptc = '#3384c3'; 
+
+              } else {
+
+                  if($get->unit_id == null){
+
+                      $bgpilih = 'bg-white';
+                      $iconcolorpilih = '#0166b5';
+                      $textcolorpilih = '#ffffff';
+
+                      $bgdrive = '';
+                      $iconcolordrive = '#3384c3';
+                      $textcolordrive = '#3384c3'; 
+
+                      $bgptc = '';
+                      $iconcolorptc = '#3384c3';
+                      $textcolorptc = '#3384c3'; 
+
+                  } else {
+
+                      $bgpilih = 'bg-white';
+                      $iconcolorpilih = '#0166b5';
+                      $textcolorpilih = '#ffffff';
+
+                      $bgdrive = 'bg-white';
+                      $iconcolordrive = '#0166b5';
+                      $textcolordrive = '#ffffff'; 
+
+                      $bgptc = 'bg-white';
+                      $iconcolorptc = '#0166b5';
+                      $textcolorptc = '#ffffff'; 
+
+                  }
+
+              } 
+
               
-            </td>
-          </tr>
-          <tr>
-             <td height="10px" colspan="7"></td> 
-          </tr>
-          <tr>
-            <td align="center">
-              <h6 class="text-uppercase ls-1 mb-1" style="color: {{ $textcolor }};">Pre-Trip Check</h6>
-            </td>
-            <td align="center">
-              <h6 class="text-uppercase text-white ls-1 mb-1">Daily Check Up</h6>
-            </td>
-            <td align="center" id="clock_desc">
-              <h6 class="text-uppercase text-white ls-1 mb-1">Clock In</h6>
-            </td>
-            <td align="center">
-              <h6 class="text-uppercase text-white ls-1 mb-1">Riwayat Perjalanan</h6>
-            </td>
-          </tr>
-        </table>
-      </div>
+
+            }
+
+
+          @endphp
+
+          <table border="0" align="center" width="100%">
+            <tr>
+              <td align="center" width="25%">
+                <div id="medical" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                    <i class="fas fa-medkit" style="color: #0166b5"></i>
+                </div>
+              </td>
+              <td align="center" width="25%" class="clock_icon">
+                <div onclick="ClockinPool();" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                  <input type="hidden" class="selesai" value="0">
+                    <i class="fas fa-clock" style="color: #0166b5"></i>
+                </div>
+              </td>
+              <td align="center" width="25%">
+                <div id="history" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                    <i class="fas fa-history" style="color: #0166b5"></i>
+                </div>
+                
+              </td>
+            </tr>
+            <tr>
+               <td height="10px" colspan="7"></td> 
+            </tr>
+            <tr>
+              <td align="center">
+                <h6 class="text-uppercase text-white ls-1 mb-1">Daily CheckUp</h6>
+              </td>
+              <td align="center" id="clock_desc">
+                <h6 class="text-uppercase text-white ls-1 mb-1">Clock In</h6>
+              </td>
+              <td align="center">
+                <h6 class="text-uppercase text-white ls-1 mb-1">Riwayat</h6>
+              </td>
+            </tr>
+          </table>
+          <br>
+          <table border="0" align="center" width="100%">
+            <tr>
+              <td align="center" width="25%">
+                <div id="" class="icon icon-shape {{ $bgptc }} text-white rounded-circle shadow">
+                    <i class="fas fa-check-circle" style="color: {{ $iconcolorptc }}"></i>
+                </div>
+              </td>
+              <td align="center" width="25%">
+                <div id="clockin" class="icon icon-shape {{ $bgdrive }} text-white rounded-circle shadow">
+                    <i class="fas fa-building" style="color: {{ $iconcolordrive }}"></i>
+                    <input type="hidden" value="0">
+                </div>
+              </td>
+              <td align="center" width="25%">
+                <div id="pilihmobil" class="icon icon-shape {{ $bgpilih }} text-white rounded-circle shadow">
+                    <i class="fas fa-car" style="color: {{ $iconcolorpilih }}"></i>
+                </div>
+                
+              </td>
+            </tr>
+            <tr>
+               <td height="10px" colspan="7"></td> 
+            </tr>
+            <tr>
+
+              <td align="center">
+                <h6 class="text-uppercase ls-1 mb-1" style=" color: {{ $textcolorptc }}">Pre-Trip Check</h6>
+              </td>
+              <td align="center" id="clock_desc">
+                <h6 class="text-uppercase ls-1 mb-1" style=" color: {{ $textcolordrive }}">Drive In</h6>
+              </td>
+              <td align="center">
+                <h6 class="text-uppercase ls-1 mb-1" style=" color: {{ $textcolorpilih }}">Pilih Mobil</h6>
+              </td>
+            </tr>
+          </table>
+
+        </div>
+
+      @endif
+
+
     </div>
   </div>    
 </div>
@@ -122,6 +303,8 @@
           </div>
         </div>
         <br>  
+
+        @if($get->unit_id != null)
         <div class="progress-wrapper">
           <div class="progress-info">
             <div class="progress-label">
@@ -155,6 +338,8 @@
           </div>
         </div>
         <br>
+
+        @endif
         <div class="progress-wrapper">
           <div class="progress-info">
             <div class="progress-label">
@@ -188,6 +373,7 @@
   </div>    
 </div>
 
+@if($get->user_id != null)
 <div class="row" id="client" style="display: block;">
   <div class="col">
     <div class="card shadow">
@@ -242,7 +428,7 @@
     </div>
   </div>    
 </div>
-
+@endif
 
 <div class="row">
   <div class="col">
@@ -329,7 +515,7 @@
   </div>    
 </div>
 
-
+@if($get->unit_id != null)
 <div class="row">
   <div class="col">
     <div class="card shadow">
@@ -390,7 +576,7 @@
     </div>
   </div>    
 </div>
-
+@endif
 <div class="row">
   <div class="col">
     <div class="card shadow">

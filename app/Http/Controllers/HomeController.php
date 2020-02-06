@@ -84,12 +84,18 @@ class HomeController extends Controller
 
 	        $gettrainings = Trainings::all();
 
+	        $cekclockin = Clocks::where([
+	                ['user_id', '=', $user->id],
+	                ['clockin_date', '=', $date],
+	            ])
+	        ->first();
+
 	        $getunitdrives = UnitDrivers::select("units.*")
 	        ->leftJoin("units", "unit_drivers.unit_id", "=", "units.id")
 	        ->where("unit_drivers.user_id", $user->id)
 	        ->get();
 
-	    	return view('content.home.index', compact('date','getdrivers','getusers','getunits','getkorlaps','getsim','getmcu','getasuransi','getkeur','gettrainings','getperdin','roles','getunitdrives','get'));
+	    	return view('content.home.index', compact('date','getdrivers','getusers','getunits','getkorlaps','getsim','getmcu','getasuransi','getkeur','gettrainings','getperdin','roles','getunitdrives','get','cekclockin'));
 
         } else if($roles->role_id == '3'){
 
