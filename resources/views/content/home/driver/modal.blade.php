@@ -672,3 +672,55 @@
         </div>
     </div>
 </div>
+@if($getdriving)
+<div class="modal fade" id="driveout_modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-default">Konfirmasi Driveout</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label">UNIT :</label>
+                        <input type="text" value="{{ $getunits->no_police }}" class="form-control" disabled>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label">Kilometer Awal</label>
+                        <input type="text" value="{{ $getdriving->km_awal }}" id="km_awal" class="form-control" disabled>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label">Kilometer Akhir</label>
+                        <input type="text" placeholder="Masukan Kilometer Akhir" class="form-control driveout" id="km_akhir" onkeyup="angka(this);">
+                      </div>
+                    </div>
+                </div>
+                
+
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" id="driveout_submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-danger ml-auto" data-dismiss="modal">Cancel</button> 
+            </div>
+            
+        </div>
+    </div>
+</div>
+@endif

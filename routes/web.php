@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('driver/pilihmobil', 'DriverController@pilihmobil')->name('pilihmobil');
 	Route::post('driver/validasi', 'DriverController@validasidrivein')->name('validasidrivein');
 	Route::post('driver/drivein', 'DriverController@submitdrivein')->name('submitdrivein');
+	Route::post('driver/driveout', 'DriverController@submitdriveout')->name('submitdriveout');
 
 	Route::get('pretripcheck', 'PreTripCheckController@index');
 	Route::post('pretripcheck/get', 'PreTripCheckController@GetData')->name('GetPreTripCheck');

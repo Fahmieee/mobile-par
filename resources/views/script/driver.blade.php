@@ -1029,7 +1029,7 @@
                     swal({
                         title: "Error!",
                         text: "Lakukan PTC Terlebih Dahulu!",
-                        icon: "success",
+                        icon: "error",
                         buttons: false,
                         timer: 2000,
                     });
@@ -1088,7 +1088,7 @@
                         timer: 2000,
                     });
 
-                setTimeout(function(){ window.location.reload() }, 1500);
+                    setTimeout(function(){ window.location.reload() }, 1500);
 
                 }
 
@@ -1100,6 +1100,37 @@
 
     $('#driveout').on('click', function () {
 
+        $('#driveout_modal').modal('show');
+
+    });
+
+    $('#driveout_submit').on('click', function () {
+
+        $('.loading').attr('style','display: block');
+        $('#driveout_modal').modal('hide');
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('submitdriveout') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'km_akhir': $('#km_akhir').val(),
+                
+            },
+            success: function(data) {
+
+                swal({
+                    title: "Berhasil!",
+                    text: "Anda Berhasil Drive Out",
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                });
+
+                setTimeout(function(){ window.location.reload() }, 1500);
+
+            }
+        });
 
     });
 

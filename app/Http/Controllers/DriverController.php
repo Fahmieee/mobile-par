@@ -315,4 +315,50 @@ class DriverController extends Controller
 
     }
 
+    public function submitdriveout(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $hariini = date('Y-m-d');
+
+        $user = Auth::user();
+
+        $clocks = Clocks::where([
+            ['user_id', '=', $user->id],
+            ['clockin_date', '=', $hariini]
+        ])
+        ->first();
+
+        $driivers = Drivers::where("driver_id", $user->id)
+        ->first();
+
+        $getdriving = Driving::select("driving.id")
+        ->leftJoin("clocks", "driving.clock_id", "=", "clocks.id")
+        ->where([
+                ['clocks.user_id', '=', $user->id],
+                ['clocks.clockin_date', '=', $hariini],
+                ['unit_id', '=', $driivers->unit_id],
+            ])
+        ->orderBy("driving.id", "desc")
+        ->limit(1)
+        ->first();
+
+        $units = Units::where("id",$driivers->unit_id)
+        ->first();
+
+        $approveds2 = Driving::where(['id'=>$getdriving->id])->update(['km_akhir'=>$request->km_akhir]);
+
+        $km = $request->km_akhir - $getdriving->km_awal;
+
+
+        $totalkm = $units->mileage + $km;
+
+        $approveds3 = Units::where(['id'=>$driivers->unit_id])->update(['mileage'=>$totalkm]);
+
+        $approveds = Drivers::where(['driver_id'=>$user->id])->update(['unit_id'=>'0']);
+
+
+        return response()->json($approveds2);
+    }
+
+
 }

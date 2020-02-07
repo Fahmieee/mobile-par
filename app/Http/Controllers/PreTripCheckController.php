@@ -802,9 +802,15 @@ class PreTripCheckController extends Controller
         $harini = date('Y-m-d');
         $time = date("H:i:s");
 
+        $user = Auth::user();
+
+        $drivers = Drivers::where("driver_id", $user->id)
+        ->first();
+
         $sudahptc = Pretrip_Check::where([
             ['user_id', '=', $request->user_id],
             ['date', '=', $harini],
+            ['unit_id', '=', $drivers->unit_id],
         ])
         ->first();
 
