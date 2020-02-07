@@ -654,6 +654,11 @@ class PreTripCheckController extends Controller
         $harini = date('Y-m-d');
         $kemarin = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
 
+        $user = Auth::user();
+
+        $drivers = Drivers::where("driver_id", $user->id)
+        ->first();
+
         $validatekemarin = Clocks::where([
             ['user_id', '=', $request->user_id],
             ['clockin_date', '=', $kemarin],
@@ -665,6 +670,7 @@ class PreTripCheckController extends Controller
 
             $validate = Pretrip_Check::where([
                 ['user_id', '=', $request->user_id],
+                ['unit_id', '=', $drivers->unit_id],
                 ['date', '=', $harini],
                 ['status', '=', 'SUBMITED'],
             ])
@@ -674,6 +680,7 @@ class PreTripCheckController extends Controller
 
             $validate = Pretrip_Check::where([
                 ['user_id', '=', $request->user_id],
+                ['unit_id', '=', $drivers->unit_id],
                 ['date', '=', $kemarin],
                 ['status', '=', 'SUBMITED'],
             ])

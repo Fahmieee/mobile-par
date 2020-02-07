@@ -66,7 +66,7 @@
               <td align="center" width="25%" class="clock_icon">
                 <div id="clockin" class="icon icon-shape bg-white text-white rounded-circle shadow">
                     <i class="fas fa-clock" style="color: #0166b5"></i>
-                    <input type="hidden" class="selesai" value="0">
+                    <input type="hidden" id="selesai" value="0">
                 </div>
               </td>
               <td align="center" width="25%">
@@ -218,7 +218,7 @@
               
               <td align="center" width="25%" class="clock_icon">
                 <div onclick="ClockinPool();" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                  <input type="hidden" class="selesai" value="0">
+                  <input type="hidden" id="selesai" value="0">
                     <i class="fas fa-clock" style="color: #0166b5"></i>
                 </div>
               </td>

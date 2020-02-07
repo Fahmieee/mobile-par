@@ -131,7 +131,7 @@
                 } else if (data.status == 'sudahclock_in'){
 
                 	var contents = '<div id="clockin" onclick="ClockIn()" class="icon icon-shape bg-white text-white rounded-circle shadow">'+
-                            '<i class="fas fa-car" style="color: #0166b5"></i>'+
+                            '<i class="fas fa-calendar" style="color: #0166b5"></i>'+
                             '<input type="hidden" value="1" id="selesai">' +
                         '</div>';
                     
