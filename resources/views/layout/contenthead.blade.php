@@ -20,6 +20,7 @@
   <link href="{{ asset('assets/content/css/argon-dashboard.css?v=1.1.0') }}" rel="stylesheet" />
 
   <link rel="manifest" href="{{ asset('manifest.json') }}">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   <!-- ios support -->
   <link rel="apple-touch-icon" href="{{ asset('assets/icons/96x96.png') }}">
   <meta name="apple-mobile-web-app-status-bar" content="#aa7700">

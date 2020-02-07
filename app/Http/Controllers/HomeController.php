@@ -14,6 +14,7 @@ use App\DocDriver;
 use App\DocUnit;
 use App\Trainings;
 use App\Clocks;
+use App\Driving;
 use App\MedicalCheckup;
 use App\PretripCheckNotOke;
 use Auth;
@@ -95,7 +96,17 @@ class HomeController extends Controller
 	        ->where("unit_drivers.user_id", $user->id)
 	        ->get();
 
-	    	return view('content.home.index', compact('date','getdrivers','getusers','getunits','getkorlaps','getsim','getmcu','getasuransi','getkeur','gettrainings','getperdin','roles','getunitdrives','get','cekclockin'));
+	        $getdriving = Driving::leftJoin("clocks", "driving.clock_id", "=", "clocks.id")
+	        ->where([
+	                ['clocks.user_id', '=', $user->id],
+	                ['clocks.clockin_date', '=', $date],
+	                ['unit_id', '=', $get->unit_id],
+	            ])
+	        ->orderBy("driving.id", "desc")
+	        ->limit(1)
+	        ->first();
+
+	    	return view('content.home.index', compact('date','getdrivers','getusers','getunits','getkorlaps','getsim','getmcu','getasuransi','getkeur','gettrainings','getperdin','roles','getunitdrives','get','cekclockin','getdriving'));
 
         } else if($roles->role_id == '3'){
 

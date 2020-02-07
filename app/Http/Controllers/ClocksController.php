@@ -12,6 +12,7 @@ use App\JamKerja;
 use App\Lembur;
 use App\Users;
 use Auth;
+use DataTables;
 
 class ClocksController extends Controller
 {
@@ -349,5 +350,15 @@ class ClocksController extends Controller
         );
 
         return response()->json($ClockId);
+    }
+
+    public function getunits(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d');
+
+        $dataunit = Units::all();
+
+        return Datatables::of($dataunit)->make(true);
     }
 }

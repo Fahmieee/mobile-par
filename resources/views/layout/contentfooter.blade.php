@@ -65,6 +65,7 @@
   <script src="{{ asset('assets/content/js/moment-with-locales.min.js') }}"></script>
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
   <script src="{{ asset('js/app2.js') }}"></script>
   <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-app.js"></script>
 

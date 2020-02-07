@@ -566,71 +566,107 @@
 
 <div class="modal fade" id="pilih_mobil" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-        <div class="modal-content bg-blue-par2">
+        <div class="modal-content">
             
             <div class="modal-header">
-                <h3 class="modal-title" id="modal-title-default" style="color: #ffffff;">Pilih Mobil Anda</h3>
+                <h3 class="modal-title" id="modal-title-default">Pilih Mobil Anda</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            
+                <table class="datatables" width="90%">
+                    <tr>
+                        <th style="display: none;">
+                            Nama
+                        </th>
+                        <th>
+                            Nama
+                        </th>
+                    </tr>
+                  <tbody>
+                    
+                  </tbody>
+                </table>
+                <hr>
+                <input type="hidden" id="unit">
+            <div class="modal-footer">
+                <button type="button" onclick="Memilih();" class="btn btn-success">Pilih Mobil</button>
+                <button type="button" class="btn btn-danger ml-auto"  data-dismiss="modal">Close</button> 
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="yakinpilih" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-default">Konfirmasi Pilih Mobil</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             
             <div class="modal-body" align="center">
-                <table class="table align-items-center datatables" border="0">
-                  <thead class="thead-light">
+                <table border="0" align="center" width="100%">
                     <tr>
-                        <th scope="col" style="display: none;">
-                            Nama
-                        </th>
-                        <th scope="col">
-                            Nama
-                        </th>
+                        <td align="center"><img src="./assets/content/img/theme/info.png"></td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    
-                  </tbody>
+                    <tr>
+                        <td align="center"><h5 class="text-muted">Anda Yakin akan Memilih Mobil Ini?</h5></td>
+                    </tr>
                 </table>
-                <hr>
-                @foreach($getunitdrives as $getunitdrive)
+                
 
-                @php
-                if($get->unit_id == $getunitdrive->id){
-                    $label = 'success';
-                }else{
-                    $label = 'secondary';
-                }
-
-                @endphp
-                <div class="alert2 alert-{{ $label }} mobilnya" id="mobil_{{ $getunitdrive->id }}" role="alert" onclick="PilihMobil({{ $getunitdrive->id }});">
-                    <table width="100%"> 
-                      <tr>
-                        <td width="20%" rowspan="3" align="center">
-                          <div class="icon2 icon-shape bg-blue-par2 text-white rounded-circle shadow">
-                            <i class="fas fa-car" style="color: #ffffff"></i>
-                          </div>
-                        </td>
-                        <td width="4%" rowspan="3"> </td>
-                        <td colspan="3"><h5><b>{{ $getunitdrive->no_police }}</b></h5></td>
-                      </tr>
-                      <tr>
-                        <td colspan="3"><h6>{{ $getunitdrive->merk }} {{ $getunitdrive->model }} </h6></td>
-                      </tr>
-                      <tr>
-                        <td><span class="badge badge-pill badge-success" style="font-size: 8.5px;"> <i class="fas fa-clock"></i>  {{ $getunitdrive->years }}</span></td>
-                        <td><span class="badge badge-pill badge-primary" style="font-size: 8.5px;"><i class="fas fa-calendar"></i>  {{ $getunitdrive->transmition }}</span></td>
-                        <td><span class="badge badge-pill badge-warning" style="font-size: 8.5px;"><i class="fas fa-car"></i> Mobil {{ $getunitdrive->pemilik }}</span></td>
-                      </tr> 
-                    </table>
-                </div>
-                @endforeach
-
-                <input type="hidden" id="unit_id" value="{{ $get->unit_id }}">
             </div>
             
             <div class="modal-footer">
-                <button type="button" id="memilih" class="btn btn-success">Pilih Mobil</button>
-                <button type="button" class="btn btn-danger ml-auto"  data-dismiss="modal">Close</button> 
+                <button type="button" id="yakin_memilih" class="btn btn-primary">Yakin</button>
+                <button type="button" class="btn btn-danger ml-auto"  data-dismiss="modal">Tidak</button> 
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="drivein_modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-default">DRIVE IN</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label">UNIT :</label>
+                        <input type="text" id="unitdrivein" class="form-control" disabled>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label">Kilometer Unit</label>
+                        <input type="text" id="kilometer" class="form-control drivein" placeholder="Masukan Kilometer Awal" onkeyup="angka(this);">
+                      </div>
+                    </div>
+                </div>
+
+               
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" id="drivein_submit" class="btn btn-primary">Simpan</button>
+                <button type="button" class="btn btn-danger ml-auto" data-dismiss="modal">Batal</button> 
             </div>
             
         </div>

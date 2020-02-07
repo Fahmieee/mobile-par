@@ -53,6 +53,9 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('driver/getlembur', 'DriverController@getlembur')->name('GetLembur');
 	Route::post('driver/tambahmobil', 'DriverController@tambahmobil')->name('tambahmobil');
 	Route::post('driver/updatemobil', 'DriverController@updatemobil')->name('updatemobil');
+	Route::post('driver/pilihmobil', 'DriverController@pilihmobil')->name('pilihmobil');
+	Route::post('driver/validasi', 'DriverController@validasidrivein')->name('validasidrivein');
+	Route::post('driver/drivein', 'DriverController@submitdrivein')->name('submitdrivein');
 
 	Route::get('pretripcheck', 'PreTripCheckController@index');
 	Route::post('pretripcheck/get', 'PreTripCheckController@GetData')->name('GetPreTripCheck');
@@ -80,6 +83,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('clocks/clockinkoordinat', 'ClocksController@clockinkoordinat')->name('KoordinatClockin');
 	Route::post('clocks/poolin', 'ClocksController@storepool')->name('clockinpools');
 	Route::post('clocks/poolout', 'ClocksController@storeclockout')->name('clockoutpools');
+	Route::get('clocks/getunit', 'ClocksController@getunits')->name('getunits');
 
 	Route::post('medical_checkup/store', 'MedicalCheckupController@create')->name('MedicalStore');
 	Route::post('medical_checkup/validasi', 'MedicalCheckupController@validasi')->name('MedicalValidasi');

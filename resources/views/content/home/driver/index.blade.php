@@ -131,10 +131,12 @@
               $textcolorpilih = '#3384c3';
 
               $bgdrive = '';
+              $aksidrive = '#';
               $iconcolordrive = '#3384c3';
               $textcolordrive = '#3384c3'; 
 
               $bgptc = '';
+              $aksiptc = '#';
               $iconcolorptc = '#3384c3';
               $textcolorptc = '#3384c3'; 
 
@@ -147,10 +149,12 @@
                 $textcolorpilih = '#3384c3';
 
                 $bgdrive = '';
+                $aksidrive = '#';
                 $iconcolordrive = '#3384c3';
                 $textcolordrive = '#3384c3'; 
 
                 $bgptc = '';
+                $aksiptc = '#';
                 $iconcolorptc = '#3384c3';
                 $textcolorptc = '#3384c3'; 
 
@@ -163,10 +167,13 @@
                       $textcolorpilih = '#ffffff';
 
                       $bgdrive = '';
+                      $aksidrive = '#';
                       $iconcolordrive = '#3384c3';
                       $textcolordrive = '#3384c3'; 
 
                       $bgptc = '';
+                      $aksiptc = '#';
+                      $aksidrive = '#';
                       $iconcolorptc = '#3384c3';
                       $textcolorptc = '#3384c3'; 
 
@@ -177,10 +184,12 @@
                       $textcolorpilih = '#ffffff';
 
                       $bgdrive = 'bg-white';
+                      $aksidrive = 'drivein';
                       $iconcolordrive = '#0166b5';
                       $textcolordrive = '#ffffff'; 
 
                       $bgptc = 'bg-white';
+                      $aksiptc = 'pretripcheck';
                       $iconcolorptc = '#0166b5';
                       $textcolorptc = '#ffffff'; 
 
@@ -188,7 +197,11 @@
 
               } 
 
-              
+            }
+
+            if(!$getdriving){
+
+            } else {
 
             }
 
@@ -202,6 +215,7 @@
                     <i class="fas fa-medkit" style="color: #0166b5"></i>
                 </div>
               </td>
+              
               <td align="center" width="25%" class="clock_icon">
                 <div onclick="ClockinPool();" class="icon icon-shape bg-white text-white rounded-circle shadow">
                   <input type="hidden" class="selesai" value="0">
@@ -234,12 +248,13 @@
           <table border="0" align="center" width="100%">
             <tr>
               <td align="center" width="25%">
-                <div id="" class="icon icon-shape {{ $bgptc }} text-white rounded-circle shadow">
+                <div id="{{ $aksiptc }}" class="icon icon-shape {{ $bgptc }} text-white rounded-circle shadow">
                     <i class="fas fa-check-circle" style="color: {{ $iconcolorptc }}"></i>
                 </div>
               </td>
+              @if(!$getdriving)
               <td align="center" width="25%">
-                <div id="clockin" class="icon icon-shape {{ $bgdrive }} text-white rounded-circle shadow">
+                <div id="{{ $aksidrive }}" class="icon icon-shape {{ $bgdrive }} text-white rounded-circle shadow">
                     <i class="fas fa-building" style="color: {{ $iconcolordrive }}"></i>
                     <input type="hidden" value="0">
                 </div>
@@ -248,8 +263,35 @@
                 <div id="pilihmobil" class="icon icon-shape {{ $bgpilih }} text-white rounded-circle shadow">
                     <i class="fas fa-car" style="color: {{ $iconcolorpilih }}"></i>
                 </div>
-                
               </td>
+              @else 
+                @if($getdriving->km_akhir == null)
+                  <td align="center" width="25%">
+                    <div id="driveout" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                        <i class="fas fa-building" style="color: #0166b5;"></i>
+                        <input type="hidden" value="0">
+                    </div>
+                  </td>
+                  <td align="center" width="25%">
+                    <div id="nopilihmobil" class="icon icon-shape {{ $bgpilih }} text-white rounded-circle shadow">
+                        <i class="fas fa-car" style="color: {{ $iconcolorpilih }}"></i>
+                    </div>
+                  </td>
+                @else
+                  <td align="center" width="25%">
+                    <div id="{{ $aksidrive }}" class="icon icon-shape {{ $bgdrive }} text-white rounded-circle shadow">
+                        <i class="fas fa-building" style="color: {{ $iconcolordrive }}"></i>
+                        <input type="hidden" value="0">
+                    </div>
+                  </td>
+                  <td align="center" width="25%">
+                    <div id="pilihmobil" class="icon icon-shape {{ $bgpilih }} text-white rounded-circle shadow">
+                        <i class="fas fa-car" style="color: {{ $iconcolorpilih }}"></i>
+                    </div>
+                  </td>
+                @endif
+
+              @endif
             </tr>
             <tr>
                <td height="10px" colspan="7"></td> 
@@ -259,9 +301,22 @@
               <td align="center">
                 <h6 class="text-uppercase ls-1 mb-1" style=" color: {{ $textcolorptc }}">Pre-Trip Check</h6>
               </td>
+              @if(!$getdriving)
               <td align="center" id="clock_desc">
                 <h6 class="text-uppercase ls-1 mb-1" style=" color: {{ $textcolordrive }}">Drive In</h6>
               </td>
+              @else 
+                @if($getdriving->km_akhir == null)
+                  <td align="center" id="clock_desc">
+                    <h6 class="text-uppercase ls-1 mb-1" style=" color: #ffffff;">Drive Out</h6>
+                  </td>
+                @else
+                  <td align="center" id="clock_desc">
+                    <h6 class="text-uppercase ls-1 mb-1" style=" color: {{ $textcolordrive }}">Drive In</h6>
+                  </td>
+                @endif
+
+              @endif
               <td align="center">
                 <h6 class="text-uppercase ls-1 mb-1" style=" color: {{ $textcolorpilih }}">Pilih Mobil</h6>
               </td>
@@ -505,10 +560,7 @@
           </tr>
           <tr height="10px">
             <td colspan="4"></td>
-          </tr>
-          
-          
-          
+          </tr>     
         </table>
       </div>
     </div>
@@ -523,7 +575,9 @@
         <table width="100%">
           <tr>
             <td><h5 class="text-uppercase text-white">INFO KENDARAAN</h5></td>
+            @if($getdrivers->driver_type == '1')
             <td align="right"><button id="ganti" class="btn btn-sm btn-primary"><i class="fa fa-car"></i>  Ganti Mobil</button></td>
+            @endif
           </tr>
         </table>
       </div>

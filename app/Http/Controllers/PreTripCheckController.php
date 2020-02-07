@@ -716,6 +716,7 @@ class PreTripCheckController extends Controller
 
                 $validate = Pretrip_Check::where([
                     ['user_id', '=', $request->user_id],
+                    ['unit_id', '=', $drivers->unit_id],
                     ['date', '=', $harini],
                     ['status', '=', 'SUBMITED'],
                 ])
@@ -735,6 +736,7 @@ class PreTripCheckController extends Controller
 
                 $validate = Pretrip_Check::where([
                     ['user_id', '=', $request->user_id],
+                    ['unit_id', '=', $drivers->unit_id],
                     ['date', '=', $kemarin],
                     ['status', '=', 'SUBMITED'],
                 ])

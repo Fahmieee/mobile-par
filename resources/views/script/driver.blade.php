@@ -919,6 +919,187 @@
 
         });
 
+    });
+
+    var table = "";
+    $(function() {
+        table = $('.datatables').DataTable({
+            pageLength: 5,
+            processing: true,
+            serverSide: true,
+            columnDefs: [
+                {
+                    "targets": [ 0 ],
+                    "visible": false
+                }
+            ],
+            order: [[ 0, 'desc' ]],
+            ajax:{
+                 url: "{{ route('getunits') }}",
+                 dataType: "json",
+                 type: "GET",
+            },
+            columns: [
+                { data: 'no_police', name: 'no_police' },
+                { 
+                    render: function ( data, type, row ) {
+                        return '<div class="card shadow mobil" id="aksi_'+row.id+'" onclick="Pilih('+row.id+')"><div class="card-body"><table width="100%"><tr style="background-color: transparent;"><td width="20%" rowspan="3"><div class="icon icon-shape bg-blue-par2 text-white rounded-circle shadow"><i class="fas fa-car" style="color: #ffffff;font-size= 10px"></i></div></td><td><b><div style="font-size: 15px">'+row.no_police+'</div></b><div style="font-size: 10px">'+row.merk+' '+row.model+' | '+row.years+'</div></td></tr></table></div></div></div>';
+                    }
+                }
+            ]
+        });
+    });
+
+    $('#pilihmobil').on('click', function () {
+
+        $('#pilih_mobil').modal('show');
+    });
+
+    $('#nopilihmobil').on('click', function () {
+
+        swal({
+            title: "Tidak Bisa Pilih!",
+            text: "Anda Sudah Drive in",
+            icon: "error",
+            buttons: false,
+            timer: 2000,
+        });
+    });
+
+    function Pilih(id){
+
+        $('.mobil').attr("class","card shadow mobil bg-white");
+        $('#aksi_'+id).attr("class","card shadow bg-success mobil");
+        $('#unit').val(id);
+
+    }
+
+    function Memilih(){
+
+        $('#yakinpilih').modal('show');
+
+    }
+
+    $('#yakin_memilih').on('click', function () {
+
+        $('#yakinpilih').modal('hide');
+        $('#pilih_mobil').modal('hide');
+        $('.loading').attr('style','display: block');
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('pilihmobil') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'unit_id': $('#unit').val(),
+                
+            },
+            success: function(data) {
+
+                swal({
+                    title: "Berhasil!",
+                    text: "Anda Telah Memilih Mobil",
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                });
+
+                setTimeout(function(){ window.location.reload() }, 1500);
+
+            }
+
+        });
+
+
+    });
+
+    $('#drivein').on('click', function () {
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('validasidrivein') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                
+            },
+            success: function(data) {
+
+                if(data.notif == '0'){
+
+                    swal({
+                        title: "Error!",
+                        text: "Lakukan PTC Terlebih Dahulu!",
+                        icon: "success",
+                        buttons: false,
+                        timer: 2000,
+                    });
+
+                } else {
+
+                    $('#unitdrivein').val(data.unit);
+
+                    $('#drivein_modal').modal('show');
+
+                }
+
+
+            }
+        });
+
+    });
+
+    $('#drivein_submit').on('click', function () {
+
+        $('.loading').attr('style','display: block');
+        $('#drivein_modal').modal('hide');
+        var empty = false;
+        $('input.drivein').each(function() {
+            if ($(this).val() == '') {
+                empty = true;
+            }
+        });
+        if (empty) {
+
+          swal({
+                title: "Warning!!",
+                text: "Harap isi Isian yang Tersedia!",
+                icon: "error",
+                buttons: false,
+                timer: 2000,
+            });
+
+        } else {
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('submitdrivein') }}",
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                    'km_awal': $('#kilometer').val(),
+                    
+                },
+                success: function(data) {
+
+                    swal({
+                        title: "Berhasil!",
+                        text: "Anda Berhasil Drive in",
+                        icon: "success",
+                        buttons: false,
+                        timer: 2000,
+                    });
+
+                setTimeout(function(){ window.location.reload() }, 1500);
+
+                }
+
+            });
+
+        }
+
+    });
+
+    $('#driveout').on('click', function () {
+
 
     });
 

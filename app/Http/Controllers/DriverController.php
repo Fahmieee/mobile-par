@@ -12,6 +12,7 @@ use App\Pairing;
 use App\Lembur;
 use App\DocDriver;
 use App\DocUnit;
+use App\Driving;
 use App\Trainings;
 use App\Clocks;
 use App\Pretrip_Check;
@@ -237,6 +238,80 @@ class DriverController extends Controller
             }
             
         }
+
+    }
+
+    public function pilihmobil(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+
+        $user = Auth::user();
+
+        $updatess = Drivers::where(['driver_id'=>$user->id])
+        ->update(['unit_id'=>$request->unit_id]);
+
+        return response()->json($updatess);
+
+
+    }
+
+    public function validasidrivein(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $hariini = date('Y-m-d');
+
+        $user = Auth::user();
+
+        $driivers = Drivers::select("drivers.unit_id","units.no_police")
+        ->leftJoin("units", "drivers.unit_id", "=", "units.id")
+        ->where("driver_id", $user->id)
+        ->first();
+
+        $ptcada = Pretrip_Check::where([
+            ['user_id', '=', $user->id],
+            ['unit_id', '=', $driivers->unit_id],
+            ['date', '=', $hariini],
+        ])
+        ->count();
+
+        if($ptcada == '0'){
+            $data = '0';
+        } else {
+            $data = '1';
+        }
+
+        $arraydata = array(    
+            'unit' => $driivers->no_police,
+            'notif' => $data   
+        );
+
+        return response()->json($arraydata);
+
+    }
+
+    public function submitdrivein(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $hariini = date('Y-m-d');
+
+        $user = Auth::user();
+
+        $clocks = Clocks::where([
+            ['user_id', '=', $user->id],
+            ['clockin_date', '=', $hariini]
+        ])
+        ->first();
+
+        $driivers = Drivers::where("driver_id", $user->id)
+        ->first();
+
+        $savecar = new Driving();
+        $savecar->clock_id = $clocks->id;
+        $savecar->unit_id = $driivers->unit_id;
+        $savecar->km_awal = $request->km_awal;
+        $savecar->save();
+
+        return response()->json($savecar);
 
     }
 
