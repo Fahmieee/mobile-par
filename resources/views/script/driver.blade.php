@@ -462,32 +462,15 @@
 
                 } else {
 
-                    navigator.geolocation.getCurrentPosition(function (position) {  
-
-                        $.ajax({
-                            type: 'POST',
-                            url: "{{ route('KoordinatClockin') }}",
-                            data: {
-                                '_token': $('input[name=_token]').val(),
-                                'clockin_id': data.clockout_id,
-                                'type': 'clockout',
-                                'long': position.coords.latitude,
-                                'lat': position.coords.longitude
-                                },
-                            success: function(data) {
-
-                                swal({
-                                    title: "Berhasil",
-                                    text: "Clock Out Anda Berhasil!",
-                                    icon: "success",
-                                    buttons: false,
-                                    timer: 2000,
-                                });
-
-                                setTimeout(function(){ window.location.href = 'home'; }, 1500);
-                            }
-                        });   
+                    swal({
+                        title: "Berhasil",
+                        text: "Clock Out Anda Berhasil!",
+                        icon: "success",
+                        buttons: false,
+                        timer: 2000,
                     });
+
+                    setTimeout(function(){ window.location.href = 'home'; }, 1500);
                 }
 
             }
@@ -888,34 +871,15 @@
                 },
             success: function(data) {
 
-                navigator.geolocation.getCurrentPosition(function (position) {
-
-                    $.ajax({
-                        type: 'POST',
-                        url: "{{ route('KoordinatClockin') }}",
-                        data: {
-                            '_token': $('input[name=_token]').val(),
-                            'clockin_id': data.clockin_id,
-                            'type': 'clockin',
-                            'long': position.coords.latitude,
-                            'lat': position.coords.longitude
-                            },
-                        success: function(data) {
-
-                            swal({
-                                title: "Berhasil",
-                                text: "Clock In Anda Berhasil!",
-                                icon: "success",
-                                buttons: false,
-                                timer: 2000,
-                            });
-
-                            setTimeout(function(){ window.location.href = 'home'; }, 1500);
-
-                        }
-
-                    });
+                swal({
+                    title: "Berhasil",
+                    text: "Clock In Anda Berhasil!",
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
                 });
+
+                setTimeout(function(){ window.location.href = 'home'; }, 1500);
 
             }
 
