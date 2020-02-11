@@ -453,10 +453,12 @@
                     swal({
                         title: "Error!",
                         text: "Lakukan Drive Out Terlebih Dahulu!",
-                        icon: "success",
+                        icon: "error",
                         buttons: false,
                         timer: 2000,
                     });
+
+                    $('.loading').attr('style','display: none');
 
                 } else {
 
