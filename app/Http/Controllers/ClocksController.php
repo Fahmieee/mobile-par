@@ -357,7 +357,13 @@ class ClocksController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         $date = date('Y-m-d');
 
-        $dataunit = Units::all();
+        $user = Auth::user();
+
+        $dataunit = Units::where([
+            ['pemilik', '=', 'PAR'],
+            ['wilayah_id', '=', $user->wilayah_id],
+        ])
+        ->get();
 
         return Datatables::of($dataunit)->make(true);
     }
