@@ -20,32 +20,22 @@ class ImportController extends Controller
 
     	$rows = [
 
-	        ['ASLAHUDIN','023118','B 1525 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GSXJ0883531','2GD  C440036','MUHAMMAD DENIS','VP HR & GA PHE'],
-			['BUDIONO','023119','B 1558 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS9J0884282','2GD  C448146','UNTUNG BS','VP PRODUCTION ASSET MANAGEMENT PHE'],
-			['ALAMSYAH','023120','B 1723 SAP','Toyota','V','A/T','2500 cc','New camry','MR2BF3HK5K4000806','2AR2118348','AFIF SAIFUDIN','DIR. DEVELOPMENT PHE'],
-			['NOVRIWANTO','023121','B 1572 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS5J0885784','2GD  C460153','DERI SAFARI','CHIEF INTERNAL AUDITOR PHE'],
-			['ASEP JOHANA','023122','B 1579 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS9J0884251','2GD  C447575','RAHMAT WIJAYA','VP SUBSURFACE DEVELOPMENT PHE'],
-			['CASRONO','023124','B 1586 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS7J0885348','2GD  C456406','TATANG SURYANA','VP FINANCE & TREASURY PHE'],
-			['SAROJI','023126','B 1562 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS0J0883912','2GD  C444015','ARTONO','VP PRODUCTION & OPERATION PHE'],
-			['FAHMI FAJAR HARUNY','023127','B 1564 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS7J0883874','2GD  C443257','BAMBANG RUDI','VP ICT & DATA MANAGEMENT PHE'],
-			['HARUN ISKANDAR','023129','B 1560 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS3J0884262','2GD  C447883','ICEU CAHYANI','VP PPRM PHE'],
-			['HERFIAN NUR ANDRIANSYAH','023130','B 1549 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS3J0883967','2GD  C444432','TINA AMALIA','VP LEGAL PHE'],
-			['HERU HARIYADI','023131','B 1601 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS5J0884098','2GD  C445668','SLAMET SUSILO','VP PROJECT STRATEGIC DEV MANAGEMENT PHE'],
-			['JUMARI','023133','B 1527 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS8J0884242','2GD  C447247','IFKI SUKARYA','CORPORATE SECRETARY PHE'],
-			['MUHTADI','023136','B 1580 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS3J0884987','2GD  C452604','RIO DASMANTO','VP QHSSE PHE'],
-			['VIVIN BUDHI SAPUTRA','023137','B 1733 SAP','Toyota','V','A/T','2500 cc','New camry','MR2BF3HK3K4000786','2AR2110983','TAUFIK','DIR. OPERATION & PRODUCTION PHE'],
-			['SUTIYONO','023139','B 1706 SAP','Toyota','V','A/T','2500 cc','New camry','MR2BF3HK5K4000837','2AR2120314','ABDUL MUTALIB','DIR. EXPLORATION PHE'],
-			['SIHABUDIN','023140','B 1672 SAP','Toyota','V','A/T','2500 cc','New camry','MR2BF3HK2K4000813','2AR2116597','MEIDAWATI','PRESIDENT DIRECTOR PHE'],
-			['SUNJAYA','023141','B 1578 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS4J0883587','2GD  C440754','ADNAN','VP EXP OPERATION & ASSET MANAGEMENT PHE'],
-			['RUSLI LANDI BIN LANI','023143','B 1537 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS5J0887793','2GD  C476890','ARI SAMODRA','VP EXP SUBSURFACE, PLANNING & EVAL PHE'],
-			['NANA SURYANA','023144','B 1574 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS7J0883616','2GD  C440732','RATIH ESTI PRIHATINI','VP COMMERCIAL PHE'],
-			['AGUS RIYONO','023145','B 1531 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS9J0884072','2GD  C445833','IMAN BASTARI','VP SCM PHE'],
-			['EDI PRIYANTO','023146','B 1535 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS2J0884043','2GD  C445386','YOKE SYAMSIDAR','VP CONTROLLER PHE'],
-			['Agustinus Tarigan','023155','B 1543 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS6J0883574','2GD  C440286','ALFI RUSIN','GM PHE OSES '],
-			['Ratim Supriyanto','023156','B 1533 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS5J0883324','2GD  C438112','AKHMAD MIFTAH','GM PHE NSB'],
-			['Asep Jaenal Aripin','023162','B 1078 PJP','Toyota','V','A/T','2500 cc','New camry','MHFGB8GS6K0895323','2GDC549087','','GM PHKT'],
-			['NANANG WAHIDIN','023203','B 1601 SJY','Toyota','VRZ TRD LUXURY','A/T','2400 cc','FORTUNER','MHFGB8GS5J0884098','2GD  C445668','COSMAS','GM PHE ONWJ'],
-			['AKHMAD KHOLIJAN','023595','B 1675 SAP','Toyota','V','A/T','2500 cc','New camry','MR2BF3HK0K4000874','2AR2116560','SAID REZA PAHLEFI','DIR. FINANCE & BUSSINES SUPPORT PHE'],
+	        ['M. Zaenuri','022237','081210215220','Toyota','Fortuner','2017','B 1406 SJT','2022-09-07','','IRWAN PRIYASA','VP PROJECT LEGAL'],
+			['Tugiman','022460','081932920777','Toyota','Camry','2019','B 1442 SAQ','2025-01-16','','SUWAHYANTO','SVP PROJECT EXECUTION / MP2'],
+			['Galuh Setya Budi','022811','087877023165','Toyota','Fortuner','2019','B 2896 SJA','2024-10-19','','HERAGUNG UJIANTORO','VP UPSTREAM PERFORMANCE EVALUATION'],
+			['Nanang Kuswanto','020005','082113999001','Toyota','Fortuner','2019','B 2074 SJA','2024-10-19','','FERIYANI','VP REFINING BUSINESS DEVELOPMENT'],
+			['Ahmad Rizmi','023729','085715301814','Toyota','Fortuner','2017','B 1410 SJT','2024-11-11','','','VP SHIPPING OPERATION'],
+			['Amiruddin','023684','','Toyota','Fortuner','2017','B 1669 SJT','2022-10-02','2022-04-27','','VP Corporate Business Initiative Management'],
+			['Deni Kuswanto','021800','','Toyota','Innova','2019','B 2558 SIT','2024-11-21','','','Sr. Account Manager Bitumen Industry'],
+			['Eko Maryanto','023720','','Toyota','Innova','2019','B 2117 SIR','2024-11-01','2020-12-10','','RTC'],
+			['Hardiansyah','023662','089502196303','Toyota','Fortuner','2019','B 2906 SJA','2024-10-19','2021-01-05','','VP Project Leader Rokam Hulu'],
+			['Kristianto','023723','','Toyota','Fortuner','2017','B 1395 SJT','2022-09-07','2023-12-25','','VP STAKEHOLDER RELATIONS'],
+			['Muhsinudin','020775','085282400469','Toyota','Innova','2019','B 2187 SIR','2024-11-01','','','Account Manager Chemical Industry II'],
+			['Muslim','023602','081286258870','Toyota','Innova','2019','B 2926 SIQ','2024-11-02','2024-10-25','','Board Support'],
+			['Nurdin','023632','081298408835','Toyota','Fortuner','2019','B 2928 SJA','2024-10-19','','','CEO Advisor Office'],
+			['Parining Sabdo','023717','081314403552','Toyota','Fortuner','2019','B 2909 SJA','2024-10-17','2024-11-21','','VP URT'],
+			['Rianto Aftur Sobirin','023359','081285737499','Toyota','Alphard','2016','B 2209 SOJ','','2023-11-16','',''],
+			['Siswanto 2','023730','','Mercedez ','Benz','2017','B 1827 SAO','2023-02-24','','','Dir Keuangan'],
 		];
 
 		foreach ($rows as $data) {
@@ -53,21 +43,20 @@ class ImportController extends Controller
 			$nama = $data[0];
 			$nik = $data[1];
 			$merk = $data[3];
-			$mes = $data[6];
-			$model = $data[7];
-			$transmisi = $data[5];
-			$noplat = $data[2];
+			$mes = '2400 cc';
+			$model = $data[4];
+			$transmisi = 'A/T';
+			$noplat = $data[6];
 			$masaasuransi = '';
 			$masakeur = '';
-			$masastnk = '';
+			$masastnk = $data[7];
 			$jenissim = '';
-			$masasim = '';
-			$namauser = $data[10];
-			$jabatan = $data[11];
+			$masasim = $data[8];
+			$namauser = $data[9];
+			$jabatan = $data[10];
+			$tahun = $data[5];
 
-			$varian = $data[4];
-			$nokerangka = $data[8];
-			$nomesin = $data[9];
+			$varian = '';
 
 			$noplatspasi = str_replace(' ', '', $noplat);
 
@@ -88,23 +77,21 @@ class ImportController extends Controller
 			if(!$adaunit){
 
 				$units = new Units();
-				$units->wilayah_id = '43';
+				$units->wilayah_id = '42';
 		        $units->pemilik = 'PAR';
 		        $units->merk = $merk;
 		        $units->model = $model;
-		        $units->varian = $varian;
+		        $units->years = $tahun;
 		        $units->mes = $mes;
 		        $units->transmition = $transmisi;
 		        $units->no_police = $noplat;
 		        $units->mileage = '0';
-		        $units->chassis_number = $nokerangka;
-		        $units->machine_number = $nomesin;
 		        $units->save();
 
 		    } else {
 
 		    	$clocks = Units::where(['no_police'=>$noplat])
-                ->update(['merk'=>$merk, 'model'=>$model, 'varian'=>$varian, 'mes'=> $mes, 'transmition'=> $transmisi]);
+                ->update(['merk'=>$merk, 'model'=>$model, 'years'=>$tahun, 'mes'=> $mes, 'transmition'=> $transmisi]);
 		    }
 
 		    $jabs = Jabatan::where("jabatan_name",$jabatan)
@@ -118,7 +105,7 @@ class ImportController extends Controller
 		        $userclient = new Users();
 		        $userclient->jabatan_id = $jabs->id;
 		        $userclient->company_id = '2';
-		        $userclient->wilayah_id = '43';
+		        $userclient->wilayah_id = '42';
 		        $userclient->username = $noplatspasi;
 		        $userclient->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
 		        $userclient->first_name = $namauser;
@@ -140,7 +127,7 @@ class ImportController extends Controller
 			    $userdrivers = new Users();
 		        $userdrivers->jabatan_id = '1';
 		        $userdrivers->company_id = '1';
-		        $userdrivers->wilayah_id = '43';
+		        $userdrivers->wilayah_id = '42';
 		        $userdrivers->username = $nik;
 		        $userdrivers->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
 		        $userdrivers->first_name = $nama;
@@ -179,7 +166,7 @@ class ImportController extends Controller
 				$drive = new Drivers();
 		        $drive->driver_id = $drivers->id;
 		        $drive->unit_id = $unitss->id;
-		        $drive->korlap_id = '37';
+		        $drive->korlap_id = '419';
 		        $drive->user_id = $client->id;
 		        $drive->asmen_id = '90';
 		        $drive->manager_id = '91';
@@ -188,9 +175,87 @@ class ImportController extends Controller
 			} else {
 
 				$driverz = Drivers::where(['id'=>$adadriverss->id])
-                ->update(['driver_id'=>$drivers->id, 'unit_id'=>$unitss->id, 'korlap_id'=>'37', 'user_id' => $client->id]);
+                ->update(['driver_id'=>$drivers->id, 'unit_id'=>$unitss->id, 'korlap_id'=>'419', 'user_id' => $client->id]);
 
 			}
+
+			if($masasim != ''){
+
+	        	$adadocsim = DocDriver::where([
+	                ['user_id', '=', $drivers->id],
+	                ['document_id', '=', '1'],
+	            ])
+				->first();
+
+				if(!$adadocsim){
+
+					$masa = new DocDriver();
+			        $masa->user_id = $drivers->id;
+			        $masa->document_id = '1';
+			        $masa->exp_date = $masasim;
+			        $masa->save();
+
+				}
+
+	        }
+
+	        if($masastnk != ''){
+
+	        	$adadocstnk = DocUnit::where([
+	                ['unit_id', '=', $unitss->id],
+	                ['document_id', '=', '5'],
+	            ])
+				->first();
+
+				if(!$adadocstnk){
+
+					$masas = new DocUnit();
+			        $masas->unit_id = $unitss->id;
+			        $masas->document_id = '5';
+			        $masas->exp_date = $masastnk;
+			        $masas->save();
+
+				}
+	        }
+
+	        if($masaasuransi != ''){
+
+	        	$adadocasuransi = DocUnit::where([
+	                ['unit_id', '=', $unitss->id],
+	                ['document_id', '=', '3'],
+	            ])
+				->first();
+
+				if(!$adadocasuransi){
+
+					$masas = new DocUnit();
+			        $masas->unit_id = $unitss->id;
+			        $masas->document_id = '3';
+			        $masas->exp_date = $masaasuransi;
+			        $masas->save();
+
+				}
+	        }
+
+	        if($masakeur != ''){
+
+	        	$adadockeur = DocUnit::where([
+	                ['unit_id', '=', $unitss->id],
+	                ['document_id', '=', '4'],
+	            ])
+				->first();
+
+				if(!$adadockeur){
+
+		        	$masas = new DocUnit();
+			        $masas->unit_id = $unitss->id;
+			        $masas->document_id = '4';
+			        $masas->exp_date = $masakeur;
+			        $masas->save();
+
+			    }
+
+	        }
 
 		}
 
