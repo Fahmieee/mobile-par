@@ -20,22 +20,12 @@ class ImportController extends Controller
 
     	$rows = [
 
-	        ['M. Zaenuri','022237','081210215220','Toyota','Fortuner','2017','B 1406 SJT','2022-09-07','','IRWAN PRIYASA','VP PROJECT LEGAL'],
-			['Tugiman','022460','081932920777','Toyota','Camry','2019','B 1442 SAQ','2025-01-16','','SUWAHYANTO','SVP PROJECT EXECUTION / MP2'],
-			['Galuh Setya Budi','022811','087877023165','Toyota','Fortuner','2019','B 2896 SJA','2024-10-19','','HERAGUNG UJIANTORO','VP UPSTREAM PERFORMANCE EVALUATION'],
-			['Nanang Kuswanto','020005','082113999001','Toyota','Fortuner','2019','B 2074 SJA','2024-10-19','','FERIYANI','VP REFINING BUSINESS DEVELOPMENT'],
-			['Ahmad Rizmi','023729','085715301814','Toyota','Fortuner','2017','B 1410 SJT','2024-11-11','','','VP SHIPPING OPERATION'],
-			['Amiruddin','023684','','Toyota','Fortuner','2017','B 1669 SJT','2022-10-02','2022-04-27','','VP Corporate Business Initiative Management'],
-			['Deni Kuswanto','021800','','Toyota','Innova','2019','B 2558 SIT','2024-11-21','','','Sr. Account Manager Bitumen Industry'],
-			['Eko Maryanto','023720','','Toyota','Innova','2019','B 2117 SIR','2024-11-01','2020-12-10','','RTC'],
-			['Hardiansyah','023662','089502196303','Toyota','Fortuner','2019','B 2906 SJA','2024-10-19','2021-01-05','','VP Project Leader Rokam Hulu'],
-			['Kristianto','023723','','Toyota','Fortuner','2017','B 1395 SJT','2022-09-07','2023-12-25','','VP STAKEHOLDER RELATIONS'],
-			['Muhsinudin','020775','085282400469','Toyota','Innova','2019','B 2187 SIR','2024-11-01','','','Account Manager Chemical Industry II'],
-			['Muslim','023602','081286258870','Toyota','Innova','2019','B 2926 SIQ','2024-11-02','2024-10-25','','Board Support'],
-			['Nurdin','023632','081298408835','Toyota','Fortuner','2019','B 2928 SJA','2024-10-19','','','CEO Advisor Office'],
-			['Parining Sabdo','023717','081314403552','Toyota','Fortuner','2019','B 2909 SJA','2024-10-17','2024-11-21','','VP URT'],
-			['Rianto Aftur Sobirin','023359','081285737499','Toyota','Alphard','2016','B 2209 SOJ','','2023-11-16','',''],
-			['Siswanto 2','023730','','Mercedez ','Benz','2017','B 1827 SAO','2023-02-24','','','Dir Keuangan'],
+	        ['Dadan Hidayat','023407','081905479009','Toyota','Innova','2019','B 2119 SIR','2024-11-01','2021-08-09'],
+			['Harjito','023479','087836145608','Toyota','Innova','2019','B 2199 SIT','2024-11-13','2023-10-10'],
+			['Kiki Wahyudi','023664','','Toyota','Innova','2019','B 2113 SIR','2024-11-01',''],
+			['Mamad','023475','081280108579','Toyota','Innova','2019','B 2806 SIQ','2024-11-01','2023-10-11'],
+			['Priyanto','023663','082211225880','Toyota','Innova','2019','B 2318 SIT','2024-11-18','2024-10-25'],
+			['Saripan','023603','081296325004','Isuzu','Elf NHR','2017','B 7841 SDA','2022-10-05','2020-02-07'],
 		];
 
 		foreach ($rows as $data) {
@@ -52,8 +42,8 @@ class ImportController extends Controller
 			$masastnk = $data[7];
 			$jenissim = '';
 			$masasim = $data[8];
-			$namauser = $data[9];
-			$jabatan = $data[10];
+			$namauser = '';
+			$jabatan = '';
 			$tahun = $data[5];
 
 			$varian = '';
@@ -94,30 +84,6 @@ class ImportController extends Controller
                 ->update(['merk'=>$merk, 'model'=>$model, 'years'=>$tahun, 'mes'=> $mes, 'transmition'=> $transmisi]);
 		    }
 
-		    $jabs = Jabatan::where("jabatan_name",$jabatan)
-			->first();
-
-			$adaclient = Users::where("username",$noplatspasi)
-			->first();
-
-			if(!$adaclient){
-
-		        $userclient = new Users();
-		        $userclient->jabatan_id = $jabs->id;
-		        $userclient->company_id = '2';
-		        $userclient->wilayah_id = '42';
-		        $userclient->username = $noplatspasi;
-		        $userclient->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
-		        $userclient->first_name = $namauser;
-		        $userclient->flag_pass = '0';
-		        $userclient->flag_prof = '0';
-		        $userclient->save();
-
-		        $roleclients = new Role();
-		        $roleclients->user_id = $userclient->id;
-		        $roleclients->role_id = '3';
-		        $roleclients->save();
-		    }
 
 		    $adadrivers = Users::where("username",$nik)
 			->first();
@@ -131,7 +97,7 @@ class ImportController extends Controller
 		        $userdrivers->username = $nik;
 		        $userdrivers->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
 		        $userdrivers->first_name = $nama;
-		        $userdrivers->driver_type = '1';
+		        $userdrivers->driver_type = '2';
 		        $userdrivers->nik = $nik;
 		        $userdrivers->flag_pass = '0';
 		        $userdrivers->flag_prof = '0';
@@ -145,7 +111,7 @@ class ImportController extends Controller
 		    } else {
 
 		    	$userdrivers = Users::where(['username'=>$nik])
-                ->update(['driver_type'=>'1']);
+                ->update(['driver_type'=>'2']);
 
 		    }
 
@@ -155,9 +121,6 @@ class ImportController extends Controller
 			$unitss = Units::where("no_police",$noplat)
 			->first();
 
-			$client = Users::where("username",$noplatspasi)
-			->first();
-
 			$adadriverss = Drivers::where("driver_id",$drivers->id)
 			->first();
 
@@ -165,9 +128,7 @@ class ImportController extends Controller
 
 				$drive = new Drivers();
 		        $drive->driver_id = $drivers->id;
-		        $drive->unit_id = $unitss->id;
-		        $drive->korlap_id = '419';
-		        $drive->user_id = $client->id;
+		        $drive->korlap_id = '168';
 		        $drive->asmen_id = '90';
 		        $drive->manager_id = '91';
 		        $drive->save();
@@ -175,7 +136,7 @@ class ImportController extends Controller
 			} else {
 
 				$driverz = Drivers::where(['id'=>$adadriverss->id])
-                ->update(['driver_id'=>$drivers->id, 'unit_id'=>$unitss->id, 'korlap_id'=>'419', 'user_id' => $client->id]);
+                ->update(['driver_id'=>$drivers->id, 'korlap_id'=>'168']);
 
 			}
 
