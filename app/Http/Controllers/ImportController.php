@@ -11,6 +11,7 @@ use App\Jabatan;
 use App\Drivers;
 use App\DocDriver;
 use App\DocUnit;
+use App\UnitDrivers;
 
 class ImportController extends Controller
 {
@@ -221,6 +222,38 @@ class ImportController extends Controller
 		}
 
 		return view('import.index', compact('rows'));
+
+    }
+
+    public function tambahan()
+    {
+    	date_default_timezone_set('Asia/Jakarta');
+    	
+    	$drivers = Drivers::all();
+
+    	foreach($drivers as $driver){
+
+    		if($driver->unit_id != null){
+
+    			$driverada = UnitDrivers::where([
+	                ['unit_id', '=', $driver->unit_id],
+	                ['user_id', '=', $driver->driver_id],
+	            ])
+	            ->first();	
+
+	            if(!$driverada){
+
+	            	$masas = new UnitDrivers();
+			        $masas->unit_id = $driver->unit_id;
+			        $masas->user_id = $driver->driver_id;
+			        $masas->save();
+	            }
+
+    		}
+    		
+
+
+    	}
 
     }
 }
