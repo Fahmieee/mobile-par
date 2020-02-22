@@ -21,13 +21,15 @@ class ImportController extends Controller
 
     	$rows = [
 
-	        ['Dede Fahrurozi','020391','081219229447','Toyota','Innova','G Gasoline','2019','B 2159 SIR',''],
-			['Riyan Saeputra','021881','081370181227','Toyota','Innova','G Gasoline','2019','B 2125 SIR','2024-11-01'],
-			['Ayanil','020672','0817876928','Toyota','Innova','G Gasoline','2019','B 2173 SIR',''],
-			['Wahyu Fadilah','020392','08121845948','Toyota','New Innova','G','2019','B 2808 SIQ','2024-11-01'],
-			['Ahmad Fuad','020399','081219229447','Toyota','New Innova','G','2019','B 2125 SIR','2024-11-01'],
-			['Dadang','020401','085719488191','Toyota','New Innova','G','2019','B 2159 SIR','2024-11-01'],
-		];
+	        ['Mulyadi','023488','','Toyota','Innova','G','2019','B 2183 SIR','2024-11-01','','Sr. Account Manager Polymer Industry'],
+			['M. Zaenuri','022237','081210215220','Toyota','Fortuner','VRZ Diesel','2017','B 1406 SJT','2022-09-07','IRWAN PRIYASA','VP PROJECT LEGAL'],
+			['Sutrisno','022426','082249101077','Toyota','Camry','V','2017','B 1209 SAO','','',''],
+			['Noval Setya Pramana','020797','087776060932','Toyota','Fortuner','VRZ Diesel','2017','B 1679 SJT','','',''],
+			['M Luthfi Yuda','020819','085725870966','Toyota','Fortuner','VRZ Diesel','2017','B 1691 SJT','','',''],
+			['Supriyadi','020752','081290806578','Toyota','Fortuner','VRZ Diesel','2019','B 2961 SJA','','',''],
+			['Edi Santoso','023676','081285179362','Toyota','Fortuner','VRZ Diesel','2019','B 2881 SJA','','',''],
+			['Yunus 1','020682','081386113247','Toyota','Innova','G','2019','B 2928 SIQ','2024-11-02','',''],
+					];
 
 		foreach ($rows as $data) {
 
@@ -43,8 +45,8 @@ class ImportController extends Controller
 			$masastnk = $data[8];
 			$jenissim = '';
 			$masasim = '';
-			$namauser = '';
-			$jabatan = '';
+			$namauser = $data[9];
+			$jabatan = $data[10];
 			$tahun = $data[6];
 
 			$varian = $data[5];
@@ -54,16 +56,41 @@ class ImportController extends Controller
 			$adaunit = Units::where("no_police",$noplat)
 			->first();
 
-			// $adajabatan = Jabatan::where("jabatan_name",$jabatan)
-			// ->first();
+			$adajabatan = Jabatan::where("jabatan_name",$jabatan)
+			->first();
 
-			// if(!$adajabatan){
+			if(!$adajabatan){
 
-	  //       	$jabatans = new Jabatan();
-		 //        $jabatans->jabatan_name = $jabatan;
-		 //        $jabatans->save();
+	        	$jabatans = new Jabatan();
+		        $jabatans->jabatan_name = $jabatan;
+		        $jabatans->save();
 		        
-	  //       }
+	        }
+
+	        $jabs = Jabatan::where("jabatan_name",$jabatan)
+			->first();
+
+			$adaclient = Users::where("username",$noplatspasi)
+			->first();
+
+			if(!$adaclient){
+
+		        $userclient = new Users();
+		        $userclient->jabatan_id = $jabs->id;
+		        $userclient->company_id = '2';
+		        $userclient->wilayah_id = '42';
+		        $userclient->username = $noplatspasi;
+		        $userclient->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
+		        $userclient->first_name = $namauser;
+		        $userclient->flag_pass = '0';
+		        $userclient->flag_prof = '0';
+		        $userclient->save();
+
+		        $roleclients = new Role();
+		        $roleclients->user_id = $userclient->id;
+		        $roleclients->role_id = '3';
+		        $roleclients->save();
+		    }
 
 			if(!$adaunit){
 
@@ -98,7 +125,7 @@ class ImportController extends Controller
 		        $userdrivers->username = $nik;
 		        $userdrivers->password = '$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6';
 		        $userdrivers->first_name = $nama;
-		        $userdrivers->driver_type = '2';
+		        $userdrivers->driver_type = '1';
 		        $userdrivers->nik = $nik;
 		        $userdrivers->flag_pass = '0';
 		        $userdrivers->flag_prof = '0';
@@ -119,6 +146,9 @@ class ImportController extends Controller
 			$drivers = Users::where("username",$nik)
 			->first();
 
+			$clients = Users::where("username",$noplatspasi)
+			->first();
+
 			$unitss = Units::where("no_police",$noplat)
 			->first();
 
@@ -128,6 +158,8 @@ class ImportController extends Controller
 			if(!$adadriverss){
 
 				$drive = new Drivers();
+				$drive->unit_id = $unitss->id;
+				$drive->user_id = $clients->id;
 		        $drive->driver_id = $drivers->id;
 		        $drive->korlap_id = '168';
 		        $drive->asmen_id = '90';
