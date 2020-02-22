@@ -28,7 +28,6 @@ class ImportController extends Controller
 			['M Luthfi Yuda','020819','085725870966','Toyota','Fortuner','VRZ Diesel','2017','B 1691 SJT','','',''],
 			['Supriyadi','020752','081290806578','Toyota','Fortuner','VRZ Diesel','2019','B 2961 SJA','','',''],
 			['Edi Santoso','023676','081285179362','Toyota','Fortuner','VRZ Diesel','2019','B 2881 SJA','','',''],
-			['Yunus 1','020682','081386113247','Toyota','Innova','G','2019','B 2928 SIQ','2024-11-02','',''],
 					];
 
 		foreach ($rows as $data) {
