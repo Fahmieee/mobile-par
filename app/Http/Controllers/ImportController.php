@@ -21,12 +21,12 @@ class ImportController extends Controller
 
     	$rows = [
 
-	        ['Dadan Hidayat','023407','081905479009','Toyota','Innova','2019','B 2119 SIR','2024-11-01','2021-08-09'],
-			['Harjito','023479','087836145608','Toyota','Innova','2019','B 2199 SIT','2024-11-13','2023-10-10'],
-			['Kiki Wahyudi','023664','','Toyota','Innova','2019','B 2113 SIR','2024-11-01',''],
-			['Mamad','023475','081280108579','Toyota','Innova','2019','B 2806 SIQ','2024-11-01','2023-10-11'],
-			['Priyanto','023663','082211225880','Toyota','Innova','2019','B 2318 SIT','2024-11-18','2024-10-25'],
-			['Saripan','023603','081296325004','Isuzu','Elf NHR','2017','B 7841 SDA','2022-10-05','2020-02-07'],
+	        ['Dede Fahrurozi','020391','081219229447','Toyota','Innova','G Gasoline','2019','B 2159 SIR',''],
+			['Riyan Saeputra','021881','081370181227','Toyota','Innova','G Gasoline','2019','B 2125 SIR','2024-11-01'],
+			['Ayanil','020672','0817876928','Toyota','Innova','G Gasoline','2019','B 2173 SIR',''],
+			['Wahyu Fadilah','020392','08121845948','Toyota','New Innova','G','2019','B 2808 SIQ','2024-11-01'],
+			['Ahmad Fuad','020399','081219229447','Toyota','New Innova','G','2019','B 2125 SIR','2024-11-01'],
+			['Dadang','020401','085719488191','Toyota','New Innova','G','2019','B 2159 SIR','2024-11-01'],
 		];
 
 		foreach ($rows as $data) {
@@ -34,36 +34,36 @@ class ImportController extends Controller
 			$nama = $data[0];
 			$nik = $data[1];
 			$merk = $data[3];
-			$mes = '2400 cc';
+			$mes = '2000 cc';
 			$model = $data[4];
 			$transmisi = 'A/T';
-			$noplat = $data[6];
+			$noplat = $data[7];
 			$masaasuransi = '';
 			$masakeur = '';
-			$masastnk = $data[7];
+			$masastnk = $data[8];
 			$jenissim = '';
-			$masasim = $data[8];
+			$masasim = '';
 			$namauser = '';
 			$jabatan = '';
-			$tahun = $data[5];
+			$tahun = $data[6];
 
-			$varian = '';
+			$varian = $data[5];
 
 			$noplatspasi = str_replace(' ', '', $noplat);
 
 			$adaunit = Units::where("no_police",$noplat)
 			->first();
 
-			$adajabatan = Jabatan::where("jabatan_name",$jabatan)
-			->first();
+			// $adajabatan = Jabatan::where("jabatan_name",$jabatan)
+			// ->first();
 
-			if(!$adajabatan){
+			// if(!$adajabatan){
 
-	        	$jabatans = new Jabatan();
-		        $jabatans->jabatan_name = $jabatan;
-		        $jabatans->save();
+	  //       	$jabatans = new Jabatan();
+		 //        $jabatans->jabatan_name = $jabatan;
+		 //        $jabatans->save();
 		        
-	        }
+	  //       }
 
 			if(!$adaunit){
 
@@ -112,7 +112,7 @@ class ImportController extends Controller
 		    } else {
 
 		    	$userdrivers = Users::where(['username'=>$nik])
-                ->update(['driver_type'=>'2']);
+                ->update(['driver_type'=>'2','first_name'=>$nama, 'password'=>$password, 'flag_pass'=>'0', 'flag_prof'=>'0']);
 
 		    }
 
@@ -218,6 +218,21 @@ class ImportController extends Controller
 			    }
 
 	        }
+
+	        $driverada = UnitDrivers::where([
+                ['unit_id', '=', $unitss->id],
+                ['user_id', '=', $drivers->id],
+            ])
+            ->first();	
+
+            if(!$driverada){
+
+		        $masas = new UnitDrivers();
+		        $masas->unit_id = $unitss->id;
+		        $masas->user_id = $drivers->id;
+		        $masas->save();
+
+		    }
 
 		}
 
