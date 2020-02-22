@@ -112,7 +112,7 @@ class ImportController extends Controller
 		    } else {
 
 		    	$userdrivers = Users::where(['username'=>$nik])
-                ->update(['driver_type'=>'2','first_name'=>$nama, 'password'=>$password, 'flag_pass'=>'0', 'flag_prof'=>'0']);
+                ->update(['driver_type'=>'2','first_name'=>$nama, 'password'=>'$2y$10$0Jp/X.QKiELqwUDrg.YghOPFsxRZqDXRu31/sYLupClkXXBmiWGB6', 'flag_pass'=>'0', 'flag_prof'=>'0']);
 
 		    }
 
