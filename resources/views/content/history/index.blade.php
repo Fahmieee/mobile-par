@@ -18,6 +18,8 @@
             <div class="ct-page-title">
               <h1 class="ct-title" id="content">Riwayat Perjalanan</h1><span class="badge badge-primary">{{ $date }}</span>
             </div>
+            
+            <input type="search" id="cari" class="form-control" placeholder="Cari Perjalanan" >
             <br>
             <table class="table align-items-center datatables" border="0">
               <thead class="thead-light">

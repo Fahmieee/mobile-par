@@ -3,6 +3,7 @@
 	var table = "";
     $(function() {
         table = $('.datatables').DataTable({
+        	dom: 't',
             pageLength: 15,
             processing: true,
             serverSide: true,
@@ -40,7 +41,13 @@
                 }
             ]
         });
+
+        $('#cari').keyup(function(){
+            table.search($(this).val()).draw() ;
+        });
     });
+
+
 
 	function DetailHistory(id){
 
