@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	});
 
 	Route::get('dcu', 'DCUController@index');
+	Route::get('dcu/get', 'DCUController@get')->name('getdcu');
 
 	Route::get('driver', 'DriverController@index');
 	Route::post('driver/terimapair', 'DriverController@terimapair')->name('TerimaPair');

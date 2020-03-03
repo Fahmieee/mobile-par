@@ -1,4 +1,29 @@
 @include('layout.contenthead')
+  <style>
+  #customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  #customers tr:hover {background-color: #ddd;}
+
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #2566AF;
+    color: white;
+  }
+</style>
   <div class="main-content">   
     <div class="container-fluid pb-4 pt-3 pt-md-8">
       <div class="row">
@@ -31,18 +56,33 @@
               </tr>
             </table>
             <br>
+            <input type="search" id="cari" class="form-control" placeholder="Cari DCU" ><br>
             <div class="card shadow">
               <div class="card-body-white">
                 <!-- Projects table -->
-                <table class="table align-items-center table-flush">
+                <!-- <table class="table align-items-center table-flush">
                   <thead class="thead-light">
                     <tr>
                       <th scope="col">Tanggal</th>
                       <th scope="col">Suhu</th>
                       <th scope="col">Tekanan Darah</th>
                     </tr>
-                  </thead>
-                  <tbody>
+                  </thead> -->
+
+                  <table id="customers" class="datatables" border="0">
+                    <thead>
+                      <tr>
+                          <th style="display: none;">Tanggal</th>
+                          <th align="center">Tanggal</th>
+                          <th align="center">Suhu</th>
+                          <th align="center">Darah</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                    </tbody>
+                  </table>
+                  <!-- <tbody>
                     @foreach ($getdcus as $getdcu)
                       @php
 
@@ -86,7 +126,7 @@
                       </tr>
 
                     @endforeach
-                  </tbody>
+                  </tbody> -->
                 </table>
               </div>
             </div>

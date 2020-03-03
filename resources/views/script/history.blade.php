@@ -4,7 +4,7 @@
     $(function() {
         table = $('.datatables').DataTable({
         	dom: 't',
-            pageLength: 15,
+            pageLength: 30,
             processing: true,
             serverSide: true,
             columnDefs: [
@@ -20,7 +20,7 @@
                  type: "GET",
             },
             columns: [
-                { data: 'date', name: 'date' },
+                { data: 'clockin_date', name: 'clockin_date' },
                 { 
                     render: function ( data, type, row ) {
 

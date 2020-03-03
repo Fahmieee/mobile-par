@@ -1,5 +1,80 @@
 <script type="text/javascript">
 
+    var table = "";
+    $(function() {
+        table = $('.datatables').DataTable({
+            dom: 't',
+            pageLength: 30,
+            processing: true,
+            serverSide: true,
+            columnDefs: [
+                {
+                    "targets": [ 0 ],
+                    "visible": false
+                }
+            ],
+            order: [[ 0, 'desc' ]],
+            ajax:{
+                 url: "{{ route('getdcu') }}",
+                 dataType: "json",
+                 type: "GET",
+            },
+            columns: [
+                { data: 'date', name: 'date' },
+                { data: 'dates', name: 'dates' },
+                { 
+                    render: function ( data, type, row ) {
+
+                        if(row.suhu > 36){
+
+                            var btn = "btn-danger";
+
+                        } else {
+
+                            var btn = "btn-success";
+
+                        }
+
+                        return "<button type='button' class='btn btn-sm "+btn+"'>"+row.suhu+" C</button";
+                    }
+                },
+                { 
+                    render: function ( data, type, row ) {
+
+                        var res = row.darah.split("/");
+
+                        var depandarah = res[0];
+                        var belakangdarah = res[1];
+                        var btndarah = "";
+
+                      if (depandarah < 120 && belakangdarah < 80){
+
+                          btndarah = "btn-success";
+
+                      } else if (depandarah >= 120 && depandarah < 140 || belakangdarah >= 80 && belakangdarah < 90){
+
+                          btndarah = "btn-yellow";
+
+                      } else if (depandarah >= 140 && depandarah < 160 || belakangdarah >= 90 && belakangdarah < 100){
+
+                          btndarah = "btn-warning";
+
+                      } else if (depandarah >= 160 || belakangdarah >= 100){
+
+                          btndarah = "btn-danger";
+                      }
+
+                        return "<button type='button' class='btn btn-sm "+btndarah+"'>"+row.darah+" mmHg</button";
+                    }
+                },
+            ]
+        });
+
+        $('#cari').keyup(function(){
+            table.search($(this).val()).draw() ;
+        });
+    });
+
 	$('#dcu').on('click', function () {
 
         $.ajax({
