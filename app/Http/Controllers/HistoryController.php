@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Clocks;
 use App\Pretrip_Check;
 use App\MedicalCheckup;
+use Auth;
+use DataTables;
+use DB;
 
 class HistoryController extends Controller
 {
@@ -19,45 +22,41 @@ class HistoryController extends Controller
 
     }
 
-    public function GetData(Request $request)
+    public function gets(Request $request)
     {
-        $gethistory = Clocks::select("clockin_date","id")
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d');
+
+        $user = Auth::user();
+
+        $gethistory = Clocks::select("clocks.*", DB::raw('DATE_FORMAT(clocks.clockin_date, "%d %b %Y") as date'))
         ->where([
-            ['user_id', '=', $request->user_id],
+            ['user_id', '=', $user->id],
             ['clockout_time', '!=', null],
         ])
-        ->orderBy('id', 'desc')
         ->get();
 
-        return response()->json($gethistory);
+        return Datatables::of($gethistory)->make(true);
     }
 
     public function detail(Request $request)
-    {
-    	$getdate = Clocks::select("clockin_date")
-    	->where([
-            ['user_id', '=', $request->user_id],
-            ['id', '=', $request->id],
-        ])
-        ->first();
+    {   
+        $user = Auth::user();
 
-    	$getclocks = Clocks::where([
-            ['user_id', '=', $request->user_id],
-            ['clockin_date', '=', $getdate->clockin_date],
-        ])
+    	$getclocks = Clocks::where('id', '=', $request->id)
         ->first();
 
         $tripcheck = Pretrip_Check::select("time")
         ->where([
-            ['user_id', '=', $request->user_id],
-            ['date', '=', $getdate->date],
+            ['user_id', '=', $user->id],
+            ['date', '=', $getclocks->clockin_date],
         ])
         ->first();
 
         $getdcu = MedicalCheckup::select("time")
         ->where([
-            ['user_id', '=', $request->user_id],
-            ['date', '=', $getdate->date],
+            ['user_id', '=', $user->id],
+            ['date', '=', $getclocks->clockin_date],
         ])
         ->first();
 

@@ -1,90 +1,46 @@
 <script type="text/javascript">
 
-	$(function() {
+	var table = "";
+    $(function() {
+        table = $('.datatables').DataTable({
+            pageLength: 15,
+            processing: true,
+            serverSide: true,
+            columnDefs: [
+                {
+                    "targets": [ 0 ],
+                    "visible": false
+                }
+            ],
+            order: [[ 0, 'desc' ]],
+            ajax:{
+                 url: "{{ route('gethistory') }}",
+                 dataType: "json",
+                 type: "GET",
+            },
+            columns: [
+                { data: 'date', name: 'date' },
+                { 
+                    render: function ( data, type, row ) {
 
-		$.ajax({
-            type: 'POST',
-            url: "{{ route('GetdataHistory') }}",
-            data: {
-                '_token': $('input[name=_token]').val(),
-                'user_id': $('#created_by').val()
-                },
-            success: function(data) {
+                    	var jumlahkm = parseInt(row.clockout_km) - parseInt(row.clockin_km);
 
-            	var content_data="";
-	            var no = -1;
+                    	const today = row.clockin_date+' '+row.clockin_time;
+						const endDate = row.clockout_date+' '+row.clockout_time;
+						var date1 = new Date(today);
+						var date2 = new Date(endDate);
 
-	            if (data.length == "0"){
+						var diffInSeconds = Math.abs(date2 - date1) / 1000;
 
-	            	content_data += "<div class='row'>";
-                	content_data += "<div class='col'>";
-                  	content_data += "<div class='card shadow'>";
-                    content_data += "<div class='card-header bg-white' align='center'>";
-                    content_data += "<h6>Anda Belum Memiliki Riwayat Perjalanan</h6>";
-                    content_data += "</div>";
-                    content_data += "</div>";
-                    content_data += "</div>";
-                    content_data += "</div>";
+						var hours = Math.floor(diffInSeconds / 60 / 60 % 24);
+						var minutes = Math.floor(diffInSeconds / 60 % 60);
 
-	            } else {
-
-		            $.each(data, function() {
-
-		                no++;
-		                var date = data[no]['clockin_date'];
-		                var id = data[no]['id']; 
-
-		                content_data += "<div class='row' onclick='DetailHistory("+id+")'>";
-	                	content_data += "<div class='col'>";
-	                  	content_data += "<div class='card shadow'>";
-	                    content_data += "<div class='card-header bg-white'>";
-		                content_data += "<table border='0' align='center' width='100%''>";
-	                    content_data += "<tr>";
-	                    content_data += "<td width='5%'>";
-	                    content_data += "<i class='fa fa-address-book' style='color: #01497f'></i></td>";
-	                    content_data += "<td width='30%' style='padding-top: 5px'><h6>"+date+"</h6></td>";
-	                    content_data += "<td width='5%'>";
-	                    content_data += "<i class='fa fa-car' style='color: #01497f'></i></td>";
-	                    content_data += "<td width='30%' id='waktu_"+id+"' style='padding-top: 5px'><h6>6 Jam 5 Menit</h6></td>";
-	                    content_data += "<td width='5%'>";
-	                    content_data += "<i class='fa fa-road' style='color: #01497f'></i></td>";
-	                    content_data += "<td width='20%' id='kilometer_"+id+"' style='padding-top: 5px'><h6>9011292</h6></td>";
-	                    content_data += "</tr>";
-	                    content_data += "</table>";
-	                    content_data += "</div>";
-	                    content_data += "<input type='hidden' value='0' id='val_"+id+"'>";
-	                    content_data += "<div class='card-body bg-blue-par' style='display: none;' id='details_"+id+"'>";
-	                    content_data += "</div>";
-	                    content_data += "</div>";
-	                    content_data += "</div>";
-	                    content_data += "</div><hr>";
-
-	                    $.ajax({
-				            type: 'POST',
-				            url: "{{ route('DetailRiwayatHistory') }}",
-				            data: {
-				                '_token': $('input[name=_token]').val(),
-				                'user_id': $('#created_by').val(),
-				                'id': id
-				                },
-				            success: function(data) {
-
-				            	$('#waktu_'+id+'').html('<h6>'+data.total_waktu+'</h6>');
-				            	$('#kilometer_'+id+'').html('<h6>'+data.total_jarak+' Km</h6>');
-
-				            }
-				        });
-
-
-		            });
-		        }
-
-            $('.muncul_data').html(content_data);
-
-            }
-        });   	
-
-	});
+                        return "<div class='row' onclick='DetailHistory("+row.id+")'><div class='col'><div class='card shadow'><div class='card-header bg-white'><table border='1' align='center' bordercolor='#e9ecef' width='100%'><tr><td width='5%' align='left' rowspan='2'><i class='fa fa-calendar' style='color: #01497f'></i></td><td width='30%' style='padding-top: 8px; padding-left: 4px;' align='left' rowspan='2'><h6>"+row.date+"</h6></td><td width='5%' align='left'><i class='fa fa-car' style='color: #01497f'></i></td><td width='30%' style='padding-top: 8px; padding-left: 4px;' align='left'><h6>"+hours+" Jam "+minutes+" Menit</h6></td></tr><tr><td width='5%' align='left'><i class='fa fa-road' style='color: #01497f'></i></td><td width='30%' style='padding-top: 8px; padding-left: 4px;' align='left'><h6>"+jumlahkm+" Km</h6></td></tr></table></div><input type='hidden' value='0' id='val_"+row.id+"'><div class='card-body' style='display: none;' id='details_"+row.id+"'></div></div></div></div>";
+                    }
+                }
+            ]
+        });
+    });
 
 	function DetailHistory(id){
 
@@ -130,53 +86,57 @@
 
 	            	}
 
-	            	content_datas += "<table border='0' align='center' width='100%'>";
-		            content_datas += "<tr>";
-		            content_datas += "<td><h6 class='text-white'>KM Awal</h6></td>";
-		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
-		            content_datas += "<td><h6 class='text-white'>"+data.clockin_jarak+"</h6></td>";
+	            	content_datas += "<table align='center' width='100%'>";
+	            	content_datas += "<tr class='border-bottom'>";
+	            	content_datas += "<td style='padding-left: 0px;' colspan='7'><b>Detail Perjalanan Anda</b></td>";
+	            	content_datas += "</tr>";
 
-		            content_datas += "<td width='10%'></td>";
+		            content_datas += "<tr class='border-bottom'>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>KM In</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>:</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>"+data.clockin_jarak+"</h6></td>";
 
-		            content_datas += "<td><h6 class='text-white'>KM Akhir</h6></td>";
-		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
-		            content_datas += "<td><h6 class='text-white'>"+data.clockout_jarak+"</h6></td>";
+		            content_datas += "<td class='border_left' style='padding-left: 0px; padding-right: 2px;' width='2%'>&nbsp;</td>";
+
+		            content_datas += "<td style='padding-left: 0px;'><h6>KM Out</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6> : </h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>"+data.clockout_jarak+"</h6></td>";
 		            content_datas += "</tr>";
 
-		            content_datas += "<tr>";
-		            content_datas += "<td><h6 class='text-white'>In Date</h6></td>";
-		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
-		            content_datas += "<td><h6 class='text-white'>"+data.clockin_date+"</h6></td>";
+		            content_datas += "<tr class='border-bottom'>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>In Date</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>:</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>"+data.clockin_date+"</h6></td>";
 
-		            content_datas += "<td width='10%'></td>";
+		            content_datas += "<td class='border_left' style='padding-left: 0px; padding-right: 2px;' width='2%'>&nbsp;</td>";
 
-		            content_datas += "<td><h6 class='text-white'>Out Date</h6></td>";
-		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
-		            content_datas += "<td><h6 class='text-white'>"+data.clockout_date+"</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>Out Date</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6> : </h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>"+data.clockout_date+"</h6></td>";
 		            content_datas += "</tr>";
 
-		            content_datas += "<tr>";
-		            content_datas += "<td><h6 class='text-white'>Clock-In</h6></td>";
-		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
-		            content_datas += "<td><h6 class='text-white'>"+clockins+"</h6></td>";
+		            content_datas += "<tr class='border-bottom'>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>In</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>:</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>"+clockins+"</h6></td>";
 
-		            content_datas += "<td width='10%'></td>";
+		            content_datas += "<td class='border_left' style='padding-left: 0px; padding-right: 2px;' width='2%'>&nbsp;</td>";
 
-		            content_datas += "<td><h6 class='text-white'>Clock-Out</h6></td>";
-		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
-		            content_datas += "<td><h6 class='text-white'>"+clockouts+"</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>Out</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>:</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>"+clockouts+"</h6></td>";
 		            content_datas += "</tr>";
 
-		            content_datas += "<tr>";
-		            content_datas += "<td><h6 class='text-white'>Trip Check</h6></td>";
-		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
-		            content_datas += "<td><h6 class='text-white'>"+data.pretripcheck+"</h6></td>";
+		            content_datas += "<tr class='border-bottom'>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>PTC</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>:</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>"+data.pretripcheck+"</h6></td>";
 
-		            content_datas += "<td width='10%'></td>";
+		            content_datas += "<td class='border_left' style='padding-left: 0px; padding-right: 2px;' width='2%'>&nbsp;</td>";
 
-		            content_datas += "<td><h6 class='text-white'>DCU</h6></td>";
-		            content_datas += "<td><h6 class='text-white'> : </h6></td>";
-		            content_datas += "<td><h6 class='text-white'>"+data.dcu+"</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>DCU</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>:</h6></td>";
+		            content_datas += "<td style='padding-left: 0px;'><h6>"+data.dcu+"</h6></td>";
 		            content_datas += "</tr>";
 		            content_datas += "</table>";
 

@@ -92,8 +92,8 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('medical_checkup/koordinat', 'MedicalCheckupController@koordinat')->name('KoordinatMedical');
 
 	Route::get('history', 'HistoryController@index');
-	Route::post('history/getdata', 'HistoryController@GetData')->name('GetdataHistory');
 	Route::post('history/detail', 'HistoryController@detail')->name('DetailRiwayatHistory');
+	Route::get('history/gets', 'HistoryController@gets')->name('gethistory');
 
 	Route::get('korlap', 'KorlapController@index');
 	Route::get('lihatdriver', 'KorlapController@lihatdriver');
