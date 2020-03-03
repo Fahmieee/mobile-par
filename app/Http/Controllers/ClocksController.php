@@ -298,6 +298,7 @@ class ClocksController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         $hari = date('Y-m-d');
         $time = date("H:i:s");
+        
 
         $user = Auth::user();
 
@@ -321,13 +322,17 @@ class ClocksController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         $hari = date('Y-m-d');
         $time = date("H:i:s");
+        $kemarin = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
 
         $user = Auth::user();
 
-        $clockterakhir = Clocks::where("user_id", $user->id)
+        $clockterakhir = Clocks::where([
+            ['user_id', '=', $user->id],
+            ['clockout_time', '=', null],
+        ])
         ->orderBy("id", "desc")
-        ->limit(1)
         ->first();
+
 
         $driving = Driving::where("clock_id", $clockterakhir->id)
         ->first();
@@ -403,6 +408,8 @@ class ClocksController extends Controller
             }
 
         }
+
+        dd($clockterakhir);
 
         $ClockId = array(    
             'clockout_id' => $clockterakhir->id,
