@@ -141,9 +141,9 @@ class ClocksController extends Controller
 
         $validatekemarin = Clocks::where([
             ['user_id', '=', $request->user_id],
-            ['clockin_date', '=', $kemarin],
             ['clockout_time', '=', null],
         ])
+        ->orderBy("clockin_date", "desc")
         ->first();
 
         $validatesekarang = Clocks::where([
@@ -342,6 +342,27 @@ class ClocksController extends Controller
 
             $notif = '1';
 
+            $jamkerja = JamKerja::first();
+
+            $bataskerja = strtotime($clockterakhir->clockin_date.' '.$jamkerja->jam_keluar);
+            $waktu = strtotime($hari.' '.$time);
+
+            if ($bataskerja < $waktu){
+
+                $diff  = $waktu - $bataskerja;
+                $jam   = floor($diff / (60 * 60));
+                $menit = $diff - $jam * (60 * 60);
+                $minutes = floor( $menit / 60 );
+
+                $unitkm = new Lembur();
+                $unitkm->clock_id = $clockterakhir->id;
+                $unitkm->month = date('m');
+                $unitkm->year = date('Y');
+                $unitkm->time = $jam.':'.$minutes.':00';
+                $unitkm->save();
+
+            }
+
         } else {
 
             if($driving->km_akhir != null){
@@ -353,6 +374,27 @@ class ClocksController extends Controller
                 ->update(['unit_id'=>NULL]);
 
                 $notif = '1';
+
+                $jamkerja = JamKerja::first();
+
+                $bataskerja = strtotime($clockterakhir->clockin_date.' '.$jamkerja->jam_keluar);
+                $waktu = strtotime($hari.' '.$time);
+
+                if ($bataskerja < $waktu){
+
+                    $diff  = $waktu - $bataskerja;
+                    $jam   = floor($diff / (60 * 60));
+                    $menit = $diff - $jam * (60 * 60);
+                    $minutes = floor( $menit / 60 );
+
+                    $unitkm = new Lembur();
+                    $unitkm->clock_id = $clockterakhir->id;
+                    $unitkm->month = date('m');
+                    $unitkm->year = date('Y');
+                    $unitkm->time = $jam.':'.$minutes.':00';
+                    $unitkm->save();
+
+                }
 
             } else {
 
