@@ -26,7 +26,6 @@ class HistoryController extends Controller
             ['user_id', '=', $request->user_id],
             ['clockout_time', '!=', null],
         ])
-        ->limit(10)
         ->orderBy('id', 'desc')
         ->get();
 
