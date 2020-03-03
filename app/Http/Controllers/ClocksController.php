@@ -71,8 +71,8 @@ class ClocksController extends Controller
         $validatekemarin = Clocks::where([
             ['user_id', '=', $request->user_id],
             ['clockout_time', '=', null],
+            ['clockin_date', '=', $kemarin],
         ])
-        ->orderBy("clockin_date","desc")
         ->first();
 
         $validatehariini = Clocks::where([
