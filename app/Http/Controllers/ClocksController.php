@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Clocks;
 use App\Drivers;
+use App\Driving;
 use App\Koordinat;
 use App\Units;
 use App\JamKerja;
@@ -69,9 +70,9 @@ class ClocksController extends Controller
 
         $validatekemarin = Clocks::where([
             ['user_id', '=', $request->user_id],
-            ['clockin_date', '=', $kemarin],
             ['clockout_time', '=', null],
         ])
+        ->orderBy("clockin_date","desc")
         ->first();
 
         $validatehariini = Clocks::where([
@@ -328,19 +329,36 @@ class ClocksController extends Controller
         ->limit(1)
         ->first();
 
-        $drivers = Drivers::where("driver_id",$user->id)
+        $driving = Driving::where("clock_id", $clockterakhir->id)
         ->first();
 
-        if($drivers->unit_id == null){
+        if(!$driving){
 
             $clocks = Clocks::where(['id'=>$clockterakhir->id])
             ->update(['clockout_date'=>$hari, 'clockout_time'=>$time, 'clockout_status'=> 'NOT APPROVED']);
+
+            $drives = Drivers::where(['driver_id'=>$user->id])
+            ->update(['unit_id'=>NULL]);
 
             $notif = '1';
 
         } else {
 
-            $notif = '0';
+            if($driving->km_akhir != null){
+
+                $clocks = Clocks::where(['id'=>$clockterakhir->id])
+                ->update(['clockout_date'=>$hari, 'clockout_time'=>$time, 'clockout_status'=> 'NOT APPROVED']);
+
+                $drives = Drivers::where(['driver_id'=>$user->id])
+                ->update(['unit_id'=>NULL]);
+
+                $notif = '1';
+
+            } else {
+
+                $notif = '0';
+
+            }
 
         }
 
