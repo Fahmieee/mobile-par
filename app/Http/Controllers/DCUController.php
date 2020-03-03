@@ -17,7 +17,6 @@ class DCUController extends Controller
         $user = Auth::user();
 
         $getdcus = MedicalCheckup::where('user_id', $user->id)
-        ->limit(10)
         ->orderBy('id', 'desc')
         ->get();
 
