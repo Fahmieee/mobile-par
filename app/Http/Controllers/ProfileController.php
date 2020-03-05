@@ -138,8 +138,7 @@ class ProfileController extends Controller
             $img = Image::make($image->getRealPath());
             $img->resize(500, 500, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($destinationPath.'/'.$input['imagename']);
-
+            });
 
             $unitkms = Users::where(['id'=>$user->id])
             ->update(['photo'=>$input['imagename']]);
