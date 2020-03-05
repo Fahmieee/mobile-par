@@ -5,7 +5,6 @@
       <div class="container-fluid">
         <div class="header-body">
           <!-- Card stats -->
-          
         </div>
       </div>
     </div>
@@ -24,6 +23,11 @@
             <div class="card-header border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div align="center" id="tombol_ganti">
                 <!-- <button id="ganti" class="btn btn-sm btn-primary">Ganti Photo</button> -->
+                <!-- <div onclick="$('#uploadpost').click();" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                    <i class="fas fa-camera" style="color: #0166b5"></i>
+                </div> -->
+                <button onclick="$('#uploadpost').click();" class="btn btn-primary"><i class="fas fa-camera"></i>&nbsp;&nbsp;Ganti Photo</button>
+                <input id="uploadpost" name="file" type="file" style="display:none;"/>
               </div>
               <br>
               <div class="text-center" id="namalengkap"></div>

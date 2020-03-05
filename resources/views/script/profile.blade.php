@@ -137,87 +137,151 @@
 
 	});
 
-	$('#ganti').on('click', function () {
+	// $('#ganti').on('click', function () {
 
-		$('#ganti-photo').modal('show');
+	// 	$('#ganti-photo').modal('show');
 
-	});
+	// });
 
-	$('#upload_form').on('submit', function(event){
+    $("#uploadpost").on("change", function() {
 
-        event.preventDefault();
+        
 
-        var empty = false;
-        $('.photo').each(function() {
-            if ($(this).val() == '') {
-                empty = true;
-            }
-        });
-        if (empty) {
+        var formData = new FormData();
+        formData.append('file', $('#uploadpost')[0].files[0]);
 
-            swal({
-                title: "Error!",
-                text: "Pilih Foto Anda Terlebih Dahulu!",
-                icon: "error",
-                buttons: false,
-                timer: 2000,
-            });
+        $.ajax({
+            url: "{{ route('GantiPhoto') }}",
+            method:"POST",
+            data: formData,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            dataType:'JSON',
+            contentType: false,
+            cache: false,
+            processData: false,
 
-        } else {
+            success:function(data) {
 
-            $.ajax({
-                url: "{{ route('GantiPhoto') }}",
-                method:"POST",
-                data:new FormData(this),
-                dataType:'JSON',
-                contentType: false,
-                cache: false,
-                processData: false,
 
-                success:function(data) {
+                if(data.message == "success"){
 
-                	if(data.message == "success"){
+                    swal({
+                        title: "Berhasil",
+                        text: "Anda Berhasil Mengganti Photo",
+                        icon: "success",
+                        buttons: false,
+                        timer: 2000,
+                    });
 
-                		swal({
-                            title: "Berhasil",
-                            text: "Anda Berhasil Mengganti Photo",
-                            icon: "success",
+                    setTimeout(function(){ window.location.href = 'profile'; }, 1500);
+
+                } else {
+
+                    if (data.message == "The file1 must be an image.,The file1 must be a file of type: jpeg, png, jpg, gif."){
+
+                        swal({
+                            title: "File Ekstensi Salah!",
+                            text: "Pastikan Foto yang Anda Upload Benar!",
+                            icon: "error",
                             buttons: false,
                             timer: 2000,
                         });
 
-                        setTimeout(function(){ window.location.href = 'profile'; }, 1500);
+                    } else {
 
-                	} else {
-
-                		if (data.message == "The file1 must be an image.,The file1 must be a file of type: jpeg, png, jpg, gif."){
-
-                            swal({
-                                title: "File Ekstensi Salah!",
-                                text: "Pastikan Foto yang Anda Upload Benar!",
-                                icon: "error",
-                                buttons: false,
-                                timer: 2000,
-                            });
-
-                        } else {
-
-                            swal({
-                                title: "Ukuran Foto Besar!",
-                                text: "Ukuran Foto jangan terlalu besar!",
-                                icon: "error",
-                                buttons: false,
-                                timer: 2000,
-                            });
-                            
-                        }
-                	}
-
+                        swal({
+                            title: "Ukuran Foto Besar!",
+                            text: "Ukuran Foto jangan terlalu besar!",
+                            icon: "error",
+                            buttons: false,
+                            timer: 2000,
+                        });
+                        
+                    }
                 }
 
-            });
-        }
+            }
+        });
 
     });
+
+	// $('#upload_form').on('submit', function(event){
+
+ //        event.preventDefault();
+
+ //        var empty = false;
+ //        $('.photo').each(function() {
+ //            if ($(this).val() == '') {
+ //                empty = true;
+ //            }
+ //        });
+ //        if (empty) {
+
+ //            swal({
+ //                title: "Error!",
+ //                text: "Pilih Foto Anda Terlebih Dahulu!",
+ //                icon: "error",
+ //                buttons: false,
+ //                timer: 2000,
+ //            });
+
+ //        } else {
+
+ //            $.ajax({
+ //                url: "{{ route('GantiPhoto') }}",
+ //                method:"POST",
+ //                data:new FormData(this),
+ //                dataType:'JSON',
+ //                contentType: false,
+ //                cache: false,
+ //                processData: false,
+
+ //                success:function(data) {
+
+ //                	if(data.message == "success"){
+
+ //                		swal({
+ //                            title: "Berhasil",
+ //                            text: "Anda Berhasil Mengganti Photo",
+ //                            icon: "success",
+ //                            buttons: false,
+ //                            timer: 2000,
+ //                        });
+
+ //                        setTimeout(function(){ window.location.href = 'profile'; }, 1500);
+
+ //                	} else {
+
+ //                		if (data.message == "The file1 must be an image.,The file1 must be a file of type: jpeg, png, jpg, gif."){
+
+ //                            swal({
+ //                                title: "File Ekstensi Salah!",
+ //                                text: "Pastikan Foto yang Anda Upload Benar!",
+ //                                icon: "error",
+ //                                buttons: false,
+ //                                timer: 2000,
+ //                            });
+
+ //                        } else {
+
+ //                            swal({
+ //                                title: "Ukuran Foto Besar!",
+ //                                text: "Ukuran Foto jangan terlalu besar!",
+ //                                icon: "error",
+ //                                buttons: false,
+ //                                timer: 2000,
+ //                            });
+                            
+ //                        }
+ //                	}
+
+ //                }
+
+ //            });
+ //        }
+
+ //    });
 
 </script>

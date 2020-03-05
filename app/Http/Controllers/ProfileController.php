@@ -8,6 +8,7 @@ use App\Users;
 use App\Role;
 use Hash;
 use Auth;
+use Image;
 use Validator;
 
 class ProfileController extends Controller
@@ -121,20 +122,29 @@ class ProfileController extends Controller
         $hari = date('Y-m-d');
         $time = date("H:i:s");
 
+        $user = Auth::user();
+
         $validation = Validator::make($request->all(), [
-        'file1' => 'required|image|mimes:jpeg,png,jpg,gif'
+        'file' => 'required|image|mimes:jpeg,png,jpg,gif'
         ]);
 
         if($validation->passes()) {
 
-            $image = $request->file('file1');
-            $new_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image = $request->file('file');
+            $input['imagename'] = rand() . '.' . $image->getClientOriginalExtension();
+
+            $destinationPath = public_path('assets/profile_photo');
+
+            $img = Image::make($image->getRealPath());
+            $img->resize(500, 500, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename']);
 
 
-            $unitkms = Users::where(['id'=>$request->user_id])
-            ->update(['photo'=>$new_name]);
+            $unitkms = Users::where(['id'=>$user->id])
+            ->update(['photo'=>$input['imagename']]);
 
-            $image->move(public_path('/assets/profile_photo'), $new_name);
+            $image->move(public_path('/assets/profile_photo'), $input['imagename']);
 
             return response()->json([
                 'message'   => 'success',

@@ -6,6 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme_color" content="#ffffff">   
+  <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <title>PAR | Prima Armada Raya</title>
   <!-- Favicon -->
   <link href="{{ asset('assets/icons/72x72.png') }}" rel="icon" type="image/png">
