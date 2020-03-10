@@ -93,7 +93,6 @@ class HomeController extends Controller
 
 	        $getunitdrives = UnitDrivers::select("units.*")
 	        ->leftJoin("units", "unit_drivers.unit_id", "=", "units.id")
-	        ->where("unit_drivers.user_id", $user->id)
 	        ->get();
 
 	        $getdriving = Driving::leftJoin("clocks", "driving.clock_id", "=", "clocks.id")
