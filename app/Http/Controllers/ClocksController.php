@@ -330,7 +330,6 @@ class ClocksController extends Controller
             ['user_id', '=', $user->id],
             ['clockout_time', '=', null],
         ])
-        ->orderBy("id", "desc")
         ->first();
 
 
@@ -426,10 +425,7 @@ class ClocksController extends Controller
 
         $user = Auth::user();
 
-        $dataunit = Units::where([
-            ['pemilik', '=', 'PAR'],
-            ['wilayah_id', '=', $user->wilayah_id],
-        ])
+        $dataunit = Units::where('pemilik', '=', 'PAR')
         ->get();
 
         return Datatables::of($dataunit)->make(true);
