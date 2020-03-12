@@ -449,6 +449,7 @@
                             <option>BMW</option>
                             <option>Datsun</option>
                             <option>Isuzu</option>
+                            <option>Mazda</option>
                         </select>
                       </div>
                     </div>
