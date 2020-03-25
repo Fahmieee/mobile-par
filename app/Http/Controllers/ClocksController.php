@@ -444,7 +444,7 @@ class ClocksController extends Controller
         foreach ($clocks as $clock) {
 
             $clocks = Clocks::where(['id'=>$clock->id])
-            ->update(['clockout_date'=>$clock->clockin_date, 'clockout_time'=>'17:00:00', 'clockout_status'=> 'NOT APPROVED']);
+            ->update(['clockout_date'=>$clock->clockin_date, 'clockout_time'=>'17:00:00','clockout_km'=> $clock->clockin_km, 'clockout_status'=> 'NOT APPROVED']);
 
             
         }
