@@ -87,6 +87,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('clocks/poolin', 'ClocksController@storepool')->name('clockinpools');
 	Route::post('clocks/poolout', 'ClocksController@storeclockout')->name('clockoutpools');
 	Route::get('clocks/getunit', 'ClocksController@getunits')->name('getunits');
+	Route::get('clocks/semua', 'ClocksController@clockoutsemua')->name('clockoutsemua');
 
 	Route::post('medical_checkup/store', 'MedicalCheckupController@create')->name('MedicalStore');
 	Route::post('medical_checkup/validasi', 'MedicalCheckupController@validasi')->name('MedicalValidasi');

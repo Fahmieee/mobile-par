@@ -430,4 +430,24 @@ class ClocksController extends Controller
 
         return Datatables::of($dataunit)->make(true);
     }
+
+    public function clockoutsemua(Request $request){
+
+        $kemarin = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
+
+        $clocks = Clocks::where([
+            ['clockout_time', '=', null],
+            ['clockin_date', '<', $kemarin],
+        ])
+        ->get();
+
+        foreach ($clocks as $clock) {
+
+            $clocks = Clocks::where(['id'=>$clock->id])
+            ->update(['clockout_date'=>$clock->clockin_date, 'clockout_time'=>'17:00:00', 'clockout_status'=> 'NOT APPROVED']);
+
+            
+        }
+
+    }
 }
