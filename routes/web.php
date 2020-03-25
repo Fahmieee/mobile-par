@@ -91,6 +91,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('medical_checkup/store', 'MedicalCheckupController@create')->name('MedicalStore');
 	Route::post('medical_checkup/validasi', 'MedicalCheckupController@validasi')->name('MedicalValidasi');
 	Route::post('medical_checkup/koordinat', 'MedicalCheckupController@koordinat')->name('KoordinatMedical');
+	Route::post('medical_checkup/upload', 'MedicalCheckupController@upload')->name('uploaddcu');
 
 	Route::get('history', 'HistoryController@index');
 	Route::post('history/detail', 'HistoryController@detail')->name('DetailRiwayatHistory');

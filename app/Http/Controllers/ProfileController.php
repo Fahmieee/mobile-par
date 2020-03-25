@@ -136,14 +136,13 @@ class ProfileController extends Controller
             $destinationPath = public_path('assets/profile_photo');
 
             $img = Image::make($image->getRealPath());
-            $img->resize(500, 500, function ($constraint) {
+            $img->resize(300, 300, function ($constraint) {
                 $constraint->aspectRatio();
-            });
+            })->save($destinationPath.'/'.$input['imagename']);
+
 
             $unitkms = Users::where(['id'=>$user->id])
             ->update(['photo'=>$input['imagename']]);
-
-            $image->move(public_path('/assets/profile_photo'), $input['imagename']);
 
             return response()->json([
                 'message'   => 'success',

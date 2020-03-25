@@ -25,7 +25,7 @@
                 { 
                     render: function ( data, type, row ) {
 
-                        if(row.suhu > 36){
+                        if(row.suhu > 38){
 
                             var btn = "btn-danger";
 
@@ -55,11 +55,11 @@
 
                           btndarah = "btn-yellow";
 
-                      } else if (depandarah >= 140 && depandarah < 160 || belakangdarah >= 90 && belakangdarah < 100){
+                      } else if (depandarah >= 140 && depandarah < 150 || belakangdarah >= 90 && belakangdarah < 100){
 
                           btndarah = "btn-warning";
 
-                      } else if (depandarah >= 160 || belakangdarah >= 100){
+                      } else if (depandarah >= 150 || belakangdarah >= 100){
 
                           btndarah = "btn-danger";
                       }
@@ -157,6 +157,7 @@
                     'hasil': $('#hasil').val(),
                     'suhuhasil': $('#suhuhasil').val(),
                     'tekananhasil': $('#tekananhasil').val(),
+                    'bukti': $('#bukti').val(),
                 },
 
                 success: function (data) {
@@ -219,35 +220,45 @@
 
                         } 
 
-                    navigator.geolocation.getCurrentPosition(function (position) {
-
-                        $.ajax({
-                            type: 'POST',
-                            url: "{{ route('KoordinatMedical') }}",
-                            data: {
-                                '_token': $('input[name=_token]').val(),
-                                'dcu_id': data.dcu_id,
-                                'type': 'dcu',
-                                'long': position.coords.latitude,
-                                'lat': position.coords.longitude
-                                },
-                            success: function(data) {
-
-                                swal({
-                                    title: "Berhasil",
-                                    text: "Medical Check Up Anda Berhasil!",
-                                    icon: "success",
-                                    buttons: false,
-                                    timer: 2000,
-                                });
-
-                                setTimeout(function(){ window.location.href = 'home'; }, 1500);
-
-                            }
-
+                        swal({
+                            title: "Berhasil",
+                            text: "Medical Check Up Anda Berhasil!",
+                            icon: "success",
+                            buttons: false,
+                            timer: 2000,
                         });
 
-                    });
+                        setTimeout(function(){ window.location.href = 'home'; }, 1500);
+
+                    // navigator.geolocation.getCurrentPosition(function (position) {
+
+                    //     $.ajax({
+                    //         type: 'POST',
+                    //         url: "{{ route('KoordinatMedical') }}",
+                    //         data: {
+                    //             '_token': $('input[name=_token]').val(),
+                    //             'dcu_id': data.dcu_id,
+                    //             'type': 'dcu',
+                    //             'long': position.coords.latitude,
+                    //             'lat': position.coords.longitude
+                    //             },
+                    //         success: function(data) {
+
+                    //             swal({
+                    //                 title: "Berhasil",
+                    //                 text: "Medical Check Up Anda Berhasil!",
+                    //                 icon: "success",
+                    //                 buttons: false,
+                    //                 timer: 2000,
+                    //             });
+
+                    //             setTimeout(function(){ window.location.href = 'home'; }, 1500);
+
+                    //         }
+
+                    //     });
+
+                    // });
 
 
                     } else {
@@ -307,18 +318,24 @@
          
             $('.notif_suhu').html('');
 
-        } else if (value > 36){
+        } else if (value > 38){
 
             $('.notif_suhu').html('<div class="alert alert-danger" role="alert"><strong>Hati-hati!</strong> Suhu Anda Demam!</div>');
 
             $('#suhuhasil').val(3);
 
-        } else if (value <= 36){
+        } else if (value < 38 && value >= 30){
 
             $('.notif_suhu').html('<div class="alert alert-success" role="alert"><strong>Sehat!</strong> Suhu Anda Normal!</div>');
             $('#suhuhasil').val(1);
 
-        } 
+        } else {
+
+            $('.notif_suhu').html('<div class="alert alert-danger" role="alert"><strong>Hati-hati!</strong> Suhu Anda Demam!</div>');
+
+            $('#suhuhasil').val(3);
+
+        }
 
 
     });
@@ -341,10 +358,10 @@
         } else if (dar1 >= 120 && dar1 < 140 || dar2 >= 80 && dar2 < 90){
             $('.notif_darah').html('<div class="alert alert-yellow" role="alert"><strong>Hati-Hati!</strong> Prehypertension!</div>');
             $('#tekananhasil').val(2);
-        } else if (dar1 >= 140 && dar1 < 160 || dar2 >= 90 && dar2 < 100){
+        } else if (dar1 >= 140 && dar1 < 150 || dar2 >= 90 && dar2 < 100){
             $('.notif_darah').html('<div class="alert alert-warning" role="alert"><strong>Hati-hati!</strong> High Blood Presure!</div>');
             $('#tekananhasil').val(3);
-        } else if (dar1 >= 160 || dar2 >= 100){
+        } else if (dar1 >= 150 || dar2 >= 100){
             $('.notif_darah').html('<div class="alert alert-danger" role="alert"><strong>Berbahaya!</strong> Hypertensive Crisis!</div>');
             $('#tekananhasil').val(4);
         }
@@ -371,10 +388,10 @@
         } else if (dar1 >= 120 && dar1 < 140 || dar2 >= 80 && dar2 < 90){
             $('.notif_darah').html('<div class="alert alert-yellow" role="alert"><strong>Hati-Hati!</strong> Prehypertension!</div>');
             $('#tekananhasil').val(2);
-        } else if (dar1 >= 140 && dar1 < 160 || dar2 >= 90 && dar2 < 100){
+        } else if (dar1 >= 140 && dar1 < 150 || dar2 >= 90 && dar2 < 100){
             $('.notif_darah').html('<div class="alert alert-warning" role="alert"><strong>Hati-hati!</strong> High Blood Presure!</div>');
             $('#tekananhasil').val(3);
-        } else if (dar1 >= 160 || dar2 >= 100){
+        } else if (dar1 >= 150 || dar2 >= 100){
             $('.notif_darah').html('<div class="alert alert-danger" role="alert"><strong>Berbahaya!</strong> Hypertensive Crisis!</div>');
             $('#tekananhasil').val(4);
         }
@@ -448,9 +465,50 @@
 
         $('#dcuupload').html('<div align="center"><img width="100%" src="/assets/content/img/theme/loadingnew.gif"></div>');
 
-        $('#files').val('1');
+        var formData = new FormData();
+        formData.append('file', $('#uploadpost')[0].files[0]);
 
-        
-        setTimeout(LaodingBro, 3000);
+        $.ajax({
+            url: "{{ route('uploaddcu') }}",
+            method:"POST",
+            data: formData,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            dataType:'JSON',
+            contentType: false,
+            cache: false,
+            processData: false,
+
+            success:function(data) {
+
+                if(data.status == '1'){
+
+                    var content_data = '';
+
+                    $('#dcuupload').attr('class', 'alert alert2 alert-success');
+
+                    content_data += "<table width='100%'>";
+                    content_data += "<tr>";
+                    content_data += "<td align='left'><i class='fa fa-check'></i><input type='hidden' id='bukti' value="+data.name+"></td>";
+                    content_data += "<td><h5 class='text-white'>Foto Anda Berhasil Di Upload</h5></td>";
+                    content_data += "</tr>";
+                    content_data += "<table>";
+
+                    $('#dcuupload').html(content_data);
+
+                } else {
+
+                    swal({
+                        title: "Gagal!",
+                        text: "Pastikan File yang Anda Upload Benar!",
+                        icon: "error",
+                        buttons: false,
+                        timer: 2000,
+                    });
+                }
+            }
+        });
+
     });
 </script>

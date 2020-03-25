@@ -65,7 +65,7 @@ class MedicalCheckupController extends Controller
             $checkup->time = $time;
             $checkup->suhu = $request->suhu;
             $checkup->darah = $darah;
-            $checkup->img = 'testing.jpg';
+            $checkup->img = $request->bukti;
             $checkup->hasil = $hasil;
             $checkup->save();
 
@@ -150,6 +150,44 @@ class MedicalCheckupController extends Controller
         $koordinat->save();
 
         return response()->json($koordinat);
+
+    }
+
+    public function upload(Request $request)
+    {   
+        date_default_timezone_set('Asia/Jakarta');
+
+        $validation = Validator::make($request->all(), [
+            'file' => 'mimes:jpeg,bmp,png,svg,pdf',
+        ]);
+
+        if($validation->passes()) {
+
+            $image = $request->file('file');
+            $input['imagename'] = rand() . '.' . $image->getClientOriginalExtension();
+
+            $destinationPath = public_path('assets/img_dcu');
+
+            $img = Image::make($image->getRealPath());
+            $img->resize(400, 400, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename']);
+
+            return response()->json([
+                'message'  => 'Upload Anda Tersimpan',
+                'icon' => 'success',
+                'name' => $input['imagename'],
+                'status' => '1',
+            ]);
+
+        } else {
+
+            return response()->json([
+                'message' => $validation->errors()->all(),
+                'icon' => 'error',
+                'status' => '0',
+            ]);
+        }
 
     }
 

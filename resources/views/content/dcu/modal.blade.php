@@ -63,7 +63,6 @@
                                     <i class="fas fa-camera"></i>
                                 </div>
                                  <input id="uploadpost" name="file" type="file" style="display:none;"/>
-                                 <input id="files" type="hidden" class="medical">
                             </td>
                         </tr>
                     </table>
