@@ -71,7 +71,7 @@ class ClocksController extends Controller
         $validatekemarin = Clocks::where([
             ['user_id', '=', $request->user_id],
             ['clockout_time', '=', null],
-            ['clockin_date', '=', $kemarin],
+            ['clockin_date', '!=', $harini],
         ])
         ->first();
 
@@ -142,7 +142,7 @@ class ClocksController extends Controller
         $validatekemarin = Clocks::where([
             ['user_id', '=', $request->user_id],
             ['clockout_time', '=', null],
-            ['clockin_date', '=', $kemarin],
+            ['clockin_date', '!=', $hari],
         ])
         ->first();
 
@@ -433,11 +433,11 @@ class ClocksController extends Controller
 
     public function clockoutsemua(Request $request){
 
-        $kemarin = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
+        $date = date('Y-m-d');
 
         $clocks = Clocks::where([
             ['clockout_time', '=', null],
-            ['clockin_date', '<', $kemarin],
+            ['clockin_date', '<', $date],
         ])
         ->get();
 
