@@ -59,6 +59,10 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::post('driver/validasi', 'DriverController@validasidrivein')->name('validasidrivein');
 	Route::post('driver/drivein', 'DriverController@submitdrivein')->name('submitdrivein');
 	Route::post('driver/driveout', 'DriverController@submitdriveout')->name('submitdriveout');
+	Route::post('driver/absensi', 'DriverController@storeabsen')->name('storeabsen');
+	Route::get('driver/rekap', 'DriverController@rekap');
+	Route::get('driver/rekap/detail', 'DriverController@rekapdetail');
+	Route::get('driver/rekap/ambilabsen', 'DriverController@ambilabsen');
 
 	Route::get('pretripcheck', 'PreTripCheckController@index');
 	Route::post('pretripcheck/get', 'PreTripCheckController@GetData')->name('GetPreTripCheck');

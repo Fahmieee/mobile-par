@@ -17,6 +17,8 @@ use App\Clocks;
 use App\Driving;
 use App\MedicalCheckup;
 use App\PretripCheckNotOke;
+use App\AttendanceStatuses;
+use App\Attendances;
 use Auth;
 
 class HomeController extends Controller
@@ -85,6 +87,19 @@ class HomeController extends Controller
 
 	        $gettrainings = Trainings::all();
 
+	        $statuses = AttendanceStatuses::where([
+                ['id', '!=', '1'],
+                ['id', '!=', '5'],
+            ])
+            ->get();
+
+            $adaizin = Attendances::leftJoin("attendance_statuses", "attendances.status_id", "=", "attendance_statuses.id")
+            ->where([
+                ['date_in', '=', $date],
+                ['driver_id', '=', $user->id],
+            ])
+            ->first();
+
 	        $cekclockin = Clocks::where([
 	                ['user_id', '=', $user->id],
 	                ['clockin_date', '=', $date],
@@ -106,7 +121,7 @@ class HomeController extends Controller
 	        ->limit(1)
 	        ->first();
 
-	    	return view('content.home.index', compact('date','getdrivers','getusers','getunits','getkorlaps','getsim','getmcu','getasuransi','getkeur','gettrainings','getperdin','roles','getunitdrives','get','cekclockin','getdriving'));
+	    	return view('content.home.index', compact('date','getdrivers','getusers','getunits','getkorlaps','getsim','getmcu','getasuransi','getkeur','gettrainings','getperdin','roles','getunitdrives','get','cekclockin','getdriving','statuses','adaizin'));
 
         } else if($roles->role_id == '3'){
 

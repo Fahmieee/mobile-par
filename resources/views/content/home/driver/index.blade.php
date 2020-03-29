@@ -8,6 +8,14 @@
       @if($getdrivers->driver_type == '1')
 
         <div class="card-body bg-blue-par2" id="menu_icons">
+          @if($adaizin)
+          @if($adaizin->status_id != '1')
+          <div class="alert alert-secondary" role="alert" align="center" style="padding-top: 0.5rem;padding-bottom: 0.5rem;">
+            <h6>Status Anda Saat ini Adalah <b>{{ $adaizin->name }}</b></h6>
+          </div>
+          <br>
+          @endif
+          @endif
           <table border="0" align="center" id="foricons" width="100%" style="display: none;">
             <tr>
               <td width="5%" id="icon_check">
@@ -55,7 +63,7 @@
             <tr>
               <td align="center" width="25%">
                 <div id="{{ $ids }}" class="icon icon-shape {{ $bg }} text-white rounded-circle shadow">
-                    <i class="fas fa-check-circle" style="color: {{ $iconcolor }};"></i>
+                    <i class="fas fa-car" style="color: {{ $iconcolor }};"></i>
                 </div>
               </td>
               <td align="center" width="25%">
@@ -69,11 +77,47 @@
                     <input type="hidden" id="selesai" value="0">
                 </div>
               </td>
-              <td align="center" width="25%">
+<!--               <td align="center" width="25%">
                 <div id="history" class="icon icon-shape bg-white text-white rounded-circle shadow">
                     <i class="fas fa-history" style="color: #0166b5"></i>
                 </div>
-                
+              </td> -->
+            </tr>
+            <tr>
+               <td height="10px" colspan="7"></td> 
+            </tr>
+            <tr>
+              <td align="center">
+                <h6 class="text-uppercase ls-1 mb-1" style="color: {{ $textcolor }};">PTC</h6>
+              </td>
+              <td align="center">
+                <h6 class="text-uppercase text-white ls-1 mb-1">DCU</h6>
+              </td>
+              <td align="center" id="clock_desc">
+                <h6 class="text-uppercase text-white ls-1 mb-1">Clock In</h6>
+              </td>
+<!--               <td align="center">
+                <h6 class="text-uppercase text-white ls-1 mb-1">Riwayat</h6>
+              </td> -->
+            </tr>
+          </table>
+          <br>
+          <table border="0" align="center" width="100%">
+            <tr>
+              <td align="center" width="25%">
+                <div id="{{ $adaizin ? 'sudahizin' : 'izin' }}" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                    <i class="fas fa-bed" style="color: #0166b5"></i>
+                </div>
+              </td>
+              <td align="center" width="25%">
+                <a href="/driver/rekap"><div class="icon icon-shape bg-white text-white rounded-circle shadow">
+                    <i class="fas fa-book" style="color: #0166b5"></i>
+                </div></a>
+              </td>
+              <td align="center" width="25%">
+                <div id="history" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                    <i class="fas fa-road" style="color: #0166b5"></i>
+                </div>
               </td>
             </tr>
             <tr>
@@ -81,16 +125,13 @@
             </tr>
             <tr>
               <td align="center">
-                <h6 class="text-uppercase ls-1 mb-1" style="color: {{ $textcolor }};">Pre-Trip Check</h6>
-              </td>
-              <td align="center">
-                <h6 class="text-uppercase text-white ls-1 mb-1">Daily Check Up</h6>
+                <h6 class="text-uppercase text-white ls-1 mb-1">Cuti Izin <br/> Sakit</h6>
               </td>
               <td align="center" id="clock_desc">
-                <h6 class="text-uppercase text-white ls-1 mb-1">Clock In</h6>
+                <h6 class="text-uppercase text-white ls-1 mb-1">Rekap<br/> Absensi</h6>
               </td>
               <td align="center">
-                <h6 class="text-uppercase text-white ls-1 mb-1">Riwayat</h6>
+                <h6 class="text-uppercase text-white ls-1 mb-1">Riwayat<br/> Jalan</h6>
               </td>
             </tr>
           </table>
@@ -98,7 +139,7 @@
 
       @else 
 
-        <div class="card-body bg-blue-par2" id="menu_icons">
+        <div class="card-body bg-blue-par2" id="menu_icons" style="padding-left: 5px; padding-right: 5px;">
           <table border="0" align="center" id="foricons" width="100%" style="display: none;">
             <tr>
               <td width="5%" id="icon_check">
@@ -205,7 +246,6 @@
 
             }
 
-
           @endphp
 
           <table border="0" align="center" width="100%">
@@ -222,11 +262,17 @@
                     <i class="fas fa-clock" style="color: #0166b5"></i>
                 </div>
               </td>
+
+              <td align="center" width="25%">
+                <div id="{{ $adaizin ? 'sudahizin' : 'izin' }}" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                    <i class="fas fa-bed" style="color: #0166b5"></i>
+                </div>
+              </td>
+
               <td align="center" width="25%">
                 <div id="history" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                    <i class="fas fa-history" style="color: #0166b5"></i>
+                    <i class="fas fa-road" style="color: #0166b5"></i>
                 </div>
-                
               </td>
             </tr>
             <tr>
@@ -234,19 +280,27 @@
             </tr>
             <tr>
               <td align="center">
-                <h6 class="text-uppercase text-white ls-1 mb-1">Daily CheckUp</h6>
+                <h6 class="text-uppercase text-white ls-1 mb-1">DCU</h6>
               </td>
               <td align="center" id="clock_desc">
                 <h6 class="text-uppercase text-white ls-1 mb-1">Clock In</h6>
               </td>
+              <td align="center" id="clock_desc">
+                <h6 class="text-uppercase text-white ls-1 mb-1">Cuti Izin <br/> Sakit</h6>
+              </td>
               <td align="center">
-                <h6 class="text-uppercase text-white ls-1 mb-1">Riwayat</h6>
+                <h6 class="text-uppercase text-white ls-1 mb-1">Riwayat <br/> Jalan</h6>
               </td>
             </tr>
           </table>
           <br>
           <table border="0" align="center" width="100%">
             <tr>
+              <td align="center" width="25%">
+                <a href="/driver/rekap"><div class="icon icon-shape bg-white text-white rounded-circle shadow">
+                    <i class="fas fa-book" style="color: #0166b5"></i>
+                </div></a>
+              </td>
               <td align="center" width="25%">
                 <div id="{{ $aksiptc }}" class="icon icon-shape {{ $bgptc }} text-white rounded-circle shadow">
                     <i class="fas fa-check-circle" style="color: {{ $iconcolorptc }}"></i>
@@ -297,9 +351,11 @@
                <td height="10px" colspan="7"></td> 
             </tr>
             <tr>
-
               <td align="center">
-                <h6 class="text-uppercase ls-1 mb-1" style=" color: {{ $textcolorptc }}">Pre-Trip Check</h6>
+                <h6 class="text-uppercase text-white ls-1 mb-1">Rekap <br/> Absensi</h6>
+              </td>
+              <td align="center">
+                <h6 class="text-uppercase ls-1 mb-1" style=" color: {{ $textcolorptc }}">PTC</h6>
               </td>
               @if(!$getdriving)
               <td align="center" id="clock_desc">
@@ -318,11 +374,10 @@
 
               @endif
               <td align="center">
-                <h6 class="text-uppercase ls-1 mb-1" style=" color: {{ $textcolorpilih }}">Pilih Mobil</h6>
+                <h6 class="text-uppercase ls-1 mb-1" style=" color: {{ $textcolorpilih }}">Pilih<br/> Mobil</h6>
               </td>
             </tr>
           </table>
-
         </div>
 
       @endif

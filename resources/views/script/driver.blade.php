@@ -574,7 +574,73 @@
 
 	});
 
-    
+    $('#izin').on('click', function () {
+
+        $('#cutiizinsakit').modal('show');
+
+    });
+
+    $('#sudahizin').on('click', function () {
+
+        swal({
+            title: "Perhatikan",
+            text: "Anda sudah merubah Status!",
+            icon: "error",
+            buttons: false,
+            timer: 2000,
+        });
+
+    });
+
+    $('#submitabsen').on('click', function () {
+
+        var empty = false;
+        $('select.izin').each(function() {
+            if ($(this).val() == '') {
+                empty = true;
+            }
+        });
+        if (empty) {
+
+            swal({
+                title: "Warning!!",
+                text: "Harap isi Status Absensi!",
+                icon: "error",
+                buttons: false,
+                timer: 2000,
+            });
+
+        } else {
+
+            $('#cutiizinsakit').modal('hide');
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('storeabsen') }}",
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                    'status_id': $('#status_id').val(),
+                    'tanggal': $('#tanggal').val(),
+                    'ket': $('#ket').val(),
+                   },
+                success: function(data) {
+
+                    swal({
+                        title: "Berhasil",
+                        text: "Status Anda Berhasil di Simpan!",
+                        icon: "success",
+                        buttons: false,
+                        timer: 2000,
+                    });
+
+                    setTimeout(function(){ window.location.href = 'home'; }, 1500);
+                }
+
+            });
+
+        }
+
+    });
 
     function Terima(id){
 

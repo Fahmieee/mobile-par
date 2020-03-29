@@ -240,6 +240,74 @@
     </div>
 </div>
 
+<div class="modal fade" id="cutiizinsakit" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-default">Cuti Izin atau Sakit</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div id="loader" style="display: none;" align="center">
+                <br><br><br><br>
+                <img src="assets/login/images/balls.gif" width="100px" align="center">
+                <br><br><br><br>
+            </div>
+
+            <div class="modal-form">
+                <div class="modal-body">
+                    <table border="0" align="center" width="100%">
+                        <tr>
+                            <td colspan="2"><h5 class="text-muted">Status Absensi :</h5></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select class="form-control izin" id="status_id">
+                                    <option value="">Pilih Status</option>
+                                    @foreach($statuses as $status)
+                                        <option value="{{ $status->id }}">{{ $status->name }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="2%">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><h5 class="text-muted">Tanggal :</h5></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" value="{{ date('d F Y') }}" class="form-control" disabled>
+                                <input type="hidden" value="{{ date('Y-m-d') }}" id="tanggal" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="2%">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><h5 class="text-muted">Keterangan :</h5></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <textarea class="form-control" rows="6" id="ket" style="font-size: 11px;"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="submit" id="submitabsen" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-danger ml-auto"  data-dismiss="modal">Batal</button> 
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="notif_medical" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
     <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
         <div class="modal-content bg-gradient-danger">
