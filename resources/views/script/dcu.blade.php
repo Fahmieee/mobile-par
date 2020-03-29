@@ -134,17 +134,6 @@
 
         } else {
 
-            // $.ajax({
-            //     url: "{{ route('MedicalStore') }}",
-            //     method:"POST",
-            //     data:new FormData(this),
-            //     dataType:'JSON',
-            //     contentType: false,
-            //     cache: false,
-            //     processData: false,
-
-            //     success:function(data) {
-
             $.ajax({
                 type: 'POST',
                 url: "{{ route('MedicalStore') }}",
@@ -166,59 +155,59 @@
                     if(data.message == "success"){
 
                         
-                        if(data.hasil == "3"){
+                        // if(data.hasil == "3"){
 
-                            $.ajax({        
-                                type : 'POST',
-                                url : "https://fcm.googleapis.com/fcm/send",
-                                headers : {
-                                    Authorization : 'key=' + 'AIzaSyBBlLqWxqmpbgg-8ZjhMiYMOgzUrJDgQRM'
-                                },
-                                contentType : 'application/json',
-                                dataType: 'json',
-                                data: JSON.stringify({
-                                    "to": data.fcm, 
-                                    "notification": {
-                                        "title":"Hasil DCU "+data.name,
-                                        "body":"Kondisi Driver Anda Sakit Hasil dari DCU Hari ini!, Driver tidak Layak untuk Mengendarai Hari ini!",
-                                        "icon": "./assets/icons/96x96.png",
-                                    }
-                                }),
-                                success : function(response) {
-                                    console.log(response);
-                                },
-                                error : function(xhr, status, error) {
-                                    console.log(xhr.error);                   
-                                }
-                            });
+                        //     $.ajax({        
+                        //         type : 'POST',
+                        //         url : "https://fcm.googleapis.com/fcm/send",
+                        //         headers : {
+                        //             Authorization : 'key=' + 'AIzaSyBBlLqWxqmpbgg-8ZjhMiYMOgzUrJDgQRM'
+                        //         },
+                        //         contentType : 'application/json',
+                        //         dataType: 'json',
+                        //         data: JSON.stringify({
+                        //             "to": data.fcm, 
+                        //             "notification": {
+                        //                 "title":"Hasil DCU "+data.name,
+                        //                 "body":"Kondisi Driver Anda Sakit Hasil dari DCU Hari ini!, Driver tidak Layak untuk Mengendarai Hari ini!",
+                        //                 "icon": "./assets/icons/96x96.png",
+                        //             }
+                        //         }),
+                        //         success : function(response) {
+                        //             console.log(response);
+                        //         },
+                        //         error : function(xhr, status, error) {
+                        //             console.log(xhr.error);                   
+                        //         }
+                        //     });
 
-                        } else if (data.hasil == "2"){
+                        // } else if (data.hasil == "2"){
 
-                            $.ajax({        
-                                type : 'POST',
-                                url : "https://fcm.googleapis.com/fcm/send",
-                                headers : {
-                                    Authorization : 'key=' + 'AIzaSyBBlLqWxqmpbgg-8ZjhMiYMOgzUrJDgQRM'
-                                },
-                                contentType : 'application/json',
-                                dataType: 'json',
-                                data: JSON.stringify({
-                                    "to": data.fcm, 
-                                    "notification": {
-                                        "title":"Hasil DCU "+data.name,
-                                        "body":"Kondisi Driver Anda Hati-hati Hasil dari DCU Hari ini!, Awasi Driver Tersebut dalam Berkendara!",
-                                        "icon": "./assets/icons/96x96.png",
-                                    }
-                                }),
-                                success : function(response) {
-                                    console.log(response);
-                                },
-                                error : function(xhr, status, error) {
-                                    console.log(xhr.error);                   
-                                }
-                            });
+                        //     $.ajax({        
+                        //         type : 'POST',
+                        //         url : "https://fcm.googleapis.com/fcm/send",
+                        //         headers : {
+                        //             Authorization : 'key=' + 'AIzaSyBBlLqWxqmpbgg-8ZjhMiYMOgzUrJDgQRM'
+                        //         },
+                        //         contentType : 'application/json',
+                        //         dataType: 'json',
+                        //         data: JSON.stringify({
+                        //             "to": data.fcm, 
+                        //             "notification": {
+                        //                 "title":"Hasil DCU "+data.name,
+                        //                 "body":"Kondisi Driver Anda Hati-hati Hasil dari DCU Hari ini!, Awasi Driver Tersebut dalam Berkendara!",
+                        //                 "icon": "./assets/icons/96x96.png",
+                        //             }
+                        //         }),
+                        //         success : function(response) {
+                        //             console.log(response);
+                        //         },
+                        //         error : function(xhr, status, error) {
+                        //             console.log(xhr.error);                   
+                        //         }
+                        //     });
 
-                        } 
+                        // } 
 
                         swal({
                             title: "Berhasil",

@@ -452,6 +452,18 @@ class DriverController extends Controller
                 $masuk->time_out = $absensi->clockout_time;
                 $masuk->save();
 
+            } else {
+
+                $absens = Attendances::where(['id'=>$adaabsen->id])
+                ->update(
+                    ['driver_id'=>$absensi->user_id, 
+                    'status_id'=>'1',
+                    'date_in'=> $absensi->clockin_date, 
+                    'time_in'=> $absensi->clockin_time,
+                    'date_out'=> $absensi->clockout_date,
+                    'time_out'=> $absensi->clockout_time]
+                );
+
             }
 
             

@@ -181,7 +181,7 @@ class ClocksController extends Controller
 
         if (!$validatekemarin){
 
-            if ($validatesekarang->clockin_km >= $request->km){
+            if ($validatesekarang->clockin_km > $request->km){
 
                 $notif = '0';
 
@@ -244,7 +244,7 @@ class ClocksController extends Controller
 
         } else {
 
-            if ($validatekemarin->clockin_km >= $request->km){
+            if ($validatekemarin->clockin_km > $request->km){
 
                 $notif = '0';
 

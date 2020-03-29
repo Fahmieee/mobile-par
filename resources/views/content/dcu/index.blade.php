@@ -59,15 +59,6 @@
             <input type="search" id="cari" class="form-control" placeholder="Cari DCU" ><br>
             <div class="card shadow">
               <div class="card-body-white">
-                <!-- Projects table -->
-                <!-- <table class="table align-items-center table-flush">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Tanggal</th>
-                      <th scope="col">Suhu</th>
-                      <th scope="col">Tekanan Darah</th>
-                    </tr>
-                  </thead> -->
 
                   <table id="customers" class="datatables" border="0">
                     <thead>
@@ -82,51 +73,7 @@
                       
                     </tbody>
                   </table>
-                  <!-- <tbody>
-                    @foreach ($getdcus as $getdcu)
-                      @php
-
-                      if($getdcu->suhu > 36){
-
-                        $btn = "btn-danger";
-
-                      } else {
-
-                        $btn = "btn-success";
-
-                      }
-
-                      $gets = explode("/",$getdcu->darah);
-
-                      $depandarah = $gets[0];
-                      $belakangdarah = $gets[1];
-
-                      if ($depandarah < 120 && $belakangdarah < 80){
-
-                          $btndarah = "btn-success";
-
-                      } else if ($depandarah >= 120 && $depandarah < 140 || $belakangdarah >= 80 && $belakangdarah < 90){
-
-                          $btndarah = "btn-yellow";
-
-                      } else if ($depandarah >= 140 && $depandarah < 160 || $belakangdarah >= 90 && $belakangdarah < 100){
-
-                          $btndarah = "btn-warning";
-
-                      } else if ($depandarah >= 160 || $belakangdarah >= 100){
-
-                          $btndarah = "btn-danger";
-                      }
-
-                      @endphp
-                      <tr>
-                        <th scope="row">{{ date('d M Y', strtotime($getdcu->date)) }}</th>
-                        <th scope="row"><button type="button" class='btn btn-sm {{ $btn }}'>{{ $getdcu->suhu }} C</button></th>
-                        <th scope="row"><button type="button" class='btn btn-sm {{ $btndarah }}'>{{ $getdcu->darah }}  mmHg</button></th>
-                      </tr>
-
-                    @endforeach
-                  </tbody> -->
+                  
                 </table>
               </div>
             </div>
