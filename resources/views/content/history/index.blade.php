@@ -44,7 +44,7 @@
         
       </div>
       
-<!--       @include('content.history.modal') -->
+      @include('content.history.modal')
       @include('layout.contentfooter')
       @include('script.history')
 

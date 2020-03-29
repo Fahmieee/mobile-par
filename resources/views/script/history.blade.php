@@ -36,7 +36,7 @@
 						var hours = Math.floor(diffInSeconds / 60 / 60 % 24);
 						var minutes = Math.floor(diffInSeconds / 60 % 60);
 
-                        return "<div class='row' onclick='DetailHistory("+row.id+")'><div class='col'><div class='card shadow'><div class='card-header bg-white'><table border='1' align='center' bordercolor='#e9ecef' width='100%'><tr><td width='5%' align='left' rowspan='2'><i class='fa fa-calendar' style='color: #01497f'></i></td><td width='30%' style='padding-top: 8px; padding-left: 4px;' align='left' rowspan='2'><h6>"+row.date+"</h6></td><td width='5%' align='left'><i class='fa fa-car' style='color: #01497f'></i></td><td width='30%' style='padding-top: 8px; padding-left: 4px;' align='left'><h6>"+hours+" Jam "+minutes+" Menit</h6></td></tr><tr><td width='5%' align='left'><i class='fa fa-road' style='color: #01497f'></i></td><td width='30%' style='padding-top: 8px; padding-left: 4px;' align='left'><h6>"+jumlahkm+" Km</h6></td></tr></table></div><input type='hidden' value='0' id='val_"+row.id+"'><div class='card-body' style='display: none;' id='details_"+row.id+"'></div></div></div></div>";
+                        return "<div class='row' onclick='DetailHistory("+row.id+")'><div class='col'><div class='card shadow'><div class='card-header bg-white' style='padding-left: 7px;padding-right: 7px;'><table border='1' align='center' bordercolor='#e9ecef' width='100%'><tr><td width='5%' align='left' rowspan='2'><i class='fa fa-calendar' style='color: #01497f'></i></td><td width='30%' style='padding-top: 8px; padding-left: 4px;' align='left' rowspan='2'><h6>"+row.date+"</h6></td><td width='5%' align='left'><i class='fa fa-car' style='color: #01497f'></i></td><td width='30%' style='padding-top: 8px; padding-left: 4px;' align='left'><h6>"+hours+" Jam "+minutes+" Menit</h6></td></tr><tr><td width='5%' align='left'><i class='fa fa-road' style='color: #01497f'></i></td><td width='30%' style='padding-top: 8px; padding-left: 4px;' align='left'><h6>"+jumlahkm+" Km</h6></td></tr></table></div><input type='hidden' value='0' id='val_"+row.id+"'><div class='card-body' style='display: none;' id='details_"+row.id+"'></div></div></div></div>";
                     }
                 }
             ]
@@ -48,14 +48,13 @@
     });
 
 
-
 	function DetailHistory(id){
 
 		var val = $('#val_'+id+'').val();
 
 		if (val == 0){
 
-			$('#details_'+id+'').attr('style','display: block;');
+			$('#details_'+id+'').attr('style','display: block;padding-top:10px;');
 
 			$('#val_'+id+'').val(1);
 
@@ -90,6 +89,16 @@
 	            	}else {
 
 	            		clockouts = data.clockout_actual;
+
+	            	}
+
+	            	if(data.perdin == 'No'){
+
+	            		content_datas += "<table width='100%'><tr><td align='center'><button onclick='EditKilometer("+id+");' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i>  Edit Kilometer</button></td></tr></table><hr>";
+
+	            	} else {
+
+	            		content_datas += "<table width='100%'><tr><td align='center'><button onclick='EditKilometer("+id+");' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i>  Edit Kilometer</button> <button class='btn btn-sm btn-danger'><i class='fa fa-upload'></i>  Upload Perdin</button></td></tr></table><hr>";
 
 	            	}
 
@@ -167,5 +176,57 @@
 		setTimeout(function(){ window.location.href = 'home'; }, 10);
 
 	});
+
+	function EditKilometer(id){
+
+		$.ajax({
+            type: 'POST',
+            url: "{{ route('DetailRiwayatHistory') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'user_id': $('#created_by').val(),
+                'id': id
+                },
+            success: function(data) {
+
+            	$('#awal').val(data.clockin_jarak);
+            	$('#akhir').val(data.clockout_jarak);
+            	$('#modal-title-default').html('Edit Kilometer ('+data.clockin_date+')');
+            	$('#ids').val(id);
+
+            	$('#edit_kilometer').modal('show');
+
+            }
+
+        });
+
+	}
+
+	function Update(){
+
+		$.ajax({
+            type: 'POST',
+            url: "{{ route('updatekilometer') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'awal': $('#awal').val(),
+                'akhir': $('#akhir').val(),
+                'id': $('#ids').val(),
+                },
+            success: function(data) {
+
+            	swal({
+                    text: "Kilometer Berhasil di Update",
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                });
+
+                setTimeout(function(){ window.location.href = 'history'; }, 1500);
+
+            }
+
+        });
+	}
 
 </script>

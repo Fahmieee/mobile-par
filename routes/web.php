@@ -101,6 +101,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::get('history', 'HistoryController@index');
 	Route::post('history/detail', 'HistoryController@detail')->name('DetailRiwayatHistory');
 	Route::get('history/gets', 'HistoryController@gets')->name('gethistory');
+	Route::post('history/update', 'HistoryController@updatekilometer')->name('updatekilometer');
 
 	Route::get('korlap', 'KorlapController@index');
 	Route::get('lihatdriver', 'KorlapController@lihatdriver');

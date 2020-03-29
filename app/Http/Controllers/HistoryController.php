@@ -91,6 +91,7 @@ class HistoryController extends Controller
 
         $arrayNames = array(    
             'clockin_time' => $getclocks->clockin_time, 
+            'perdin' => $getclocks->perdin,
             'clockout_time' => $getclocks->clockout_time,
             'clockin_date' => $getclocks->clockin_date, 
             'clockout_date' => $getclocks->clockout_date,
@@ -108,5 +109,18 @@ class HistoryController extends Controller
 
     }
 
+    public function updatekilometer(Request $request)
+    {
+        $user = Auth::user();
+
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d');
+
+        $updates = Clocks::where(['id'=>$request->id])
+        ->update(['clockin_km'=>$request->awal, 'clockout_km'=>$request->akhir]);
+
+        return response()->json($updates);
+
+    }
 
 }

@@ -739,7 +739,7 @@
         $('#perdin_tidak').attr("class","alert2 alert-success");
         $('#perdin_ya').attr("class","alert2 alert-default");
         $('#perdin_stat').val("No");
-        $('#upload').attr("style","display: none;");
+        // $('#upload').attr("style","display: none;");
 
     });
 
@@ -748,7 +748,7 @@
         $('#perdin_tidak').attr("class","alert2 alert-default");
         $('#perdin_ya').attr("class","alert2 alert-success");
         $('#perdin_stat').val("Yes");
-        $('#upload').attr("style","display: block;");
+        // $('#upload').attr("style","display: block;");
 
     });
 

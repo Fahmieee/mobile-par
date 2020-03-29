@@ -53,7 +53,7 @@
                       </div>
                     </div>
                 </div>
-                <div class="row" id="upload" style="display: none;">
+                <!-- <div class="row" id="upload" style="display: none;">
                     <div class="col-md-12">
                         <table border="0" align="center" width="100%">
                             <tr>
@@ -61,9 +61,6 @@
                             </tr>
                             <tr>
                                 <td align="center" width="25%">
-                                   <!--  <div onclick="$('#uploadpost').click();" class="icon icon-shape bg-white text-white rounded-circle shadow">
-                                        <i class="fas fa-camera" style="color: #0166b5"></i>
-                                    </div> -->
                                     <div onclick="$('#uploadpost').click();" id="clockinupload" class="alert2 alert-primary" role="alert">
                                         <i class="fas fa-camera"></i>
                                     </div>
@@ -73,7 +70,7 @@
                         </table>
                       
                     </div>
-                </div>
+                </div> -->
             </div>
             
             <div class="modal-footer">
