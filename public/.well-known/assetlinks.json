@@ -1,0 +1,5 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.parmobile.myapplication",
+               "sha256_cert_fingerprints": ["CD:4E:CF:1D:F9:7E:7F:1D:F0:E5:46:DC:DF:E1:99:6B:40:54:AB:22:E7:F6:3E:9B:F4:79:8F:A1:95:28:39:C7"] }
+}]
