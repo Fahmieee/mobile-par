@@ -640,7 +640,9 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            
+
+            <div class="modal-body" align="center">
+                <input type="text" class="form-control" id="carimobil" placeholder="Cari Mobil Anda"><hr>
                 <table class="datatables" width="90%">
                     <tr>
                         <th style="display: none;">
@@ -656,6 +658,7 @@
                 </table>
                 <hr>
                 <input type="hidden" id="unit">
+            </div>
             <div class="modal-footer">
                 <button type="button" onclick="Memilih();" class="btn btn-success">Pilih Mobil</button>
                 <button type="button" class="btn btn-danger ml-auto"  data-dismiss="modal">Close</button> 

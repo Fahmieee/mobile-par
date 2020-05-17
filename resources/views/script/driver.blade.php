@@ -956,6 +956,7 @@
     var table = "";
     $(function() {
         table = $('.datatables').DataTable({
+            dom: 't',
             pageLength: 5,
             processing: true,
             serverSide: true,
@@ -979,6 +980,10 @@
                     }
                 }
             ]
+        });
+
+        $('#carimobil').keyup(function(){
+            table.search($(this).val()).draw() ;
         });
     });
 

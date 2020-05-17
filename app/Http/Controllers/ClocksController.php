@@ -47,6 +47,13 @@ class ClocksController extends Controller
             $clock->clockin_status = 'NOT APPROVED';
             $clock->save();
 
+            $clockdrive = new Driving();
+            $clockdrive->clock_id = $clock->id;
+            $clockdrive->unit_id = $client->unit_id;
+            $clockdrive->km_awal = $request->km;
+            $clockdrive->km_akhir = null;
+            $clockdrive->save();
+
             $adaabsen = Attendances::where([
                 ['driver_id', '=', $request->user_id],
                 ['date_in', '=', $hari],
@@ -195,6 +202,9 @@ class ClocksController extends Controller
                 $clocks = Clocks::where(['id' => $validatesekarang->id])
                 ->update(['clockout_date'=>$hari, 'clockout_time'=>$time, 'clockout_km'=>$request->km, 'clockout_status'=> 'NOT APPROVED']);
 
+                $driving = Driving::where(['clock_id' => $validatesekarang->id])
+                ->update(['km_akhir'=>$request->km]);
+
                 $absensiout = Attendances::where(['date_in'=>$hari,'driver_id'=>$request->user_id])
                 ->update(['date_out'=>$hari, 'time_out'=>$time]);
 
@@ -257,6 +267,9 @@ class ClocksController extends Controller
 
                 $clocks = Clocks::where(['id'=>$validatekemarin->id])
                 ->update(['clockout_date'=>$hari, 'clockout_time'=>$time, 'clockout_km'=>$request->km, 'clockout_status'=> 'NOT APPROVED']);
+
+                $driving = Driving::where(['clock_id' => $validatekemarin->id])
+                ->update(['km_akhir'=>$request->km]);
 
                 $absensiout = Attendances::where(['date_in'=>$validatekemarin->clockin_date,'driver_id'=>$request->user_id])
                 ->update(['date_out'=>$hari, 'time_out'=>$time]);
