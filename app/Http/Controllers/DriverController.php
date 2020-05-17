@@ -324,9 +324,9 @@ class DriverController extends Controller
         $user = Auth::user();
 
         $clocks = Clocks::where([
-            ['user_id', '=', $user->id],
-            ['clockin_date', '=', $hariini]
+            ['user_id', '=', $user->id]
         ])
+        ->orderBy('id', 'desc')
         ->first();
 
         $driivers = Drivers::where("driver_id", $user->id)
@@ -335,12 +335,9 @@ class DriverController extends Controller
         $getdriving = Driving::select("driving.id")
         ->leftJoin("clocks", "driving.clock_id", "=", "clocks.id")
         ->where([
-                ['clocks.user_id', '=', $user->id],
-                ['clocks.clockin_date', '=', $hariini],
-                ['unit_id', '=', $driivers->unit_id],
-            ])
-        ->orderBy("driving.id", "desc")
-        ->limit(1)
+            ['clock_id', '=', $clocks->id],
+            ['km_akhir', '=', null]
+        ])
         ->first();
 
         $units = Units::where("id",$driivers->unit_id)

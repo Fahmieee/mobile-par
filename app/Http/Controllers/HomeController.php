@@ -101,9 +101,9 @@ class HomeController extends Controller
             ->first();
 
 	        $cekclockin = Clocks::where([
-	                ['user_id', '=', $user->id],
-	                ['clockin_date', '=', $date],
-	            ])
+                ['user_id', '=', $user->id],
+        	])
+        	->orderBy('id', 'desc')
 	        ->first();
 
 	        $getunitdrives = UnitDrivers::select("units.*")
@@ -112,13 +112,8 @@ class HomeController extends Controller
 	        ->get();
 
 	        $getdriving = Driving::leftJoin("clocks", "driving.clock_id", "=", "clocks.id")
-	        ->where([
-	                ['clocks.user_id', '=', $user->id],
-	                ['clocks.clockin_date', '=', $date],
-	                ['unit_id', '=', $get->unit_id],
-	            ])
+	        ->where("clock_id", $cekclockin->id)
 	        ->orderBy("driving.id", "desc")
-	        ->limit(1)
 	        ->first();
 
 	    	return view('content.home.index', compact('date','getdrivers','getusers','getunits','getkorlaps','getsim','getmcu','getasuransi','getkeur','gettrainings','getperdin','roles','getunitdrives','get','cekclockin','getdriving','statuses','adaizin'));

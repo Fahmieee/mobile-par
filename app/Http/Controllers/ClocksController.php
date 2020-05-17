@@ -401,6 +401,7 @@ class ClocksController extends Controller
 
 
         $driving = Driving::where("clock_id", $clockterakhir->id)
+        ->orderBy("id", "desc")
         ->first();
 
         if(!$driving){

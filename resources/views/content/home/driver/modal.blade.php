@@ -742,6 +742,7 @@
     </div>
 </div>
 @if($getdriving)
+@if($getdriving->km_akhir == null)
 <div class="modal fade" id="driveout_modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
         <div class="modal-content">
@@ -792,4 +793,5 @@
         </div>
     </div>
 </div>
+@endif
 @endif
