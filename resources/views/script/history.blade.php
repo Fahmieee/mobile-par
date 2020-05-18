@@ -94,11 +94,11 @@
 
 	            	if(data.perdin == 'No'){
 
-	            		content_datas += "<table width='100%'><tr><td align='center'><button onclick='EditKilometer("+id+");' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i>  Edit Kilometer</button></td></tr></table><hr>";
+	            		content_datas += "<table width='100%'><tr><td align='center'><button onclick='EditKilometer("+id+");' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i>  Edit Kilometer</button> <button onclick='AktifkanPerdin("+id+");' class='btn btn-sm btn-warning'><i class='fa fa-bolt'></i> Aktifkan Perdin?</button></td></tr></table><hr>";
 
 	            	} else {
 
-	            		content_datas += "<table width='100%'><tr><td align='center'><button onclick='EditKilometer("+id+");' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i>  Edit Kilometer</button> <button class='btn btn-sm btn-danger'><i class='fa fa-upload'></i>  Upload Perdin</button></td></tr></table><hr>";
+	            		content_datas += "<table width='100%'><tr><td align='center'><button onclick='EditKilometer("+id+");' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i>  Edit Kilometer</button> <button class='btn btn-sm btn-danger'><i class='fa fa-upload'></i>  Upload Perdin</button></td></tr><tr><td colspan='2' style='font-size: 10px;' align='center'>Pada Tanggal ini <br> Anda Melakukan Perjalanan Dinas!</td></tr></table><hr>";
 
 	            	}
 
@@ -202,7 +202,45 @@
 
 	}
 
+	function AktifkanPerdin(id){
+
+		$('#idperdin').val(id);
+
+		$('#aktifperdin').modal('show');
+
+	}
+
+	function UpdatePerdin(){
+
+		$('#aktifperdin').modal('hide');
+
+		$.ajax({
+            type: 'POST',
+            url: "{{ route('updateperdin') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'perdin': $('#idperdin').val(),
+                },
+            success: function(data) {
+
+            	swal({
+                    text: "Perjalanan Dinas Berhasil diaktifkan",
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                });
+
+                setTimeout(function(){ window.location.href = 'history'; }, 1500);
+
+            }
+
+        });
+
+	}
+
 	function Update(){
+
+		$('#edit_kilometer').modal('hide');
 
 		$.ajax({
             type: 'POST',

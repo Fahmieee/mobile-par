@@ -123,4 +123,15 @@ class HistoryController extends Controller
 
     }
 
+    public function updateperdin(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+
+        $updates = Clocks::where(['id'=>$request->perdin])
+        ->update(['perdin'=>'yes']);
+
+        return response()->json($updates);
+
+    }
+
 }
