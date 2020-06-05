@@ -409,7 +409,7 @@ class ClocksController extends Controller
             $clocks = Clocks::where(['id'=>$clockterakhir->id])
             ->update(['clockout_date'=>$hari, 'clockout_time'=>$time, 'clockout_status'=> 'NOT APPROVED']);
 
-            $absensiout = Attendances::where(['date_in'=>$clockterakhir->clockin_date,'driver_id'=>$request->user_id])
+            $absensiout = Attendances::where(['date_in'=>$clockterakhir->clockin_date,'driver_id'=>$user->id])
             ->update(['date_out'=>$hari, 'time_out'=>$time]);
 
             $drives = Drivers::where(['driver_id'=>$user->id])
@@ -445,7 +445,7 @@ class ClocksController extends Controller
                 $clocks = Clocks::where(['id'=>$clockterakhir->id])
                 ->update(['clockout_date'=>$hari, 'clockout_time'=>$time, 'clockout_status'=> 'NOT APPROVED']);
 
-                $absensiout = Attendances::where(['date_in'=>$clockterakhir->clockin_date,'driver_id'=>$request->user_id])
+                $absensiout = Attendances::where(['date_in'=>$clockterakhir->clockin_date,'driver_id'=>$user->id])
                 ->update(['date_out'=>$hari, 'time_out'=>$time]);
 
                 $drives = Drivers::where(['driver_id'=>$user->id])
