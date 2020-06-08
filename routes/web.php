@@ -103,6 +103,10 @@ Route::group(['middleware' => 'auth:user'], function(){
 	Route::get('history/gets', 'HistoryController@gets')->name('gethistory');
 	Route::post('history/update', 'HistoryController@updatekilometer')->name('updatekilometer');
 	Route::post('history/updateperdin', 'HistoryController@updateperdin')->name('updateperdin');
+	Route::post('history/uploadperdin', 'HistoryController@uploadperdin')->name('uploadperdin');
+	Route::post('history/cekperdin', 'HistoryController@cekperdin')->name('cekperdin');
+	Route::post('history/hapusperdin', 'HistoryController@hapusperdin')->name('hapusperdin');
+	Route::post('history/editperdin', 'HistoryController@editperdin')->name('editperdin');
 
 	Route::get('korlap', 'KorlapController@index');
 	Route::get('lihatdriver', 'KorlapController@lihatdriver');

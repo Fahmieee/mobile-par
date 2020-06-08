@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 use App\Clocks;
 use App\Pretrip_Check;
 use App\MedicalCheckup;
+use App\Perdin;
 use Auth;
 use DataTables;
 use DB;
+use Validator;
+use Image;
 
 class HistoryController extends Controller
 {
@@ -43,7 +46,9 @@ class HistoryController extends Controller
     {   
         $user = Auth::user();
 
-    	$getclocks = Clocks::where('id', '=', $request->id)
+    	$getclocks = Clocks::select("clocks.*","perdin.doc")
+        ->leftJoin("perdin", "clocks.id", "=", "perdin.clock_id")
+        ->where('clocks.id', '=', $request->id)
         ->first();
 
         $tripcheck = Pretrip_Check::select("time")
@@ -92,6 +97,7 @@ class HistoryController extends Controller
         $arrayNames = array(    
             'clockin_time' => $getclocks->clockin_time, 
             'perdin' => $getclocks->perdin,
+            'doc' => $getclocks->doc,
             'clockout_time' => $getclocks->clockout_time,
             'clockin_date' => $getclocks->clockin_date, 
             'clockout_date' => $getclocks->clockout_date,
@@ -131,6 +137,125 @@ class HistoryController extends Controller
         ->update(['perdin'=>'yes']);
 
         return response()->json($updates);
+
+    }
+
+    public function uploadperdin(Request $request)
+    {   
+        date_default_timezone_set('Asia/Jakarta');
+
+        $validation = Validator::make($request->all(), [
+            'file' => 'mimes:jpeg,bmp,png,svg,pdf',
+        ]);
+
+        if($validation->passes()) {
+
+            $image = $request->file('file');
+            $input['imagename'] = rand() . '.' . $image->getClientOriginalExtension();
+
+            $destinationPath = public_path('assets/img_spd');
+
+            $img = Image::make($image->getRealPath());
+            $img->resize(400, 400, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename']);
+
+
+            $clock = new Perdin();
+            $clock->clock_id = $request->id;
+            $clock->doc = $input['imagename'];
+            $clock->save();
+
+            return response()->json([
+                'message'  => 'Upload Anda Tersimpan',
+                'icon' => 'success',
+                'name' => $input['imagename'],
+                'status' => '1',
+            ]);
+
+        } else {
+
+            return response()->json([
+                'message' => $validation->errors()->all(),
+                'icon' => 'error',
+                'status' => '0',
+            ]);
+        }
+
+    }
+
+    public function cekperdin(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+
+        $adaperdin = Perdin::where('clock_id', $request->id)
+        ->first();
+
+        if($adaperdin){
+
+            return response()->json([
+                'name' => $adaperdin->doc,
+                'status' => '1',
+            ]);
+
+        } else {
+
+            return response()->json([
+                'status' => '0',
+            ]);
+
+        }
+
+    }
+
+    public function hapusperdin(Request $request)
+    {
+
+        $hapusperdin = Perdin::where('clock_id', $request->id)
+        ->delete();
+
+        return response()->json($hapusperdin);
+
+    }
+
+    public function editperdin(Request $request)
+    {   
+        date_default_timezone_set('Asia/Jakarta');
+
+        $validation = Validator::make($request->all(), [
+            'file' => 'mimes:jpeg,bmp,png,svg,pdf',
+        ]);
+
+        if($validation->passes()) {
+
+            $image = $request->file('file');
+            $input['imagename'] = rand() . '.' . $image->getClientOriginalExtension();
+
+            $destinationPath = public_path('assets/img_spd');
+
+            $img = Image::make($image->getRealPath());
+            $img->resize(400, 400, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath.'/'.$input['imagename']);
+
+            $updates = Perdin::where(['clock_id'=>$request->id])
+            ->update(['doc'=>$input['imagename']]);
+
+            return response()->json([
+                'message'  => 'Upload Anda Tersimpan',
+                'icon' => 'success',
+                'name' => $input['imagename'],
+                'status' => '1',
+            ]);
+
+        } else {
+
+            return response()->json([
+                'message' => $validation->errors()->all(),
+                'icon' => 'error',
+                'status' => '0',
+            ]);
+        }
 
     }
 

@@ -98,7 +98,17 @@
 
 	            	} else {
 
-	            		content_datas += "<table width='100%'><tr><td align='center'><button onclick='EditKilometer("+id+");' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i>  Edit Kilometer</button> <button class='btn btn-sm btn-danger'><i class='fa fa-upload'></i>  Upload Perdin</button></td></tr><tr><td colspan='2' style='font-size: 10px;' align='center'>Pada Tanggal ini <br> Anda Melakukan Perjalanan Dinas!</td></tr></table><hr>";
+	            		if(data.doc == null){
+
+	            			content_datas += "<table width='100%'><tr><td align='center'><button onclick='EditKilometer("+id+");' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i>  Edit Kilometer</button> <button onclick='UploadPerdin("+id+");' class='btn btn-sm btn-danger'><i class='fa fa-upload'></i>  Upload Perdin</button></td></tr><tr><td colspan='2' style='font-size: 10px;' align='center'>Pada Tanggal ini <br> Anda Melakukan Perjalanan Dinas!</td></tr></table><hr>";
+
+	            		} else {
+
+	            			content_datas += "<table width='100%'><tr><td align='center'><button onclick='EditKilometer("+id+");' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i>  Edit Kilometer</button> <button onclick='UploadPerdin("+id+");' class='btn btn-sm btn-success'><i class='fa fa-eye'></i>  Lihat Dokumen</button></td></tr><tr><td colspan='2' style='font-size: 10px;' align='center'>Pada Tanggal ini <br> Anda Melakukan Perjalanan Dinas!</td></tr></table><hr>";
+
+	            		}
+
+	            		
 
 	            	}
 
@@ -266,5 +276,186 @@
 
         });
 	}
+
+	function UploadPerdin(id){
+
+		$('#idx').val(id);
+
+		$.ajax({
+            type: 'POST',
+            url: "{{ route('cekperdin') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'id': id,
+                },
+            success: function(data) {
+
+            	if(data.status == 1){
+
+            		var content_data = '<img width="80%" src="/assets/img_spd/'+data.name+'">';
+
+                    $('#imgperdin').html(content_data);
+
+                    $('#sudahupload').attr("style","display: block;");
+                    $('#belumupload').attr("style","display: none;");
+
+            	} else {
+
+            		$('#imgperdin').html('');
+
+            		$('#sudahupload').attr("style","display: none;");
+                    $('#belumupload').attr("style","display: block;");
+
+            	}
+
+
+            }
+
+        });
+
+		$('#uploadperdin').modal('show');
+
+	}
+
+	$("#uploadpost").on("change", function() {
+
+		$('#uploadperdin').modal('hide');
+		$('.loading').attr('style','display: block');
+
+		var id = $('#idx').val();
+        var formData = new FormData();
+        formData.append('file', $('#uploadpost')[0].files[0]);
+        formData.append('id', id);
+
+        $.ajax({
+            url: "{{ route('uploadperdin') }}",
+            method:"POST",
+            data: formData,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            dataType:'JSON',
+            contentType: false,
+            cache: false,
+            processData: false,
+
+            success:function(data) {
+
+                if(data.status == '1'){
+
+                	$('.loading').attr('style','display: none');
+                	$('#uploadperdin').modal('show');
+
+                    var content_data = '<img width="80%" src="/assets/img_spd/'+data.name+'">';
+
+                    $('#imgperdin').html(content_data);
+
+                    $('#sudahupload').attr("style","display: block;");
+                    $('#belumupload').attr("style","display: none;");
+
+                } else {
+
+                    swal({
+                        title: "Gagal!",
+                        text: "Pastikan File yang Anda Upload Benar!",
+                        icon: "error",
+                        buttons: false,
+                        timer: 2000,
+                    });
+                }
+            }
+        });
+
+    });
+
+    function HapusPerdin(){
+
+    	var id = $('#idx').val();
+
+    	$('#ids').val(id);
+
+    	$('#konfirmhapusperdin').modal('show');
+
+    }
+
+    function YakinHapus(){
+
+    	$('#uploadperdin').modal('hide');
+    	$('#konfirmhapusperdin').modal('hide');
+
+    	$.ajax({
+            type: 'POST',
+            url: "{{ route('hapusperdin') }}",
+            data: {
+                '_token': $('input[name=_token]').val(),
+                'id': $('#ids').val(),
+                },
+            success: function(data) {
+
+            	swal({
+                    title: "Berhasil!",
+                    text: "Anda Berhasil Menghapus Foto Dokumen Perdin!",
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                });
+
+                setTimeout(function(){ window.location.href = 'history'; }, 1500);
+
+            }
+        });
+
+    }
+
+    $("#editperdin").on("change", function() {
+
+		$('#uploadperdin').modal('hide');
+		$('.loading').attr('style','display: block');
+
+		var id = $('#idx').val();
+        var formData = new FormData();
+        formData.append('file', $('#editperdin')[0].files[0]);
+        formData.append('id', id);
+
+        $.ajax({
+            url: "{{ route('editperdin') }}",
+            method:"POST",
+            data: formData,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            dataType:'JSON',
+            contentType: false,
+            cache: false,
+            processData: false,
+
+            success:function(data) {
+
+                if(data.status == '1'){
+
+                	$('.loading').attr('style','display: none');
+                	$('#uploadperdin').modal('show');
+
+                    var content_data = '<img width="80%" src="/assets/img_spd/'+data.name+'">';
+
+                    $('#imgperdin').html(content_data);
+
+                    $('#sudahupload').attr("style","display: block;");
+                    $('#belumupload').attr("style","display: none;");
+
+                } else {
+
+                    swal({
+                        title: "Gagal!",
+                        text: "Pastikan File yang Anda Upload Benar!",
+                        icon: "error",
+                        buttons: false,
+                        timer: 2000,
+                    });
+                }
+            }
+        });
+
+    });
 
 </script>
