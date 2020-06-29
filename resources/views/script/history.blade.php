@@ -319,9 +319,6 @@
 
 	$("#uploadpost").on("change", function() {
 
-		$('#uploadperdin').modal('hide');
-		$('.loading').attr('style','display: block');
-
 		var id = $('#idx').val();
         var formData = new FormData();
         formData.append('file', $('#uploadpost')[0].files[0]);
@@ -342,9 +339,6 @@
             success:function(data) {
 
                 if(data.status == '1'){
-
-                	$('.loading').attr('style','display: none');
-                	$('#uploadperdin').modal('show');
 
                     var content_data = '<img width="80%" src="/assets/img_spd/'+data.name+'">';
 
@@ -409,9 +403,6 @@
 
     $("#editperdin").on("change", function() {
 
-		$('#uploadperdin').modal('hide');
-		$('.loading').attr('style','display: block');
-
 		var id = $('#idx').val();
         var formData = new FormData();
         formData.append('file', $('#editperdin')[0].files[0]);
@@ -432,9 +423,6 @@
             success:function(data) {
 
                 if(data.status == '1'){
-
-                	$('.loading').attr('style','display: none');
-                	$('#uploadperdin').modal('show');
 
                     var content_data = '<img width="80%" src="/assets/img_spd/'+data.name+'">';
 
