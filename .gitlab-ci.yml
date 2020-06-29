@@ -7,6 +7,6 @@ before_script:
 update_doni:
   stage: test
   script:
-  - sshpass -e ssh root@mobile-par.ndt-dev.com "cd /var/www/html/mobile-par/; git checkout -f HEAD; git pull gitlab doni;"
+  - sshpass -e ssh root@mobile-par.ndt-dev.com "cd /var/www/html/mobile-par/; git checkout -f HEAD; git pull gitlab doni; chmod -R 777 /var/www/html/mobile-par/public;"
   only:
   - doni
