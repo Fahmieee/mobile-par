@@ -36,6 +36,73 @@ class HomeController extends Controller
 
         if($roles->role_id == '2'){
 
+        	$driveraja = Drivers::where('driver_id', $user->id)
+		    ->first();
+
+		    if(!$driveraja){
+
+		    	return view('content.home.error');
+
+		    } else {
+
+		    	if($driveraja->korlap_id == null){
+
+		    		return view('content.home.error2');
+
+		    	}
+
+		    }
+
+        } else if($roles->role_id == '3'){
+
+        	$driveruser = Drivers::where('user_id', $user->id)
+		    ->first();
+
+		    if(!$driveruser){
+
+		    	return view('content.home.error');
+
+		    } 
+
+        } else if($roles->role_id == '5'){
+
+        	$driverkorlap = Drivers::where('korlap_id', $user->id)
+		    ->first();
+
+		    if(!$driverkorlap){
+
+		    	return view('content.home.error');
+
+		    } 
+
+        } else if($roles->role_id == '6'){
+
+        	$driverasmen= Drivers::where('asmen_id', $user->id)
+		    ->first();
+
+		    if(!$driverasmen){
+
+		    	return view('content.home.error');
+
+		    } 
+
+        } else {
+
+        	$drivermanager= Drivers::where('manager_id', $user->id)
+		    ->first();
+
+		    if(!$drivermanager){
+
+		    	return view('content.home.error');
+
+		    } 
+
+        }
+
+	    
+
+        if($roles->role_id == '2'){
+
         	$getdrivers = Users::where('users.id', $user->id)
 	        ->first();
 

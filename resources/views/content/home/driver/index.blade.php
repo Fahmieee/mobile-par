@@ -707,18 +707,18 @@
           </tr>
           <tr>
             <td colspan="4">
-              <h5><b>{{ $getkorlaps->first_name }}</b></h5>
+              <h5><b>{{ $getkorlaps ? $getkorlaps->first_name : 'Belum Punya Korlap' }}</b></h5>
             </td>  
           </tr>
           <tr>
             <td><h6>Email</h6></td>
             <td><h6>:</h6></td>
-            <td width="40%"><h6>{{ $getkorlaps->email }}</h6></td>  
+            <td width="40%"><h6>{{ $getkorlaps ? $getkorlaps->email : '' }}</h6></td>  
           </tr>
           <tr>
             <td><h6>NoHp</h6></td>
             <td><h6>:</h6></td>
-            <td><h6>{{ $getkorlaps->phone }}</h6></td>  
+            <td><h6>{{ $getkorlaps ? $getkorlaps->phone : '' }}</h6></td>  
           </tr>
 
           <tr height="10px">
