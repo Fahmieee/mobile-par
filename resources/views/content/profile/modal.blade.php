@@ -48,7 +48,7 @@
                 
                 <div class="modal-body" align="center">
                     <input type="file" id="file1" name="file1" class="form-control photo">
-                    <input type="hidden" class="form-control" name="user_id" id="user_id" value="{{Auth::guard('user')->user()->id}}">
+                    <input type="hidden" class="form-control" name="user_id" id="user_id" value="{{Auth::user()->id}}">
                 </div>
                 
                 <div class="modal-footer">

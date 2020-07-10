@@ -16,8 +16,6 @@ Route::get('/', function () {
     return view('splash.index');
 });
 
-Route::get('/login', 'LoginController@showLoginForm')->name('login');
-
 Route::get('/import', 'ImportController@index');
 Route::get('/import/tambahan', 'ImportController@tambahan');
 
@@ -38,9 +36,9 @@ Route::get('/', function () {
 
 Route::get('driver/unitdrivers', 'DriverController@unitdrivers')->name('unitdrivers');
 
-Route::group(['middleware' => 'auth:user'], function(){
+Route::group(['middleware' => 'auth'], function(){
 
-	Route::get('/home', 'HomeController@index');
+	Route::get('/homes', 'HomeController@index');
 
 	Route::get('/detailmonitoring', function () {
 	    return view('content.monitoring.detail');
@@ -183,3 +181,7 @@ Route::group(['middleware' => 'auth:user'], function(){
 	    return view('content.approve.index');
 	});
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

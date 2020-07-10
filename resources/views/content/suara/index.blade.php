@@ -9,7 +9,7 @@
           <div class="ct-page-title">
             <h1 class="ct-title" id="content">Suara Anda</h1>
           </div>
-          <input type="hidden" class="form-control" id="created_by" value="{{Auth::guard('user')->user()->id}}">
+          <input type="hidden" class="form-control" id="created_by" value="{{Auth::user()->id}}">
 
           <div class="card bg-secondary shadow">
             <div class="card-header bg-white border-0">

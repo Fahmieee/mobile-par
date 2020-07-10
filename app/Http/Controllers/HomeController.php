@@ -23,6 +23,22 @@ use Auth;
 
 class HomeController extends Controller
 {
+	/**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+
     public function index()
     {
     	date_default_timezone_set('Asia/Jakarta');
@@ -192,9 +208,7 @@ class HomeController extends Controller
 	        	])
 	        	->first();
 
-	        }
-
-	        
+	        } 
 
 	    	return view('content.home.index', compact('date','getdrivers','getusers','getunits','getkorlaps','getsim','getmcu','getasuransi','getkeur','gettrainings','getperdin','roles','getunitdrives','get','cekclockin','getdriving','statuses','adaizin'));
 

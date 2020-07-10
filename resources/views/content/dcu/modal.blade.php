@@ -21,7 +21,7 @@
                     <table border="0" align="center" width="100%">
                         <tr>
                             <td align="center"><img src="./assets/content/img/theme/mc.jpg" width="80%">
-                            <input type="hidden" name="created_add" id="created_add" value="{{Auth::guard('user')->user()->id}}">
+                            <input type="hidden" name="created_add" id="created_add" value="{{Auth::user()->id}}">
                             </td>
                         </tr>
                     </table>

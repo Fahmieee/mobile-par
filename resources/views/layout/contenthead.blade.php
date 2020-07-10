@@ -338,15 +338,20 @@
               <span>Ubah Password</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="/login/logout" class="dropdown-item">
-              <i class="ni ni-user-run"></i>
-              <span>Keluar</span>
+            <a class="dropdown-item" href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
             </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
           </div>
         </li>
       </ul>
-      <input type="hidden" class="form-control" id="created_by" value="{{Auth::guard('user')->user()->id}}">
-      <input type="hidden" class="form-control" id="fcm_token" value="{{Auth::guard('user')->user()->fcm_token}}">
+      <input type="hidden" class="form-control" id="created_by" value="{{Auth::user()->id}}">
+      <input type="hidden" class="form-control" id="fcm_token" value="{{Auth::user()->fcm_token}}">
 
     </div>
   </nav>
