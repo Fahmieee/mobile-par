@@ -96,7 +96,7 @@
       authDomain: "pars-e903c.firebaseapp.com",
       databaseURL: "https://pars-e903c.firebaseio.com",
       projectId: "pars-e903c",
-      storageBucket: "",
+      storageBucket: "pars-e903c.appspot.com",
       messagingSenderId: "1061259679604",
       appId: "1:1061259679604:web:d967b8997b29cf2d"
   };

@@ -12,7 +12,7 @@
                 </div>
                     <div class="textcredit">
                                     
-                        Developed By : Bussiness Development and Support
+                        Developed By : Business and Development Support
 
                     </div>
             </div>

@@ -34,7 +34,7 @@ class ApproveController extends Controller
             ['drivers.korlap_id', '=', $request->user_id],
             ['pretrip_check_notoke.status', '=', 'NOT APPROVED'],
         ])
-    	->orderBy('check_answer.level', 'asc')
+    	->orderBy('check_answer.level', 'desc')
         ->get();
 
     	return response()->json($getdatas);

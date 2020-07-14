@@ -119,33 +119,4 @@
 
 	});
 
-	$('#back').on('click', function () {
-
-		$.ajax({
-            type: 'POST',
-            url: "{{ route('RoleProfile') }}",
-            data: {
-                '_token': $('input[name=_token]').val(),
-                'user_id': $('#created_by').val()
-            },
-
-            success: function (data) {
-
-            	var role = '';
-                if(data.sebagai == 2){
-                	role = 'driver';
-                } else if(data.sebagai == 5){
-                	role = 'korlap';
-                } else {
-                	role = 'client';
-                }
-
-	            setTimeout(function(){ window.location.href = role; }, 10);
-
-            }
-
-        });
-
-	});
-
 </script>
