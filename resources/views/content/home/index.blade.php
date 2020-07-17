@@ -15,7 +15,6 @@
       @else
         @include('content.home.manager.index')
       @endif
-
     </div>
   </div>
       @if($roles->role_id == '2')

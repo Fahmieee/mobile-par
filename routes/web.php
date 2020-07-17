@@ -12,8 +12,8 @@
 */
 Auth::routes();
 
-Route::get('/', function () {
-    return view('splash.index');
+Route::get('/offline', function () {
+    return view('content.home.offline');
 });
 
 Route::get('/import', 'ImportController@index');
@@ -37,8 +37,6 @@ Route::get('/', function () {
 Route::get('driver/unitdrivers', 'DriverController@unitdrivers')->name('unitdrivers');
 
 Route::group(['middleware' => 'auth'], function(){
-
-	Route::get('/homes', 'HomeController@index');
 
 	Route::get('/detailmonitoring', function () {
 	    return view('content.monitoring.detail');

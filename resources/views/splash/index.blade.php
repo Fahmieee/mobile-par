@@ -9,6 +9,7 @@
                 </div>
                 <div id="loader" style="display: none;" align="center">
                     <img src="assets/login/images/balls.gif" width="100px" align="center">
+                    <input type="hidden" id="userx" value="{{ Auth::user() ? Auth::user()->id : '0' }}">
                 </div>
                     <div class="textcredit">
                                     
@@ -27,7 +28,19 @@
 
 		setTimeout(Loading, 4000);
 
-        setTimeout(function(){ window.location.href = 'home'; }, 8000);
+        var userid = $('#userx').val();
+
+        if(userid == 0){
+
+            setTimeout(function(){ window.location.href = 'login'; }, 8000);
+
+        } else {
+
+            setTimeout(function(){ window.location.href = 'home'; }, 8000);
+
+        }
+
+        
 
 	});
 

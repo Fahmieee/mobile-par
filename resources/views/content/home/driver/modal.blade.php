@@ -185,7 +185,7 @@
                 <div class="modal-body">
                     <table border="0" align="center" width="100%">
                         <tr>
-                            <td align="center"><img src="./assets/content/img/theme/mc.jpg" width="80%">
+                            <td align="center"><img src="./assets/content/img/theme/doctor.svg" width="65%">
                             <input type="hidden" name="created_add" id="created_add" value="{{Auth::user()->id}}">
                             </td>
                         </tr>
@@ -682,7 +682,7 @@
             <div class="modal-body" align="center">
                 <table border="0" align="center" width="100%">
                     <tr>
-                        <td align="center"><img src="./assets/content/img/theme/info.png"></td>
+                        <td align="center"><img src="/assets/content/img/theme/info.png"></td>
                     </tr>
                     <tr>
                         <td align="center"><h5 class="text-muted">Anda Yakin akan Memilih Mobil Ini?</h5></td>
