@@ -1,4 +1,4 @@
-@if($getdrivers->driver_type == '1'))
+@if($getdrivers->driver_type == '1')
 <div class="modal fade" id="modal_clockin" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
         <div class="modal-content">
