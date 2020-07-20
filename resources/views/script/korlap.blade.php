@@ -101,7 +101,7 @@
                     timer: 2000,
                 });
 
-                setTimeout(function(){ window.location.href='korlap'; }, 1500);
+                setTimeout(function(){ window.location.href='home'; }, 1500);
 
             }
 
