@@ -175,4 +175,10 @@
 
     });
 
+    $('.btnload').on('click', function () {
+
+      $('.loading').attr('style','display: block');
+
+    });
+
   </script>
