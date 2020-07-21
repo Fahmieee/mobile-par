@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col">
           <div id="buttonback">
-            <a href="/home"><button type="button" id="back" class='btn btn-sm btn-success'>Back</button></a>
+            <a href="/home"><button type="button" id="back" class='btn btn-sm btn-success btnload'>Back</button></a>
           </div>
           <div class="ct-page-title">
             <h1 class="ct-title" id="content">Ubah Password</h1><span class="badge badge-primary">{{ $date }}</span>

@@ -106,7 +106,7 @@
                 </div>
                 
               </div>
-              <div id="button-simpan" align="center"><button class="btn btn-warning" id="kembali">Kembali</button></div>
+              <div id="button-simpan" align="center"><button class="btn btn-warning btnload" id="kembali">Kembali</button></div>
             </div>
           </div>
         </div>

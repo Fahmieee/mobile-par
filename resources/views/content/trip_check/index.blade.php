@@ -5,7 +5,7 @@
           <!-- Card stats -->
       <div class="row">
         <div class="col">
-          <a href="/home"><button type="button" id="back" class='btn btn-sm btn-success'>Back</button></a>
+          <a href="/home"><button type="button" id="back" class='btn btn-sm btn-success btnload'>Back</button></a>
           <div class="ct-page-title">
             <h1 class="ct-title" id="content">Pre Trip Checks</h1>
           </div>

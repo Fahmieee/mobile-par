@@ -329,16 +329,16 @@
             <div class=" dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome! <b id="namaatas"></b></h6>
             </div>
-            <a href="profile" class="dropdown-item">
+            <a href="profile" class="dropdown-item btnload">
               <i class="ni ni-single-02"></i>
               <span>Profil Saya</span>
             </a>
-            <a href="ubahpassword" class="dropdown-item">
+            <a href="ubahpassword" class="dropdown-item btnload">
               <i class="ni ni-settings-gear-65"></i>
               <span>Ubah Password</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('logout') }}"
+            <a class="dropdown-item btnload" href="{{ route('logout') }}"
                onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
@@ -352,6 +352,6 @@
       </ul>
       <input type="hidden" class="form-control" id="created_by" value="{{Auth::user()->id}}">
       <input type="hidden" class="form-control" id="fcm_token" value="{{Auth::user()->fcm_token}}">
-
+      <div class="loading" style="display: none;">Loading&#8230;</div>
     </div>
   </nav>

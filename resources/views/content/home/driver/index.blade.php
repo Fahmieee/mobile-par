@@ -67,7 +67,7 @@
                 </div>
               </td>
               <td align="center" width="25%">
-                <div id="medical" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                <div id="medical" class="icon icon-shape bg-white text-white rounded-circle shadow btnload">
                     <i class="fas fa-medkit" style="color: #0166b5"></i>
                 </div>
               </td>
@@ -110,12 +110,12 @@
                 </div>
               </td>
               <td align="center" width="25%">
-                <a href="/driver/rekap"><div class="icon icon-shape bg-white text-white rounded-circle shadow">
+                <a href="/driver/rekap"><div class="icon icon-shape bg-white text-white rounded-circle shadow btnload">
                     <i class="fas fa-book" style="color: #0166b5"></i>
                 </div></a>
               </td>
               <td align="center" width="25%">
-                <div id="history" class="icon icon-shape bg-white text-white rounded-circle shadow">
+                <div id="history" class="icon icon-shape bg-white text-white rounded-circle shadow btnload">
                     <i class="fas fa-road" style="color: #0166b5"></i>
                 </div>
               </td>
