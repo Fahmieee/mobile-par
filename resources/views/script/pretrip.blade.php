@@ -332,6 +332,9 @@
 				        });
 		        	});
                 } 
+
+                setTimeout(function(){ window.location.href = 'home'; }, 1500);
+
             }
 
         });
