@@ -153,61 +153,35 @@
 
 
                     if(data.message == "success"){
-
                         
-                        // if(data.hasil == "3"){
+                        if(data.hasil == "3"){
 
-                        //     $.ajax({        
-                        //         type : 'POST',
-                        //         url : "https://fcm.googleapis.com/fcm/send",
-                        //         headers : {
-                        //             Authorization : 'key=' + 'AIzaSyBBlLqWxqmpbgg-8ZjhMiYMOgzUrJDgQRM'
-                        //         },
-                        //         contentType : 'application/json',
-                        //         dataType: 'json',
-                        //         data: JSON.stringify({
-                        //             "to": data.fcm, 
-                        //             "notification": {
-                        //                 "title":"Hasil DCU "+data.name,
-                        //                 "body":"Kondisi Driver Anda Sakit Hasil dari DCU Hari ini!, Driver tidak Layak untuk Mengendarai Hari ini!",
-                        //                 "icon": "./assets/icons/96x96.png",
-                        //             }
-                        //         }),
-                        //         success : function(response) {
-                        //             console.log(response);
-                        //         },
-                        //         error : function(xhr, status, error) {
-                        //             console.log(xhr.error);                   
-                        //         }
-                        //     });
+                            $.ajax({        
+                                type : 'POST',
+                                url : "https://fcm.googleapis.com/fcm/send",
+                                headers : {
+                                    Authorization : 'key=' + 'AAAA9xgBl3Q:APA91bGhCdl-vk-5vZJVxAc4nxueNyn7f4udxlbmQjwAgPzPFnoxzAXxpl8M07_BeMvaJMSLasyiITyiATG0ixtbXnN0ftuEe5p-Rn6cw1Q6NJk7bAu0luBBGPy8veoZ0DWwZKNT6isc'
+                                },
+                                contentType : 'application/json',
+                                dataType: 'json',
+                                data: JSON.stringify({
+                                    "to": data.fcm, 
+                                    "notification": {
+                                        "title":"PAR MOBILE NOTIFICATIONS",
+                                        "body":"Kondisi Driver "+data.name+" Sakit! Setelah melakukan Pemeriksaan Daily Checkup (DCU) Hari ini.",
+                                        "icon": "https://mobile-par.ndt-dev.com/assets/icons/96x96.png",
+                                        "click_action": "https://mobile-par.ndt-dev.com/home",
+                                    }
+                                }),
+                                success : function(response) {
+                                    console.log(response);
+                                },
+                                error : function(xhr, status, error) {
+                                    console.log(xhr.error);                   
+                                }
+                            });
 
-                        // } else if (data.hasil == "2"){
-
-                        //     $.ajax({        
-                        //         type : 'POST',
-                        //         url : "https://fcm.googleapis.com/fcm/send",
-                        //         headers : {
-                        //             Authorization : 'key=' + 'AIzaSyBBlLqWxqmpbgg-8ZjhMiYMOgzUrJDgQRM'
-                        //         },
-                        //         contentType : 'application/json',
-                        //         dataType: 'json',
-                        //         data: JSON.stringify({
-                        //             "to": data.fcm, 
-                        //             "notification": {
-                        //                 "title":"Hasil DCU "+data.name,
-                        //                 "body":"Kondisi Driver Anda Hati-hati Hasil dari DCU Hari ini!, Awasi Driver Tersebut dalam Berkendara!",
-                        //                 "icon": "./assets/icons/96x96.png",
-                        //             }
-                        //         }),
-                        //         success : function(response) {
-                        //             console.log(response);
-                        //         },
-                        //         error : function(xhr, status, error) {
-                        //             console.log(xhr.error);                   
-                        //         }
-                        //     });
-
-                        // } 
+                        }
 
                         swal({
                             title: "Berhasil",
