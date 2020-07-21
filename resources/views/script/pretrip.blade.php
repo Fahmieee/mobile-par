@@ -285,8 +285,53 @@
                     timer: 2000,
                 });
 
-            	setTimeout(function(){ window.location.href = 'home'; }, 1500);
+                if(data.length >= 1){
 
+                	var no = -1;
+
+		        	$.each(data, function() {
+
+		        		no++;
+		        		var role_id = data[no]['approve_role_id'];
+
+		        		$.ajax({
+				            type: 'POST',
+				            url: "{{ route('ptc.kirimnotifikasi') }}",
+				            data: {
+				                '_token': $('input[name=_token]').val(),
+				                'role': data[no]['approve_role_id'],
+				            },
+				            success: function(data) {
+
+				            	$.ajax({        
+	                                type : 'POST',
+	                                url : "https://fcm.googleapis.com/fcm/send",
+	                                headers : {
+	                                    Authorization : 'key=' + 'AAAA9xgBl3Q:APA91bGhCdl-vk-5vZJVxAc4nxueNyn7f4udxlbmQjwAgPzPFnoxzAXxpl8M07_BeMvaJMSLasyiITyiATG0ixtbXnN0ftuEe5p-Rn6cw1Q6NJk7bAu0luBBGPy8veoZ0DWwZKNT6isc'
+	                                },
+	                                contentType : 'application/json',
+	                                dataType: 'json',
+	                                data: JSON.stringify({
+	                                    "to": data.fcm, 
+	                                    "notification": {
+	                                        "title":"PAR MOBILE NOTIFICATIONS",
+	                                        "body":"Kondisi Mobil dari Driver "+data.driver+" Mengalamai Masalah, Silahkan Cek di Aplikasi Anda!",
+	                                        "icon": "https://mobile-par.ndt-dev.com/assets/icons/96x96.png",
+	                                        "click_action": "https://mobile-par.ndt-dev.com/home",
+	                                        
+	                                    }
+	                                }),
+	                                success : function(response) {
+	                                    console.log(response);
+	                                },
+	                                error : function(xhr, status, error) {
+	                                    console.log(xhr.error);                   
+	                                }
+	                            });
+				            }
+				        });
+		        	});
+                } 
             }
 
         });

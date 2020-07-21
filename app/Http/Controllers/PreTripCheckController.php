@@ -844,7 +844,20 @@ class PreTripCheckController extends Controller
 
         }
 
-        return response()->json($pretrip_check);
+        $ptcs = Pretrip_Check::where([
+            ['user_id', '=', $request->user_id],
+            ['date', '=', $harini],
+        ])
+        ->first();
+
+        $ceknotoke = PretripCheckNotOke::select('check_detail.approve_role_id')
+        ->leftJoin("check_answer", "pretrip_check_notoke.checkanswer_id", "=", "check_answer.id")
+        ->leftJoin("check_detail", "check_answer.checkdetail_id", "=", "check_detail.id")
+        ->where("pretrip_check_notoke.pretripcheck_id", $ptcs->id)
+        ->distinct()
+        ->get();
+
+        return response()->json($ceknotoke);
 
     }
 
@@ -1037,6 +1050,42 @@ class PreTripCheckController extends Controller
         }
 
         return response()->json($detail_tripchecknot);
+
+    }
+
+    public function ptcnotif(Request $request)
+    {   
+        $user = Auth::user();
+
+        if($request->role == '5'){
+
+            $drivers = Drivers::select("users.*")
+            ->leftJoin("users", "drivers.korlap_id", "=", "users.id")
+            ->where("driver_id", $user->id)
+            ->first();
+
+        } else if($request->role == '6'){
+
+            $drivers = Drivers::select("users.*")
+            ->leftJoin("users", "drivers.asmen_id", "=", "users.id")
+            ->where("driver_id", $user->id)
+            ->first();
+
+        } else {
+
+            $drivers = Drivers::select("users.*")
+            ->leftJoin("users", "drivers.manager_id", "=", "users.id")
+            ->where("driver_id", $user->id)
+            ->first();
+
+        }
+
+        $arrayNames = array(    
+            'driver' => $user->first_name,
+            'fcm' => $drivers->fcm_token,
+        );
+
+        return response()->json($arrayNames);
 
     }
 
