@@ -122,7 +122,8 @@ class ClientController extends Controller
             ['clockin_status', '=', 'NOT APPROVED'],
         ])
         ->orwhere('clockout_status', '=', 'NOT APPROVED')
-        ->groupby('clockin_date','first_name','last_name', 'clocks.client_id','clocks.id')
+        ->distinct()
+        ->orderBy("clocks.id","desc")
         ->get();
 
         return response()->json($getdatas);
@@ -268,12 +269,7 @@ class ClientController extends Controller
 
         }
 
-        $datanotif = array(
-            'batas' => $bataskerja1, 
-            'waktu' => $waktu1 
-        );
-
-        return response()->json($datanotif);
+        return response()->json($date);
     }
 
     public function listdriver(Request $request)
