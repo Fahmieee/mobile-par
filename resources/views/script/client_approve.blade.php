@@ -1,55 +1,8 @@
 <script type="text/javascript">
-	$(function() {
-
-		$.ajax({
-            type: 'POST',
-            url: "{{ route('GetApproveClient') }}",
-            data: {
-                '_token': $('input[name=_token]').val(),
-                'user_id': $('#created_by').val()
-            },
-
-            success: function (data) {
-
-            	var content_data="";
-	            var no = -1;
-
-            	$.each(data, function() {
-
-	                no++;
-	                var date = data[no]['clockin_date'];
-	                var first = data[no]['first_name']; 
-	                var last = data[no]['last_name'];
-	                var client_id = data[no]['client_id'];
-	                var id = data[no]['id'];
-	                
-
-	                content_data += "<div class='alert alert-default' role='alert'>";
-                  	content_data += "<table width='100%''>";
-                    content_data += "<tr>";
-                    content_data += "<td align='left'><h5 class='text-white'>Tanggal : "+date+"</h5>";
-                    content_data += "<h6 class='text-white'>Driver : "+first+"</h6></td>";
-                    content_data += "<td align='right' class='btn_"+id+"'><button type='button' class='btn btn-sm btn-success' onclick='Lihat("+id+")'>Lihat</button></td>";
-                    content_data += "</tr>";
-                  	content_data += "</table>";
-                  	content_data += "<div id='detail_"+id+"'></div>";
-                  	content_data += "</div>";
-                  	
-
-	            });
-
-	            $('.muncul_data').html(content_data);
-
-            }
-
-        });
-
-	});
 
 	function Lihat(rnum){
 
 		$('.btn_'+rnum).html('<button type="button" class="btn btn-sm btn-secondary" onclick="Tutup('+rnum+')">Tutup</button>');
-        $('.loading').attr('style','display: block');
 		$.ajax({
             type: 'POST',
             url: "{{ route('GetApproveClientDetail') }}",
@@ -59,8 +12,6 @@
             },
 
             success: function (data) {
-
-                $('.loading').attr('style','display: none');
 
             	var content_data ="";
             	var timeclockin = "";

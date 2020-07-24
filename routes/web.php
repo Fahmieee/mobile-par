@@ -134,7 +134,6 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('client/pairing', 'ClientController@pairing')->name('ProsesPairing');
 
 	Route::get('client-approve', 'ClientController@client_approve');
-	Route::post('client-approve/get', 'ClientController@getdataapprove')->name('GetApproveClient');
 	Route::post('client-approve/detail', 'ClientController@getdataapprovedetail')->name('GetApproveClientDetail');
 	Route::post('client-approve/approve', 'ClientController@approve')->name('ClientApprove');
 

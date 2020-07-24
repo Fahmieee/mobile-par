@@ -109,24 +109,24 @@ class ClientController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         $date = date('Y-m-d');
 
-        return view('content.client_approve.index', compact('date'));
+        $user = Auth::user();
 
-    }
-
-    public function getdataapprove(Request $request)
-    {
-        $getdatas = Clocks::select("clocks.id","first_name","clockin_date","last_name","clocks.client_id")
+         $getdatas = Clocks::select("clocks.*","first_name","last_name")
         ->join("users", "clocks.user_id", "=", "users.id")
         ->where([
-            ['client_id', '=', $request->user_id],
+            ['client_id', '=', $user->id],
             ['clockin_status', '=', 'NOT APPROVED'],
         ])
-        ->orwhere('clockout_status', '=', 'NOT APPROVED')
+        ->orwhere([
+            ['client_id', '=', $user->id],
+            ['clockout_status', '=', 'NOT APPROVED'],
+        ])
         ->distinct()
         ->orderBy("clocks.id","desc")
         ->get();
 
-        return response()->json($getdatas);
+
+        return view('content.client_approve.index', compact('getdatas','date'));
 
     }
 
