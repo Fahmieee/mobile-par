@@ -67,11 +67,11 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
   <script src="{{ asset('js/app2.js') }}"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
 
   <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-messaging.js"></script>
  
   <script>
     window.TrackJS &&

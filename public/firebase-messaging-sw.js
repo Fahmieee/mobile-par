@@ -46,8 +46,8 @@ self.addEventListener('fetch', evt => {
   // );
 });
 
-importScripts('https://www.gstatic.com/firebasejs/6.4.1/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/6.4.1/firebase-messaging.js');
+importScripts('https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/7.21.0/firebase-messaging.js');
 
 var config = {
     apiKey: "AIzaSyDwUF0pAA74V1SmzHqFaO94UopKRPp13K8",
