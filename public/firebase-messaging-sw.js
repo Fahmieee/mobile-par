@@ -49,7 +49,7 @@ self.addEventListener('fetch', evt => {
 importScripts('https://www.gstatic.com/firebasejs/6.4.1/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/6.4.1/firebase-messaging.js');
 
-var firebaseConfig = {
+var config = {
     apiKey: "AIzaSyDwUF0pAA74V1SmzHqFaO94UopKRPp13K8",
     authDomain: "pars-new.firebaseapp.com",
     databaseURL: "https://pars-new.firebaseio.com",
@@ -58,7 +58,7 @@ var firebaseConfig = {
     messagingSenderId: "349020208042",
     appId: "1:349020208042:web:1ae6f1e0ea1cd2453e09d3",
     measurementId: "G-J4N15TQGJS"
-};
+  };
 
 firebase.initializeApp(config);
 
