@@ -65,7 +65,7 @@
   <script src="{{ asset('assets/content/js/moment-with-locales.min.js') }}"></script>
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
   <script src="{{ asset('js/app2.js') }}"></script>
   <script src="https://www.gstatic.com/firebasejs/6.4.1/firebase-app.js"></script>
 
@@ -91,14 +91,15 @@
 
   <script type="text/javascript">
     
-  var config = {
-      apiKey: "AIzaSyAQn23VgrD6AM_0STEPFiDFniBBeIRQNTk",
-      authDomain: "pars-e903c.firebaseapp.com",
-      databaseURL: "https://pars-e903c.firebaseio.com",
-      projectId: "pars-e903c",
-      storageBucket: "pars-e903c.appspot.com",
-      messagingSenderId: "1061259679604",
-      appId: "1:1061259679604:web:d967b8997b29cf2d"
+  var firebaseConfig = {
+    apiKey: "AIzaSyDwUF0pAA74V1SmzHqFaO94UopKRPp13K8",
+    authDomain: "pars-new.firebaseapp.com",
+    databaseURL: "https://pars-new.firebaseio.com",
+    projectId: "pars-new",
+    storageBucket: "pars-new.appspot.com",
+    messagingSenderId: "349020208042",
+    appId: "1:349020208042:web:1ae6f1e0ea1cd2453e09d3",
+    measurementId: "G-J4N15TQGJS"
   };
 
   firebase.initializeApp(config);
