@@ -92,14 +92,15 @@
   <script type="text/javascript">
     
   var config = {
-      apiKey: "AIzaSyBXPLEpZkP6lH8gPpBWYa2Z835ZHiUZS8w",
-      authDomain: "iolosmart.firebaseapp.com",
-      databaseURL: "https://iolosmart.firebaseio.com",
-      projectId: "iolosmart",
-      storageBucket: "iolosmart.appspot.com",
-      messagingSenderId: "952156759200",
-      appId: "1:952156759200:web:34521ba5714245f59895c5",
-    };
+    apiKey: "AIzaSyDwUF0pAA74V1SmzHqFaO94UopKRPp13K8",
+    authDomain: "pars-new.firebaseapp.com",
+    databaseURL: "https://pars-new.firebaseio.com",
+    projectId: "pars-new",
+    storageBucket: "pars-new.appspot.com",
+    messagingSenderId: "349020208042",
+    appId: "1:349020208042:web:1ae6f1e0ea1cd2453e09d3",
+    measurementId: "G-J4N15TQGJS"
+  };
 
   firebase.initializeApp(config);
 
