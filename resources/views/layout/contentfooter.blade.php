@@ -91,7 +91,7 @@
 
   <script type="text/javascript">
     
-  var firebaseConfig = {
+  var config = {
     apiKey: "AIzaSyDwUF0pAA74V1SmzHqFaO94UopKRPp13K8",
     authDomain: "pars-new.firebaseapp.com",
     databaseURL: "https://pars-new.firebaseio.com",
