@@ -759,7 +759,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="form-control-label">UNIT :</label>
-                        <input type="text" value="{{ $getunits->no_police }}" class="form-control" disabled>
+                        <input type="text" value="{{ $getunits ? $getunits->no_police : '' }}" class="form-control" disabled>
                       </div>
                     </div>
                 </div>
